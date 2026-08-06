@@ -524,21 +524,11 @@ def test_timeout_forwarded_to_execute(monkeypatch):
 # ── No internal-engine leakage in the public surface ──────────────────
 
 
-def test_core_module_has_no_internal_engine_names():
+def test_core_module_has_no_internal_engine_names(engine_names):
     import nanorix.integrations._orchestrator_core as core
 
     src = inspect.getsource(core)
-    for forbidden in [
-        "EEE",
-        "DIRE",
-        "RZL",
-        "FGX",
-        "AIPPF",
-        "ZilchNet",
-        "SLMM",
-        "ZPSS",
-        "Memproof",
-    ]:
+    for forbidden in engine_names:
         assert forbidden not in src, f"internal engine name {forbidden!r} leaked"
 
 

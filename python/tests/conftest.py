@@ -39,6 +39,11 @@ def client(mock_api):
 # on a word boundary against module source, and as case-sensitive
 # substrings against rendered output.
 
+# Only names that are already public are listed here. EEE, DIRE, RZL and FGX
+# are readable straight off the subsystem step names below, which are hashed
+# into every signed AuditProof, so withholding them would buy nothing. The
+# remaining internal codenames are supplied by private CI through the
+# environment variable documented above.
 ENGINE_NAMES = (
     "EEE",
     "DIRE",
@@ -46,15 +51,6 @@ ENGINE_NAMES = (
     "FGX",
     "ACE",
     "MCP",
-    "AIPPF",
-    "FGI",
-    "SIS",
-    "ZilchNet",
-    "SLMM",
-    "ZPSS",
-    "ECM",
-    "Memproof",
-    "AVE",
 )
 
 # Subsystem step names carried in the signed AuditProof chain. These are
