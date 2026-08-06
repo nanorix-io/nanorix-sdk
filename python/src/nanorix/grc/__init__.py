@@ -2,9 +2,9 @@
 
 Batch 17 (2026-05-29) — real, installable GRC adapter modules. The last
 mile of "the AuditProof IS the provability artifact": push the signed
-AuditProof — per-record receipts (ADR-039) + outer envelope — into your GRC
+AuditProof — per-record receipts + outer envelope — into your GRC
 platform as compliance EVIDENCE, landed against the canonical control IDs
-the ADR-040 mapping resolves at ingestion time:
+the mapping resolves at ingestion time:
 
 - **Vanta** — ``nanorix.grc.vanta`` (``pip install nanorix[vanta]``);
 - **Drata** — ``nanorix.grc.drata`` (``pip install nanorix[drata]``);
@@ -37,12 +37,12 @@ Secureframe, Thoropass, Hyperproof, etc. follow the SAME transforms — they
 are documentation, not new engines (see
 ``docs/integrations/grc-adapters/``).
 
-## Three-layer separation (NON-NEGOTIABLE — ADR-040 RE-SCOPED)
+## Three-layer separation (NON-NEGOTIABLE — RE-SCOPED)
 
 | Layer | Carries | Evolves at |
 |---|---|---|
-| Receipt (ADR-039) | ``pattern_tag`` (signed) | Forever-Standard pace |
-| Mapping (ADR-040) | ``(j × c × p) → list[control_id]`` | Framework revision pace |
+| Receipt | ``pattern_tag`` (signed) | Forever-Standard pace |
+| Mapping | ``(j × c × p) → list[control_id]`` | Framework revision pace |
 | Adapter (this) | reads receipt + applies mapping + files | Vendor pace |
 
 The mapping is applied freshly at adapter time; it is NEVER stamped into the
@@ -50,13 +50,13 @@ signed receipt.
 
 ## Narrow-claim discipline (NON-NEGOTIABLE)
 
-Every evidence body carries ``"relationship": "references"`` + the ADR-040
+Every evidence body carries ``"relationship": "references"`` + the
 mapping disclaimer, and is run through :func:`assert_reference_only` (no
 ``COMPLIANT`` / ``SATISFIED`` / ``PASSED`` / ``MEETS``). Nanorix emits
 structural evidence (role 1); the adapter files it (role 2); the auditor
-adjudicates whether it is acceptable for a control (role 3) — ADR-017
+adjudicates whether it is acceptable for a control (role 3) —
 three-role liability split. No new signed primitive is added (the existing
-AuditProof is consumed). Customer-sole-declarer (ADR-013): ``jurisdiction``
+AuditProof is consumed). Customer-sole-declarer: ``jurisdiction``
 + ``classification`` are caller-supplied and read verbatim.
 """
 

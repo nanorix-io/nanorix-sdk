@@ -42,7 +42,7 @@ egress_declaration:
 # story: each participating organization's AuditProof carries
 # their organization's signature; the coordinator composes the
 # federation-round AuditProof from N participating organizations'
-# AuditProofs (per ADR-031 multi-party signing-authority model).
+# AuditProofs (multi-party signing-authority model).
 #
 # Concrete shape (uncomment + populate for production):
 # signing_config:

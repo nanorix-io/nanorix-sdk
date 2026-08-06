@@ -11,7 +11,7 @@ clinical AI subgroup-performance evaluation are aligned with the NIST AI
 RMF MEASURE function (see Anterior arXiv 2603.14631 fairness-evaluation
 methodology, which validates a MEASURE-function-aligned approach).
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's AI risk management
     posture. It does NOT certify, attest to satisfaction of, or claim
@@ -289,7 +289,7 @@ class NISTAIRMFContext:
         shape).
 
         Auditor + GRC platform consumers read this from the AuditProof's
-        metadata field (bound into ``metadata_hash`` per ADR-010 A4).
+        metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: self.framework_id,

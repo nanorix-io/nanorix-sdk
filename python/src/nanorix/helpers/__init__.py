@@ -10,7 +10,7 @@ Exports:
 - ActivityEvent emission helpers (Cap-3, in-capsule):
   `emit_tool_call_attempted`, `emit_tool_call_completed`,
   `emit_tool_call_failed`, `emit_reasoning_step_completed` —
-  activates ADR-021 ActivityEvent variants for customer use.
+  activates ActivityEvent variants for customer use.
 
 Future helpers (deferred to subsequent batches):
 - LangGraph adapter (Order 3 sub-D): `NanorixCheckpointSaver`

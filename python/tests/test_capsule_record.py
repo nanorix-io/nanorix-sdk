@@ -1,4 +1,4 @@
-"""ADR-039 + ADR-041 Wave B Item 2 — Python SDK per-record receipt + parent-proof tests.
+"""Wave B Item 2 — Python SDK per-record receipt + parent-proof tests.
 
 Covers `Capsule.record(...)` + `Capsule.add_parent_proof(...)` ergonomic
 surfaces. Validates:
@@ -79,7 +79,7 @@ def _record_response(
         "buffered_count": record_index + 1,
         "disclaimer": (
             "The receipt is signed evidence. Control IDs are derived at adapter "
-            "time via the ADR-040 published mapping artifact; whether the "
+            "time via the published mapping artifact; whether the "
             "evidence satisfies a control is determined by the customer's "
             "compliance program and the auditor's adjudication, not by Nanorix."
         ),
@@ -107,7 +107,7 @@ def _parent_response(
 
 
 def test_pattern_tags_count_is_15():
-    """ADR-039 §'pattern_tag rule' specifies a closed enum of 15 variants."""
+    """PatternTag is a closed enum of 15 variants."""
     assert len(PATTERN_TAGS) == 15
 
 
@@ -152,7 +152,7 @@ def test_validate_pattern_tag_rejects_invalid_variant():
 
 
 def test_validate_pattern_tag_is_case_sensitive():
-    """Per ADR-039 + Rust serde rename_all='snake_case': case-sensitive."""
+    """Per Rust serde rename_all='snake_case': case-sensitive."""
     with pytest.raises(BadRequestError):
         validate_pattern_tag("PA")  # uppercase rejected
     with pytest.raises(BadRequestError):
@@ -160,7 +160,7 @@ def test_validate_pattern_tag_is_case_sensitive():
 
 
 def test_validate_pattern_tag_rejects_kebab_case():
-    """ADR-039 prose used kebab-case (`rcm-claim`); wire form is snake_case."""
+    """Spec prose used kebab-case (`rcm-claim`); wire form is snake_case."""
     with pytest.raises(BadRequestError):
         validate_pattern_tag("rcm-claim")
     with pytest.raises(BadRequestError):
@@ -171,7 +171,7 @@ def test_validate_pattern_tag_rejects_kebab_case():
 
 
 def test_record_id_length_limit():
-    """record_id length cap: 256 chars per ADR-039 + records.rs."""
+    """Record_id length cap: 256 chars + records.rs."""
     with pytest.raises(BadRequestError) as excinfo:
         RecordContext(
             capsule_id="cap_test001",
@@ -269,7 +269,7 @@ def test_sha512_hex_prefix_form():
 
 
 def test_canonical_hash_dict_matches_jcs():
-    """canonical_hash dispatches through JCS — RFC 8785 canonical form."""
+    """Canonical_hash dispatches through JCS — RFC 8785 canonical form."""
     data = {"b": 2, "a": 1}  # keys unsorted intentionally
     out = canonical_hash(data)
     # JCS sorts keys lexically
@@ -606,7 +606,7 @@ def test_verification_cdp_parses_record_receipts():
     assert proof.record_receipts[0].pattern_tag == "rcm_claim"
 
 
-# ── 7. Forever-Standard discipline (ADR-006 I0) ──
+# ── 7. Forever-Standard discipline ──
 
 
 def test_forever_standard_pre_wave_n_none_round_trip():
@@ -632,7 +632,7 @@ def test_forever_standard_pre_wave_n_none_round_trip():
 def test_record_receipt_has_no_control_tags_field():
     """Three-layer separation discipline: control_tags MUST NOT be a field.
 
-    Per ADR-040 RE-SCOPED (founder direction 2026-05-12): control IDs are
+    RE-SCOPED (founder direction 2026-05-12): control IDs are
     NEVER stamped into the signed receipt. Adapters apply the published
     mapping artifact at ingestion time.
 
@@ -641,14 +641,14 @@ def test_record_receipt_has_no_control_tags_field():
     """
     declared_fields = set(RecordReceipt.model_fields.keys())
     assert "control_tags" not in declared_fields, (
-        f"RecordReceipt MUST NOT have a control_tags field per ADR-040 "
-        f"RE-SCOPED + ADR-039 three-layer separation. Found fields: "
+        f"RecordReceipt MUST NOT have a control_tags field "
+        f"RE-SCOPED + three-layer separation. Found fields: "
         f"{sorted(declared_fields)}"
     )
 
 
 def test_parent_proof_link_field_set_matches_adr_041():
-    """ParentProofLink's declared field set MUST match ADR-041."""
+    """ParentProofLink's declared field set MUST match."""
     declared_fields = set(ParentProofLink.model_fields.keys())
     expected = {
         "parent_chain_hash",
@@ -669,7 +669,7 @@ def test_adapter_flow_receipt_to_control_ids():
 
     1. Adapter receives AuditProof with signed record_receipts.
     2. Adapter reads pattern_tag from each receipt (signed primitive).
-    3. Adapter applies ADR-040 mapping at ingestion time.
+    3. Adapter applies mapping at ingestion time.
     4. Mapping returns canonical control IDs for `(jurisdiction × classification × pattern_tag)`.
     """
     # 1. Simulated AuditProof from Nanorix API.
@@ -754,7 +754,7 @@ def test_capsule_record_module_no_forbidden_language():
 
 
 def test_capsule_record_disclaimer_mirrors_adr_017_three_role():
-    """The receipt disclaimer mentions auditor adjudication per ADR-017."""
+    """The receipt disclaimer mentions auditor adjudication."""
     # The control_map module's disclaimer is the canonical disclaimer surface;
     # SDK's capsule_record module mirrors three-layer separation in its docstring.
     from nanorix import capsule_record

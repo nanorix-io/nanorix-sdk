@@ -23,7 +23,7 @@ Two message families covered (per industry-baseline most-common):
 - **ORU** (Observation Result): R01 (observation result unsolicited)
   — lab results, clinical observations.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied HL7 V2 message bytes and emits metadata
     fields suitable for AuditProof binding. The adapter does NOT
@@ -34,7 +34,7 @@ Three-role discipline (ADR-017):
     Clinical interpretation, IG conformance, and downstream consumer
     responsibilities remain the customer's.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. This adapter
     parses customer-supplied HL7 V2 payloads to produce structural
     metadata only; Nanorix injects nothing beyond the published
@@ -116,7 +116,7 @@ class HL7v2ParsedMessage:
     payload remains in the customer's capsule workspace and is parsed
     by the customer's application code.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets.
     """
 
@@ -182,7 +182,7 @@ class HL7v2ParsedMessage:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         structural fields from the HL7 V2 MSH segment. Suitable for
-        binding into the AuditProof's ``metadata_hash`` per ADR-010
+        binding into the AuditProof's ``metadata_hash``
         A4.
 
         The metadata captures structural identifiers only; clinical
@@ -239,12 +239,12 @@ class HL7v2Adapter:
     (SIU/ORM/MDM/ACK) can request adapter extension via
     :class:`feedback_save_verbatim_strategic_inputs` discipline.
 
-    Three-role discipline (ADR-017): Adapter is structural; clinical
+    Three-role discipline: Adapter is structural; clinical
     interpretation remains the customer's. The adapter neither
     classifies PHI inside segments nor validates against any specific
     HL7 V2 implementation guide.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the message
+    Customer-sole-declarer: Customer supplies the message
     bytes; adapter produces structural metadata only.
 
     Optional dependency: ``hl7apy>=1.3`` for robust parsing; fallback

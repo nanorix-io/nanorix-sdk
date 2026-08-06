@@ -38,7 +38,7 @@ CrewAI's callback surface as of 0.30+ exposes three callback slots:
 - **`Agent(step_callback=...)`** — per-agent variant of `step_callback`.
 
 This callback adapts those signatures into the existing 4 ActivityEvent
-variants — no new variants — Forever-Standard preserved (ADR-006 I0).
+variants — no new variants — Forever-Standard preserved.
 
 ## Architectural distinction from LangChain / LangGraph / AutoGen / LlamaIndex
 
@@ -95,8 +95,8 @@ destruction proof requires Tier B (`@nanorix.workload`) or Tier C
 
 ## Design constraints
 
-- `framework=` REQUIRED — no silent default (ADR-013 customer-sole-declarer).
-- No PHI scanning (ADR-013 Alt B). Callback is structural.
+- `framework=` REQUIRED — no silent default (customer-sole-declarer).
+- No PHI scanning (Alt B). Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - CrewAI dep is optional — `pip install nanorix[crewai]`.
 - Importing without `crewai` succeeds; constructing `NanorixCrewAICallback`
@@ -280,7 +280,7 @@ class NanorixCrewAICallback:
             raise ValueError(
                 "NanorixCrewAICallback requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

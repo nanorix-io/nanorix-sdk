@@ -67,13 +67,13 @@ interface Attestation {
 }
 
 /**
- * ADR-006 Wave 16-A reserved-slot scope discriminator (2026-05-10).
+ * Wave 16-A reserved-slot scope discriminator (2026-05-10).
  *
  * AuditProof scope. V1 always undefined / absent (workload scope is implicit).
  * Future Items 2 (sealed-proxy = "call") and 4 (sealed-middleware = "request")
  * populate this; Pattern 4 high-volume per-record AuditProofs use "batch".
  *
- * Forever-Standard discipline (ADR-006 I0): field-additive Optional with
+ * Forever-Standard discipline: field-additive Optional with
  * skip_serializing_if mechanic on the Rust side. The verifier MUST treat
  * this as opaque — chain integrity verification is independent of cdp_kind.
  */
@@ -83,7 +83,7 @@ interface ProofShape {
   cdp_version?: string;
   chain?: ChainStep[];
   attestation?: Attestation;
-  /** ADR-006 Wave 16-A reserved slot — opaque to the verifier. */
+  /** Wave 16-A reserved slot — opaque to the verifier. */
   cdp_kind?: CdpKind;
 }
 
@@ -289,13 +289,13 @@ export async function verify(proof: unknown): Promise<VerifyResult> {
   return result;
 }
 
-// ── Wave-N (ADR-039 + ADR-041) re-exports ───────────────────────────────────
+// ── Wave-N re-exports ───────────────────────────────────
 //
 // Per-record receipt + cross-org parent-proof composition surface. The Wave-N
 // primitives live in `./wave_n.ts` and are re-exported here so consumers can
 // `import { verifyFullAuditProof, verifyRecordReceipt } from "@nanorix/sdk/verifier"`.
 //
-// Forever-Standard (ADR-006 I0): pre-Wave-N AuditProofs verify byte-identically
+// Forever-Standard: pre-Wave-N AuditProofs verify byte-identically
 // via the (null, null) Step 8 branch in `computeStep8Amended`.
 export {
   GENESIS_SHA512_HEX,

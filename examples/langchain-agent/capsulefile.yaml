@@ -38,7 +38,7 @@ memory_mb: 2048
 
 env:
   ANTHROPIC_MODEL: claude-3-5-sonnet-latest
-  # Customer-declared compliance framework (per ADR-013). The
+  # Customer-declared compliance framework. The
   # NanorixCallback receives this via NANORIX_FRAMEWORK; canonical
   # labels: HIPAA / GDPR / SOC2 / PCI_DSS / HITRUST / EU_AI_ACT.
   NANORIX_FRAMEWORK: HIPAA

@@ -388,7 +388,7 @@ def test_cpra_paired_with_ccpa_context_merge_works():
 
 def test_cpra_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer
-    framing per ADR-017."""
+    framing."""
     from nanorix.compliance import cpra as mod
 
     doc = mod.__doc__ or ""

@@ -17,7 +17,7 @@ Named cohort customers — Anterior, Cohere Health (post-acquisition), Notable, 
 2. **Bind** InterQual/MCG criteria references via the Nanorix SDK's `nanorix.compliance` helpers (declarative; doesn't infer satisfaction).
 3. **Run** the decision capsule (LLM advisory + criteria binding).
 4. **Emit** an AuditProof binding the entire decision chain into a single signed envelope.
-5. **File** the AuditProof to Vanta as evidence under the canonical control IDs resolved at adapter time via the `nanorix_control_map` mapping (ADR-040 three-layer separation — receipt carries `pattern_tag`; mapping applies at adapter time).
+5. **File** the AuditProof to Vanta as evidence under the canonical control IDs resolved at adapter time via the `nanorix_control_map` mapping (three-layer separation — receipt carries `pattern_tag`; mapping applies at adapter time).
 6. **Return** the FHIR R4 PAS response to the calling plan.
 
 ## Files in this showcase
@@ -68,12 +68,12 @@ nanorix verify audit_proof.json
 # https://verify.nanorix.io → drag-drop audit_proof.json
 
 # 4-impl byte-equivalent verifier (Rust / Go / Python / TypeScript).
-# All produce identical Pass/Fail verdict per ADR-006 I0 Forever-Standard.
+# All produce identical Pass/Fail verdict Forever-Standard.
 ```
 
 ## Discipline
 
-- **Customer-sole-declarer (ADR-013):** `jurisdiction` + `data_classification` come from the capsule's metadata. Nanorix does not infer either.
+- **Customer-sole-declarer:** `jurisdiction` + `data_classification` come from the capsule's metadata. Nanorix does not infer either.
 - **No compliance verdicts:** the AuditProof references control IDs at adapter time via the `nanorix_control_map` mapping. References, not assertions. Auditor adjudicates.
 - **Receipt narrowness:** the per-PA-case receipt carries the signed primitive (`pattern_tag`, record hashes). Vanta evidence enrichment happens in adapter code, not in the receipt.
 

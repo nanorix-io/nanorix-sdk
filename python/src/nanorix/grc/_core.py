@@ -2,9 +2,9 @@
 
 Batch 17 (2026-05-29) — gap-closing arc: real, installable GRC adapter
 modules. This is the last mile of "the AuditProof IS the provability
-artifact": push the signed AuditProof — per-record receipts (ADR-039) +
+artifact": push the signed AuditProof — per-record receipts +
 outer envelope — into the customer's GRC platform as compliance EVIDENCE,
-landed against the canonical control IDs the ADR-040 mapping resolves at
+landed against the canonical control IDs the mapping resolves at
 ingestion time.
 
 This module is the pure, vendor-SDK-free engine that the Vanta / Drata /
@@ -22,12 +22,12 @@ The contract is a pair of pure transforms:
     receipt_to_evidence_body(receipt, envelope, control_id, ...)
         -> dict
 
-## Three-layer separation (NON-NEGOTIABLE — ADR-040 RE-SCOPED)
+## Three-layer separation (NON-NEGOTIABLE — RE-SCOPED)
 
 | Layer | Carries | Evolves at |
 |---|---|---|
-| Receipt (ADR-039) | ``pattern_tag`` (signed) | ADR-006 I0 Forever-Standard pace |
-| Mapping artifact (ADR-040) | ``(j × c × p) → list[control_id]`` | Framework revision pace |
+| Receipt | ``pattern_tag`` (signed) | Forever-Standard pace |
+| Mapping artifact | ``(j × c × p) → list[control_id]`` | Framework revision pace |
 | Adapter (this + the shells) | reads receipt + applies mapping | Vendor pace |
 
 The mapping is applied freshly HERE, at adapter time, against a pinned
@@ -36,7 +36,7 @@ so would freeze historical receipts with stale control IDs forever.
 
 ## Narrow-claim discipline (NON-NEGOTIABLE)
 
-Per CCO policy + ADR-017 three-role liability split + the narrow-signed-
+Per CCO policy + three-role liability split + the narrow-signed-
 claim rule:
 
 - Nanorix emits structural evidence (role 1).
@@ -45,13 +45,13 @@ claim rule:
   (role 3).
 - **Control IDs are factual references, NEVER assertions of satisfaction.**
   Every evidence body carries ``"relationship": "references"`` and the
-  ADR-040 mapping disclaimer. The forbidden verdict vocabulary
+   mapping disclaimer. The forbidden verdict vocabulary
   (``COMPLIANT`` / ``SATISFIED`` / ``PASSED`` / ``MEETS``) is rejected by
   :func:`assert_reference_only`, which runs on every emitted body — the
   GRC platform never receives an adjudication claim from Nanorix.
 - **No new signed primitive.** These transforms read the existing signed
   AuditProof; they sign nothing.
-- **Customer-sole-declarer (ADR-013).** ``jurisdiction`` +
+- **Customer-sole-declarer.** ``jurisdiction`` +
   ``classification`` are caller-supplied (read from the customer's
   declared values); ``pattern_tag`` is read from the signed receipt. None
   is inferred here.
@@ -137,7 +137,7 @@ def assert_reference_only(payload: Any) -> None:
                 raise GrcError(
                     f"GRC evidence body contains forbidden verdict "
                     f"vocabulary {forbidden!r}: {token!r}. Per CCO policy + "
-                    "ADR-017 three-role discipline, evidence filings are "
+                    " three-role discipline, evidence filings are "
                     "factual REFERENCES (applies_to / references / "
                     "related_to) — never an assertion that a control is "
                     "satisfied. The auditor adjudicates."
@@ -222,7 +222,7 @@ def _opt_str(value: Any) -> Optional[str]:
 def _receipt_payload(receipt: Any) -> Dict[str, Any]:
     """Shape one per-record receipt into its evidence sub-document.
 
-    Reads the ADR-039 signed receipt fields verbatim. ``record_index`` /
+    Reads the signed receipt fields verbatim. ``record_index`` /
     ``record_id`` / the three hashes are required (they are the
     cryptographic anchor an auditor verifies). ``pattern_tag`` +
     ``merkle_inclusion_proof`` are read tolerantly.
@@ -259,13 +259,13 @@ def resolve_control_ids(
 ) -> List[str]:
     """Resolve the canonical control IDs a receipt references.
 
-    Applies the ADR-040 mapping freshly at adapter time:
+    Applies the mapping freshly at adapter time:
 
     1. When ``pattern_tag`` is set, resolve the specific
        ``(jurisdiction × classification × pattern_tag)`` cell.
     2. When that cell is empty (or ``pattern_tag`` is ``None``), fall back
        to the ``(jurisdiction × classification)`` baseline cell.
-    3. Append any customer-namespace control IDs verbatim (ADR-013 — these
+    3. Append any customer-namespace control IDs verbatim (these
        are applied entirely adapter-side, never in the mapping artifact).
 
     Args:
@@ -323,7 +323,7 @@ def receipt_to_evidence_body(
     claim can never be filed.
 
     Args:
-        receipt: One ADR-039 per-record receipt (dict or model).
+        receipt: One per-record receipt (dict or model).
         envelope: The outer envelope from :func:`_extract_envelope`.
         control_id: The single control ID this body references.
         framework_version: The pinned mapping framework version.
@@ -360,7 +360,7 @@ def auditproof_to_evidence_bodies(
     """Shape a full AuditProof into a flat list of evidence bodies.
 
     For every per-record receipt in the proof, resolves the control IDs the
-    receipt references (ADR-040 mapping, applied at adapter time) and emits
+    receipt references (mapping, applied at adapter time) and emits
     one evidence body per ``(receipt × control_id)``. This is the single
     transform every GRC shell calls; the shell then POSTs each body to its
     vendor's evidence API.
@@ -371,7 +371,7 @@ def auditproof_to_evidence_bodies(
     Args:
         proof: The AuditProof / FullCdp (dict or model) carrying ``chain`` +
             ``attestation`` + ``record_receipts``.
-        jurisdiction: Customer-declared jurisdiction (read verbatim; ADR-013).
+        jurisdiction: Customer-declared jurisdiction (read verbatim).
         classification: Customer-declared data_classification (read verbatim).
         framework_version: Optional mapping framework version to pin. Ignored
             when ``mapping`` is supplied; otherwise defaults to the current

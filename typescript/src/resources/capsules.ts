@@ -153,10 +153,10 @@ export class LiveCapsule {
     return this;
   }
 
-  // ── ADR-039 + ADR-041 Wave A consumers ─────────────────────────────
+  // ── Wave A consumers ─────────────────────────────
 
   /**
-   * Open a per-record receipt context (ADR-039 section "Architecture").
+   * Open a per-record receipt context (section "Architecture").
    *
    * Per-record receipts buffer server-side until destroy and bind into
    * the AuditProof's outer 8-step chain via Merkle root incorporation
@@ -164,7 +164,7 @@ export class LiveCapsule {
    *
    * The receipt carries `patternTag` (signed primitive). **Control IDs
    * are NEVER stamped into the signed receipt.** Adapters apply the
-   * ADR-040 published mapping artifact (`./control_map`) at ingestion
+   * published mapping artifact (`./control_map`) at ingestion
    * time to derive `(jurisdiction x classification x pattern_tag) ->
    * string[]`. Three-layer separation: receipt (immutable) / mapping
    * (versioned) / adapter (vendor pace).
@@ -223,15 +223,15 @@ export class LiveCapsule {
   }
 
   /**
-   * Declare a cross-org parent-proof link (ADR-041 section "Architecture").
+   * Declare a cross-org parent-proof link (section "Architecture").
    *
    * Parent links buffer server-side until destroy and bind into the
    * AuditProof's outer 8-step chain via Merkle root incorporation at
    * Step 8 alongside record receipts. Parent signatures verify
    * independently of Nanorix accounts via Portable Pubkey Bundles
-   * (ADR-041 section "Pubkey discovery gap").
+   * (section "Pubkey discovery gap").
    *
-   * Each link attests to lineage, NOT to compliance — per ADR-017
+   * Each link attests to lineage, NOT to compliance —
    * three-role liability split. The auditor adjudicates substantive
    * acceptability; receipts carry verified-lineage only.
    *
@@ -240,7 +240,7 @@ export class LiveCapsule {
    * @param opts.parentKeyId Authority key ID of the parent's signer.
    *   Canonical formats: `nrx-verify-{terminated_at}-{cdp_id[..8]}`
    *   (Nanorix-managed) OR `cust-auth-{authority_id}` (customer-rooted
-   *   per ADR-031). Length cap: 256 chars.
+   *). Length cap: 256 chars.
    * @param opts.parentSignature Ed25519 signature `base64:{b64}` over
    *   `parentChainHash`. Length cap: 256 chars.
    * @param opts.parentRole Optional opaque role tag (e.g.
@@ -250,8 +250,7 @@ export class LiveCapsule {
    * @param opts.parentOrganizationTag Optional opaque organization
    *   identifier. Length cap: 256 chars.
    * @returns The server response, containing `capsule_id`,
-   *   `parent_chain_hash`, `buffered_count`, and a `disclaimer` per
-   *   ADR-017.
+   *   `parent_chain_hash`, `buffered_count`, and a `disclaimer`.
    * @throws BadRequestError if any field-length cap is violated.
    */
   async addParentProof(
@@ -273,7 +272,7 @@ export class Capsules {
    * Create a new capsule. Returns a LiveCapsule with workspace methods.
    *
    * `metadata` binds compliance-binding context into the AuditProof's
-   * `metadata_hash` per ADR-010 A4. Use the `nanorix/compliance` module
+   * `metadata_hash`. Use the `nanorix/compliance` module
    * to construct typed framework context (HIPAA, GDPR, SOC 2) or pass a
    * plain `Record<string, string>`. Server constraints: 16 keys max,
    * 64-char keys, 256-char values, 4 KB total. `nanorix:*` keys are

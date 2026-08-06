@@ -7,7 +7,7 @@
  * `healthcare/` because healthcare AI is the lead beachhead but is
  * intentionally framework-agnostic with respect to vertical.
  *
- * Three-role discipline (ADR-017): Nanorix is an evidence vendor
+ * Three-role discipline: Nanorix is an evidence vendor
  * (role 1). Declares framework context for an AI workload's
  * fairness-evaluation posture. Does NOT certify that the customer's
  * evaluation satisfies any specific regulatory or technical standard,

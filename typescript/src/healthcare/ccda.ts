@@ -6,12 +6,12 @@
  * FHIR-Bundle-shaped object (DocumentReference + Binary) matching the
  * Epic-side 2026 production pattern of C-CDA-as-FHIR-attachment.
  *
- * Three-role discipline (ADR-017): structural reader; clinical
+ * Three-role discipline: structural reader; clinical
  * interpretation + IG conformance + terminology mapping remain the
  * customer's responsibility. Adapter does NOT certify upstream-system
  * conformance.
  *
- * Customer-sole-declarer (ADR-013): customer supplies the document
+ * Customer-sole-declarer: customer supplies the document
  * bytes; adapter parses structural identifiers only.
  *
  * No XML parser dependency in V1 — the adapter accepts pre-parsed

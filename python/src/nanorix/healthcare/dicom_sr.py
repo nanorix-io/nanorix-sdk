@@ -30,7 +30,7 @@ AI-output discipline:
     workflow generates the SR document; this helper produces the
     AuditProof binding.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper structurally
     parses customer-supplied DICOM SR document bytes (PS3.10 file format)
     and emits metadata fields suitable for AuditProof binding. The
@@ -42,7 +42,7 @@ Three-role discipline (ADR-017):
     conformance, regulatory determination, and downstream consumer
     responsibilities remain the customer's.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. This helper
     parses customer-supplied DICOM SR bytes (or accepts customer-supplied
     structural identifiers when the customer's pydicom-based pipeline
@@ -130,7 +130,7 @@ class DICOMSRBinding:
     AI-generated) the algorithm identification. Does NOT include
     structured content items or PHI-bearing fields.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets clinical content.
     """
 
@@ -196,7 +196,7 @@ class DICOMSRBinding:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         structural fields from the DICOM SR document. Suitable for
-        binding into the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        binding into the AuditProof's ``metadata_hash``.
 
         The metadata captures structural identifiers + algorithm
         identification (when AI-generated) only; structured content
@@ -204,7 +204,7 @@ class DICOMSRBinding:
         ImageReference) are NOT emitted. Customer application code
         processes structured content inside the capsule workspace.
 
-        Three-role discipline (ADR-017): structural parse only;
+        Three-role discipline: structural parse only;
         Nanorix does not interpret SR content or certify regulatory
         conformance.
         """
@@ -447,7 +447,7 @@ def _extract_uid_from_file_meta(
     Returns empty string if the tag is not present (caller decides if
     that's an error).
 
-    Three-role discipline (ADR-017): structural extraction only; no
+    Three-role discipline: structural extraction only; no
     interpretation of the UID's semantic meaning.
 
     :param document_bytes: PS3.10 file bytes.

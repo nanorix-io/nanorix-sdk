@@ -42,7 +42,7 @@
  * be emitted by the customer's own agent loop OR via a separate
  * framework callback (LangChain.js / LangGraph.js).
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify LiteLLM correctness, LLM-
  * output safety, or provider conformance — those determinations remain
@@ -171,7 +171,7 @@ export class NanorixLiteLLMCallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixLiteLLMCallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

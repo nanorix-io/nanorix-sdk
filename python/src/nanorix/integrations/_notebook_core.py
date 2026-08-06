@@ -38,10 +38,10 @@ The split is deliberate:
   the download-before-destroy ordering and the cleanup-on-failure
   behaviour are inherited, not re-derived. There is NO cell-side cache of
   capsule data after destroy (``feedback_no_post_destroy_cache.md``).
-- **Customer-sole-declarer (ADR-013).** ``--capsulefile`` and
+- **Customer-sole-declarer.** ``--capsulefile`` and
   ``--data-classification`` come from the magic-line args the analyst
   typed; the core never infers either.
-- **AuditProof external brand (ADR-014).** Rendered output says
+- **AuditProof external brand.** Rendered output says
   "AuditProof". Internal subsystem names never appear in this surface.
 - **Narrow signed claim.** The HTML renders STRUCTURAL verification —
   chain integrity and signature validity. It NEVER renders a regulatory
@@ -95,8 +95,8 @@ MAGIC_USAGE = (
     "                      [--timeout SECONDS] [--max-lifetime SECONDS] "
     "[--idempotency-key KEY]\n"
     "    <cell body = the command/script to run inside the sealed capsule>\n\n"
-    "The capsulefile and data-classification are customer-declared "
-    "(ADR-013); they are never inferred."
+    "The capsulefile and data-classification are customer-declared; "
+    "they are never inferred."
 )
 
 
@@ -127,7 +127,7 @@ def parse_magic_args(
     - ``--capsulefile cf_...`` (REQUIRED) — finalized Capsulefile id.
     - ``--data-classification {PHI|PII|financial|credentials|general}`` —
       customer-declared classification. Validated against the accepted set
-      by the core (never inferred per ADR-013).
+      by the core (never inferred).
     - ``--destroy`` / ``--no-destroy`` — destroy the capsule and return the
       AuditProof (default) vs. leave it running (no AuditProof). Mutually
       exclusive.
@@ -244,7 +244,7 @@ def parse_magic_args(
         raise MagicArgsError(
             "%%nanorix_capsule requires --capsulefile (the finalized "
             "Capsulefile id, e.g. --capsulefile cf_...). The analyst "
-            "declares it explicitly per ADR-013; it is never inferred.\n\n"
+            "declares it explicitly; it is never inferred.\n\n"
             f"{MAGIC_USAGE}"
         )
 
@@ -345,7 +345,7 @@ def render_verification_html(verify_result: Any) -> str:
     / ``failed_step`` / ``failure_reason`` / ``chain_hash``). The render is
     STRUCTURAL only — chain integrity and Ed25519 signature validity. It
     never asserts regulatory adequacy; that is the customer's auditor's
-    determination (ADR-017 three-role discipline; narrow-claim rule).
+    determination (three-role discipline; narrow-claim rule).
 
     Args:
         verify_result: The verification result to render. ``None`` renders a
@@ -442,7 +442,7 @@ def render_auditproof_html(
 
     parts: List[str] = [_WRAPPER_OPEN]
 
-    # Header — AuditProof brand (ADR-014), never an internal engine name.
+    # Header — AuditProof brand, never an internal engine name.
     parts.append(
         '<div style="font-weight:700;font-size:15px;margin-bottom:8px;">'
         "Nanorix AuditProof"
@@ -557,7 +557,7 @@ def _render_chain(result: CapsuleJobResult) -> str:
     Reads the shareable verification view (``result.verification`` — a
     :class:`nanorix.verifier`... no, the SDK ``VerificationCdp``) if present.
     The chain steps' ``subsystem`` names are NOT rendered — they are
-    internal engine identifiers (ADR-014). Instead each step renders as a
+    internal engine identifiers. Instead each step renders as a
     neutral ordinal "Step N" with its structural ``status`` if present.
     """
     verification = getattr(result, "verification", None)
@@ -572,7 +572,7 @@ def _render_chain(result: CapsuleJobResult) -> str:
     ]
     for idx, step in enumerate(steps, start=1):
         # Render an ordinal + structural status ONLY. Never the subsystem
-        # name (internal engine identifier per ADR-014). ``status`` is a
+        # name (internal engine identifier). ``status`` is a
         # neutral structural field if present; escape it regardless.
         status = ""
         if isinstance(step, Mapping):

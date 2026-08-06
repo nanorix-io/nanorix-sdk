@@ -12,7 +12,7 @@ Domain-separation per RFC 6962 §2.1:
 - Odd count: lone tail node promoted unchanged.
 
 **FROZEN** — changing this would invalidate every previously-emitted
-batch Merkle root per ADR-006 I0 Forever-Standard discipline.
+batch Merkle root Forever-Standard discipline.
 """
 
 from __future__ import annotations

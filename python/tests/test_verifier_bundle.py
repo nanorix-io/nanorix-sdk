@@ -270,8 +270,8 @@ def test_bundle_disclaimer_factual_language() -> None:
         assert forbidden not in PORTABLE_RECEIPT_BUNDLE_DISCLAIMER
 
 
-def test_bundle_disclaimer_cites_adr_040() -> None:
-    assert "ADR-040" in PORTABLE_RECEIPT_BUNDLE_DISCLAIMER
+def test_bundle_disclaimer_cites_mapping_artifact() -> None:
+    assert "mapping artifact" in PORTABLE_RECEIPT_BUNDLE_DISCLAIMER
     assert "control-map" in PORTABLE_RECEIPT_BUNDLE_DISCLAIMER
 
 

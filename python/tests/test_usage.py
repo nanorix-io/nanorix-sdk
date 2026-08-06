@@ -85,7 +85,7 @@ def test_usage_list_items_single_page_no_more(mock_api, client):
 
 
 def test_usage_list_items_auto_pagination_advances_cursor(mock_api, client):
-    """has_more=true on first page → second page fetched with starting_after=last.id."""
+    """Has_more=true on first page → second page fetched with starting_after=last.id."""
     page_1 = [_usage_item_dict(i) for i in range(3)]
     page_2 = [_usage_item_dict(i) for i in range(3, 5)]
 
@@ -141,7 +141,7 @@ def test_usage_export_csv_returns_bytes(mock_api, client):
 
 
 def test_audit_proofs_alias_points_to_cdp_resource(client):
-    """ADR-014: client.audit_proofs is alias for client.cdp; same instance."""
+    """: client.audit_proofs is alias for client.cdp; same instance."""
     assert client.audit_proofs is client.cdp
 
 

@@ -21,10 +21,10 @@ does NOT interpret clinical content, validate against a specific PBM
 implementation guide (e.g., Surescripts Routing Service, RelayHealth
 Pharmacy, ExpressScripts Direct), interpret drug-therapy intent, or
 classify Schedule II-V status authoritatively. Per-record receipt
-emission integrates with the ADR-039 per-record-receipt SDK helper
+emission integrates with the per-record-receipt SDK helper
 (``Capsule.record(pattern_tag="ncpdp_script")``).
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied NCPDP transaction bytes and emits
     structural metadata fields. Schedule II-V controlled-substance
@@ -32,17 +32,17 @@ Three-role discipline (ADR-017):
     formulary compliance, and downstream PBM adjudication remain the
     customer's responsibility.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the NCPDP wire payload. This adapter parses
     structural fields only; Nanorix injects nothing beyond the
     published base-image spec.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). No new
+    ``Option<HashMap<String, String>>`` field. No new
     API surface; no changes to AuditProof / Capsulefile shape. The
     per-record emission uses the existing ``pattern_tag="ncpdp_script"``
-    closed-enum variant (ADR-039 §"pattern_tag rule").
+    closed-enum variant.
 
 Pure-Python implementation; no native dependencies. The wire-format
 parser handles NCPDP's segment + field + group separator hierarchy
@@ -80,7 +80,7 @@ _TELECOM_FRAMEWORK_VERSION = "ncpdp-telecom-D.0"
 claim billing transactions through 2026."""
 
 # Closed-enum SCRIPT transaction codes per NCPDP SCRIPT v2017071.
-# Append-only per ADR-006 I0 (closed-enum extension follows ADR amendment).
+# Append-only (closed-enum extension follows ADR amendment).
 _VALID_SCRIPT_TRANSACTIONS: FrozenSet[str] = frozenset(
     {
         "NEWRX",
@@ -153,7 +153,7 @@ class NCPDPParsedTransaction:
     sig text, or other clinical-content fields. Customer application
     code processes clinical content inside the capsule workspace.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets clinical content.
     """
 
@@ -220,7 +220,7 @@ class NCPDPParsedTransaction:
 
         Returns a dict keyed by reserved framework keys plus structural
         fields from the NCPDP wire payload. Suitable for binding into
-        the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        the AuditProof's ``metadata_hash``.
 
         Reserved keys use the NCPDP framework version derived from the
         transaction family. Customer-supplied clinical content (NDC,
@@ -270,7 +270,7 @@ class NCPDPAdapter:
     :class:`NCPDPParsedTransaction` with structural identifiers and
     payload hash.
 
-    Covered transaction codes (closed enum per ADR-006 I0):
+    Covered transaction codes (closed enum):
 
     - SCRIPT: NEWRX, REFREQ, REFRES, RXCHG, CHGRES, CANRX, CANRES,
       RXFILL, RXHREQ, RXHRES, VERIFY, VERRES, ERROR, STATUS, PASSWORD
@@ -280,11 +280,11 @@ class NCPDPAdapter:
 
     Unsupported transaction codes raise :class:`ValueError`.
 
-    Three-role discipline (ADR-017): Adapter is structural; clinical
+    Three-role discipline: Adapter is structural; clinical
     interpretation, DEA scheduling, prescriber authority, and PBM
     adjudication remain the customer's responsibility.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the wire
+    Customer-sole-declarer: Customer supplies the wire
     payload; adapter produces structural metadata only.
 
     Pure-Python implementation. No third-party dependencies; no native
@@ -691,7 +691,7 @@ class NCPDPAdapter:
     def receipt_pattern_tag() -> str:
         """Return the canonical per-record receipt pattern_tag for NCPDP.
 
-        Per ADR-039 §"pattern_tag rule" closed enum, NCPDP transactions
+        Closed enum, NCPDP transactions
         emit per-record receipts with ``pattern_tag="ncpdp_script"``.
         Customers using ``Capsule.record(pattern_tag=...)`` should call
         this helper to avoid hardcoded string drift.

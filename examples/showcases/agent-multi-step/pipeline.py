@@ -61,7 +61,7 @@ def main() -> int:
     client = nanorix.Client(api_key=api_key)
 
     # Customer-declared classification — agent vendor's responsibility
-    # per ADR-013. Nanorix does not introspect query content.
+    #. Nanorix does not introspect query content.
     capsule = client.capsules.create(
         capsulefile=args.capsulefile_id,
         jurisdiction="US",

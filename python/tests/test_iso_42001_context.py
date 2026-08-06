@@ -326,7 +326,7 @@ def test_iso_42001_paired_with_nist_ai_rmf_context_merge_works():
 
 def test_iso_42001_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer
-    framing per ADR-017."""
+    framing."""
     from nanorix.compliance import iso_42001 as mod
 
     doc = mod.__doc__ or ""

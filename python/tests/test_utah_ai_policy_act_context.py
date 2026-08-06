@@ -519,7 +519,7 @@ def test_utah_ai_policy_act_metadata_json_round_trip_preserves_dict():
 
 def test_utah_ai_policy_act_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer framing
-    per ADR-017."""
+    ."""
     from nanorix.compliance import utah_ai_policy_act as mod
 
     doc = mod.__doc__ or ""

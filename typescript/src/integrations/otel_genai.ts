@@ -6,8 +6,8 @@
  *
  * - **Channel 1 (existing)**: `ActivityEvent` records → in-capsule
  *   `/data/activity_events.jsonl` → drained at destroy → bound into
- *   AuditProof hash chain (ADR-021's 4 closed-set variants — Forever-
- *   Standard per ADR-006 I0).
+ * AuditProof hash chain ( 4 closed-set variants — Forever-
+ * Standard).
  * - **Channel 2 (this module)**: OTel `gen_ai.*` spans → customer's
  *   existing TracerProvider → flows into customer's existing
  *   observability stack (Datadog, Splunk, Honeycomb, Logfire, New Relic,
@@ -78,7 +78,7 @@
  * }
  * ```
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural span emission only. Does NOT certify OTel conformance,
  * observability-stack correctness, or model behavior — those
@@ -325,7 +325,7 @@ export class NanorixOtelGenaiTracer {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixOtelGenaiTracer requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

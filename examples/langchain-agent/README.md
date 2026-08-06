@@ -58,7 +58,7 @@ For one task processed through a 2-iteration agent loop with 3 tool calls:
 5. **`ExecutionCompleted`** — exit + duration.
 6. **`FileDownloaded`** — `agent-output.json` output bytes hashed.
 
-All sub-receipts are bound into the AuditProof's `canonical_hash` per ADR-006 I0 Forever-Standard. The 4-language verifier (Rust + Go + Python + TypeScript) accepts the AuditProof byte-equivalent.
+All sub-receipts are bound into the AuditProof's `canonical_hash` Forever-Standard. The 4-language verifier (Rust + Go + Python + TypeScript) accepts the AuditProof byte-equivalent.
 
 ## Hook → ActivityEvent mapping
 
@@ -93,7 +93,7 @@ capsule = client.capsules.create(
 )
 ```
 
-The metadata field binds into the AuditProof's `metadata_hash` per ADR-010. The `regulatory_context` block in the destruction response enumerates `related_to` provisions:
+The metadata field binds into the AuditProof's `metadata_hash`. The `regulatory_context` block in the destruction response enumerates `related_to` provisions:
 
 - **HIPAA Security Rule §164.312(a-e)** (framework_version: `2026-02`) — agent reasoning + tool-call activity-trail support access control + audit controls + integrity + transmission security
 - **SOC 2 CC6.1** (framework_version: `2026-02`) — logical access controls
@@ -114,6 +114,6 @@ Nanorix uses `related_to` language only — never asserts compliance status. Cus
 ## What this bundle does NOT cover
 
 - **Full workflow destruction proof** — see Tier B (`@nanorix.workload` decorator) or Tier C (FastAPI/Flask middleware) bundles, future items in the ship sequence.
-- **PHI scanning** — per ADR-013 Alt B, Nanorix does NOT inspect prompts or responses for PHI patterns. Customer's prompt + tool-args + tool-results stay in the capsule's volatile memory; only SHA-512 hex digests reach the AuditProof.
+- **PHI scanning** — Alt B, Nanorix does NOT inspect prompts or responses for PHI patterns. Customer's prompt + tool-args + tool-results stay in the capsule's volatile memory; only SHA-512 hex digests reach the AuditProof.
 - **Production tool catalog** — the 3-tool reference catalog is illustrative.
 - **SaMD classification** — Nanorix attests to data-handling boundary; SaMD class is customer + regulatory counsel.

@@ -65,16 +65,16 @@
  *
  * ## Trust-boundary discipline
  *
- * - **Customer-sole-declarer (ADR-013).** Customer declares
+ * - **Customer-sole-declarer.** Customer declares
  *   `framework=` and `capsulefile=` at middleware registration time.
  *   The middleware does NOT classify request payloads.
  * - **Narrow signed claim** (feedback_narrow_signed_claim_auditor_certifies.md).
  *   Captures structural HTTP request facts; NEVER asserts request-content
  *   conformance or regulatory satisfaction.
- * - **Zero-retention (ADR-006 I0).** Request/response bodies NEVER enter
+ * - **Zero-retention.** Request/response bodies NEVER enter
  *   the AuditProof. Only structural identifiers + their canonical-JSON
  *   SHA-512 hex digests bind.
- * - **ADR-014 brand.** Response header is `X-Nanorix-AuditProof-Id`.
+ * - ** brand.** Response header is `X-Nanorix-AuditProof-Id`.
  *
  * ## Optional dependency
  *
@@ -92,7 +92,7 @@ import {
 
 // ── Constants ───────────────────────────────────────────────────────
 
-/** ADR-006 reserved-slot wire form for per-HTTP-request AuditProofs. */
+/** reserved-slot wire form for per-HTTP-request AuditProofs. */
 export const CDP_KIND_REQUEST = "request";
 
 /** Reserved metadata-key value emitted via `nanorix:wrapper_kind`. */
@@ -269,7 +269,7 @@ export interface NanorixClientLike {
 export interface NanorixMiddlewareOptions {
   /** REQUIRED. Nanorix client instance. */
   client: NanorixClientLike;
-  /** REQUIRED. Compliance framework label (customer-declared per ADR-013). */
+  /** REQUIRED. Compliance framework label (customer-declared). */
   framework: string;
   /** REQUIRED. Capsulefile ID or local name. */
   capsulefile: string;
@@ -365,7 +365,7 @@ export function toMetadata(opts: {
  * capsule lifecycle.
  *
  * @throws Error if `client`, `framework`, or `capsulefile` is missing
- *   or empty (no silent default per ADR-013 customer-sole-declarer).
+ * or empty (no silent default customer-sole-declarer).
  */
 export function nanorixMiddleware(
   opts: NanorixMiddlewareOptions,
@@ -378,7 +378,7 @@ export function nanorixMiddleware(
   if (!opts.framework || typeof opts.framework !== "string") {
     throw new Error(
       "nanorixMiddleware requires an explicit `framework` option (e.g., framework: 'HIPAA'). " +
-        "No silent default per ADR-013 customer-sole-declarer discipline.",
+        "No silent default customer-sole-declarer discipline.",
     );
   }
   if (!opts.capsulefile || typeof opts.capsulefile !== "string") {

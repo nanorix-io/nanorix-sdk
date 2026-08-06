@@ -1,7 +1,7 @@
 """Cold-start benchmark SDK helper (Batch 1 Item 4, 2026-05-27).
 
 Layer-2 published artifact `(substrate × pattern × Capsulefile shape) → percentiles`.
-Sibling to `nanorix.control_map` (ADR-040 mapping artifact). The customer
+Sibling to `nanorix.control_map` (mapping artifact). The customer
 loads the latest published benchmark to inform their pilot evaluation —
 NOT as a service-level commitment.
 
@@ -43,7 +43,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Iterator, List, Optional, cast
 
 # Canonical benchmark version stamp. Mirrors the Rust harness +
-# /v1/cold-start-benchmark endpoint. Append-only per ADR-006 I0
+# /v1/cold-start-benchmark endpoint. Append-only
 # Forever-Standard.
 BENCHMARK_VERSION: str = "2026-05"
 
@@ -63,7 +63,7 @@ DISCLAIMER: str = (
 
 @dataclass(frozen=True)
 class Percentiles:
-    """p50/p95/p99 + std-deviation for a single dimension."""
+    """P50/p95/p99 + std-deviation for a single dimension."""
 
     p50: int
     p95: int
@@ -211,7 +211,7 @@ def load_benchmark(
     By default loads the embedded canonical artifact. To fetch from a
     live Nanorix deployment, pass `fetch_url=https://api.nanorix.io/v1/cold-start-benchmark`.
 
-    Per ADR-006 I0 Forever-Standard: old benchmark versions remain
+    Forever-Standard: old benchmark versions remain
     available forever. The embedded artifact ships with the current
     version; older versions are fetched from the API endpoint.
     """

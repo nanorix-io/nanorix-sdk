@@ -69,7 +69,7 @@ def main() -> int:
     library = load_library(args.library)
     print(f"Loaded {len(library)} synthetic molecules from {args.library}")
 
-    # Per ADR-013: data_classification + jurisdiction customer-declared.
+    # Data_classification + jurisdiction customer-declared.
     capsule = client.capsules.create(
         capsulefile=args.capsulefile_id,
         jurisdiction="US",

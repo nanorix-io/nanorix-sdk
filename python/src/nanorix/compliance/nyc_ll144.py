@@ -47,7 +47,7 @@ day on which an AEDT is used in violation of the law constitutes a
 separate violation, and each failure to provide notice constitutes a
 separate violation.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's metadata. It does NOT
     certify, attest to satisfaction of, or claim compliance with
@@ -425,7 +425,7 @@ class NYCLL144Context:
         lowercase string ``"true"`` / ``"false"`` values.
 
         Auditor + GRC platform consumers read this from the AuditProof's
-        metadata field (bound into ``metadata_hash`` per ADR-010 A4).
+        metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: self.framework_id,

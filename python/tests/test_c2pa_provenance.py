@@ -1,11 +1,11 @@
-"""ADR-035 Batch 9 (2026-05-28) — C2PA LLM-output provenance tests.
+"""Batch 9 (2026-05-28) — C2PA LLM-output provenance tests.
 
 Validates:
 
 - Builder fluent API (capsule / model / prompt_intent / timestamp / output)
-- Required-field enforcement at .sign() time (ADR-013 customer-sole-declarer)
+- Required-field enforcement at .sign() time (customer-sole-declarer)
 - Closed-enum AssertionType (Forever-Standard discipline)
-- Field length caps + forbidden-token scans (ADR-014 brand discipline +
+- Field length caps + forbidden-token scans (brand discipline +
   feedback_narrow_signed_claim_auditor_certifies.md)
 - SHA-512 of canonical-JCS claims object signed by Ed25519
 - Independent offline verification with raw 32-byte public key
@@ -207,7 +207,7 @@ def test_canonical_bytes_match_jcs(signer):
     assert canonical == redo
 
 
-# ── Group 2: Required-field enforcement (ADR-013 customer-sole-declarer) ──
+# ── Group 2: Required-field enforcement (customer-sole-declarer) ──
 
 
 def test_sign_without_capsule_raises(signer):
@@ -364,7 +364,7 @@ def test_model_weights_hash_with_prefix_accepted():
     assert b is not None
 
 
-# ── Group 4: Forbidden-token scans (ADR-014 + narrow-claim discipline) ──
+# ── Group 4: Forbidden-token scans (narrow-claim discipline) ──
 
 
 @pytest.mark.parametrize("token", FORBIDDEN_BRAND_LEAK_TOKENS)
@@ -441,7 +441,7 @@ def test_assertion_types_are_closed_enum():
 
 
 def test_assertion_types_count_is_five():
-    # ADR-035 ships 5 variants. New variants require ADR amendment.
+    # ships 5 variants. New variants require ADR amendment.
     assert len(VALID_ASSERTION_TYPES) == 5
 
 

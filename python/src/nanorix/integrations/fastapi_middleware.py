@@ -6,7 +6,7 @@ dispatch): wraps every inbound HTTP request to a customer's FastAPI app
 in a Nanorix capsule lifecycle. Each request → one capsule → one
 AuditProof with ``cdp_kind: Some("Request")``.
 
-ADR-006 reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
+ reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
 CTI-T14-002 + CTI-T14-004 ungating). This module is the canonical
 consumer of `CdpKind::Request` — every emission here populates the
 slot with the canonical wire string ``"request"``.
@@ -55,7 +55,7 @@ The AuditProof is side-channeled into the response as the
 ## Hook → ActivityEvent mapping
 
 The middleware maps the request lifecycle into the EXISTING 4-variant
-ActivityEvent surface (ADR-006 I0 Forever-Standard preserved; no new
+ActivityEvent surface (Forever-Standard preserved; no new
 variant introduced):
 
 | Lifecycle hook        | ActivityEvent emitted          | Notes                                      |
@@ -67,17 +67,17 @@ variant introduced):
 
 ## Trust-boundary discipline
 
-- **Customer-sole-declarer (ADR-013).** Customer declares
+- **Customer-sole-declarer.** Customer declares
   ``framework=`` (e.g., ``"HIPAA"``) and ``capsulefile=`` at middleware
   registration time. The middleware does NOT classify request
   payloads. ``framework_per_route`` lets customer override per
   route prefix (e.g., ``"/admin"`` → ``"SOC2"``).
-- **Zero-retention (ADR-006 I0).** Request body and response body
+- **Zero-retention.** Request body and response body
   NEVER enter the AuditProof. Only structural identifiers (method,
   path, query string, status, duration) and their canonical-JSON
   SHA-512 hex digests bind. Headers are NOT captured by default
   (the customer's compliance team typically wants this).
-- **ADR-014 brand:** The response header naming the AuditProof is
+- ** brand:** The response header naming the AuditProof is
   ``X-Nanorix-AuditProof-Id``, not ``X-CDP-Id``.
 
 ## Optional dependency
@@ -146,7 +146,7 @@ __all__ = [
 
 
 CDP_KIND_REQUEST = "request"
-"""The ADR-006 reserved-slot wire form for per-HTTP-request AuditProofs
+"""The reserved-slot wire form for per-HTTP-request AuditProofs
 (Wave 16-A `a951568`; Wave 18-11 ungating). Mirrors `CdpKind::Request`
 serde rename_all = "snake_case" at governance/rzl/src/cdp.rs."""
 
@@ -235,7 +235,7 @@ def _resolve_framework_for_path(
 ) -> str:
     """Pick the framework label for an inbound request path.
 
-    Customer-sole-declarer (ADR-013): the customer's middleware-registration
+    Customer-sole-declarer: the customer's middleware-registration
     `framework_per_route` mapping wins; longest-prefix-first match. If no
     prefix matches, the middleware-wide `framework` argument is used.
     """
@@ -264,8 +264,8 @@ class NanorixMiddleware(BaseHTTPMiddleware):
         client: REQUIRED. A ``nanorix.Client`` instance the middleware
             uses to create + destroy capsules.
         framework: REQUIRED. Compliance framework label (e.g.,
-            ``"HIPAA"``, ``"GDPR"``, ``"SOC2"``). Customer-declared per
-            ADR-013; no silent default. Bound to AuditProof.metadata
+            ``"HIPAA"``, ``"GDPR"``, ``"SOC2"``). Customer-declared;
+            no silent default. Bound to AuditProof.metadata
             as ``nanorix:framework``.
         capsulefile: REQUIRED. Server-side Capsulefile ID (``cf_...``)
             or local Capsulefile name.
@@ -322,7 +322,7 @@ class NanorixMiddleware(BaseHTTPMiddleware):
             raise ValueError(
                 "NanorixMiddleware requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default "
-                "per ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(
@@ -514,7 +514,7 @@ class NanorixMiddleware(BaseHTTPMiddleware):
     ) -> None:
         """Map the request outcome to one of the existing 4 ActivityEvents.
 
-        ADR-006 I0 Forever-Standard: no new ActivityEvent variant is
+         Forever-Standard: no new ActivityEvent variant is
         introduced. The middleware uses the existing helpers:
         - 2xx-4xx response → ReasoningStepCompleted
         - 5xx response OR unhandled exception → ToolCallFailed

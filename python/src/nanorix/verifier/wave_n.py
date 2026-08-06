@@ -1,17 +1,17 @@
 """
-Wave-N (ADR-039 + ADR-041) per-record receipt + parent-proof verification.
+Wave-N per-record receipt + parent-proof verification.
 
 Pure Python port of `governance/rzl/src/wave_n.rs` plus the verifier-side
 extension in `tools/nanorix-verify/src/lib.rs`. Cross-impl byte-equivalent
 with Rust + Go ports on the 110-fixture extended corpus.
 
-**Forever-Standard discipline (ADR-006 I0):** every primitive here is part
+**Forever-Standard discipline:** every primitive here is part
 of the cryptographic-attestation contract. Cross-impl divergence from the
 canonical Rust output is a P0 finding.
 
 **Distinct from `nanorix._merkle`**: that module implements RFC 6962 binary
 Merkle (leaf prefix 0x00 + inner prefix 0x01) used by `Capsule.batch()`.
-Wave-N uses the ADR-039 canonical pair-hash form:
+Wave-N uses the canonical pair-hash form:
 `SHA-512(left_hex_bytes || \\x00 || right_hex_bytes)` with NO domain prefix,
 because the children are themselves already SHA-512 outputs serialized as hex.
 
@@ -45,13 +45,13 @@ _STEP_8_SUBSYSTEM = "capsule_destroy"
 _STEP_8_ACTION = "destroy"
 _STEP_8_METHOD = "capsule_lifecycle_verification"
 
-# Maximum supported parent-proof chain depth per ADR-041 §"Depth limit".
+# Maximum supported parent-proof chain depth.
 PARENT_PROOF_MAX_DEPTH = 32
 
 # Closed-enum pattern tag wire values (mirror Rust
 # `nanorix_rzl::types::PatternTag` and `nanorix.capsule_record.PATTERN_TAGS`).
 # Used by downstream consumers; the verifier itself does NOT reject unknown
-# pattern_tag values (forward-compatibility per ADR-006 I0).
+# pattern_tag values (forward-compatibility).
 PATTERN_TAGS_WIRE = frozenset(
     [
         "pa",
@@ -82,13 +82,13 @@ PATTERN_TAGS_WIRE = frozenset(
 class RecordReceipt:
     """Per-record receipt mirroring Rust `RecordReceipt`.
 
-    Forever-Standard discipline (ADR-006 I0): field shape is permanent.
+    Forever-Standard discipline: field shape is permanent.
     New fields land as additive Optional — existing fields NEVER renamed,
     NEVER removed, NEVER repurposed.
 
-    **No `control_tags` field by design.** Per ADR-039 §"Receipt as direct
-    evidence primitive" + ADR-040 RE-SCOPED: control IDs are NEVER stamped
-    into the signed receipt; adapters apply ADR-040 mapping artifact at
+    **No `control_tags` field by design.** The receipt is a direct
+    evidence primitive: control-ID mapping is re-scoped, so control IDs are NEVER stamped
+    into the signed receipt; adapters apply mapping artifact at
     ingestion time.
     """
 
@@ -106,7 +106,7 @@ class RecordReceipt:
 class ParentProofLink:
     """Cross-org parent-proof link mirroring Rust `ParentProofLink`.
 
-    Forever-Standard (ADR-006 I0): optional fields skip-serialize when None.
+    Forever-Standard: optional fields skip-serialize when None.
     """
 
     parent_chain_hash: str
@@ -137,14 +137,14 @@ def _strip_base64_prefix(s: str) -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Merkle pair-hash + root construction (ADR-039)
+# Merkle pair-hash + root construction
 # ─────────────────────────────────────────────────────────────────────────────
 
 
 def merkle_pair_hash(left: str, right: str) -> str:
     """Compute `SHA-512(left_hex_bytes || \\x00 || right_hex_bytes)`.
 
-    Per ADR-039 §"Sibling pair hashing rule": both inputs are interpreted as
+    Both inputs are interpreted as
     their hex-string byte values (UTF-8 of the hex chars). Either MAY carry
     a `sha512:` prefix; stripped before hashing.
 
@@ -157,8 +157,7 @@ def merkle_pair_hash(left: str, right: str) -> str:
 
 
 def merkle_root_sha512_null_separated(leaves: Sequence[str]) -> Optional[str]:
-    """Build the canonical Merkle root over `leaves` per ADR-039 §"Merkle tree
-    construction".
+    """Build the canonical Merkle root over `leaves`.
 
     - N=0 → None
     - N=1 → leaves[0] with `sha512:` prefix stripped
@@ -180,7 +179,7 @@ def merkle_root_sha512_null_separated(leaves: Sequence[str]) -> Optional[str]:
                 nxt.append(merkle_pair_hash(level[i], level[i + 1]))
                 i += 2
             else:
-                # Odd-level last node: duplicate per ADR-039.
+                # Odd-level last node: duplicate.
                 nxt.append(merkle_pair_hash(level[i], level[i]))
                 i += 1
         level = nxt
@@ -190,10 +189,10 @@ def merkle_root_sha512_null_separated(leaves: Sequence[str]) -> Optional[str]:
 def compute_record_receipts_merkle_root(
     receipts: Sequence[RecordReceipt],
 ) -> Optional[str]:
-    """Public ADR-039 surface for the receipt Merkle root.
+    """Public surface for the receipt Merkle root.
 
     Returns `None` for empty input (field skip-serializes in canonical JSON);
-    otherwise returns `sha512:{hex}` matching the ADR-039 wire form.
+    otherwise returns `sha512:{hex}` matching the wire form.
     """
     if not receipts:
         return None
@@ -205,7 +204,7 @@ def compute_record_receipts_merkle_root(
 def compute_parent_proofs_merkle_root(
     parents: Sequence[ParentProofLink],
 ) -> Optional[str]:
-    """Public ADR-041 surface for the parent-proof Merkle root."""
+    """Public surface for the parent-proof Merkle root."""
     if not parents:
         return None
     leaves = [p.parent_chain_hash for p in parents]
@@ -216,7 +215,7 @@ def compute_parent_proofs_merkle_root(
 def build_merkle_inclusion_proof(
     leaves: Sequence[str], leaf_index: int
 ) -> Optional[List[str]]:
-    """Build a Merkle inclusion proof for `leaf_index` per ADR-039.
+    """Build a Merkle inclusion proof for `leaf_index`.
 
     Returns siblings on the path from leaf → root in bottom-up order (each
     as bare hex). Empty list when N=1. None when out of range or empty.
@@ -388,7 +387,7 @@ def compute_activity_root(trail: Optional[Sequence[Any]]) -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Record chain hash (ADR-039 per-record chain hash formula)
+# Record chain hash (per-record chain hash formula)
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -464,11 +463,11 @@ def compute_step_8_amended(
     record_receipts_merkle_root: Optional[str],
     parent_proofs_merkle_root: Optional[str],
 ) -> str:
-    """The presence-conditional Step 8 amendment formula (ADR-039 + ADR-041).
+    """The presence-conditional Step 8 amendment formula.
 
     Mirrors Rust `compute_step_8_amended`. Output: bare lowercase hex.
 
-    **Forever-Standard (ADR-006 I0):** the (None, None) branch returns
+    **Forever-Standard:** the (None, None) branch returns
     `compute_step_8_base(...)` UNMODIFIED — byte-identical to every
     pre-Wave-N production AuditProof.
     """
@@ -508,7 +507,7 @@ def compute_step_8_amended(
 def detect_parent_proof_cycle(
     parents: Sequence[ParentProofLink], self_chain_hash: str
 ) -> Optional[int]:
-    """Reject cycles per ADR-041 §"Cycle prevention".
+    """Reject cycles.
 
     Returns the index of the cyclic parent if any `parent_chain_hash` equals
     `self_chain_hash`; returns None otherwise. Both inputs prefix-tolerant.
@@ -525,7 +524,7 @@ def enforce_depth_cap(parents: Sequence[ParentProofLink]) -> None:
     if len(parents) > PARENT_PROOF_MAX_DEPTH:
         raise ValueError(
             f"parent chain depth {len(parents)} exceeds "
-            f"PARENT_PROOF_MAX_DEPTH={PARENT_PROOF_MAX_DEPTH} (ADR-041)"
+            f"PARENT_PROOF_MAX_DEPTH={PARENT_PROOF_MAX_DEPTH}"
         )
 
 
@@ -555,7 +554,7 @@ def verify_record_receipt(
     outer_signature_b64: str,
     outer_public_key: Ed25519PublicKey,
 ) -> None:
-    """Mode B (standalone) verification per ADR-039.
+    """Mode B (standalone) verification.
 
     1. Recompute `record_chain_hash` from receipt fields + capsule_id.
     2. Verify Merkle inclusion proof binds receipt → outer_merkle_root.
@@ -716,7 +715,7 @@ def verify_full_audit_proof(proof: Mapping[str, Any]) -> WaveNVerifyResult:
     """Mode A — full Wave-N AuditProof verification.
 
     Extends the V1 8-stage pipeline with:
-    - Step 8 amended chain walk (ADR-039 + ADR-041 4-arm formula)
+    - Step 8 amended chain walk (4-arm formula)
     - Per-receipt chain hash roundtrip
     - record_receipts_merkle_root binding
     - parent_proofs_merkle_root binding
@@ -770,14 +769,14 @@ def verify_full_audit_proof(proof: Mapping[str, Any]) -> WaveNVerifyResult:
             )
         prev_hash = recomputed
 
-    # ADR-039 receipt-set verification.
+    # receipt-set verification.
     capsule_id = str(proof.get("capsule_id", ""))
     if isinstance(proof.get("record_receipts"), list):
         err = _verify_record_receipts_array(proof["record_receipts"], capsule_id, rrmr_str)
         if err is not None:
             return WaveNVerifyResult(valid=False, failure_reason=err, stage_reached=3)
 
-    # ADR-041 parent-proof set verification.
+    # parent-proof set verification.
     parents = proof.get("parent_proof_hashes")
     if isinstance(parents, list):
         err = _verify_parent_proofs_array(parents, ppmr_str)

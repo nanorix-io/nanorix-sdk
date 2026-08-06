@@ -2,7 +2,7 @@
 
 **Production-pattern reference** for tool-using agent workloads inside a Nanorix capsule. Demonstrates the Anthropic tool-use loop pattern with MCP-backed tools and sealed-daemon-enforced tool whitelisting: task definition (with PHI context) → agent reasoning + tool invocation cycle → per-tool-call attestation in AuditProof → structured agent output. Each tool invocation produces a cryptographic record (tuple `(tool_name, args_hash, result_hash, outcome, duration_ms)`) bound into the AuditProof's hash chain.
 
-> **Important: this is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog and agent loop are illustrative. Production deployments substitute the customer's MCP server (mTLS-attested per ADR-016), customer's tool catalog (matching the MCP server's published `tools/list`), and customer's regulatory-counsel-determined SaMD classification. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the agent product is the customer's.
+> **Important: this is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog and agent loop are illustrative. Production deployments substitute the customer's MCP server (mTLS-attested), customer's tool catalog (matching the MCP server's published `tools/list`), and customer's regulatory-counsel-determined SaMD classification. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the agent product is the customer's.
 
 ## Industry signal
 
@@ -136,7 +136,7 @@ Activity-trail events for one task processed through a 3-iteration tool-using lo
 6. **`ExecutionCompleted`** — exit + duration.
 7. **`FileDownloaded`** — `agent-output.json` output bytes hashed.
 
-When customer enables BYO-HSM signing, each `McpToolInvoked` + `McpToolDenied` event also produces a `per_event_attestations` entry signed by the customer's HSM — enabling per-tool-call non-repudiation under the customer's signing authority (per ADR-031). For workflows where the agent's tool-invocation discipline IS the audit story (e.g., agent denied in real-time from invoking a write operation against a covered entity's record), per-event customer attestation provides courtroom-grade evidence beyond the substrate's signature.
+When customer enables BYO-HSM signing, each `McpToolInvoked` + `McpToolDenied` event also produces a `per_event_attestations` entry signed by the customer's HSM — enabling per-tool-call non-repudiation under the customer's signing authority. For workflows where the agent's tool-invocation discipline IS the audit story (e.g., agent denied in real-time from invoking a write operation against a covered entity's record), per-event customer attestation provides courtroom-grade evidence beyond the substrate's signature.
 
 ## Compliance binding
 
@@ -163,7 +163,7 @@ The `regulatory_context` block enumerates provisions this AuditProof's activity 
 
 Nanorix uses `related_to` language only — never asserts compliance status. Customer's compliance officer makes the final determination. For SaMD classification, customer's regulatory counsel determines FDA Class.
 
-> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split per ADR-017). Customer remains responsible for their organizational GRC program. The tool catalog and agent loop are illustrative reference implementations — production composes customer's MCP server, customer's tool catalog (per MCP server's published `tools/list`), customer's clinical-safety + regulatory-counsel sign-off on the whitelist, and customer's SaMD determination.
+> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split). Customer remains responsible for their organizational GRC program. The tool catalog and agent loop are illustrative reference implementations — production composes customer's MCP server, customer's tool catalog (per MCP server's published `tools/list`), customer's clinical-safety + regulatory-counsel sign-off on the whitelist, and customer's SaMD determination.
 
 ## Common gotchas (top 3)
 

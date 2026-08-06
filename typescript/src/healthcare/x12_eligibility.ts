@@ -8,12 +8,12 @@
  * (005010X279A1 TR3 IG) and produces structural metadata + payload
  * SHA-256 anchor.
  *
- * Three-role discipline (ADR-017): structural adapter. Coverage
+ * Three-role discipline: structural adapter. Coverage
  * interpretation, payer companion-guide conformance, member-eligibility
  * determination, and downstream RCM adjudication remain the customer's
  * responsibility.
  *
- * Customer-sole-declarer (ADR-013): customer supplies the wire payload;
+ * Customer-sole-declarer: customer supplies the wire payload;
  * adapter parses structural fields only. Member IDs are SHA-256-hashed.
  */
 

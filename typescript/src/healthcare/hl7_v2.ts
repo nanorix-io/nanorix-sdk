@@ -5,12 +5,12 @@
  * (Observation Result) messages — the two highest-volume HL7 V2
  * families in US hospital integration environments through 2026.
  *
- * Three-role discipline (ADR-017): structural adapter; clinical
+ * Three-role discipline: structural adapter; clinical
  * interpretation, IG conformance, and PHI classification inside
  * segments remain the customer's responsibility. Adapter does NOT
  * certify upstream-system conformance.
  *
- * Customer-sole-declarer (ADR-013): customer supplies message bytes;
+ * Customer-sole-declarer: customer supplies message bytes;
  * adapter parses MSH structural identifiers only.
  */
 

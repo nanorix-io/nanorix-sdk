@@ -1,8 +1,8 @@
 /**
- * Per-record receipt + parent-proof SDK ergonomics (ADR-039 + ADR-041).
+ * Per-record receipt + parent-proof SDK ergonomics.
  *
  * This module exposes the customer-facing surface for emitting per-record
- * receipts (ADR-039) and parent-proof links (ADR-041) against a live
+ * receipts and parent-proof links against a live
  * capsule. Receipts and parent links buffer server-side per Wave A
  * (`services/api/src/routes/records.rs`) and bind into the AuditProof's
  * outer 8-step chain at capsule-destroy time via Merkle root incorporation
@@ -12,12 +12,12 @@
  *
  * | Layer | Carries | Evolves at |
  * |---|---|---|
- * | Receipt (ADR-039) | `pattern_tag` (signed primitive) | ADR-006 I0 Forever-Standard pace |
- * | Mapping artifact (ADR-040) | `(j x c x p) -> string[]` | Framework revision pace |
+ * | Receipt | `pattern_tag` (signed primitive) | Forever-Standard pace |
+ * | Mapping artifact | `(j x c x p) -> string[]` | Framework revision pace |
  * | Adapter (Vanta / Drata / Anecdotes / internal) | Reads signed receipt + applies mapping | Vendor pace |
  *
  * **Control IDs are NEVER stamped into the signed receipt** — they are
- * derived at adapter time by applying the ADR-040 published mapping
+ * derived at adapter time by applying the published mapping
  * artifact (`./control_map`) to `(jurisdiction x classification x
  * pattern_tag)`. Stamping mapping output inside the cryptographic receipt
  * would freeze historical receipts with stale control IDs forever when
@@ -31,7 +31,7 @@
  *
  * - Required relationship vocabulary: `applies_to` / `references` / `related_to`.
  * - The receipt attests to evidence; the auditor adjudicates substantive
- *   acceptability (ADR-017 three-role liability split).
+ * acceptability (three-role liability split).
  * - See `./control_map::DISCLAIMER` for the canonical disclaimer surface
  *   that every adapter consumer surfaces alongside the resolved control IDs.
  * - Verdict vocabulary (the four banned terms) is enforced by the pre-publish
@@ -87,18 +87,18 @@ import { canonicalizeBytes } from "./_jcs.js";
 
 // ── Closed-enum PatternTag mirror of Rust `nanorix_rzl::types::PatternTag` ──
 //
-// Per ADR-039 section "pattern_tag rule" and `governance/rzl/src/types.rs::PatternTag`,
+// Section "pattern_tag rule" and `governance/rzl/src/types.rs::PatternTag`,
 // the closed enum is append-only at Forever-Standard pace. The wire form is
 // snake_case (matches the Rust serde rename_all="snake_case" output).
 //
-// Per ADR-006 I0: this tuple is APPEND-ONLY. New variants land via ADR
+// This tuple is APPEND-ONLY. New variants land via ADR
 // amendment; existing variants are NEVER renamed or removed.
 
 /**
- * Canonical closed enum of receipt `pattern_tag` variants (ADR-039).
+ * Canonical closed enum of receipt `pattern_tag` variants.
  *
  * Mirrors the Rust `PatternTag` enum's serde rename_all="snake_case" wire
- * form. Append-only per ADR-006 I0 Forever-Standard.
+ * form. Append-only Forever-Standard.
  */
 export const PATTERN_TAGS = [
   // Pattern 1 — extraction / decision
@@ -149,7 +149,7 @@ export const MAX_ACTIVITY_TRAIL_LEN = 1024;
 /**
  * Validate that `patternTag` matches the closed enum.
  *
- * Per ADR-039 section "pattern_tag rule" + ADR-013 customer-sole-declarer:
+ * Section "pattern_tag rule" + customer-sole-declarer:
  * Nanorix records the customer-declared pattern verbatim; this validator
  * only enforces that the declared value is one of the canonical closed-
  * enum variants. Case-sensitive snake_case matching the Rust serde
@@ -165,7 +165,7 @@ export function validatePatternTag(
   if (!PATTERN_TAG_SET.has(patternTag)) {
     throw new BadRequestError(
       `pattern_tag '${patternTag}' is not a recognized variant. ` +
-        `Valid variants per ADR-039 section 'pattern_tag rule': ` +
+        `Valid variants section 'pattern_tag rule': ` +
         PATTERN_TAGS.join(", "),
       { statusCode: 400 },
     );
@@ -178,7 +178,7 @@ export function validatePatternTag(
 /**
  * SHA-512 of arbitrary bytes / UTF-8 string. Browser- + Node-portable via
  * the WebCrypto SubtleCrypto API. Returns the `sha512:{hex}` wire form
- * that matches `RecordReceipt::record_input_hash` per ADR-039.
+ * that matches `RecordReceipt::record_input_hash`.
  *
  * Async because `crypto.subtle.digest` is async. Customer code typically
  * awaits this via `bindInput()` / `bindOutput()`.
@@ -275,7 +275,7 @@ export interface RecordOptions {
 }
 
 /**
- * Per-record receipt context (ADR-039 section "Architecture").
+ * Per-record receipt context (section "Architecture").
  *
  * Returned by `LiveCapsule.record(...)`. Customer buffers
  * `bindInput` / `bindOutput` / `event` calls then commits via either:
@@ -291,7 +291,7 @@ export interface RecordOptions {
  * destroy time.
  *
  * The receipt carries `pattern_tag` only. **Control IDs are NEVER
- * stamped into the signed receipt** — adapters apply the ADR-040
+ * stamped into the signed receipt** — adapters apply the
  * published mapping at ingestion time via `./control_map`.
  */
 export class RecordContext {
@@ -315,8 +315,8 @@ export class RecordContext {
   ) {
     if (typeof recordId !== "string" || recordId.length === 0) {
       throw new BadRequestError(
-        "recordId must be a non-empty string per ADR-039 section 'Architecture' " +
-          "(customer-sole-declarer per ADR-013)",
+        "recordId must be a non-empty string section 'Architecture' " +
+          "(customer-sole-declarer)",
         { statusCode: 400 },
       );
     }
@@ -370,7 +370,7 @@ export class RecordContext {
    * JSON structure is accepted but client-side payload limit is
    * `MAX_ACTIVITY_TRAIL_LEN` events.
    *
-   * Per ADR-028 + Wave 18-11 cdp_kind discipline: customer-supplied
+   * Per Wave 18-11 cdp_kind discipline: customer-supplied
    * events flow through Nanorix verbatim. The activity trail is
    * canonicalized via JCS + chained via `compute_activity_root` at
    * chain-hash computation time.
@@ -537,7 +537,7 @@ export interface ParentProofOptions {
 }
 
 /**
- * Validate parent-proof link fields against ADR-041 + API length caps.
+ * Validate parent-proof link fields against + API length caps.
  *
  * Field constraints mirror `services/api/src/routes/records.rs::create_parent`.
  *
@@ -555,7 +555,7 @@ export function validateParentLinkFields(opts: ParentProofOptions): void {
 
   if (typeof parentChainHash !== "string" || parentChainHash.length === 0) {
     throw new BadRequestError(
-      "parentChainHash must be a non-empty string per ADR-041",
+      "parentChainHash must be a non-empty string",
       { statusCode: 400 },
     );
   }
@@ -568,7 +568,7 @@ export function validateParentLinkFields(opts: ParentProofOptions): void {
   }
   if (typeof parentKeyId !== "string" || parentKeyId.length === 0) {
     throw new BadRequestError(
-      "parentKeyId must be a non-empty string per ADR-041",
+      "parentKeyId must be a non-empty string",
       { statusCode: 400 },
     );
   }
@@ -580,7 +580,7 @@ export function validateParentLinkFields(opts: ParentProofOptions): void {
   }
   if (typeof parentSignature !== "string" || parentSignature.length === 0) {
     throw new BadRequestError(
-      "parentSignature must be a non-empty string per ADR-041",
+      "parentSignature must be a non-empty string",
       { statusCode: 400 },
     );
   }
@@ -620,7 +620,7 @@ export function validateParentLinkFields(opts: ParentProofOptions): void {
  * Build the JSON body for `POST /v1/capsules/:id/parent`.
  *
  * Only fields with declared values are emitted; the Rust handler treats
- * absent optional fields as `None` per ADR-041 section "Architecture".
+ * absent optional fields as `None` section "Architecture".
  * Field names are converted to snake_case to match the Rust wire form.
  */
 export function buildParentLinkBody(

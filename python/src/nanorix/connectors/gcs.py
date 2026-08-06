@@ -1,4 +1,4 @@
-"""Google Cloud Storage source/sink connectors — customer-side streaming (ADR-036).
+"""Google Cloud Storage source/sink connectors — customer-side streaming.
 
 Batch 14 (2026-05-28). ``GCSSource`` streams objects under a prefix INTO
 the capsule before exec; ``GCSSink`` streams capsule output to a prefix
@@ -6,7 +6,7 @@ BEFORE destroy. Both run in the customer's process using the customer's
 credentials — resolved by google-cloud-storage's STANDARD Application
 Default Credentials chain (GOOGLE_APPLICATION_CREDENTIALS, gcloud auth,
 workload identity, GCE metadata service). Nanorix never takes custody of
-a credential and never stages data on Nanorix infrastructure (ADR-036).
+a credential and never stages data on Nanorix infrastructure.
 
 ``google-cloud-storage`` is an OPTIONAL dependency declared as the
 ``[gcs]`` extra. This module guards the import: importing it without the
@@ -15,7 +15,7 @@ streaming + trust-boundary logic lives in
 :mod:`nanorix.connectors._base`, which imports WITHOUT any cloud SDK and
 is tested against a FAKE backend.
 
-Credential discipline (ADR-036, NON-NEGOTIABLE): these classes accept NO
+Credential discipline (NON-NEGOTIABLE): these classes accept NO
 service-account-key / token argument. They optionally accept a pre-built
 ``client`` (so an advanced customer can configure their own credentials)
 — Nanorix never constructs credentials, never stores them, and the
@@ -42,8 +42,7 @@ _IMPORT_HINT = (
     "    pip install nanorix[gcs]\n\n"
     "Credentials are resolved by Application Default Credentials "
     "(GOOGLE_APPLICATION_CREDENTIALS, gcloud auth, workload identity) in "
-    "YOUR process. Nanorix never takes custody of your GCP credentials "
-    "(ADR-036)."
+    "YOUR process. Nanorix never takes custody of your GCP credentials."
 )
 
 
@@ -82,10 +81,10 @@ class GCSSource(Source):
 
     Runs in the customer's process. Credentials are resolved by
     Application Default Credentials — never passed to or stored by
-    Nanorix (ADR-036).
+    Nanorix.
 
     Args:
-        bucket: The GCS bucket name. Customer-declared (ADR-013).
+        bucket: The GCS bucket name. Customer-declared.
         prefix: Optional object-name prefix to scope the listing. Empty
             string lists the whole bucket. Customer-declared.
         project: Optional GCP project for the auto-built client. Ignored
@@ -168,7 +167,7 @@ class GCSSink(Sink):
 
     Runs in the customer's process. Credentials are resolved by
     Application Default Credentials — never passed to or stored by
-    Nanorix (ADR-036). The streaming core invokes this BEFORE the capsule
+    Nanorix. The streaming core invokes this BEFORE the capsule
     is destroyed (``feedback_no_post_destroy_cache.md``).
 
     Args:

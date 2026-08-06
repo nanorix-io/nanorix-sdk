@@ -19,7 +19,7 @@ Design notes
   Go verifier contract — Rust V1 also does not perform it at the library
   boundary. When Rust V2 extends to stage 5, this module must update in lockstep.
 
-Cross-impl byte-equivalence contract (ADR-006 I0)
+Cross-impl byte-equivalence contract
 --------------------------------------------------
 `verify_auditproof` must produce `{"valid": ..., "failure_reason": ...}` output
 byte-equivalent with the Go verifier on every fixture in:
@@ -350,13 +350,13 @@ def download_auditproof(
 # § 4 — AuditProof verification (4-stage pipeline, byte-equivalent with Go)
 # ---------------------------------------------------------------------------
 
-# Canonical genesis hash — SHA-512("") (Forever-Standard, ADR-006 I0)
+# Canonical genesis hash — SHA-512("") (Forever-Standard)
 _GENESIS_HASH = (
     "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce"
     "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
 )
 
-# Canonical method strings per subsystem (Forever-Standard, ADR-006 I0)
+# Canonical method strings per subsystem (Forever-Standard)
 _METHOD_MAP: Dict[str, str] = {
     "eee_namespace": "procfs_verification",
     "eee_tmpfs": "mountinfo_verification",
@@ -373,7 +373,7 @@ _CHAIN_STEP_COUNT = 8
 
 
 class FailureReasonType:
-    """Closed-set wire-form discriminators (Forever-Standard, ADR-006 I0).
+    """Closed-set wire-form discriminators (Forever-Standard).
 
     New variants ADDITIVE ONLY. Existing variants never renamed/removed.
     """
@@ -513,7 +513,7 @@ class VerificationResult:
 class VerifierPolicy:
     """Customer-side policy configuration for AuditProof verification.
 
-    Field-additive per ADR-006 I0 + ADR-031 G7.
+    Field-additive.
     Pre-amendment callers passing zero-value policy continue to behave identically.
     """
 
@@ -534,7 +534,7 @@ def _compute_step_hash_debug(
 ) -> str:
     """Reproduce one chain step's SHA-512 hash.
 
-    Formula (Forever-Standard, ADR-006 I0):
+    Formula (Forever-Standard):
         SHA-512(prev_hash || 0x00 || subsystem || 0x00 ||
                 "destroy"  || 0x00 || method    || 0x00 || timestamp)
     """
@@ -643,7 +643,7 @@ def verify_auditproof(
         if isinstance(algo, str):
             meta.algorithm = algo
 
-    # Policy-pin gate — authority ID (ADR-031 G7 / VP Security F4.3)
+    # Policy-pin gate — authority ID (/ VP Security F4.3)
     # Fires BEFORE chain integrity checks; stage_reached = 2.
     if pol.required_authority_id:
         sa = proof.get("signing_authority")

@@ -275,7 +275,7 @@ def test_ai_fairness_non_int_sample_size_rejected():
 
 
 def test_ai_fairness_bool_sample_size_rejected():
-    """bool is subclass of int; reject explicit booleans to prevent
+    """Bool is subclass of int; reject explicit booleans to prevent
     accidental `sample_size=True` shorthand."""
     with pytest.raises(ValueError, match="sample_size"):
         AIFairnessContext(
@@ -704,7 +704,7 @@ def test_ai_fairness_oversized_evaluation_owner_role_rejected():
 
 
 def test_ai_fairness_metadata_keys_under_16_max():
-    """ADR-010 A4 wire constraint: max 16 metadata keys."""
+    """Wire constraint: max 16 metadata keys."""
     ctx = AIFairnessContext(
         evaluation_methodology="error_rate_parity",
         demographic_groups_evaluated=["race", "ethnicity", "sex"],
@@ -724,7 +724,7 @@ def test_ai_fairness_metadata_keys_under_16_max():
 
 
 def test_ai_fairness_metadata_serialized_size_under_4kb():
-    """ADR-010 A4 wire constraint: max 4096 bytes serialized."""
+    """Wire constraint: max 4096 bytes serialized."""
     ctx = AIFairnessContext(
         evaluation_methodology="error_rate_parity",
         demographic_groups_evaluated=["race", "ethnicity"],
@@ -1001,7 +1001,7 @@ def test_ai_fairness_source_has_no_forbidden_compliance_vocabulary():
 
 def test_ai_fairness_module_docstring_contains_three_role_disclaimer():
     """Module docstring must include the three-role disclaimer framing
-    per ADR-017."""
+    ."""
     from nanorix.healthcare import ai_fairness as mod
 
     doc = mod.__doc__ or ""

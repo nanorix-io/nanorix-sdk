@@ -18,25 +18,24 @@ Phase III Eligibility & Benefits operating rules, the Aetna 270/271
 Companion Guide, the Anthem 270/271 Companion Guide), or determine
 benefit-coverage substantive acceptability.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied X12 270/271 transaction bytes and emits
     structural metadata fields. Coverage interpretation, payer
     companion-guide conformance, member-eligibility determination, and
     downstream RCM adjudication remain the customer's responsibility.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the X12 wire payload. This adapter parses
     structural fields only; Nanorix injects nothing beyond the
     published base-image spec.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). No new
+    ``Option<HashMap<String, String>>`` field. No new
     API surface; no changes to AuditProof / Capsulefile shape. The
     per-record emission uses the existing ``pattern_tag=
-    "rcm_eligibility"`` closed-enum variant (ADR-039 §"pattern_tag
-    rule").
+    "rcm_eligibility"`` closed-enum variant.
 
 Pure-Python implementation; no native dependencies. The X12 wire-format
 parser handles the segment + element + sub-element separator hierarchy
@@ -127,7 +126,7 @@ class X12EligibilityTransaction:
     coinsurance amounts, or benefit-limit text. Customer application
     code processes coverage detail inside the capsule workspace.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets coverage detail.
     """
 
@@ -203,7 +202,7 @@ class X12EligibilityTransaction:
 
         Returns a dict keyed by reserved framework keys plus structural
         fields from the X12 wire payload. Suitable for binding into
-        the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        the AuditProof's ``metadata_hash``.
 
         The metadata captures structural identifiers only; member
         demographic detail, coverage detail, and clinical content
@@ -259,11 +258,11 @@ class X12EligibilityAdapter:
     (~ segment terminator + ``*`` element separator) and common
     variations (newline-terminated segments).
 
-    Three-role discipline (ADR-017): Adapter is structural; coverage
+    Three-role discipline: Adapter is structural; coverage
     interpretation, payer companion-guide conformance, and downstream
     RCM adjudication remain the customer's responsibility.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the wire
+    Customer-sole-declarer: Customer supplies the wire
     payload; adapter produces structural metadata only.
 
     Pure-Python implementation. No third-party dependencies; no
@@ -574,7 +573,7 @@ class X12EligibilityAdapter:
         """Return the canonical per-record receipt pattern_tag for
         eligibility transactions.
 
-        Per ADR-039 §"pattern_tag rule" closed enum, X12 270/271
+        Closed enum, X12 270/271
         eligibility transactions emit per-record receipts with
         ``pattern_tag="rcm_eligibility"``.
         """

@@ -8,7 +8,7 @@ exercisable without any vendor SDK installed.
 
 Invariants asserted:
 
-- the ADR-040 mapping is applied at adapter time (specific cell + baseline
+- the mapping is applied at adapter time (specific cell + baseline
   fallback + customer-namespace control IDs);
 - every evidence body carries ``relationship: "references"`` + the mapping
   disclaimer (narrow-claim discipline) and NO verdict vocabulary;
@@ -74,7 +74,7 @@ def _proof(receipts=None):
 MAPPING = load_mapping(framework_version="2026-02")
 
 
-# ── Core: control-ID resolution at adapter time (ADR-040) ─────────────
+# ── Core: control-ID resolution at adapter time ─────────────
 
 
 def test_resolve_specific_cell():
@@ -264,7 +264,7 @@ def test_bodies_add_no_signed_field_to_receipt():
     bodies = auditproof_to_evidence_bodies(
         proof, jurisdiction="US", classification="PHI", mapping=MAPPING
     )
-    # The receipt sub-document has only the ADR-039 signed fields — no
+    # The receipt sub-document has only the signed fields — no
     # control_tags / no synthesized signature / no mapping stamped in.
     receipt_keys = set(bodies[0]["receipt"].keys())
     assert "control_tags" not in receipt_keys

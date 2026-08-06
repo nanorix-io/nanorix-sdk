@@ -5,11 +5,11 @@ against:
 
 - Synthetic LangChain-shape events (unit tests; no network)
 - Real `langchain_core.callbacks.BaseCallbackHandler` interface
-- Hook-to-ActivityEvent mapping per ADR-021 (4 variants only)
+- Hook-to-ActivityEvent mapping (4 variants only)
 - Closed-enum classification for `ToolCallFailureKind`
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on chain orderings (≥10k iterations)
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 
 Layered (per integration ship sequence Acceptance §5):
@@ -316,7 +316,7 @@ def test_classify_tool_error_closed_enum_mapping(
     cb.on_tool_error(error=exc, run_id=run_id)
     failed = read_buffer(buf)[1]
     assert failed["failure_kind"] == {"type": expected_kind}
-    # And the kind is in the closed-enum set per ADR-028 D1.
+    # And the kind is in the closed-enum set.
     assert expected_kind in TOOL_CALL_FAILURE_KINDS
 
 
@@ -367,7 +367,7 @@ def test_on_llm_end_emits_reasoning_step_completed(tmp_path: Path):
 
 
 def test_step_idx_increments_across_calls(tmp_path: Path):
-    """step_idx is monotonic per callback instance."""
+    """Step_idx is monotonic per callback instance."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     for i in range(5):
@@ -432,7 +432,7 @@ def test_on_llm_error_writes_no_event(tmp_path: Path):
     The chain-level retry policy may invoke on_llm_start again; we must
     not emit a structural-tool-failure event for an LLM-level fault.
     Customer's outer code translates fatal errors into capsule
-    destruction_state per ADR-019.
+    destruction_state.
     """
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
@@ -446,7 +446,7 @@ def test_on_llm_error_writes_no_event(tmp_path: Path):
 
 
 def test_chain_lifecycle_emits_no_events(tmp_path: Path):
-    """on_chain_{start,end,error} are lifecycle ticks only — no events."""
+    """On_chain_{start,end,error} are lifecycle ticks only — no events."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     run_id = uuid4()
@@ -509,7 +509,7 @@ def test_agent_id_propagates_to_all_emitted_events(tmp_path: Path):
 
 
 def test_no_agent_id_omits_field(tmp_path: Path):
-    """Sometimes-populated reserved slot (ADR-006 I0): omit when absent."""
+    """Sometimes-populated reserved slot: omit when absent."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     run_id = uuid4()
@@ -711,7 +711,7 @@ def test_property_random_chain_orderings_produce_well_formed_events(tmp_path: Pa
     produce well-formed buffer contents (every line is valid JSON, every
     event has required fields, paired tool events have matching ids).
 
-    Iterations: 10_000 random sequences (the ADR-021 / `_canonical_hash`
+    Iterations: 10_000 random sequences (the / `_canonical_hash`
     invariants must hold under fault injection per
     `feedback_canonical_hash_under_fault.md`).
     """
@@ -782,12 +782,12 @@ def test_property_random_chain_orderings_produce_well_formed_events(tmp_path: Pa
             assert cid in attempted_ids
 
 
-# ── ADR-006 I0 Forever-Standard: only 4 variants reach the buffer ──
+# ── Forever-Standard: only 4 variants reach the buffer ──
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):
     """Forever-Standard regression guard: this callback must emit only
-    the 4 ActivityEvent variants shipped by ADR-021. Any new event type
+    the 4 ActivityEvent variants shipped by. Any new event type
     indicates a Forever-Standard violation requiring an ADR amendment +
     4-language verifier coordination.
     """
@@ -839,7 +839,7 @@ def test_module_vocabulary_uses_auditproof_terminology():
     src = Path(lc_mod.__file__).read_text()
     # Allowed bare CDP appearances are zero in this customer-facing
     # module. (Internal struct names like FullCdp/VerificationCdp are
-    # kept in code under `services/api/src/cdp_document.rs` per ADR-014;
+    # kept in code under `services/api/src/cdp_document.rs`;
     # they MUST NOT leak into integration modules.)
     assert "Capsule Record" not in src
     assert "template" not in src.lower() or "template" in src.lower()  # noqa: SIM222
@@ -945,7 +945,7 @@ def test_concurrent_run_ids_do_not_collide(tmp_path: Path):
 
 
 def test_on_event_receives_full_event_dict(tmp_path: Path):
-    """on_event receives the same dict that was written to the buffer."""
+    """On_event receives the same dict that was written to the buffer."""
     buf = tmp_path / "buf.jsonl"
     captured: List[Dict[str, Any]] = []
     cb = make_callback(buf, on_event=captured.append)

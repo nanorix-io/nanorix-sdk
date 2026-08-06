@@ -8,7 +8,7 @@ TEST_BASE_URL = "https://api.nanorix.io"
 
 @pytest.fixture
 def mock_api():
-    """respx mock router for all tests."""
+    """Respx mock router for all tests."""
     with respx.mock(base_url=TEST_BASE_URL) as router:
         yield router
 

@@ -144,7 +144,7 @@ def test_sign_activity_event_returns_wire_format(tmp_path: Path):
 
 
 def test_sign_activity_event_to_wire_dict_shape(tmp_path: Path):
-    """to_wire_dict matches the customer signing endpoint response shape."""
+    """To_wire_dict matches the customer signing endpoint response shape."""
     key = Ed25519FileKey.generate(tmp_path / "k.pem")
     event = {"event": "test", "at": "2026-05-06T01:00:00Z"}
     att = sign_activity_event(key, event, event_id="e1")

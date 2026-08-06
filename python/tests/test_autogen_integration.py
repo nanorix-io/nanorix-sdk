@@ -5,11 +5,11 @@ Exercises the `nanorix.integrations.autogen.NanorixAutoGenCallback`
 class against:
 
 - Synthetic AutoGen messages (OpenAI-shape dict + v0.4 attribute-shape)
-- Hook-to-ActivityEvent mapping per ADR-021 (4 variants only)
+- Hook-to-ActivityEvent mapping (4 variants only)
 - Closed-enum classification for `ToolCallFailureKind`
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on agent-conversation orderings
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 - Attachment helpers for legacy ConversableAgent (mocked) + v0.4
   runtime (mocked)
@@ -261,7 +261,7 @@ def test_on_message_received_handles_anthropic_tool_use_shape(tmp_path: Path):
 
 
 def test_on_message_received_pydantic_model_shape(tmp_path: Path):
-    """v0.4 ChatMessage-like attribute-shape with tool_calls."""
+    """V0.4 ChatMessage-like attribute-shape with tool_calls."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
 
@@ -329,7 +329,7 @@ def test_on_message_sent_with_step_kind(tmp_path: Path):
 
 
 def test_on_message_sent_renders_attribute_shape_message(tmp_path: Path):
-    """v0.4 attribute-shape message is rendered for hashing."""
+    """V0.4 attribute-shape message is rendered for hashing."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
 
@@ -608,7 +608,7 @@ def test_on_event_failure_does_not_break_callback(tmp_path: Path):
 
 
 def test_attach_to_conversable_agent_registers_hooks(tmp_path: Path):
-    """attach_to_conversable_agent invokes register_hook twice."""
+    """Attach_to_conversable_agent invokes register_hook twice."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     registered: List[tuple] = []
@@ -665,7 +665,7 @@ def test_attach_to_conversable_agent_rejects_wrong_shape():
 
 
 def test_attach_to_runtime_uses_subscribe_when_available(tmp_path: Path):
-    """attach_to_runtime calls runtime.subscribe(event_name, handler)."""
+    """Attach_to_runtime calls runtime.subscribe(event_name, handler)."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     subscribed: List[tuple] = []
@@ -684,7 +684,7 @@ def test_attach_to_runtime_uses_subscribe_when_available(tmp_path: Path):
 
 
 def test_attach_to_runtime_falls_back_to_register_event_handler(tmp_path: Path):
-    """attach_to_runtime falls back to register_event_handler when subscribe absent."""
+    """Attach_to_runtime falls back to register_event_handler when subscribe absent."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     registered: List[tuple] = []
@@ -860,7 +860,7 @@ def test_property_random_conversations_produce_well_formed_events(tmp_path: Path
             )
 
 
-# ── ADR-006 I0 Forever-Standard ────────────────────────────────────
+# ── Forever-Standard ────────────────────────────────────
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):

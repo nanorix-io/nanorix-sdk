@@ -5,12 +5,12 @@ Mirrors `test_langchain_integration.py`. Exercises the
 
 - Synthetic LangChain-shape events (LangGraph dispatches via the
   standard `BaseCallbackHandler` interface)
-- Hook-to-ActivityEvent mapping per ADR-021 (4 variants only)
+- Hook-to-ActivityEvent mapping (4 variants only)
 - Node-vs-outer-chain discrimination via `graph:step:*` tag
 - Closed-enum classification for `ToolCallFailureKind`
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on chain orderings (≥10k iterations)
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 - Real LangGraph compiled-graph invocation (when available)
 
@@ -172,7 +172,7 @@ def test_on_chain_start_emits_tool_call_attempted_for_graph_node(tmp_path: Path)
 
 
 def test_on_chain_start_metadata_signal_recognizes_node(tmp_path: Path):
-    """metadata['langgraph_node'] alone should trigger node-event emission."""
+    """Metadata['langgraph_node'] alone should trigger node-event emission."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     run_id = uuid4()
@@ -820,7 +820,7 @@ def test_property_random_graph_orderings_produce_well_formed_events(tmp_path: Pa
             assert cid in attempted_ids
 
 
-# ── ADR-006 I0 Forever-Standard ────────────────────────────────────
+# ── Forever-Standard ────────────────────────────────────
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):

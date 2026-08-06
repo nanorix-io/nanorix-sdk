@@ -8,7 +8,7 @@
  * and produces structural metadata + SHA-256 anchor of the response
  * body.
  *
- * Three-role discipline (ADR-017): structural adapter; pixel-data
+ * Three-role discipline: structural adapter; pixel-data
  * interpretation, DICOM IG conformance (IHE RAD-TF, Dental Profile,
  * Multi-Frame Image Profile), PHI classification, and downstream
  * consumer responsibilities remain the customer's.

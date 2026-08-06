@@ -24,7 +24,7 @@ organization's AuditProof carries:
   - confirmation that ONLY weight updates egressed (binds
     privacy commitment)
   - per-round signature under the participating organization's
-    signing authority (BYO-HSM per ADR-031) — the federation
+    signing authority (BYO-HSM) — the federation
     coordinator's round-aggregate AuditProof composes from N
     participating organizations' per-round AuditProofs
 
@@ -59,7 +59,7 @@ training data is required):
 The local training data lives in volatile capsule memory only —
 destroyed with the capsule. The coordinator HTTPS calls' request +
 response bytes are hashed (not retained) in the AuditProof.
-Per ADR-016, the sealed daemon attests structural metadata only;
+The sealed daemon attests structural metadata only;
 no payload retention.
 """
 
@@ -153,7 +153,7 @@ class RoundOutcome(BaseModel):
         "Each participating organization's AuditProof carries their "
         "organization's signature. The federation coordinator's round-"
         "aggregate AuditProof composes from N participating "
-        "organizations' per-round AuditProofs (per ADR-031 multi-party "
+        "organizations' per-round AuditProofs (multi-party "
         "signing-authority model). Auditors can independently verify "
         "each participant's contribution to the federated round."
     )

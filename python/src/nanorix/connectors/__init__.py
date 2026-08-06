@@ -1,4 +1,4 @@
-"""Data source/sink connectors for Nanorix capsules (ADR-036).
+"""Data source/sink connectors for Nanorix capsules.
 
 Batch 14 (2026-05-28) — the #1 pipeline-frequency gap: "can I just point
 you at my S3 bucket?". Connectors are **customer-side SDK helpers** that
@@ -7,7 +7,7 @@ stream bytes through volatile capsule memory:
 - a **source** streams objects INTO the capsule BEFORE exec,
 - a **sink** streams capsule output to the destination BEFORE destroy.
 
-## The trust boundary (ADR-036, NON-NEGOTIABLE)
+## The trust boundary (NON-NEGOTIABLE)
 
 A connector runs in the CUSTOMER's process, using the CUSTOMER's cloud
 credentials (resolved by the cloud SDK's standard chain). It streams a
@@ -17,7 +17,7 @@ credentials, and never sees the bytes outside the sealed capsule. A sink
 streams out BEFORE destroy — never after (``feedback_no_post_destroy_cache``).
 Connectors consume the existing AuditProof and add NO new signed
 primitive (narrowness preserved). They move bytes; they make no
-regulatory claim (ADR-017).
+regulatory claim.
 
 ## Imports
 

@@ -9,7 +9,7 @@
  *      byte-equivalent with Go reference verifier and Rust verifier V1
  *      on the 100-fixture corpus.
  *
- * V1 divergences (match Go reference verifier, documented per ADR-006 I0):
+ * V1 divergences (match Go reference verifier, documented):
  *   - signature_mismatch / region_mismatch / signing_key_version_unknown /
  *     authority_revoked: stages 5-8 not wired in V1 → valid=true
  *   - canonical_hash_mismatch: V2+ stage 5 JCS variant — not wired in V1
@@ -211,12 +211,12 @@ export async function downloadAuditProof(
 
 // ─── AuditProof verification ────────────────────────────────────────────────
 
-/** Genesis hash — SHA-512(""). Forever-stable per ADR-006 I0. */
+/** Genesis hash — SHA-512(""). Forever-stable. */
 export const GENESIS_HASH =
   "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce" +
   "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
 
-/** Canonical method strings per subsystem. Forever-stable per ADR-006 I0. */
+/** Canonical method strings per subsystem. Forever-stable. */
 export const METHOD_MAP: Record<string, string> = {
   eee_namespace: "procfs_verification",
   eee_tmpfs: "mountinfo_verification",
@@ -231,7 +231,7 @@ export const METHOD_MAP: Record<string, string> = {
 const SUPPORTED_CDP_VERSIONS = new Set(["1.0", "2.0", "2.1"]);
 const CHAIN_STEP_COUNT = 8;
 
-/** Closed-set failure reason wire types. Forever-stable per ADR-006 I0. Additive only. */
+/** Closed-set failure reason wire types. Forever-stable. Additive only. */
 export const FailureReasonType = {
   ALGORITHM_UNSUPPORTED: "algorithm_unsupported",
   AUTHORITY_ID_MISMATCH: "authority_id_mismatch",
@@ -299,7 +299,7 @@ export interface VerificationWireForm {
   failure_reason: FailureReason | null;
 }
 
-/** Customer-side policy configuration. Field-additive per ADR-006 I0. */
+/** Customer-side policy configuration. Field-additive. */
 export interface VerifierPolicy {
   rejectDiagnostic?: boolean;
   requiredRegion?: string;
@@ -337,7 +337,7 @@ function bytesToHex(buf: ArrayBuffer | Uint8Array): string {
 }
 
 /**
- * Reproduce one chain step's SHA-512 hash. Forever-stable per ADR-006 I0.
+ * Reproduce one chain step's SHA-512 hash. Forever-stable.
  * Formula: SHA-512(prev || 0x00 || subsystem || 0x00 || "destroy" || 0x00 || method || 0x00 || timestamp)
  */
 export async function computeStepHash(
@@ -478,7 +478,7 @@ export async function verifyAuditProof(
     if (typeof algo === "string") meta.algorithm = algo;
   }
 
-  // Policy-pin gate (ADR-031 G7): fires BEFORE chain checks, stage_reached = 2.
+  // Policy-pin gate: fires BEFORE chain checks, stage_reached = 2.
   if (pol.requiredAuthorityId) {
     const sa = proof["signing_authority"];
     let claimedId: string | null = null;

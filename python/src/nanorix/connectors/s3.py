@@ -1,4 +1,4 @@
-"""Amazon S3 source/sink connectors — customer-side streaming (ADR-036).
+"""Amazon S3 source/sink connectors — customer-side streaming.
 
 Batch 14 (2026-05-28). ``S3Source`` streams objects under a prefix INTO
 the capsule before exec; ``S3Sink`` streams capsule output to a prefix
@@ -6,7 +6,7 @@ BEFORE destroy. Both run in the customer's process using the customer's
 credentials — resolved by boto3's STANDARD credential chain (environment
 variables, shared credentials file, EC2 instance profile, ECS task role,
 SSO). Nanorix never takes custody of a credential and never stages data
-on Nanorix infrastructure (ADR-036 zero-retention affirmation).
+on Nanorix infrastructure (zero-retention affirmation).
 
 ``boto3`` is an OPTIONAL dependency declared as the ``[s3]`` extra. This
 module guards the import: importing it without boto3 installed raises a
@@ -14,7 +14,7 @@ clear, actionable :class:`ImportError`. The streaming + trust-boundary
 logic lives entirely in :mod:`nanorix.connectors._base`, which imports
 WITHOUT boto3 and is tested against a FAKE backend.
 
-Credential discipline (ADR-036, NON-NEGOTIABLE): these classes accept NO
+Credential discipline (NON-NEGOTIABLE): these classes accept NO
 secret-key / access-key / token argument. They optionally accept a
 pre-built boto3 ``client`` (so an advanced customer can configure their
 own session) — Nanorix never constructs credentials, never stores them,
@@ -42,8 +42,7 @@ _IMPORT_HINT = (
     "    pip install nanorix[s3]\n\n"
     "Credentials are resolved by boto3's standard chain (environment "
     "variables, shared credentials file, instance profile, SSO) in YOUR "
-    "process. Nanorix never takes custody of your AWS credentials "
-    "(ADR-036)."
+    "process. Nanorix never takes custody of your AWS credentials."
 )
 
 
@@ -76,10 +75,10 @@ class S3Source(Source):
     """Stream every object under ``bucket``/``prefix`` INTO the capsule.
 
     Runs in the customer's process. Credentials are resolved by boto3's
-    standard chain — never passed to or stored by Nanorix (ADR-036).
+    standard chain — never passed to or stored by Nanorix.
 
     Args:
-        bucket: The S3 bucket name. Customer-declared (ADR-013).
+        bucket: The S3 bucket name. Customer-declared.
         prefix: Optional key prefix to scope the listing. Empty string
             lists the whole bucket. Customer-declared.
         region: Optional AWS region for the auto-built client. Ignored
@@ -165,7 +164,7 @@ class S3Sink(Sink):
     """Stream capsule OUTPUT files to ``bucket``/``prefix`` BEFORE destroy.
 
     Runs in the customer's process. Credentials are resolved by boto3's
-    standard chain — never passed to or stored by Nanorix (ADR-036). The
+    standard chain — never passed to or stored by Nanorix. The
     streaming core invokes this BEFORE the capsule is destroyed
     (``feedback_no_post_destroy_cache.md``).
 

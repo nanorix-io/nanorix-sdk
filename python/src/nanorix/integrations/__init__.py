@@ -7,11 +7,11 @@ ActivityEvent emission helpers (`nanorix.helpers.activity_events`). Each
 integration MUST:
 
 - Reuse the 4 existing `ActivityEvent` variants from
-  `nanorix.helpers.activity_events` verbatim (ADR-006 I0 Forever-Standard).
+  `nanorix.helpers.activity_events` verbatim (Forever-Standard).
 - Compute hashes via the shipped JCS-flavor `_canonical_hash` so wire-format
   byte-equivalence with the 4-language verifier corpus holds.
 - Decline silent defaults for compliance-framing arguments — customers
-  declare `framework=` explicitly per ADR-013.
+  declare `framework=` explicitly.
 - Refuse to retain raw payloads. Plaintext stays in the customer's process
   memory; only SHA-512 hex digests reach the AuditProof.
 
@@ -31,7 +31,7 @@ customer to the relevant extras group.
 
 from __future__ import annotations
 
-# Batch 9 (2026-05-28) — C2PA LLM-output provenance per ADR-035.
+# Batch 9 (2026-05-28) — C2PA LLM-output provenance.
 # Sibling primitive next to AuditProof; AuditProof byte-form unchanged.
 from nanorix.integrations.c2pa_provenance import (
     AssertionType,

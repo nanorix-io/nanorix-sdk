@@ -11,8 +11,8 @@ against:
 - Status-code → ToolCallFailureKind mapping.
 - Hook → ActivityEvent variant routing (ReasoningStepCompleted vs
   ToolCallFailed).
-- Customer-sole-declarer (ADR-013) — framework_per_route + metadata.
-- ADR-006 I0 Forever-Standard — cdp_kind=Request canonical wire form.
+- Customer-sole-declarer — framework_per_route + metadata.
+- Forever-Standard — cdp_kind=Request canonical wire form.
 - Cross-impl byte-equivalence — same metadata shape as Python + TS
   decorators.
 """
@@ -144,7 +144,7 @@ def test_middleware_requires_capsulefile():
 
 
 def test_cdp_kind_request_wire_form_is_snake_case():
-    """ADR-006 reserved-slot wire form must be ``"request"`` exactly."""
+    """Reserved-slot wire form must be ``"request"`` exactly."""
     assert CDP_KIND_REQUEST == "request"
     assert CDP_KIND_REQUEST == CDP_KIND_REQUEST.lower()
 
@@ -287,7 +287,7 @@ def test_framework_version_absent_when_not_set():
 
     md = fake.capsules.created[0].create_metadata
     assert md is not None
-    # ADR-013: absence is opt-out, not empty-string.
+    #: absence is opt-out, not empty-string.
     assert "nanorix:framework_version" not in md
 
 
@@ -448,7 +448,7 @@ def test_400_response_destroys_capsule():
     assert fake.capsules.created[0].destroy_called
 
 
-# ── Status-to-failure-kind taxonomy (ADR-028 D1) ────────────────────
+# ── Status-to-failure-kind taxonomy ────────────────────
 
 
 def test_map_status_408_timeout():
@@ -636,7 +636,7 @@ def test_cross_impl_metadata_shape_byte_equivalent_to_decorator():
     assert md["nanorix:wrapper_kind"] == "middleware"
 
 
-# ── ADR-006 I0 Forever-Standard preservation ───────────────────────
+# ── Forever-Standard preservation ───────────────────────
 
 
 def test_cdp_kind_request_is_in_4_value_closed_enum():

@@ -128,16 +128,16 @@ class DataSummary(BaseModel):
 
 
 class RecordReceipt(BaseModel):
-    """Per-record receipt — ADR-039 mirror of `nanorix_rzl::types::RecordReceipt`.
+    """Per-record receipt — mirror of `nanorix_rzl::types::RecordReceipt`.
 
-    Forever-Standard (ADR-006 I0): field-additive Optional fields with
+    Forever-Standard: field-additive Optional fields with
     `extra="allow"` so SDK-side parsing keeps working as the Rust struct
     grows.
 
-    **No `control_tags` field by design.** Per ADR-039 §"Receipt as direct
-    evidence primitive" + ADR-040 RE-SCOPED: control IDs are NEVER stamped
+    **No `control_tags` field by design.** The receipt is a direct
+    evidence primitive: control-ID mapping is re-scoped, so control IDs are NEVER stamped
     into the signed receipt. Adapters derive `(jurisdiction × classification
-    × pattern_tag) -> list[control_id]` at ingestion time via the ADR-040
+    × pattern_tag) -> list[control_id]` at ingestion time via the
     published mapping artifact (`nanorix.control_map`). Three-layer
     separation: receipt (immutable signed primitive) / mapping (versioned
     artifact) / adapter (vendor pace).
@@ -155,10 +155,10 @@ class RecordReceipt(BaseModel):
 
 
 class ParentProofLink(BaseModel):
-    """Cross-org parent-proof link — ADR-041 mirror of
+    """Cross-org parent-proof link — mirror of
     `nanorix_rzl::types::ParentProofLink`.
 
-    Forever-Standard (ADR-006 I0): optional fields skip-serialize when None
+    Forever-Standard: optional fields skip-serialize when None
     so cross-impl byte-equivalence is preserved.
     """
 
@@ -182,19 +182,19 @@ class CdpDocument(BaseModel):
     attestation: Optional[AttestationInfo] = None
     document_hash: Optional[str] = None
     destruction_trigger: Optional[str] = None
-    # ADR-006 Wave 16-A reserved slot (2026-05-10): AuditProof scope
+    # Wave 16-A reserved slot (2026-05-10): AuditProof scope
     # discriminator. V1 always None / absent (workload scope implicit).
     # Future Items 2 (sealed-proxy = Call) and 4 (sealed-middleware = Request)
     # populate this; Pattern 4 high-volume per-record AuditProofs use Batch.
-    # Forever-Standard discipline (ADR-006 I0): field-additive Optional;
+    # Forever-Standard discipline: field-additive Optional;
     # pre-amendment AuditProofs deserialize via extra="allow".
     cdp_kind: Optional[str] = None  # Literal["workload", "request", "call", "batch"]
-    # ADR-039 Wave-N per-record receipts + ADR-041 cross-org parent
-    # composition. Field-additive Optional per Forever-Standard (ADR-006 I0):
+    # Wave-N per-record receipts + cross-org parent
+    # composition. Field-additive Optional per Forever-Standard:
     # pre-Wave-N AuditProofs canonicalize byte-identically (both fields skip-
     # serialize when None). See `governance/rzl/src/types.rs` for the Rust
     # source struct. Receipts carry `pattern_tag` only — control IDs are
-    # NEVER stamped into the signed primitive; adapters apply the ADR-040
+    # NEVER stamped into the signed primitive; adapters apply the
     # mapping artifact at ingestion time.
     record_receipts: Optional[List[RecordReceipt]] = None
     record_receipts_merkle_root: Optional[str] = None
@@ -218,13 +218,13 @@ class VerificationCdp(BaseModel):
     attestation: Optional[AttestationInfo] = None
     document_hash: Optional[str] = None
     verify: Optional[str] = None
-    # ADR-006 Wave 16-A reserved slot (2026-05-10): AuditProof scope
+    # Wave 16-A reserved slot (2026-05-10): AuditProof scope
     # discriminator mirrored on shareable surface. See CdpDocument.cdp_kind
     # for full semantic. V1 always None.
     cdp_kind: Optional[str] = None  # Literal["workload", "request", "call", "batch"]
-    # ADR-039 + ADR-041 mirrored on the shareable AuditProof surface. See
+    # mirrored on the shareable AuditProof surface. See
     # CdpDocument for full semantics. Field-additive Optional per Forever-
-    # Standard (ADR-006 I0): pre-Wave-N AuditProofs canonicalize byte-
+    # Standard: pre-Wave-N AuditProofs canonicalize byte-
     # identically when None.
     record_receipts: Optional[List[RecordReceipt]] = None
     record_receipts_merkle_root: Optional[str] = None

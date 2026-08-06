@@ -5,11 +5,11 @@ Mirrors `test_langgraph_integration.py` + `test_llama_index_integration.py`
 `nanorix.integrations.crewai.NanorixCrewAICallback` class against:
 
 - Synthetic CrewAI TaskOutput / AgentAction / AgentFinish shapes
-- Hook-to-ActivityEvent mapping per ADR-021 (4 variants only)
+- Hook-to-ActivityEvent mapping (4 variants only)
 - Closed-enum classification for `ToolCallFailureKind`
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on crew-execution orderings
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 - Attachment helper for Crew (mocked)
 - Hierarchical + sequential crew patterns
@@ -550,7 +550,7 @@ def test_on_event_failure_does_not_break_callback(tmp_path: Path):
 
 
 def test_attach_to_crew_wires_both_callbacks(tmp_path: Path):
-    """attach_to_crew sets both task_callback and step_callback."""
+    """Attach_to_crew sets both task_callback and step_callback."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
 
@@ -575,7 +575,7 @@ def test_attach_to_crew_wires_both_callbacks(tmp_path: Path):
 
 
 def test_attach_to_crew_wraps_kickoff_when_requested(tmp_path: Path):
-    """wrap_kickoff=True monkey-patches kickoff to capture exceptions."""
+    """Wrap_kickoff=True monkey-patches kickoff to capture exceptions."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     original_called = {"n": 0}
@@ -790,7 +790,7 @@ def test_property_random_crew_orderings_produce_well_formed_events(
             assert "at" in e
 
 
-# ── ADR-006 I0 Forever-Standard ────────────────────────────────────
+# ── Forever-Standard ────────────────────────────────────
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):

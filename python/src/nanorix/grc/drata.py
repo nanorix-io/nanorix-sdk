@@ -1,8 +1,8 @@
 """Drata GRC shell — guarded evidence-filing pusher (Batch 17).
 
-Files the signed AuditProof — per-record receipts (ADR-039) + outer
+Files the signed AuditProof — per-record receipts + outer
 envelope — into Drata as compliance EVIDENCE, landed against the canonical
-control IDs the ADR-040 mapping resolves at adapter time. All mapping +
+control IDs the mapping resolves at adapter time. All mapping +
 evidence-shaping lives in :mod:`nanorix.grc._core` (pure, vendor-SDK-free,
 dict-tested); this module is a THIN pusher.
 
@@ -17,12 +17,12 @@ pass a ``post=`` callable.
 
 ## Narrow-claim discipline (NON-NEGOTIABLE)
 
-Every evidence body carries ``"relationship": "references"`` + the ADR-040
+Every evidence body carries ``"relationship": "references"`` + the
 mapping disclaimer, and is run through the reference-only gate (no
 ``COMPLIANT`` / ``SATISFIED`` / ``PASSED`` / ``MEETS``). Nanorix files a
-factual reference; the auditor adjudicates (ADR-017 three-role).
+factual reference; the auditor adjudicates (three-role).
 
-## Credential discipline (ADR-013)
+## Credential discipline
 
 The customer supplies their Drata token + workspace id (constructor args or
 ``DRATA_API_TOKEN`` / ``DRATA_WORKSPACE_ID`` env). The token authenticates
@@ -57,7 +57,7 @@ class DrataEvidenceAdapter:
             retained on this object after a call.
         workspace_id: The target Drata workspace id. Falls back to
             ``DRATA_WORKSPACE_ID``.
-        framework_version: The ADR-040 mapping framework version to pin.
+        framework_version: The mapping framework version to pin.
             Defaults to the current published version. Ignored when
             ``mapping`` is supplied.
         mapping: Optional pre-loaded :class:`nanorix.control_map.Mapping`.
@@ -127,14 +127,14 @@ class DrataEvidenceAdapter:
     ) -> List[Dict[str, Any]]:
         """File every receipt in an AuditProof to Drata as evidence.
 
-        The core resolves the control IDs each receipt references (ADR-040
+        The core resolves the control IDs each receipt references (
         mapping) and shapes one evidence body per ``(receipt × control_id)``;
         this shell POSTs each to Drata's evidence API. Every body carries
         ``relationship: "references"`` + the mapping disclaimer.
 
         Args:
             proof: The AuditProof / FullCdp (dict or model).
-            jurisdiction: Customer-declared jurisdiction (read verbatim; ADR-013).
+            jurisdiction: Customer-declared jurisdiction (read verbatim).
             classification: Customer-declared data_classification (read verbatim).
             additional_control_ids: Optional customer-namespace control IDs.
 

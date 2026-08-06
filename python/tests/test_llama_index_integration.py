@@ -7,11 +7,11 @@ against:
 - Synthetic `on_event_start` / `on_event_end` events (LlamaIndex's
   callback shape — single dispatch method discriminated by
   `CBEventType`)
-- Per-event-type hook routing per ADR-021 (4 ActivityEvent variants only)
+- Per-event-type hook routing (4 ActivityEvent variants only)
 - Closed-enum classification for `ToolCallFailureKind` on EXCEPTION events
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on event orderings (≥1k iterations)
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 - Real `CallbackManager` integration
 
@@ -837,7 +837,7 @@ def test_property_random_event_orderings_produce_well_formed_buffer(tmp_path: Pa
             assert cid in attempted
 
 
-# ── ADR-006 I0 Forever-Standard ────────────────────────────────────
+# ── Forever-Standard ────────────────────────────────────
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):

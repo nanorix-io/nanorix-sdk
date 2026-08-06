@@ -1,7 +1,7 @@
 """
 Customer-side ActivityEvent emission helpers — Cap-3 (Phase 1).
 
-ADR-021 (Accepted 2026-05-06) shipped 4 ActivityEvent variants for AI-
+ (Accepted 2026-05-06) shipped 4 ActivityEvent variants for AI-
 agent tooling — `ToolCallAttempted`, `ToolCallCompleted`, `ToolCallFailed`,
 `ReasoningStepCompleted` — implemented at
 `services/api/src/cdp_document.rs:1561-1752`. The variants are bound
@@ -18,16 +18,16 @@ matching variants into FullCdp.activity.
 
 ## Trust-boundary discipline
 
-- **Customer-sole-declarer (ADR-013).** Customer's capsule code declares
+- **Customer-sole-declarer.** Customer's capsule code declares
   every field verbatim. Helpers do NOT classify, infer, or augment — only
   shape into the wire schema + canonical-JSON serialize + write.
-- **Zero-retention (ADR-006 I0).** `tool_args_hash`, `tool_result_hash`,
+- **Zero-retention.** `tool_args_hash`, `tool_result_hash`,
   `prompt_hash`, `response_hash` are all SHA-512 hex; plaintext NEVER
   enters the AuditProof. The helpers compute hashes via `_canonical_hash`
   using the same `sort_keys=True, separators=(",", ":")` JCS-flavor that
   `nanorix._merkle.hash_record_bytes` and `nanorix._session.hash_state_bytes`
   use, so cross-impl byte-equivalence holds.
-- **Forever-Standard (ADR-006 I0).** Field names, JSON-tag (`event`),
+- **Forever-Standard.** Field names, JSON-tag (`event`),
   and snake_case keys mirror the Rust enum's serde shape verbatim.
   Reserved Optional slots (`agent_id`, `parent_event_id`, `step_kind`,
   `summary_hash`, `failure_kind`) are sometimes-populated; pre-amendment
@@ -41,7 +41,7 @@ JSON, append-only). On capsule destroy, the daemon reads the buffer
 line-by-line, parses each line as ActivityEvent, validates against the
 closed schema, and absorbs into FullCdp.activity. Lines that fail
 schema validation are dropped (and counted in
-`SchemaValidationDropped` per ADR-019).
+`SchemaValidationDropped`).
 
 For test environments where `/data/activity_events.jsonl` doesn't
 exist (developer machine, CI), the helpers accept a `buffer_path`
@@ -128,7 +128,7 @@ seals it, and reads `activity_events.jsonl` on capsule destroy.
 
 # Closed-enum mirrors of `services/api/src/cdp_document.rs`.
 # These match the `ToolCallFailureKind` and `ReasoningStepKind` Rust
-# enums verbatim (ADR-028 D1, Accepted 2026-05-07).
+# enums verbatim (Accepted 2026-05-07).
 TOOL_CALL_FAILURE_KINDS = frozenset(
     {
         "timeout",
@@ -221,7 +221,7 @@ def emit_tool_call_attempted(
 ) -> dict[str, Any]:
     """Emit a `ToolCallAttempted` ActivityEvent.
 
-    Customer-declared per ADR-021. Pairs with a subsequent
+    Customer-declared. Pairs with a subsequent
     `ToolCallCompleted` (success) or `ToolCallFailed` (failure) via
     `tool_call_id`.
 
@@ -237,7 +237,7 @@ def emit_tool_call_attempted(
         at: ISO 8601 timestamp; defaults to current UTC time.
         agent_id: Optional sub-agent identifier (multi-agent debugging).
         parent_event_id: Optional customer-declared causal-parent
-            reference (ADR-028 D2). Opaque customer-supplied identifier
+            reference. Opaque customer-supplied identifier
             referencing the prior event in the customer's reasoning /
             tool-call graph.
         buffer_path: Override for the activity-trail buffer location
@@ -279,7 +279,7 @@ def emit_tool_call_completed(
     """Emit a `ToolCallCompleted` ActivityEvent (success path).
 
     Pairs with a prior `ToolCallAttempted` via `tool_call_id`.
-    Customer-declared per ADR-021. Customer's agent code emits
+    Customer-declared. Customer's agent code emits
     exactly one of `tool_call_completed` OR `tool_call_failed` per
     attempted call.
 
@@ -323,8 +323,8 @@ def emit_tool_call_failed(
     Args:
         failure_reason: Free-form customer-provided narrative
             (e.g., `"upstream returned 503 with body 'rate limited'"`).
-            Per ADR-021; Nanorix records verbatim.
-        failure_kind: Optional closed-enum reduction (per ADR-028 D1).
+            Nanorix records verbatim.
+        failure_kind: Optional closed-enum reduction.
             One of `TOOL_CALL_FAILURE_KINDS`. Auditor query tooling
             indexes against this field; the free-form `failure_reason`
             remains the customer's narrative.
@@ -393,15 +393,15 @@ def emit_reasoning_step_completed(
         model: Optional model identifier (e.g., `"claude-opus-4-7"`,
             `"gpt-5"`). Plaintext.
         agent_id: Optional sub-agent identifier.
-        step_kind: Optional closed-enum reasoning step kind (ADR-028 D1).
+        step_kind: Optional closed-enum reasoning step kind.
             One of `REASONING_STEP_KINDS`.
-        summary: Optional customer-derived summary artifact (ADR-028 D3).
+        summary: Optional customer-derived summary artifact.
             When provided, `summary_hash = sha512(canonical(summary))`
             populates the event. Use case: PA-decision agent emits a
             structured rationale separately from the freeform LLM
             response.
         parent_event_id: Optional customer-declared causal-parent
-            reference (ADR-028 D2).
+            reference.
 
     Raises:
         ValueError: if `step_kind` is supplied and not in the closed-

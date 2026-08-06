@@ -52,10 +52,10 @@ from nanorix._models import (
     RecordReceipt,
     VerificationCdp,
 )
-# ADR-039 + ADR-041 customer-facing ergonomic surface — per-record receipt
+# customer-facing ergonomic surface — per-record receipt
 # emission (RecordContext) + cross-org parent-proof composition. Three-layer
 # separation: receipt (immutable signed primitive carrying pattern_tag) /
-# mapping artifact (ADR-040 published, versioned) / adapter (vendor pace).
+# mapping artifact (published, versioned) / adapter (vendor pace).
 from nanorix.capsule_record import (
     PATTERN_TAGS,
     AsyncRecordContext,
@@ -90,10 +90,10 @@ from nanorix.billing import (
     ShapeUsage,
 )
 
-# ADR-040 control-map (Wave B 2026-05-26) — published mapping artifact
+# control-map (Wave B 2026-05-26) — published mapping artifact
 # `(jurisdiction × data_classification × pattern_tag) → list[control_id]`.
 # Consumed by GRC adapters (Vanta / Drata / Anecdotes / internal) at
-# ingestion time given a receipt's signed `pattern_tag` (ADR-039) +
+# ingestion time given a receipt's signed `pattern_tag` +
 # customer's declared `jurisdiction` + capsule's `data_classification`.
 # Three-layer separation: receipt (immutable) / mapping (versioned) /
 # adapter (vendor pace). The mapping is NEVER stamped into the receipt.
@@ -158,7 +158,7 @@ __all__ = [
     "CCDADocumentReference",
     "EpicLaunchContext",
     "EpicLaunchContextResult",
-    # ADR-040 control-map (Wave B 2026-05-26)
+    # control-map (Wave B 2026-05-26)
     "CONTROL_MAP_DISCLAIMER",
     "CONTROL_MAP_FRAMEWORK_VERSION",
     "CONTROL_MAP_SCHEMA_VERSION",
@@ -167,7 +167,7 @@ __all__ = [
     "available_framework_versions",
     "load_mapping",
     "resolve_controls",
-    # ADR-039 + ADR-041 per-record receipt + cross-org parent surface
+    # per-record receipt + cross-org parent surface
     "RecordReceipt",
     "ParentProofLink",
     "RecordContext",

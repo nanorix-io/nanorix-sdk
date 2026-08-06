@@ -31,7 +31,7 @@ from nanorix.helpers.checkpoint_saver import (
 
 
 def test_hash_state_dict_matches_runtime_wire_convention():
-    """sha512: prefix + 128-char lowercase hex matches Rust runtime."""
+    """Sha512: prefix + 128-char lowercase hex matches Rust runtime."""
     out = hash_state_dict({"k": "v"})
     assert out.startswith("sha512:")
     assert len(out) == 7 + 128

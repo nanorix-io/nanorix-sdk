@@ -18,11 +18,11 @@ AuditProof the capsule already produces.
 
 ## Trust-boundary discipline (NON-NEGOTIABLE)
 
-- **Customer-sole-declarer (ADR-013).** ``capsulefile``,
+- **Customer-sole-declarer.** ``capsulefile``,
   ``data_classification`` and ``metadata`` are declared by the pipeline
   author. This core NEVER infers any of them. There are no silent
   defaults for the compliance-binding fields.
-- **AuditProof external brand (ADR-014).** The result exposes
+- **AuditProof external brand.** The result exposes
   ``audit_proof`` / an AuditProof. Internal subsystem names never appear
   in this surface.
 - **Narrow signed claim.** ``run_capsule_job`` returns the AuditProof the
@@ -88,7 +88,7 @@ RESERVED_METADATA_PREFIX = "nanorix:"
 
 # The accepted data_classification values, mirroring the API
 # (services/api/src/routes/capsules.rs). The customer declares one of
-# these; Nanorix records it verbatim and never overrides it (ADR-013).
+# these; Nanorix records it verbatim and never overrides it.
 VALID_DATA_CLASSIFICATIONS = (
     "PHI",
     "PII",
@@ -128,7 +128,7 @@ class CapsuleJobParams:
     """Customer-declared parameters for one capsule job step.
 
     Every compliance-binding field is declared by the pipeline author
-    (ADR-013 customer-sole-declarer). The core never infers
+    (customer-sole-declarer). The core never infers
     ``capsulefile``, ``data_classification``, or ``metadata``.
 
     Attributes:
@@ -150,13 +150,13 @@ class CapsuleJobParams:
             the capsule AFTER execution and BEFORE destruction. When empty
             or ``None`` no outputs are downloaded.
         sources: Optional list of :class:`nanorix.connectors.Source`
-            connectors (ADR-036). Each is streamed INTO the capsule BEFORE
+            connectors. Each is streamed INTO the capsule BEFORE
             execution — alongside / in place of ``input_files``. The
             connector runs in the customer's process with the customer's
             cloud credentials; Nanorix never stages the data. Backward-
             compatible: ``None`` means no source connectors.
         sinks: Optional list of :class:`nanorix.connectors.Sink`
-            connectors (ADR-036). Each receives the capsule's
+            connectors. Each receives the capsule's
             ``output_files`` and streams them to the destination BEFORE
             destroy — never after (``feedback_no_post_destroy_cache.md``).
             ``None`` means no sink connectors. When ``sinks`` is given,
@@ -208,7 +208,7 @@ class CapsuleJobParams:
             raise OrchestratorError(
                 "CapsuleJobParams.capsulefile is required (the finalized "
                 "Capsulefile id, e.g. 'cf_...'). The pipeline author "
-                "declares it explicitly per ADR-013; it is never inferred."
+                "declares it explicitly; it is never inferred."
             )
 
         if self.data_classification is not None:
@@ -218,7 +218,7 @@ class CapsuleJobParams:
                     f"{VALID_DATA_CLASSIFICATIONS}; got "
                     f"{self.data_classification!r}. Nanorix records the "
                     "customer-declared classification verbatim and never "
-                    "infers or overrides it (ADR-013)."
+                    "infers or overrides it."
                 )
 
         if self.metadata is not None:
@@ -284,7 +284,7 @@ class CapsuleJobResult:
         audit_proof: The AuditProof (``CdpAccess``) the capsule produced on
             destruction, or ``None`` when ``destroy_on_complete`` was
             ``False`` (the capsule is still running and owns its own
-            destruction). Per ADR-014 this is the AuditProof brand surface,
+            destruction). This is the AuditProof brand surface,
             never an internal subsystem object.
         verification: The shareable verification view of the AuditProof
             (``audit_proof.verification()``), or ``None`` when the capsule
@@ -357,7 +357,7 @@ def run_capsule_job(client: Any, params: CapsuleJobParams) -> CapsuleJobResult:
                 capsule.upload(filename, data)
 
         # 1b. Stream every SOURCE connector INTO the capsule BEFORE
-        #     execution (ADR-036). Runs in the customer's process with the
+        # execution. Runs in the customer's process with the
         #     customer's cloud credentials; Nanorix never stages the data.
         if params.sources:
             _stream_sources(client, capsule, params)
@@ -375,7 +375,7 @@ def run_capsule_job(client: Any, params: CapsuleJobParams) -> CapsuleJobResult:
                 outputs[filename] = capsule.download(filename)
 
         # 3b. Stream capsule OUTPUT to every SINK connector BEFORE destroy
-        #     (ADR-036 + feedback_no_post_destroy_cache.md). Sinks run
+        # (feedback_no_post_destroy_cache.md). Sinks run
         #     while the capsule is still alive; once destroyed there is no
         #     capsule data left to read.
         if params.sinks:
@@ -467,7 +467,7 @@ def _safe_verification(audit_proof: Any) -> Any:
 
 
 def _stream_sources(client: Any, capsule: Any, params: CapsuleJobParams) -> None:
-    """Stream every source connector INTO the capsule (before exec; ADR-036).
+    """Stream every source connector INTO the capsule (before exec).
 
     Imported lazily so the orchestrator core keeps importing without the
     connectors package being loaded eagerly. The connector streaming core
@@ -483,7 +483,7 @@ def _stream_sources(client: Any, capsule: Any, params: CapsuleJobParams) -> None
 
 
 def _stream_sinks(client: Any, capsule: Any, params: CapsuleJobParams) -> None:
-    """Stream capsule OUTPUT to every sink connector (BEFORE destroy; ADR-036).
+    """Stream capsule OUTPUT to every sink connector (BEFORE destroy).
 
     The capsule's ``output_files`` name the outputs streamed to each sink.
     Enforced ordering: this runs while the capsule is still alive, before

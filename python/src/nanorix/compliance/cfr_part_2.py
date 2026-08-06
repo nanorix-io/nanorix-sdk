@@ -12,7 +12,7 @@ under BOTH HIPAA and 42 CFR Part 2; customers in the behavioral-health
 cohort (Eleos + CalMHSA + similar) wrap capsule workloads in both
 contexts and merge the metadata dicts.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's metadata. It does NOT
     certify, attest to satisfaction of, or claim compliance with 42 CFR
@@ -232,7 +232,7 @@ class CFRPart2Context:
         ``"true"`` to record that the workload operates under §2.32.
 
         Auditor + GRC platform consumers read this from the AuditProof's
-        metadata field (bound into ``metadata_hash`` per ADR-010 A4).
+        metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: self.framework_id,

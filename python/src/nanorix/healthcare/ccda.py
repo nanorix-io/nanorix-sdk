@@ -35,14 +35,14 @@ This is a **reader → FHIR Bundle adapter only**. It does NOT:
   emitted Bundle shape is structural, not implementation-guide-
   validated
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied C-CDA XML and emits a FHIR-Bundle-shaped
     Python dict + AuditProof binding metadata. The adapter does NOT
     interpret clinical content, validate against any specific
     implementation guide, or certify upstream-system conformance.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. This adapter
     parses customer-supplied C-CDA payloads to produce structural
     metadata only.
@@ -92,7 +92,7 @@ class CCDADocumentReference:
     in the customer's capsule workspace; this dataclass surfaces only
     structural identifiers suitable for AuditProof binding.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets clinical content.
     """
 
@@ -258,8 +258,7 @@ class CCDADocumentReference:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         structural fields from the C-CDA document header. Suitable
-        for binding into the AuditProof's ``metadata_hash`` per
-        ADR-010 A4.
+        for binding into the AuditProof's ``metadata_hash``.
 
         Clinical content (section bodies) is NOT emitted.
         """
@@ -307,10 +306,10 @@ class CCDAReader:
     - Other LOINC-coded C-CDA document types parse structurally; the
       adapter does not branch on document type.
 
-    Three-role discipline (ADR-017): Adapter is structural; clinical
+    Three-role discipline: Adapter is structural; clinical
     interpretation remains the customer's.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the document;
+    Customer-sole-declarer: Customer supplies the document;
     adapter produces structural metadata + FHIR Bundle shape only.
 
     Optional dependency: ``lxml>=4.9`` for robust XML parsing;

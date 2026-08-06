@@ -7,12 +7,12 @@
  * customer-supplied X12 v5010 wire payloads (005010X217 TR3 IG) and
  * produces structural metadata + payload SHA-256 anchor.
  *
- * Three-role discipline (ADR-017): structural adapter. Medical-
+ * Three-role discipline: structural adapter. Medical-
  * necessity adjudication, peer-review interpretation, payer
  * companion-guide conformance, and downstream PA decisioning remain
  * the customer's responsibility.
  *
- * Customer-sole-declarer (ADR-013): customer supplies the wire payload;
+ * Customer-sole-declarer: customer supplies the wire payload;
  * adapter parses structural fields only. Member IDs are SHA-256-hashed.
  */
 

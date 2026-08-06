@@ -21,7 +21,7 @@ Named cohort customers — Recursion (phenomics + ML), Insitro (ML-driven drug d
 
 ## Federated-learning composition
 
-For multi-party federated drug discovery (Pattern 9), each participating organization runs their slice inside their own Nanorix install + signs under their HSM-rooted authority (ADR-031 BYO-HSM). The coordinator aggregates the per-org AuditProofs into a multi-party trust chain — each organization can verify the others' contributions without ever seeing each other's molecule libraries.
+For multi-party federated drug discovery (Pattern 9), each participating organization runs their slice inside their own Nanorix install + signs under their HSM-rooted authority (BYO-HSM). The coordinator aggregates the per-org AuditProofs into a multi-party trust chain — each organization can verify the others' contributions without ever seeing each other's molecule libraries.
 
 ## Files
 
@@ -48,7 +48,7 @@ nanorix verify audit_proof.json
 
 - **Customer-sole-declarer:** `data_classification = "general"` (no PHI / PII in molecule libraries); jurisdiction varies per org.
 - **Receipt narrowness:** per-molecule receipts carry signed primitives only. Mapping to canonical IP-traceability control IDs happens at adapter time via `nanorix_control_map`.
-- **Federated composition (ADR-031 + ADR-041):** each org signs under their HSM; coordinator chains via parent_proof_hashes; no organization sees another's library.
+- **Federated composition:** each org signs under their HSM; coordinator chains via parent_proof_hashes; no organization sees another's library.
 
 ## License
 

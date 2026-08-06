@@ -141,7 +141,7 @@ describe("auditProofs alias", () => {
     mock.restore();
   });
 
-  it("client.auditProofs is alias for client.cdp (ADR-014)", () => {
+  it("client.auditProofs is alias for client.cdp", () => {
     const client = new NanorixClient({
       apiKey: TEST_API_KEY,
       baseUrl: TEST_BASE_URL,

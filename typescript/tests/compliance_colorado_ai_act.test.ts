@@ -116,7 +116,7 @@ describe("ColoradoAiActContext", () => {
   });
 
   it("throws when too many optional fields exceed the 16-key envelope cap", () => {
-    // ADR-014 + ADR-010 A4 envelope cap is 16 keys. Setting every
+    // envelope cap is 16 keys. Setting every
     // optional reference together would produce 17 keys — fail-fast at
     // toMetadata().
     const ctx = new ColoradoAiActContext({

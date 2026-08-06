@@ -1,17 +1,17 @@
-"""ADR-040 control-map resolver (Wave B 2026-05-26) — published mapping artifact.
+"""Control-map resolver (Wave B 2026-05-26) — published mapping artifact.
 
 Layer-2 published artifact `(jurisdiction × data_classification × pattern_tag) →
 list[canonical_control_id]`. Consumed by GRC adapters (Vanta / Drata /
 Anecdotes / internal) at ingestion time given a receipt's signed
-`pattern_tag` (ADR-039) + customer's declared `jurisdiction` + capsule's
-declared `data_classification` (ADR-013 customer-sole-declarer).
+`pattern_tag` + customer's declared `jurisdiction` + capsule's
+declared `data_classification` (customer-sole-declarer).
 
-## Three-layer separation (ADR-040 RE-SCOPED — founder direction 2026-05-12)
+## Three-layer separation (RE-SCOPED — founder direction 2026-05-12)
 
 | Layer | Carries | Evolves at |
 |---|---|---|
-| Receipt (ADR-039) | `pattern_tag` (signed) | ADR-006 I0 Forever-Standard pace |
-| Mapping artifact (this module, ADR-040) | `(j × c × p) → list[control_id]` | Framework revision pace |
+| Receipt | `pattern_tag` (signed) | Forever-Standard pace |
+| Mapping artifact (this module) | `(j × c × p) → list[control_id]` | Framework revision pace |
 | Adapter | Reads receipt + applies mapping | Vendor pace |
 
 Stamping mapping output inside the cryptographic receipt would freeze
@@ -65,12 +65,12 @@ DISCLAIMER: str = (
     "customer's compliance program and the auditor's adjudication, not "
     "by Nanorix."
 )
-"""Canonical disclaimer per CCO policy + ADR-017 three-role discipline."""
+"""Canonical disclaimer per CCO policy + three-role discipline."""
 
 # ─── Canonical mapping constants ──────────────────────────────────────────────
-# Per ADR-040 §"Published artifact format". Mirrors the Rust resolver in
+# Per. Mirrors the Rust resolver in
 # `services/api/src/control_map.rs::resolve_controls` — single source of truth.
-# Per ADR-006 I0 Forever-Standard: append-only; old MAPPING_<version> constants
+# Forever-Standard: append-only; old MAPPING_<version> constants
 # remain available forever in future SDK revisions.
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -244,7 +244,7 @@ MAPPING_2026_02: Dict[str, List[str]] = {
     "_baseline.US.Financial": ["PCI-DSS-10.2", "SOX-302(a)(4)", "SOC2-CC7.2"],
     "_baseline.US.Credentials": ["NIST-800-53-IA-5", "SOC2-CC6.1"],
 }
-"""Canonical mapping for framework_version 2026-02. Append-only per ADR-006 I0."""
+"""Canonical mapping for framework_version 2026-02. Append-only."""
 
 # Registry of available framework_versions. Old versions remain forever.
 _MAPPINGS_BY_VERSION: Dict[str, Dict[str, List[str]]] = {
@@ -289,7 +289,7 @@ class Mapping:
             List of canonical control IDs for the cell. Empty when cell is not
             seeded — caller can fall back via `resolve_baseline()`.
 
-        Per ADR-013 customer-sole-declarer: no inference; arguments are taken
+        Customer-sole-declarer: no inference; arguments are taken
         verbatim from the customer-declared values.
         """
         # Canonicalize classification wire form.
@@ -340,7 +340,7 @@ def load_mapping(framework_version: Optional[str] = None) -> Mapping:
         `.resolve(jurisdiction, classification, pattern_tag)` against it.
 
     Raises:
-        ValueError: If `framework_version` is not available. Per ADR-006 I0
+        ValueError: If `framework_version` is not available. I0
             Forever-Standard, old versions remain available forever — new
             framework_versions are added to `_MAPPINGS_BY_VERSION` in future
             SDK releases, never removed.
@@ -350,7 +350,7 @@ def load_mapping(framework_version: Optional[str] = None) -> Mapping:
         raise ValueError(
             f"framework_version '{fv}' not available. "
             f"Available versions: {sorted(_MAPPINGS_BY_VERSION.keys())}. "
-            f"Per ADR-006 I0 Forever-Standard, old versions remain available "
+            f"Forever-Standard, old versions remain available "
             f"forever; ensure you are using a published version."
         )
     return Mapping(
@@ -369,7 +369,7 @@ def resolve(
 
     Equivalent to `load_mapping(framework_version).resolve(...)`.
 
-    Per ADR-013 customer-sole-declarer: arguments are customer-declared values
+    Customer-sole-declarer: arguments are customer-declared values
     consumed verbatim. Nanorix does NOT infer jurisdiction or classification.
 
     Args:
@@ -394,7 +394,7 @@ def resolve(
 def available_framework_versions() -> List[str]:
     """List all available framework_versions in this SDK release.
 
-    Per ADR-006 I0 Forever-Standard: this list is append-only across SDK
+    Forever-Standard: this list is append-only across SDK
     releases — old framework_versions are NEVER removed.
     """
     return sorted(_MAPPINGS_BY_VERSION.keys())

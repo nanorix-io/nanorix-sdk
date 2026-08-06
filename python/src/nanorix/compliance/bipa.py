@@ -48,7 +48,7 @@ statute's healthcare exemption applies only to biometric identifiers
 collected in connection with covered Healthcare Information privacy
 regulations, and the scope of that exemption is litigated.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's metadata. It does NOT
     certify, attest to satisfaction of, or claim compliance with BIPA.
@@ -424,7 +424,7 @@ class BIPAContext:
         ``"true"`` / ``"false"`` values.
 
         Auditor + GRC platform consumers read this from the AuditProof's
-        metadata field (bound into ``metadata_hash`` per ADR-010 A4).
+        metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: self.framework_id,

@@ -170,7 +170,7 @@ def test_create_capsulefile_exceeds_size_limit(mock_api, client):
 
 
 def test_upload_dir(mock_api, client, tmp_path):
-    """upload_dir() walks a directory recursively and uploads each file."""
+    """Upload_dir() walks a directory recursively and uploads each file."""
     # Create nested directory structure
     (tmp_path / "model.py").write_bytes(b"import torch")
     sub = tmp_path / "data"

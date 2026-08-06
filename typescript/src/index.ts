@@ -80,7 +80,7 @@ export type {
 export { verify, GENESIS_HASH, CANONICAL_SUBSYSTEMS } from "./verifier/index.js";
 export type { VerifyResult } from "./verifier/index.js";
 
-// Wave-N verifier surface (ADR-039 + ADR-041, Wave B Item 6 — 2026-05-27)
+// Wave-N verifier surface (Wave B Item 6 — 2026-05-27)
 export {
   GENESIS_SHA512_HEX as WAVE_N_GENESIS_SHA512_HEX,
   PARENT_PROOF_MAX_DEPTH,
@@ -479,7 +479,7 @@ export type {
 // JCS RFC 8785 canonicalization (Wave 8A)
 export { canonicalize, canonicalizeBytes } from "./_jcs.js";
 
-// ADR-040 control-map (Wave B 2026-05-26) — published mapping artifact
+// control-map (Wave B 2026-05-26) — published mapping artifact
 // `(jurisdiction × data_classification × pattern_tag) → string[]` consumed
 // by GRC adapters at ingestion time. Three-layer separation: receipt
 // (immutable) / mapping (versioned) / adapter (vendor pace).
@@ -500,7 +500,7 @@ export type {
 } from "./control_map.js";
 
 // Batch 1 Item 4 (2026-05-27) — cold-start benchmark SDK helper. Layer-2
-// published artifact (sibling to ADR-040 control_map). Customer-facing
+// published artifact (sibling to control_map). Customer-facing
 // p50/p95/p99 measurements per (substrate × pattern × Capsulefile shape)
 // cell. STRUCTURAL FACTS only; NEVER a service-level commitment.
 export {
@@ -521,11 +521,11 @@ export type {
   BenchmarkLookup,
 } from "./benchmark.js";
 
-// ADR-035 Batch 9 (2026-05-28) — C2PA LLM-output provenance.
+// Batch 9 (2026-05-28) — C2PA LLM-output provenance.
 // Sibling primitive next to AuditProof; AuditProof byte-form UNCHANGED
-// (ADR-006 I0 affirmed). EU AI Act Article 50 (effective August 2026)
-// interchange format. Customer-sole-declarer (ADR-013); three-role
-// discipline (ADR-017); narrowness invariant preserved
+// (affirmed). EU AI Act Article 50 (effective August 2026)
+// interchange format. Customer-sole-declarer; three-role
+// discipline; narrowness invariant preserved
 // (feedback_narrowness_is_the_moat_resist_receipt_enrichment.md).
 export {
   C2PAManifest,
@@ -558,7 +558,7 @@ export type {
   C2PA_WithModelOptions,
 } from "./integrations/index.js";
 
-// ADR-039 + ADR-041 Wave B Item 3 (2026-05-26) — per-record receipt + parent
+// Wave B Item 3 (2026-05-26) — per-record receipt + parent
 // proof ergonomic surface. RecordContext + addParentProof on LiveCapsule.
 // Three-layer separation enforced: receipts carry pattern_tag (signed) but
 // NEVER control_tags; adapters apply control_map at ingestion time.

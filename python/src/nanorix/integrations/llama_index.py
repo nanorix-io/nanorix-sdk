@@ -16,9 +16,9 @@ runtime configuration:
 The callback runs INSIDE a Nanorix capsule (customer wraps the agent run
 via `client.capsules.create()` or the future `@nanorix.workload`
 decorator). LlamaIndex's hook surface maps onto the 4 existing
-ActivityEvent variants shipped by ADR-021 — `ToolCallAttempted` /
+ActivityEvent variants shipped by — `ToolCallAttempted` /
 `ToolCallCompleted` / `ToolCallFailed` / `ReasoningStepCompleted`. No
-new variants — Forever-Standard preserved (ADR-006 I0).
+new variants — Forever-Standard preserved.
 
 ## Architectural distinction from LangChain
 
@@ -68,7 +68,7 @@ middleware).
 
 ## Design constraints
 
-- `framework=` REQUIRED — no silent default (ADR-013).
+- `framework=` REQUIRED — no silent default.
 - No PHI scanning. Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - LlamaIndex dep is optional — `pip install nanorix[llama-index]`.
@@ -264,7 +264,7 @@ class NanorixLlamaIndexCallback(BaseCallbackHandler):
             raise ValueError(
                 "NanorixLlamaIndexCallback requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

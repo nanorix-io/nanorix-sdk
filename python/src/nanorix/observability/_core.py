@@ -33,11 +33,11 @@ forbidden-vocabulary gate (:func:`assert_structural_facts_only`).
 - **No internal engine names.** Tags / attributes / field names carry
   customer-facing nouns only (``capsule_id``, ``pattern_tag``,
   ``failure_reason``, ``signing_authority_id``) — never internal subsystem
-  names (ADR-014 + ``feedback_ip_protection.md``).
+  names (``feedback_ip_protection.md``).
 - **No new signed primitive.** These transforms read the existing
   AuditProof + the existing offline verification result; they sign
   nothing and add no field to the signed proof.
-- **Customer-sole-declarer (ADR-013).** ``pattern_tag`` /
+- **Customer-sole-declarer.** ``pattern_tag`` /
   ``data_classification`` are read verbatim from the proof; never
   inferred here.
 
@@ -169,10 +169,10 @@ class ProofFields:
     Attributes:
         capsule_id: The capsule the proof attests. Required.
         proof_id: The proof's own id, when present (``None`` otherwise).
-        pattern_tag: The receipt's signed closed-enum ``pattern_tag`` (ADR-039),
+        pattern_tag: The receipt's signed closed-enum ``pattern_tag``,
             or ``None`` when the proof carries no tag.
-        data_classification: The capsule's customer-declared classification
-            (ADR-013), or ``None``.
+        data_classification: The capsule's customer-declared classification,
+            or ``None``.
         signing_authority_id: The signing authority id (e.g.
             ``us-kms-nanorix-v1``), or ``None``.
         terminated_at: The capsule termination timestamp, or ``None``.
@@ -232,7 +232,7 @@ def read_proof_fields(proof: Any) -> ProofFields:
 
     Accepts a dict (API JSON), a ``CdpAccess`` / ``VerificationCdp`` model,
     or any object exposing the same attributes. Reads only customer-facing
-    structural fields (ADR-014 — no internal engine names are read or
+    structural fields (no internal engine names are read or
     surfaced).
 
     Args:

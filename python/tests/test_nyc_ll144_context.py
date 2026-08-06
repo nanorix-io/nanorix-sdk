@@ -462,7 +462,7 @@ def test_nyc_ll144_metadata_json_round_trip_preserves_dict():
 
 def test_nyc_ll144_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer framing
-    per ADR-017."""
+    ."""
     from nanorix.compliance import nyc_ll144 as mod
 
     doc = mod.__doc__ or ""

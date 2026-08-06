@@ -7,8 +7,8 @@
  * customers wire into any TypeScript agent framework following
  * AutoGen's lifecycle pattern (multi-agent conversation, tool-call
  * dispatch, agent-error surfacing). The callback emits the existing
- * 4 ActivityEvent variants shipped by ADR-021 — no new variants —
- * Forever-Standard preserved (ADR-006 I0).
+ * 4 ActivityEvent variants shipped by — no new variants —
+ * Forever-Standard preserved.
  *
  * Customer pattern:
  *
@@ -44,7 +44,7 @@
  * `tool_call_failed` come from the customer's downstream tool
  * execution path.
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify AutoGen correctness,
  * multi-agent conversation safety, or LLM-output safety — those
@@ -173,7 +173,7 @@ export class NanorixAutoGenCallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixAutoGenCallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

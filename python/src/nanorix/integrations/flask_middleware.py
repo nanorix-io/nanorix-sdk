@@ -11,7 +11,7 @@ This is the WSGI sibling of ``nanorix.integrations.fastapi_middleware``
 Flask's request-context lifecycle (``before_request`` / ``after_request``
 / ``teardown_request``).
 
-ADR-006 reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
+ reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
 CTI-T14-002 + CTI-T14-004 ungating). Every AuditProof emitted by this
 module populates the slot with the canonical wire string ``"request"``.
 
@@ -110,7 +110,7 @@ __all__ = [
 
 
 CDP_KIND_REQUEST = "request"
-"""ADR-006 reserved-slot wire form for per-HTTP-request AuditProofs."""
+"""Reserved-slot wire form for per-HTTP-request AuditProofs."""
 
 WRAPPER_KIND = "middleware"
 """Reserved metadata-key value emitted via ``nanorix:wrapper_kind``."""
@@ -233,7 +233,7 @@ class NanorixMiddleware:
         client: REQUIRED. A ``nanorix.Client`` instance the middleware
             uses to create + destroy capsules.
         framework: REQUIRED. Compliance framework label
-            (customer-declared per ADR-013).
+            (customer-declared).
         capsulefile: REQUIRED. Server-side Capsulefile ID or local name.
         framework_version: Optional framework version.
         agent_id: Optional sub-agent identifier.
@@ -277,7 +277,7 @@ class NanorixMiddleware:
             raise ValueError(
                 "NanorixMiddleware requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default "
-                "per ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

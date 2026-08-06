@@ -18,7 +18,7 @@ All notable changes to the Nanorix TypeScript SDK will be documented in this fil
     byte-equivalent with the Go reference verifier on the 100-fixture corpus. Returns
     `VerificationResult` with closed-set `FailureReason` matching Go/Rust wire types.
   - `VerifierPolicy` — customer-side policy for authority-pin (`requiredAuthorityId`).
-  - `FailureReasonType` — closed-set failure reason wire discriminators (ADR-006 I0).
+  - `FailureReasonType` — closed-set failure reason wire discriminators.
   - `toWireForm()` — projects `VerificationResult` to `{valid, failure_reason}` fixture form.
 - `_jcs` module — JCS RFC 8785 canonical JSON serialization in pure TypeScript (~150 LOC).
   `canonicalize()` + `canonicalizeBytes()`. Cross-impl byte-equivalence with Rust `serde_jcs`
@@ -49,7 +49,7 @@ All notable changes to the Nanorix TypeScript SDK will be documented in this fil
 
 ### Breaking changes
 
-- Renamed `NanorixClient.templates` → `capsulefiles` (ADR-013 capsulefile rename)
+- Renamed `NanorixClient.templates` → `capsulefiles` (capsulefile rename)
 
 ## 0.2.0 — 2026-03-26
 

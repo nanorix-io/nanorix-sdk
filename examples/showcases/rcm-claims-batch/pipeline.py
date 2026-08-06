@@ -105,7 +105,7 @@ def main() -> int:
 
     # Emit one per-claim receipt. Auditor follows each claim
     # independently via the Merkle inclusion proof + Step 8's Merkle
-    # root (ADR-039 + ADR-041 binding).
+    # root (binding).
     for claim in claims:
         client.capsules.emit_record(
             capsule_id=capsule.id,

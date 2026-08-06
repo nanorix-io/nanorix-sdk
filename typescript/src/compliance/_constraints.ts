@@ -6,7 +6,7 @@
  * payload reach the API. Reproduce the exact wire constraints; do not
  * loosen them client-side.
  *
- * Reserved-prefix discipline (per ADR-017 + post-G2 validation amendment):
+ * Reserved-prefix discipline (post-G2 validation amendment):
  * the API whitelists `nanorix:framework` and `nanorix:framework_version`
  * as helper-emitted reserved keys. Customer-supplied `nanorix:*` keys
  * are rejected by the API. Helpers in this module emit ONLY those two

@@ -15,7 +15,7 @@ Usage:
     else:
         print("FAIL:", result.failure_reason)
 
-The verifier checks three layers per ADR-011 + the canonical chain spec:
+The verifier checks three layers + the canonical chain spec:
 
 1. **Chain integrity** — re-compute every step's `chain_hash` via
    `SHA-512(prev \\x00 subsystem \\x00 "destroy" \\x00 method \\x00 timestamp)`,
@@ -85,7 +85,7 @@ __all__ = [
     # Original V1 surface.
     "verify",
     "VerifyResult",
-    # Wave-N (ADR-039 + ADR-041) surface.
+    # Wave-N surface.
     "GENESIS_SHA512_HEX",
     "PARENT_PROOF_MAX_DEPTH",
     "PATTERN_TAGS_WIRE",

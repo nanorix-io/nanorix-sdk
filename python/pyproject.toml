@@ -44,7 +44,7 @@ dev = [
 ]
 # Integration extras — Tier A (proxy/library) integrations. Each
 # integration MUST reuse the existing `nanorix.helpers.activity_events`
-# 4-variant surface (ADR-006 I0 Forever-Standard) and SHOULD declare its
+# 4-variant surface (Forever-Standard) and SHOULD declare its
 # optional dependency here so customers can install with
 # `pip install nanorix[<name>]`.
 langchain = [
@@ -76,7 +76,7 @@ crewai = [
 ]
 # FastAPI (ASGI) middleware — Wave 18-11 / CTI-T14-004 Item 4.
 # Tier C: per-HTTP-request AuditProof emission with cdp_kind=Request
-# (ADR-006 reserved-slot landed Wave 16-A).
+# (reserved-slot landed Wave 16-A).
 fastapi = [
     "fastapi>=0.100",
     "starlette>=0.36",
@@ -89,7 +89,7 @@ flask = [
 # Healthcare data-format adapters — Wave 17 batch 6 cohort-gating helpers.
 # Customer-supplied healthcare-domain payloads (HL7 V2, C-CDA XML, Epic
 # SMART token responses) are parsed structurally; helpers emit
-# AuditProof-binding metadata only. Three-role discipline (ADR-017):
+# AuditProof-binding metadata only. Three-role discipline:
 # helpers are structural; clinical interpretation remains the customer's.
 hl7-v2 = [
     "hl7apy>=1.3",
@@ -134,7 +134,7 @@ temporal = [
 jupyter = [
     "ipython>=8.0",
 ]
-# Data source/sink connectors — Batch 14 (2026-05-28), ADR-036. Connectors
+# Data source/sink connectors — Batch 14 (2026-05-28). Connectors
 # are CUSTOMER-SIDE SDK helpers that stream bytes through volatile capsule
 # memory (source in before exec; sink out before destroy). They run in the
 # customer's process with the customer's cloud credentials, resolved by the
@@ -185,13 +185,13 @@ observability = [
 # GRC evidence-filing adapters — Batch 17 (2026-05-29). Push the signed
 # AuditProof (per-record receipts + outer envelope) into your GRC platform
 # as compliance evidence, landed against the canonical control IDs the
-# ADR-040 mapping resolves at adapter time. The pure mapping + evidence-
+# mapping resolves at adapter time. The pure mapping + evidence-
 # shaping core (nanorix.grc._core) needs NO vendor SDK and is tested against
 # plain dicts. All shells POST via the SDK's own httpx transport, so no GRC
 # vendor SDK is required at all; the extras below are declared for parity
 # with the documented samples. Narrow-claim discipline: evidence is a
 # factual reference (applies_to / references / related_to), never a verdict
-# — the auditor adjudicates (ADR-017). Install the extra only for the
+# — the auditor adjudicates. Install the extra only for the
 # platform you wire:
 vanta = [
     "vanta-api>=0.1",

@@ -41,7 +41,7 @@ import type { HttpTransport } from "./http.js";
 /**
  * One row in the by-pattern breakdown.
  *
- * `pattern_tag` mirrors the ADR-039 closed-enum wire form (snake_case).
+ * `pattern_tag` mirrors the closed-enum wire form (snake_case).
  * The sentinel `untagged` covers receipts without a `pattern_tag` field
  * (pre-Wave-N proofs or receipts where the customer omitted the tag).
  */
@@ -168,7 +168,7 @@ export class Billing {
   /**
    * Thin slice — by-pattern_tag breakdown only.
    *
-   * Returns the closed-enum pattern_tag rows from ADR-039 + the
+   * Returns the closed-enum pattern_tag rows + the
    * `untagged` sentinel for receipts without a tag.
    */
   async getUsageByPattern(opts: MeterDateRange = {}): Promise<PatternUsage[]> {

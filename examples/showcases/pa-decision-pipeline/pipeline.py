@@ -3,7 +3,7 @@ PA decision pipeline showcase — Pattern 1 (LLM advisory) × Anterior cohort.
 
 Ingests a synthetic 278 PA request, runs the decision capsule, emits per-case
 receipt, destroys the capsule with AuditProof. Optionally files evidence
-to Vanta via the ADR-040 mapping artifact + the adapter at
+to Vanta via the mapping artifact + the adapter at
 `docs/integrations/grc-adapters/vanta-adapter.md`.
 
 Per `feedback_narrow_signed_claim_auditor_certifies.md`: no
@@ -80,7 +80,7 @@ def run_decision_capsule(
 ) -> dict:
     """Create a capsule, upload input, run the decision step, destroy + return AuditProof."""
     # Step 1 — create capsule with customer-declared context.
-    # Per ADR-013 customer-sole-declarer: classification + jurisdiction
+    # Customer-sole-declarer: classification + jurisdiction
     # are customer-declared. Nanorix does not infer either.
     capsule = client.capsules.create(
         capsulefile=capsulefile_id,
@@ -135,14 +135,14 @@ def file_to_vanta(
     vanta_token: str,
     vanta_workspace_id: str,
 ) -> None:
-    """Optional — file the AuditProof to Vanta via the ADR-040 adapter."""
+    """Optional — file the AuditProof to Vanta via the adapter."""
     # The Vanta adapter implementation lives at
     # `docs/integrations/grc-adapters/vanta-adapter.md` — vendor that
     # adapter into your codebase + invoke here. The mapping is applied
     # freshly at adapter time against framework_version=2026-02 (pinned
     # for the audit period).
     print(
-        f"Filing to Vanta workspace {vanta_workspace_id} via ADR-040 adapter... "
+        f"Filing to Vanta workspace {vanta_workspace_id} via adapter... "
         "(reference adapter at docs/integrations/grc-adapters/vanta-adapter.md)"
     )
 

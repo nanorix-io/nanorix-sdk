@@ -59,8 +59,8 @@ rich HTML right under the cell.
 The rendered output is STRUCTURAL: chain integrity and signature validity.
 It NEVER renders a regulatory-adequacy claim ("compliant", "satisfied").
 Whether any framework is satisfied is the customer's auditor's
-determination, not Nanorix's (ADR-017 three-role discipline). The customer
-declares the Capsulefile + data-classification on the magic line (ADR-013);
+determination, not Nanorix's (three-role discipline). The customer
+declares the Capsulefile + data-classification on the magic line;
 the magic never infers either.
 """
 

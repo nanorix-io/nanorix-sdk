@@ -40,7 +40,7 @@ This helper does NOT:
 - Substitute for Epic App Orchard approval — production deployment
   requires Epic-side approval
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper structurally
     captures Epic-issued launch context into AuditProof metadata. The
     helper does NOT certify Epic App Orchard approval status, validate
@@ -48,7 +48,7 @@ Three-role discipline (ADR-017):
     semantics. Approval status, signature validation, and clinical
     interpretation remain the customer's.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. This helper
     structurally captures customer-supplied launch context to produce
     metadata only; Nanorix injects nothing beyond the published
@@ -124,7 +124,7 @@ class EpicLaunchContextResult:
     the token, and only the structural launch-context identifiers are
     surfaced into AuditProof metadata.
 
-    Three-role discipline (ADR-017): Nanorix structurally captures;
+    Three-role discipline: Nanorix structurally captures;
     customer's identity provider validates token signatures + scope
     grants.
     """
@@ -215,7 +215,7 @@ class EpicLaunchContextResult:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         Epic launch-context fields. Suitable for binding into the
-        AuditProof's ``metadata_hash`` per ADR-010 A4.
+        AuditProof's ``metadata_hash``.
 
         Token material (access_token, id_token) is NOT emitted —
         customer-side application code holds tokens; only structural
@@ -276,10 +276,10 @@ class EpicLaunchContext:
        evidence
     3. Capturing granted scopes for accountable-deployment evidence
 
-    Three-role discipline (ADR-017): Helper is structural; OAuth2
+    Three-role discipline: Helper is structural; OAuth2
     flow + signature validation remain the customer's responsibility.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the decoded
+    Customer-sole-declarer: Customer supplies the decoded
     token response; helper produces structural metadata only.
 
     Example::

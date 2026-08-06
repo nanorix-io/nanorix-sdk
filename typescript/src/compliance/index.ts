@@ -1,7 +1,7 @@
 /**
  * Compliance helper module — three-role discipline.
  *
- * Per ADR-014 + ADR-017: declares framework context for a workload's
+ * Declares framework context for a workload's
  * metadata. Does NOT certify, attest to satisfaction of, or claim
  * compliance with any framework. Compliance determination remains the
  * customer's auditor's responsibility.
@@ -41,12 +41,11 @@
  * });
  * ```
  *
- * The metadata field binds into the AuditProof's `metadata_hash` per
- * ADR-010 A4. The customer's GRC platform (Vanta, Drata, Secureframe)
+ * The metadata field binds into the AuditProof's `metadata_hash`.
+ * The customer's GRC platform (Vanta, Drata, Secureframe)
  * consumes the AuditProof's metadata field; the customer's auditor
  * evaluates against framework provisions; the related-to mappings
- * ship in the destruction-response `regulatory_context` field per
- * ADR-017.
+ * ship in the destruction-response `regulatory_context` field.
  */
 
 export { GdprContext } from "./gdpr.js";

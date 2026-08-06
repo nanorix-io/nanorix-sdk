@@ -57,7 +57,7 @@ class Client:
         self.capsulefiles = Capsulefiles(self._http)
         self.capsules = Capsules(self._http)
         self.cdp = CdpResource(self._http)
-        self.audit_proofs = self.cdp  # ADR-014 brand alias; same interface
+        self.audit_proofs = self.cdp  # brand alias; same interface
         self.egress_profiles = EgressProfiles(self._http)
         self.usage = Usage(self._http)
         # Batch 3 sub-item 1 (CR-002, 2026-05-27): billing meter readout
@@ -115,7 +115,7 @@ class AsyncClient:
         self.capsulefiles = AsyncCapsulefiles(self._http)
         self.capsules = AsyncCapsules(self._http)
         self.cdp = AsyncCdpResource(self._http)
-        self.audit_proofs = self.cdp  # ADR-014 brand alias; same interface
+        self.audit_proofs = self.cdp  # brand alias; same interface
         self.egress_profiles = AsyncEgressProfiles(self._http)
         self.usage = AsyncUsage(self._http)
         # Batch 3 sub-item 1 (CR-002, 2026-05-27): async parity for the

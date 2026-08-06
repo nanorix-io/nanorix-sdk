@@ -29,7 +29,7 @@ AutoGen ships two surfaces in active use as of mid-2026:
 This callback is **framework-version-agnostic** — its public method
 surface is 4 stable lifecycle methods (`on_agent_message_received`,
 `on_agent_message_sent`, `on_tool_call_completed`, `on_agent_error`) that
-map directly to the existing 4 ActivityEvent variants shipped by ADR-021.
+map directly to the existing 4 ActivityEvent variants shipped by.
 Attachment helpers (`attach_to_conversable_agent`,
 `attach_to_runtime`) wire the callback into the underlying framework's
 native dispatch surface, so the callback API stays stable across AutoGen
@@ -75,8 +75,8 @@ Tier C (framework middleware).
 
 ## Design constraints
 
-- `framework=` REQUIRED — no silent default (ADR-013 customer-sole-declarer).
-- No PHI scanning (ADR-013 Alt B). Callback is structural.
+- `framework=` REQUIRED — no silent default (customer-sole-declarer).
+- No PHI scanning (Alt B). Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - AutoGen dep is optional — `pip install nanorix[autogen]`.
 - Importing without an AutoGen package succeeds; constructing
@@ -223,7 +223,7 @@ class NanorixAutoGenCallback:
 
     Args:
         framework: REQUIRED. Compliance framework label (e.g. ``"HIPAA"``).
-            Customer-declared per ADR-013; no silent default.
+            Customer-declared; no silent default.
         capsulefile: REQUIRED. Capsulefile name the agent is running
             under (e.g. ``"pa-decision-agent"``).
         api_key: Optional Nanorix API key. Defaults to env
@@ -262,7 +262,7 @@ class NanorixAutoGenCallback:
             raise ValueError(
                 "NanorixAutoGenCallback requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(
@@ -523,7 +523,7 @@ class NanorixAutoGenCallback:
             recipient: Optional recipient-agent name (debug context only).
             agent_id: Per-call override for the callback's default.
             parent_event_id: Optional customer-declared causal-parent
-                reference (ADR-028 D2) — points to the prior agent
+                reference — points to the prior agent
                 turn or reasoning step.
 
         Returns:
@@ -590,7 +590,7 @@ class NanorixAutoGenCallback:
             model: Optional model identifier (e.g., `"gpt-4o"`).
             duration_ms: Wall-clock time the LLM call took. Defaults to 0.
             agent_id: Per-call override.
-            step_kind: Optional closed-enum reasoning step kind (ADR-028
+            step_kind: Optional closed-enum reasoning step kind (
                 D1). One of `nanorix.helpers.activity_events.
                 REASONING_STEP_KINDS`.
             parent_event_id: Optional customer-declared causal-parent
@@ -719,7 +719,7 @@ class NanorixAutoGenCallback:
         Otherwise emits NO event — agent-level errors that aren't
         attributable to a specific tool surface to the customer's
         outer code, which translates them into the capsule's
-        `destruction_state` per ADR-019.
+        `destruction_state`.
 
         Args:
             error: The exception that surfaced.

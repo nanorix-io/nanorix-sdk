@@ -607,7 +607,7 @@ _FIXTURE_PAIRS = _load_fixture_pairs()
 
 # V1 divergences: failure_reason types where Go V1 returns valid=True (stage not wired).
 # Both Go V1 and Python V1 return valid=True for these — expected.json is Rust V2+ future state.
-# ADR-006 I0 / Go verifier.go "Stages 5-8 not wired in V1" comment.
+# / Go verifier.go "Stages 5-8 not wired in V1" comment.
 _V1_VALID_DIVERGENCE_TYPES = frozenset(
     {
         "signature_mismatch",  # Stage 5 — Ed25519 not wired in V1

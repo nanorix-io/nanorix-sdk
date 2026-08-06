@@ -1,11 +1,11 @@
 /**
- * Wave-N (ADR-039 + ADR-041) per-record receipt + parent-proof verification.
+ * Wave-N per-record receipt + parent-proof verification.
  *
  * Pure TypeScript port of `governance/rzl/src/wave_n.rs` plus the verifier-side
  * extension in `tools/nanorix-verify/src/lib.rs`. Cross-impl byte-equivalent
  * with Rust + Go + Python ports on the 110-fixture extended corpus.
  *
- * **Forever-Standard discipline (ADR-006 I0):** every primitive here is part
+ * **Forever-Standard discipline:** every primitive here is part
  * of the cryptographic-attestation contract. Cross-impl divergence from the
  * canonical Rust output is a P0 finding.
  *
@@ -14,7 +14,7 @@
  *
  * Distinct from `merkle.ts`: that module implements RFC 6962 binary Merkle
  * (leaf prefix 0x00 + inner prefix 0x01) used by `Capsule.batch()`. Wave-N
- * uses the ADR-039 canonical pair-hash form:
+ * uses the canonical pair-hash form:
  * `SHA-512(left_hex_bytes || \x00 || right_hex_bytes)` with NO domain prefix.
  *
  * Cross-impl reference vectors (locked in `verifier_wave_n.test.ts`):
@@ -36,7 +36,7 @@ export const GENESIS_SHA512_HEX =
   "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
 
 /**
- * Maximum supported parent-proof chain depth per ADR-041 §"Depth limit". V1: 32.
+ * Maximum supported parent-proof chain depth. V1: 32.
  */
 export const PARENT_PROOF_MAX_DEPTH = 32;
 
@@ -45,7 +45,7 @@ export const PARENT_PROOF_MAX_DEPTH = 32;
  * `nanorix_rzl::types::PatternTag` and `nanorix.capsule_record.PATTERN_TAGS`).
  *
  * Used by downstream consumers; the verifier itself does NOT reject unknown
- * pattern_tag values (forward-compatibility per ADR-006 I0).
+ * pattern_tag values (forward-compatibility).
  */
 export const PATTERN_TAGS_WIRE: readonly string[] = [
   "pa",
@@ -80,13 +80,13 @@ const STEP_8_METHOD = "capsule_lifecycle_verification";
 /**
  * Per-record receipt mirroring Rust `RecordReceipt`.
  *
- * Forever-Standard discipline (ADR-006 I0): field shape is permanent.
+ * Forever-Standard discipline: field shape is permanent.
  * New fields land as additive optional — existing fields NEVER renamed,
  * NEVER removed, NEVER repurposed.
  *
- * **No `control_tags` field by design.** Per ADR-039 §"Receipt as direct
- * evidence primitive" + ADR-040 RE-SCOPED: control IDs are NEVER stamped
- * into the signed receipt; adapters apply ADR-040 mapping artifact at
+ * **No `control_tags` field by design.** The receipt is a direct
+ * evidence primitive: control-ID mapping is re-scoped, so control IDs are NEVER stamped
+ * into the signed receipt; adapters apply mapping artifact at
  * ingestion time.
  */
 export interface WaveNRecordReceipt {
@@ -103,7 +103,7 @@ export interface WaveNRecordReceipt {
 /**
  * Cross-org parent-proof link mirroring Rust `ParentProofLink`.
  *
- * Forever-Standard (ADR-006 I0): optional fields skip-serialize when undefined.
+ * Forever-Standard: optional fields skip-serialize when undefined.
  */
 export interface WaveNParentProofLink {
   parent_chain_hash: string;
@@ -170,7 +170,7 @@ async function sha512Hex(data: Uint8Array): Promise<string> {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Merkle pair-hash + root construction (ADR-039)
+// Merkle pair-hash + root construction
 // ─────────────────────────────────────────────────────────────────────────────
 
 const ENC = new TextEncoder();
@@ -179,7 +179,7 @@ const NULL = new Uint8Array([0]);
 /**
  * Compute SHA-512(left_hex_bytes || \x00 || right_hex_bytes).
  *
- * Per ADR-039 §"Sibling pair hashing rule": both inputs are interpreted as
+ * Both inputs are interpreted as
  * their hex-string byte values (UTF-8 of the hex chars). Either MAY carry a
  * `sha512:` prefix; stripped before hashing.
  *
@@ -194,7 +194,7 @@ export async function merklePairHash(left: string, right: string): Promise<strin
 
 /**
  * Build the canonical Merkle root over an ordered slice of SHA-512 leaf
- * hashes per ADR-039 §"Merkle tree construction".
+ * hashes.
  *
  *   - leaves.length === 0 → null
  *   - leaves.length === 1 → leaves[0] with `sha512:` prefix stripped
@@ -217,7 +217,7 @@ export async function merkleRootSha512NullSeparated(
         next.push(await merklePairHash(level[i], level[i + 1]));
         i += 2;
       } else {
-        // Odd-level last node: duplicate per ADR-039.
+        // Odd-level last node: duplicate.
         next.push(await merklePairHash(level[i], level[i]));
         i += 1;
       }
@@ -228,10 +228,10 @@ export async function merkleRootSha512NullSeparated(
 }
 
 /**
- * Public ADR-039 surface for the receipt Merkle root.
+ * Public surface for the receipt Merkle root.
  *
  * Returns `null` for empty input (field skip-serializes in canonical JSON);
- * otherwise returns `sha512:{hex}` matching the ADR-039 wire form.
+ * otherwise returns `sha512:{hex}` matching the wire form.
  */
 export async function computeRecordReceiptsMerkleRoot(
   receipts: readonly WaveNRecordReceipt[],
@@ -242,7 +242,7 @@ export async function computeRecordReceiptsMerkleRoot(
   return root === null ? null : `sha512:${root}`;
 }
 
-/** Public ADR-041 surface for the parent-proof Merkle root. */
+/** Public surface for the parent-proof Merkle root. */
 export async function computeParentProofsMerkleRoot(
   parents: readonly WaveNParentProofLink[],
 ): Promise<string | null> {
@@ -253,7 +253,7 @@ export async function computeParentProofsMerkleRoot(
 }
 
 /**
- * Build a Merkle inclusion proof for `leafIndex` per ADR-039.
+ * Build a Merkle inclusion proof for `leafIndex`.
  *
  * Returns siblings on the path from leaf → root in bottom-up order (each
  * as bare hex). Empty array when N=1. `null` when out of range or empty.
@@ -346,7 +346,7 @@ export async function computeActivityRoot(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Record chain hash (ADR-039 per-record chain hash formula)
+// Record chain hash (per-record chain hash formula)
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -429,13 +429,13 @@ export async function computeStep8Base(
 }
 
 /**
- * The presence-conditional Step 8 amendment formula (ADR-039 + ADR-041).
+ * The presence-conditional Step 8 amendment formula.
  *
  * Mirrors Rust `compute_step_8_amended` byte-for-byte. Output: bare lowercase
  * hex (no prefix). The (null, null) arm returns `computeStep8Base(...)`
  * UNMODIFIED — byte-identical to every pre-Wave-N production AuditProof.
  *
- * Forever-Standard (ADR-006 I0).
+ * Forever-Standard.
  */
 export async function computeStep8Amended(
   prevHash: string,
@@ -476,11 +476,11 @@ export async function computeStep8Amended(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Cycle prevention + depth cap (ADR-041)
+// Cycle prevention + depth cap
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Reject cycles per ADR-041 §"Cycle prevention".
+ * Reject cycles.
  *
  * Returns the index of the cyclic parent if any `parent_chain_hash` equals
  * `selfChainHash`; returns -1 otherwise. Both inputs prefix-tolerant.
@@ -502,7 +502,7 @@ export function detectParentProofCycle(
 export function enforceDepthCap(parents: readonly WaveNParentProofLink[]): void {
   if (parents.length > PARENT_PROOF_MAX_DEPTH) {
     throw new RangeError(
-      `parent chain depth ${parents.length} exceeds PARENT_PROOF_MAX_DEPTH=${PARENT_PROOF_MAX_DEPTH} (ADR-041)`,
+      `parent chain depth ${parents.length} exceeds PARENT_PROOF_MAX_DEPTH=${PARENT_PROOF_MAX_DEPTH}`,
     );
   }
 }
@@ -535,7 +535,7 @@ export class WaveNVerifyError extends Error {
 }
 
 /**
- * Mode B (standalone) verification per ADR-039.
+ * Mode B (standalone) verification.
  *
  *   1. Recompute the receipt's `record_chain_hash` from its fields.
  *   2. Verify the Merkle inclusion proof binds the receipt to outerMerkleRoot.
@@ -736,7 +736,7 @@ async function verifyParentProofsArray(
  * Mode A — full Wave-N AuditProof verification.
  *
  * Extends the V1 8-stage pipeline with:
- *   - Step 8 amended chain walk (ADR-039 + ADR-041 4-arm formula)
+ * - Step 8 amended chain walk (4-arm formula)
  *   - Per-receipt chain hash roundtrip
  *   - `record_receipts_merkle_root` binding
  *   - `parent_proofs_merkle_root` binding
@@ -820,7 +820,7 @@ export async function verifyFullAuditProof(
     prevHash = recomputed;
   }
 
-  // ADR-039 record-receipt-set verification.
+  // record-receipt-set verification.
   const capsuleId = typeof p.capsule_id === "string" ? p.capsule_id : "";
   const receipts = p.record_receipts;
   if (Array.isArray(receipts)) {
@@ -830,7 +830,7 @@ export async function verifyFullAuditProof(
     }
   }
 
-  // ADR-041 parent-proof-set verification.
+  // parent-proof-set verification.
   const parents = p.parent_proof_hashes;
   if (Array.isArray(parents)) {
     const err = await verifyParentProofsArray(parents, ppmr);

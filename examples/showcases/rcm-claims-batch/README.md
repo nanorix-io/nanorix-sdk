@@ -11,7 +11,7 @@ Named cohort customers — Banjo Health, Adonis, Candid Health, Olive AI, Edifec
 - HIPAA scope minimization requires per-claim audit grain (not batch-level).
 - Auditor needs to follow disputes claim-by-claim, not in aggregate.
 
-The Pattern 4 primitive — per-record receipts (ADR-039) bound into the AuditProof Step 8 amended chain hash via Merkle root — gives the customer **one signed envelope per batch with N independently verifiable per-claim receipts**. Audit grain matches dispute grain.
+The Pattern 4 primitive — per-record receipts bound into the AuditProof Step 8 amended chain hash via Merkle root — gives the customer **one signed envelope per batch with N independently verifiable per-claim receipts**. Audit grain matches dispute grain.
 
 ## What this showcase demonstrates
 
@@ -60,12 +60,12 @@ print(json.dumps([r for r in receipts if r['record_id'] == 'CLAIM-001'][0], inde
 nanorix verify-receipt audit_proof.json --record-id CLAIM-001
 ```
 
-Per ADR-039: the Merkle root in Step 8 is the signed anchor; per-claim Merkle inclusion proofs let auditors verify a single claim without exposing the others. Receipt narrowness preserved — the receipt carries `pattern_tag`, `record_id`, hashes; the mapping to canonical control IDs happens at adapter time via `nanorix_control_map`.
+The Merkle root in Step 8 is the signed anchor; per-claim Merkle inclusion proofs let auditors verify a single claim without exposing the others. Receipt narrowness preserved — the receipt carries `pattern_tag`, `record_id`, hashes; the mapping to canonical control IDs happens at adapter time via `nanorix_control_map`.
 
 ## Discipline
 
 - **Receipt narrowness:** receipts carry signed primitives only. No COMPLIANT / SATISFIED / PASSED / MEETS verdicts in the receipt.
-- **Three-layer separation (ADR-040):** the receipt's `pattern_tag` is signed; the mapping is applied freshly at adapter time against the customer's pinned `framework_version`.
+- **Three-layer separation:** the receipt's `pattern_tag` is signed; the mapping is applied freshly at adapter time against the customer's pinned `framework_version`.
 - **Customer-sole-declarer:** `data_classification = "PHI"` + `jurisdiction = "US"` ride into capsule metadata; Nanorix does not infer either.
 
 ## License

@@ -5,7 +5,7 @@ harmonizes HIPAA, NIST SP 800-53, ISO 27001, and PCI-DSS requirements into
 19 control domains. A HITRUST r2 (validated) / e1 / i1 assessment is
 issued by a HITRUST-authorized external assessor after evidence review.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's metadata. It does NOT
     certify, attest to satisfaction of, or claim compliance with HITRUST
@@ -229,7 +229,7 @@ class HITRUSTContext:
         schema's ``Dict[str, str]`` shape).
 
         Auditor + GRC platform consumers read this from the AuditProof's
-        metadata field (bound into ``metadata_hash`` per ADR-010 A4).
+        metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: self.framework_id,

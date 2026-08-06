@@ -43,18 +43,18 @@ audit_proof = my_function.last_audit_proof
 
 ## Trust-boundary discipline
 
-- **Customer-sole-declarer (ADR-013).** Capsulefile is pre-authored
+- **Customer-sole-declarer.** Capsulefile is pre-authored
   by the customer; the decorator only orchestrates. `framework=` is
   REQUIRED — no silent default. The decorator does NOT classify,
   infer, or augment the customer's data.
-- **Forever-Standard (ADR-006 I0).** No new ActivityEvent variants;
+- **Forever-Standard.** No new ActivityEvent variants;
   no new capsule-create API fields. The decorator composes existing
   primitives (`client.capsules.create()`, `metadata=`,
   `client.capsules.destroy()`) verbatim.
-- **AuditProof brand discipline (ADR-014).** The destruction proof
+- **AuditProof brand discipline.** The destruction proof
   is the AuditProof. Internal struct name `VerificationCdp` /
   `FullCdp` is preserved in `CdpAccess`.
-- **Zero-retention (ADR-006 I0).** Plaintext function
+- **Zero-retention.** Plaintext function
   arguments / return values stay in the customer's process memory;
   only their canonical-JSON SHA-512 hashes enter the AuditProof
   metadata.
@@ -166,7 +166,7 @@ Customer may pass any non-empty string for `framework=`; the canonical
 labels above are convenience constants matching the
 `nanorix.compliance.*Context.framework_id` values. The framework arg
 is bound into AuditProof.metadata as `nanorix:framework` for
-compliance-binding (ADR-010 A4 / ADR-013).
+compliance-binding.
 """
 
 
@@ -314,7 +314,7 @@ def _build_workload_metadata(
     implementations.
 
     Reserved keys (``nanorix:*``) emitted by this helper are documented
-    here; they are accepted by the API per ADR-010 A4 (server-emitted
+    here; they are accepted by the API (server-emitted
     reserved keys; customer-supplied ``nanorix:*`` keys are rejected).
     """
     metadata: Dict[str, str] = {
@@ -334,7 +334,7 @@ def _build_workload_metadata(
                 # reserved prefix are the only guardrails).
                 raise BadRequestError(
                     f"Customer-supplied metadata key {k!r} uses the reserved "
-                    f"`nanorix:` prefix; per ADR-010 A4 the prefix is "
+                    f"`nanorix:` prefix; the prefix is "
                     f"server-emitted only.",
                     status_code=400,
                 )
@@ -392,7 +392,7 @@ class WorkloadDecorator:
             raise ValueError(
                 "@workload requires an explicit `framework=` argument "
                 "(e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(
@@ -630,7 +630,7 @@ def workload(
     Args:
         framework: REQUIRED. Compliance framework label (e.g.
             ``"HIPAA"``, ``"GDPR"``, ``"SOC2"``). Customer-declared
-            per ADR-013; no silent default. Bound to the AuditProof
+            ; no silent default. Bound to the AuditProof
             metadata as ``nanorix:framework``.
         capsulefile: REQUIRED. Server-side Capsulefile ID (``cf_...``)
             or local Capsulefile name (resolved via the customer's
@@ -640,7 +640,7 @@ def workload(
             ``NANORIX_API_KEY``.
         metadata: Optional extra metadata dict bound into the
             AuditProof. Customer-supplied keys must NOT use the
-            ``nanorix:`` prefix (reserved per ADR-010 A4).
+            ``nanorix:`` prefix (reserved).
         framework_version: Optional framework version string (e.g.
             ``"2026-02"``). Bound as ``nanorix:framework_version``.
         agent_id: Optional sub-agent identifier. Bound as

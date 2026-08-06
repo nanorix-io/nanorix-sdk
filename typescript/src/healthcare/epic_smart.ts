@@ -7,7 +7,7 @@
  * Epic-issued launch context + deployment environment (Sandbox /
  * Vendor Test / Production) into AuditProof metadata.
  *
- * Three-role discipline (ADR-017): structural binding only; OAuth2
+ * Three-role discipline: structural binding only; OAuth2
  * flow, token signature validation, Epic App Orchard approval, and
  * scope-grant determination remain the customer's responsibility.
  */

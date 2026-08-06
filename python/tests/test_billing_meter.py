@@ -138,7 +138,7 @@ def test_get_usage_meter_no_params() -> None:
 
 
 def test_get_usage_meter_with_date_range() -> None:
-    """from_date + to_date land as `from` + `to` query parameters."""
+    """From_date + to_date land as `from` + `to` query parameters."""
     http = FakeHttp(make_usage_payload())
     billing = Billing(http)
     billing.get_usage_meter(from_date="2026-05-01", to_date="2026-05-31")

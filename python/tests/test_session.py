@@ -176,7 +176,7 @@ def test_capsule_session_chained_session_with_parent(mock_api, client):
 
 
 def test_capsule_session_rejects_empty_session_id(mock_api, client):
-    """session_id is required — matches LangGraph thread_id convention."""
+    """Session_id is required — matches LangGraph thread_id convention."""
     import pytest
 
     with pytest.raises(BadRequestError, match="session_id"):

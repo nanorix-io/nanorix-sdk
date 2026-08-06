@@ -367,7 +367,7 @@ def test_texas_sb_14_paired_with_hipaa_context_merge_works():
 
 def test_texas_sb_14_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer
-    framing per ADR-017."""
+    framing."""
     from nanorix.compliance import texas_sb_14 as mod
 
     doc = mod.__doc__ or ""

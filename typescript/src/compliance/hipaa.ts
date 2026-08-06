@@ -105,7 +105,7 @@ export class HipaaContext {
    * Convert to the metadata Record format for `capsules.create()`.
    *
    * Returns a Record keyed by the reserved keys `nanorix:framework` +
-   * `nanorix:framework_version` (whitelisted server-side per ADR-017 +
+   * `nanorix:framework_version` (whitelisted server-side +
    * post-G2 validation amendment) plus customer-declared fields.
    */
   toMetadata(): Record<string, string> {

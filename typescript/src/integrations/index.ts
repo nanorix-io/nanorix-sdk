@@ -20,8 +20,8 @@
  *
  * Each adapter is byte-equivalent (event JSON shape) to its Python SDK
  * counterpart under `nanorix.integrations.*`. The 4 ActivityEvent
- * variants shipped by ADR-021 cover the entire surface — no new
- * variants — Forever-Standard preserved (ADR-006 I0).
+ * variants shipped by cover the entire surface — no new
+ * variants — Forever-Standard preserved.
  *
  * Customer wraps once at agent setup time:
  *
@@ -193,7 +193,7 @@ export type {
   NextRouteHandler,
 } from "./nextjs_middleware.js";
 
-// Batch 9 (2026-05-28) — C2PA LLM-output provenance per ADR-035.
+// Batch 9 (2026-05-28) — C2PA LLM-output provenance.
 // Sibling primitive next to AuditProof; AuditProof byte-form unchanged.
 // EU AI Act Article 50 (effective August 2026) interchange format.
 export {

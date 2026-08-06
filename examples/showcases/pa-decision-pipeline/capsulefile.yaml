@@ -1,6 +1,6 @@
 # PA decision pipeline Capsulefile.
 #
-# Per ADR-013 immutability: changes to this file produce a new
+# Immutability: changes to this file produce a new
 # content_hash; rebuild + re-finalize before running.
 #
 # Per `feedback_ip_protection.md`: external-brand vocabulary only.

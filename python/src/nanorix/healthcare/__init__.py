@@ -44,7 +44,7 @@ Helpers shipped:
                                   + algorithm_identification (for AI-
                                   generated SR per FDA SaMD).
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). Helpers in this module
     structurally parse customer-supplied data and emit metadata fields
     suitable for AuditProof binding. Helpers do NOT interpret clinical
@@ -53,15 +53,15 @@ Three-role discipline (ADR-017):
     implementation-guide conformance validation, and downstream
     consumer responsibilities remain the customer's.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. These helpers
     parse customer-supplied healthcare-interchange payloads to produce
     structural metadata only; Nanorix injects nothing into the workload
     beyond the published base-image spec.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). No new
+    ``Option<HashMap<String, String>>`` field. No new
     API surface; no changes to AuditProof / Capsulefile shape.
 
 Usage::

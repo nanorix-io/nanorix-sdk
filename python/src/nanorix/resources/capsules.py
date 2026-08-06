@@ -135,14 +135,14 @@ class LiveCapsule:
         self._capsule = Capsule.model_validate(result)
         return self
 
-    # ── ADR-039 + ADR-041 Wave A consumers ───────────────────────────
+    # ── Wave A consumers ───────────────────────────
 
     def record(
         self,
         record_id: str,
         pattern_tag: Optional[str] = None,
     ) -> RecordContext:
-        """Open a per-record receipt context (ADR-039 §"Architecture").
+        """Open a per-record receipt context.
 
         Per-record receipts buffer server-side until destroy and bind into
         the AuditProof's outer 8-step chain via Merkle root incorporation
@@ -150,7 +150,7 @@ class LiveCapsule:
 
         The receipt carries `pattern_tag` (signed primitive). **Control IDs
         are NEVER stamped into the signed receipt.** Adapters apply the
-        ADR-040 published mapping artifact (`nanorix.control_map`) at
+         published mapping artifact (`nanorix.control_map`) at
         ingestion time to derive `(jurisdiction × classification ×
         pattern_tag) -> list[control_id]`. Three-layer separation: receipt
         (immutable) / mapping (versioned) / adapter (vendor pace).
@@ -158,11 +158,11 @@ class LiveCapsule:
         Args:
             record_id: Customer-declared opaque identifier (record-domain
                 key — PA ID, claim ID, study UID, molecule ID). Field
-                length cap: 256 chars (per ADR-039 §"Architecture" +
+                length cap: 256 chars (
                 `services/api/src/routes/records.rs`).
             pattern_tag: Optional closed-enum workflow pattern tag. Must
                 be one of the 15 canonical variants in
-                `nanorix.capsule_record.PATTERN_TAGS` per ADR-039
+                `nanorix.capsule_record.PATTERN_TAGS`
                 §"pattern_tag rule" (case-sensitive snake_case wire form
                 matching the Rust serde rename_all="snake_case" output).
 
@@ -206,26 +206,26 @@ class LiveCapsule:
         parent_jurisdiction: Optional[str] = None,
         parent_organization_tag: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Declare a cross-org parent-proof link (ADR-041 §"Architecture").
+        """Declare a cross-org parent-proof link.
 
         Parent links buffer server-side until destroy and bind into the
         AuditProof's outer 8-step chain via Merkle root incorporation at
         Step 8 alongside record receipts. Parent signatures verify
         independently of Nanorix accounts via Portable Pubkey Bundles
-        (ADR-041 §"Pubkey discovery gap").
+        .
 
-        Each link attests to lineage, NOT to compliance — per ADR-017
+        Each link attests to lineage, NOT to compliance —
         three-role liability split. The auditor adjudicates substantive
         satisfaction; receipts carry verified-lineage only.
 
         Args:
             parent_chain_hash: SHA-512 chain hash of the upstream
                 AuditProof's Step 8. Prefix format: `sha512:{hex}`. Field
-                length cap: 144 chars per ADR-041.
+                length cap: 144 chars.
             parent_key_id: Authority key ID of the parent's signer.
                 Canonical formats: `nrx-verify-{terminated_at}-{cdp_id[..8]}`
                 (Nanorix-managed) OR `cust-auth-{authority_id}` (customer-
-                rooted per ADR-031). Length cap: 256 chars.
+                rooted). Length cap: 256 chars.
             parent_signature: Ed25519 signature of parent's signer over
                 `parent_chain_hash`. Prefix format: `base64:{b64}`. Length
                 cap: 256 chars.
@@ -241,8 +241,7 @@ class LiveCapsule:
 
         Returns:
             The server response dict, containing `capsule_id`,
-            `parent_chain_hash`, `buffered_count`, and a `disclaimer` per
-            ADR-017.
+            `parent_chain_hash`, `buffered_count`, and a `disclaimer`.
 
         Raises:
             BadRequestError: If any field-length cap is violated or a
@@ -291,20 +290,20 @@ class Capsules:
         """Create a new capsule. Returns a LiveCapsule with workspace methods.
 
         ``metadata`` binds compliance-binding context into the AuditProof's
-        ``metadata_hash`` per ADR-010 A4. Use :mod:`nanorix.compliance` to
+        ``metadata_hash``. Use:mod:`nanorix.compliance` to
         construct typed framework context (HIPAA, GDPR, SOC 2) or pass a
         plain ``Dict[str, str]``. Server constraints: 16 keys max, 64-char
         keys, 256-char values, 4 KB total. ``nanorix:*`` keys are reserved
         for helper-emitted reserved keys; customer-supplied
         ``nanorix:*`` keys are rejected by the API.
 
-        ``cdp_kind`` is the ADR-006 reserved-slot scope discriminator
+        ``cdp_kind`` is the reserved-slot scope discriminator
         (Wave 16-A landed; Wave 18-11 ungated). Accepted snake_case
         values: ``"workload"`` (capsule-lifecycle default — pre-Wave-18-11
         back-compat None), ``"call"`` (sealed-proxy per-LLM-call scope),
         ``"request"`` (sealed-middleware per-HTTP-request scope),
         ``"batch"`` (high-volume per-record scope). Customer-sole-declarer
-        per ADR-013 — Nanorix records verbatim. Populating cdp_kind
+         — Nanorix records verbatim. Populating cdp_kind
         SHIFTS the AuditProof's canonical_hash (correct Forever-Standard
         semantics: declaring a scope binds it into the signature).
 
@@ -435,7 +434,7 @@ class Capsules:
                 validator domain).
             max_lifetime_seconds: Capsule lifetime ceiling. Capped by
                 Capsulefile.max_duration_seconds (Migration 040 / Gap 4).
-            metadata: Compliance-binding metadata per ADR-010 A4.
+            metadata: Compliance-binding metadata.
             timeout: Per-execute timeout (forwarded to /v1/capsules/{id}/exec).
 
         Returns:
@@ -769,14 +768,14 @@ class AsyncLiveCapsule:
         self._capsule = Capsule.model_validate(result)
         return self
 
-    # ── ADR-039 + ADR-041 Wave A consumers (async parity) ────────────
+    # ── Wave A consumers (async parity) ────────────
 
     def record(
         self,
         record_id: str,
         pattern_tag: Optional[str] = None,
     ) -> AsyncRecordContext:
-        """Open a per-record receipt context (async — ADR-039).
+        """Open a per-record receipt context (async —).
 
         Async mirror of `LiveCapsule.record(...)`. Returns an
         `AsyncRecordContext` usable in `async with`. See the synchronous
@@ -810,11 +809,11 @@ class AsyncLiveCapsule:
         parent_jurisdiction: Optional[str] = None,
         parent_organization_tag: Optional[str] = None,
     ) -> Dict[str, Any]:
-        """Declare a cross-org parent-proof link (async — ADR-041).
+        """Declare a cross-org parent-proof link (async —).
 
         Async mirror of `LiveCapsule.add_parent_proof(...)`. Same field-
         length validation + endpoint contract; see the synchronous
-        docstring for full semantics + ADR-017 three-role liability
+        docstring for full semantics + three-role liability
         discipline (parent_proof_hashes attest to lineage, not to
         compliance).
         """
@@ -861,7 +860,7 @@ class AsyncCapsules:
 
         ``metadata`` and ``cdp_kind`` semantics match the synchronous
         ``Capsules.create()`` method; see that method's docstring for
-        binding details and the ADR-006 reserved-slot wire-form
+        binding details and the reserved-slot wire-form
         invariants.
 
         ``idempotency_key`` matches the synchronous create() default —

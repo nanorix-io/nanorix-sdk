@@ -20,7 +20,7 @@ Named cohort customers — Hippocratic AI (ADK), Sully, Tennr, Notable — opera
 
 ## Pattern 8 composition note
 
-For agents that exceed the 60min capsule lifetime (`max_duration_seconds = 3600`), chain multiple capsules via parent-proof binding (ADR-041). Each follow-on capsule references the prior's AuditProof chain hash as a `parent_proof_hash`; verifier walks the chain across capsules.
+For agents that exceed the 60min capsule lifetime (`max_duration_seconds = 3600`), chain multiple capsules via parent-proof binding. Each follow-on capsule references the prior's AuditProof chain hash as a `parent_proof_hash`; verifier walks the chain across capsules.
 
 ```python
 # Memory-artifact composition for >60min agents.

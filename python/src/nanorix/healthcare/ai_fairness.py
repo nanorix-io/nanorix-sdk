@@ -51,7 +51,7 @@ Cross-vertical framing:
     helpers (FDA SaMD for healthcare, NYC LL 144 for hiring, Colorado
     AI Act for high-risk decisions) is the customer's design choice.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for an AI workload's fairness-evaluation
     posture. It does NOT certify that the customer's evaluation
@@ -594,7 +594,7 @@ class AIFairnessContext:
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         customer-declared AI fairness evaluation context fields.
         Suitable for binding into the AuditProof's ``metadata_hash``
-        per ADR-010 A4.
+        .
 
         Auditor + GRC platform + FDA-evidence consumers read this from
         the AuditProof's metadata field. The helper records the

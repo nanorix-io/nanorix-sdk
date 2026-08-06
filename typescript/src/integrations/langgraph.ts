@@ -25,9 +25,9 @@
  * is the node name and `tags` includes `"graph:step:N"`; `metadata`
  * carries `langgraph_node`. LLM calls inside nodes route through
  * `handleLLM*` / `handleChatModelStart`, and tool calls route through
- * `handleTool*`. The same 4 ActivityEvent variants shipped by ADR-021
+ * `handleTool*`. The same 4 ActivityEvent variants shipped by
  * cover the surface — no new variants — Forever-Standard preserved
- * (ADR-006 I0).
+ *.
  *
  * ## Architectural distinction from LangChain.js
  *
@@ -47,7 +47,7 @@
  * - Lifecycle hooks for non-node chains (the outer graph wrapper)
  *   write nothing.
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify LangGraph correctness,
  * graph-topology validity, or workflow safety. Does NOT certify LLM
@@ -209,7 +209,7 @@ export class NanorixLangGraphCallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixLangGraphCallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

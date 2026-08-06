@@ -35,7 +35,7 @@ export class NanorixClient {
   readonly capsulefiles: Capsulefiles;
   readonly capsules: Capsules;
   readonly cdp: CdpResource;
-  /** ADR-014 brand alias for `cdp`. Same instance; same interface. */
+  /** brand alias for `cdp`. Same instance; same interface. */
   readonly auditProofs: CdpResource;
   readonly egressProfiles: EgressProfiles;
   readonly usage: Usage;

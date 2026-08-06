@@ -18,7 +18,7 @@ NDJSON resource streams from the $export workflow and produces structural
 metadata + per-record receipt-emission helper suitable for AuditProof
 binding.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied bulk FHIR transaction artifacts and emits
     structural metadata fields. Clinical-content interpretation, FHIR
@@ -27,15 +27,15 @@ Three-role discipline (ADR-017):
     downstream analytics adjudication remain the customer's
     responsibility.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the FHIR resource bytes. This adapter parses
     structural fields only.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). Per-record
+    ``Option<HashMap<String, String>>`` field. Per-record
     receipt emission uses the existing ``pattern_tag="fhir_record"``
-    closed-enum variant (ADR-039 §"pattern_tag rule").
+    closed-enum variant.
 
 Pure-Python implementation; no native dependencies. The adapter handles
 NDJSON parsing with Python's built-in `json` module and HTTP-style
@@ -71,7 +71,7 @@ structurally; the adapter parses kickoff + status + NDJSON without
 binding to a specific FHIR R4 vs R5 resource schema."""
 
 # HL7 FHIR resource type closed enum per FHIR R4 / R5 §"List of all
-# resource types". Append-only per ADR-006 I0; new resource types land
+# resource types". Append-only; new resource types land
 # via ADR amendment. Curated for the most-common bulk-export resources
 # in production through 2026 (~95% of population-data workload coverage).
 _VALID_FHIR_RESOURCE_TYPES: FrozenSet[str] = frozenset({
@@ -335,7 +335,7 @@ class BulkFhirAdapter:
     3. **NDJSON stream**: parse a newline-delimited JSON FHIR resource
        stream → iterator of :class:`BulkFhirResource`
 
-    Three-role discipline (ADR-017): Adapter is structural; clinical
+    Three-role discipline: Adapter is structural; clinical
     content interpretation, FHIR IG conformance, and downstream
     analytics adjudication remain the customer's responsibility.
 
@@ -734,7 +734,7 @@ class BulkFhirAdapter:
         """Return the canonical per-record receipt pattern_tag for FHIR
         bulk extraction.
 
-        Per ADR-039 §"pattern_tag rule" closed enum, each FHIR resource
+        Closed enum, each FHIR resource
         extracted via $export emits a per-record receipt with
         ``pattern_tag="fhir_record"``.
         """

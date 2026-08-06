@@ -9,15 +9,15 @@
  *    * 837I Institutional per 005010X223A2
  *    * 837D Dental per 005010X224A2
  *
- * Three-role discipline (ADR-017): structural adapter. Claim
+ * Three-role discipline: structural adapter. Claim
  * adjudication, payment determination, denial-rationale interpretation,
  * payer companion-guide conformance, and downstream RCM workflows
  * remain the customer's responsibility.
  *
- * Customer-sole-declarer (ADR-013): customer supplies the wire payload;
+ * Customer-sole-declarer: customer supplies the wire payload;
  * adapter parses structural fields only. Member IDs are SHA-256-hashed.
  *
- * Forever-Standard discipline (ADR-006 I0): emits via the existing
+ * Forever-Standard discipline: emits via the existing
  * metadata envelope; per-record receipts use `pattern_tag="rcm_claim"`
  * (837 + 834) or `pattern_tag="rcm_remit"` (835).
  */

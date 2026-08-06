@@ -11,7 +11,7 @@
  * - Inner: SHA-512(0x01 || left || right)
  * - Odd count: lone tail node promoted unchanged.
  *
- * **FROZEN** per ADR-006 I0 — changing this would invalidate every
+ * **FROZEN** — changing this would invalidate every
  * previously-emitted batch Merkle root.
  */
 

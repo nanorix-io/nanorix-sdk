@@ -8,7 +8,7 @@ both stream through. It has NO dependency on boto3 or
 google-cloud-storage and is fully unit-testable with a FAKE in-memory
 backend (see ``tests/test_connectors.py``).
 
-## Trust-boundary discipline (NON-NEGOTIABLE — ADR-036)
+## Trust-boundary discipline (NON-NEGOTIABLE —)
 
 A Nanorix connector is a **customer-side SDK helper**. It runs in the
 customer's process, using the customer's cloud credentials (resolved by
@@ -34,7 +34,7 @@ and, for sinks, the exact reverse. There is no third location.
   capsule data left to read (``feedback_no_post_destroy_cache.md``).
 - **No new signed primitive.** Connectors consume the existing
   AuditProof. The AuditProof byte-form is unchanged.
-- **No regulatory claim (ADR-017).** A connector moves bytes; it asserts
+- **No regulatory claim.** A connector moves bytes; it asserts
   nothing about what the data is or which control it satisfies.
 
 ## Why a FAKE-backend-testable core
@@ -70,7 +70,7 @@ __all__ = [
 DEFAULT_CHUNK_SIZE = 8 * 1024 * 1024
 
 # Carried as a module constant so any serializer / doc generator reads the
-# same one-line trust statement. ADR-036 zero-retention affirmation.
+# same one-line trust statement. zero-retention affirmation.
 TRUST_BOUNDARY_NOTE = (
     "Connectors are customer-side SDK helpers. Your bytes, your "
     "credentials, streamed through the sealed capsule a bounded chunk at "
@@ -100,7 +100,7 @@ class SourceObject:
 
     Attributes:
         key: The storage-native key/path of the object in the customer's
-            store (e.g. an S3 object key). Customer-declared per ADR-013.
+            store (e.g. an S3 object key). Customer-declared.
         capsule_filename: The filename the object is uploaded as inside
             the capsule's input directory. Defaults to the basename of
             ``key`` when not given.
@@ -142,7 +142,7 @@ class Source(Protocol):
        chunk iterator and writing those chunks into the capsule.
 
     A source declares no credential it stores; credentials are resolved
-    by the underlying cloud SDK's standard chain (ADR-036).
+    by the underlying cloud SDK's standard chain.
     """
 
     def list_objects(self) -> Iterable[SourceObject]:
@@ -205,7 +205,7 @@ def stream_source_into_capsule(
 ) -> List[str]:
     """Stream every object from ``source`` INTO ``capsule`` (before exec).
 
-    This is the source half of the ADR-036 trust boundary. It runs in the
+    This is the source half of the trust boundary. It runs in the
     customer's process; the bytes go customer-store -> bounded chunk ->
     ``capsule.upload()`` and nowhere else.
 
@@ -249,7 +249,7 @@ def stream_source_into_capsule(
                 raise ConnectorError(
                     f"source {type(source).__name__} yielded a "
                     f"{len(chunk)}-byte chunk exceeding the {chunk_size}-byte "
-                    "bound; streaming must be bounded per ADR-036."
+                    "bound; streaming must be bounded."
                 )
             buf.extend(chunk)
         capsule.upload(obj.capsule_filename, bytes(buf))
@@ -268,7 +268,7 @@ def stream_capsule_to_sink(
 ) -> List[str]:
     """Stream each capsule OUTPUT file to ``sink`` (BEFORE destroy).
 
-    This is the sink half of the ADR-036 trust boundary, and it enforces
+    This is the sink half of the trust boundary, and it enforces
     the no-post-destroy-cache invariant (``feedback_no_post_destroy_cache``):
     the caller MUST invoke this BEFORE ``capsule.destroy()``. The bytes go
     sealed-capsule -> ``capsule.download()`` -> bounded chunk -> customer

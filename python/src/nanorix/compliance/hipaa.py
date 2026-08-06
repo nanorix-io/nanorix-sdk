@@ -84,10 +84,9 @@ class HipaaContext:
 
         Returns a dict keyed by the reserved keys ``nanorix:framework`` +
         ``nanorix:framework_version`` (whitelisted server-side per
-        ADR-017 + the post-G2 validation amendment) plus customer-declared
+        the post-G2 validation amendment) plus customer-declared
         fields. Auditor + GRC platform consumers read this from the
-        AuditProof's metadata field (bound into ``metadata_hash`` per
-        ADR-010 A4).
+        AuditProof's metadata field (bound into ``metadata_hash``).
         """
         meta: Dict[str, str] = {
             RESERVED_FRAMEWORK_KEY: "HIPAA",

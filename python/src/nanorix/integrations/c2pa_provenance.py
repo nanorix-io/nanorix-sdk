@@ -1,12 +1,12 @@
 """
 C2PA LLM-Output Provenance — sibling primitive next to AuditProof.
 
-Per ADR-035 (2026-05-28). Customers running LLM/AI inference inside
+Under the 2026-05-28. Customers running LLM/AI inference inside
 Nanorix capsules emit a C2PA-conformant signed manifest binding the
 generated output content to the capsule run that produced it. The
 manifest references the AuditProof by three opaque identifiers
 (capsule_id, auditproof_id, verification_key_id) without modifying
-the AuditProof byte-form — strict ADR-006 I0 Forever-Standard
+the AuditProof byte-form — strict Forever-Standard
 byte-equivalence preservation.
 
 ## C2PA standard
@@ -26,7 +26,7 @@ and "detectable as artificially generated or manipulated" via
 cryptographic guarantees. C2PA is the de-facto-standard interchange
 format for satisfying these transparency obligations.
 
-## Three-role discipline (ADR-017)
+## Three-role discipline
 
 Nanorix signs STRUCTURAL FACTS only:
 
@@ -55,9 +55,9 @@ Per feedback_narrowness_is_the_moat_resist_receipt_enrichment.md
 PERMANENT: AuditProof / RecordReceipt / ParentProofLink fields are
 UNCHANGED by this module. The C2PA manifest is a fully external
 sibling primitive with its own lifecycle. AuditProof byte-form is
-explicitly affirmed unchanged under ADR-006 I0.
+explicitly affirmed unchanged.
 
-## Customer-sole-declarer (ADR-013)
+## Customer-sole-declarer
 
 Customer declares ALL FIVE required fields:
 
@@ -126,7 +126,7 @@ CLAIM_GENERATOR_PREFIX = "Nanorix/1.0"
 MANIFEST_FORMAT = "application/json"
 """JSON manifest format (C2PA standard allows multiple format identifiers;
 this SDK helper emits JSON canonical bytes; media-format-specific JUMBF
-embedding is out of scope per ADR-035)."""
+embedding is out of scope)."""
 
 SIGNATURE_ALGORITHM = "Ed25519"
 """Closed enum; matches existing per-event signing primitive in
@@ -144,7 +144,7 @@ C2PA_ACTION_CREATED = "c2pa.created"
 class AssertionType(str, Enum):
     """Closed enum of supported assertion labels.
 
-    Append-only per ADR-006 I0 Forever-Standard; new variants arrive
+    Append-only Forever-Standard; new variants arrive
     via ADR amendment. C2PA standard assertion labels + Nanorix-namespaced
     extensions for capsule + AuditProof binding.
     """
@@ -168,7 +168,7 @@ MAX_AUDITPROOF_ID_LEN = 64
 MAX_VERIFICATION_KEY_ID_LEN = 128
 MAX_TIMESTAMP_LEN = 64
 
-# Forbidden tokens — these violate ADR-014 brand discipline (internal
+# Forbidden tokens — these violate brand discipline (internal
 # engine/struct names must never leak) or narrow-signed-claim discipline
 # (regulatory adequacy is not Nanorix's claim).
 FORBIDDEN_BRAND_LEAK_TOKENS = (
@@ -207,7 +207,7 @@ def _check_forbidden_tokens(value: str, field_name: str) -> None:
             raise ValueError(
                 f"Field {field_name!r}: value contains forbidden brand-leak "
                 f"token {token!r}. Internal struct/engine names must not "
-                "appear in customer-facing C2PA manifests (ADR-014)."
+                "appear in customer-facing C2PA manifests."
             )
     for token in FORBIDDEN_REGULATORY_TOKENS:
         if token in value:
@@ -215,7 +215,7 @@ def _check_forbidden_tokens(value: str, field_name: str) -> None:
                 f"Field {field_name!r}: value contains forbidden regulatory "
                 f"token {token!r}. C2PA manifest assertions are STRUCTURAL "
                 "facts only; regulatory adequacy is the auditor's "
-                "determination (ADR-017; "
+                "determination ("
                 "feedback_narrow_signed_claim_auditor_certifies.md)."
             )
 
@@ -283,10 +283,10 @@ class C2PAManifest:
     SHA-512 hashed; that hash is signed via Ed25519. The signature is
     independently verifiable offline given the public key bytes.
 
-    Per ADR-035 (2026-05-28), this manifest references the AuditProof
+    Under the 2026-05-28, this manifest references the AuditProof
     by three opaque identifiers (capsule_id, auditproof_id,
     verification_key_id) without modifying the AuditProof byte-form.
-    Strict Forever-Standard byte-equivalence preservation (ADR-006 I0).
+    Strict Forever-Standard byte-equivalence preservation.
     """
 
     claim_generator: str
@@ -322,7 +322,7 @@ class C2PAManifest:
 class C2PAVerificationResult:
     """Structural verification result — NEVER a regulatory verdict.
 
-    Per ADR-035 + ADR-017 three-role split: this result is the
+    Three-role split: this result is the
     Nanorix-side STRUCTURAL determination. Whether the manifest's
     presence + content satisfies EU AI Act Article 50 (or any other
     regulatory regime) for a specific deployment is the auditor's
@@ -354,7 +354,7 @@ class C2PAManifestBuilder:
     Final `.sign(signer)` validates required fields, computes the
     claims hash, signs it, and returns an immutable C2PAManifest.
 
-    All inference is REFUSED per ADR-013 customer-sole-declarer. The
+    All inference is REFUSED customer-sole-declarer. The
     builder will not infer model_id, prompt_intent, generation
     timestamp, output bytes — customer must declare each explicitly.
     Missing required field at .sign() time -> raises ValueError.
@@ -426,7 +426,7 @@ class C2PAManifestBuilder:
 
         model_id is opaque to Nanorix (not validated against any
         registry). model_weights_hash is optional; customer may supply
-        if known. Both per ADR-013 customer-sole-declarer.
+        if known. Both customer-sole-declarer.
         """
         if not model_id or len(model_id) > MAX_MODEL_ID_LEN:
             raise ValueError(
@@ -526,7 +526,7 @@ class C2PAManifestBuilder:
     ) -> "C2PAManifestBuilder":
         """Append an arbitrary assertion (closed-enum label required).
 
-        Per ADR-035, assertion labels come from a closed enum
+        Assertion labels come from a closed enum
         (AssertionType). Open `data` payload accommodates forward
         evolution of the C2PA standard.
         """
@@ -581,7 +581,7 @@ class C2PAManifestBuilder:
         if missing:
             raise ValueError(
                 "Cannot sign manifest: missing required customer-declared "
-                f"fields: {', '.join(missing)}. Per ADR-013 customer-sole-"
+                f"fields: {', '.join(missing)}. Customer-sole-"
                 "declarer, all required fields must be set explicitly; "
                 "Nanorix refuses to infer any of them."
             )

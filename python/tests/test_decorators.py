@@ -13,7 +13,7 @@ Exercises ``nanorix.decorators.workload`` against:
 - ``on_audit_proof`` callback hook.
 - Compliance framework constants.
 - Property tests on random arg shapes (≥10k iterations).
-- ADR-006 I0 Forever-Standard preservation (no API surface change to capsule-create).
+- Forever-Standard preservation (no API surface change to capsule-create).
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / Capsulefile / AuditRecord.
 """
 
@@ -581,13 +581,13 @@ def test_last_audit_proof_overwritten_per_call(workload_client):
     assert isinstance(proof_2, CdpAccess)
 
 
-# ── ADR-006 I0 Forever-Standard preservation ───────────────────────
+# ── Forever-Standard preservation ───────────────────────
 
 
 def test_no_new_capsule_create_field_introduced(workload_routes, workload_client):
     """The decorator MUST NOT introduce new top-level capsule-create fields.
 
-    Per ADR-006 I0: capsule-create body shape is forever-stable. The
+    Capsule-create body shape is forever-stable. The
     decorator composes existing ``capsulefile_id``, ``max_lifetime_seconds``,
     ``egress_profile``, and ``metadata`` fields. Any new top-level field
     would require a new ADR.

@@ -27,20 +27,20 @@ does NOT interpret medical-necessity criteria, validate against a
 specific payer companion guide, adjudicate claims, or determine
 payment/denial reasons substantively.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied X12 transaction bytes and emits structural
     metadata fields. Claim adjudication, payment determination, denial
     rationale interpretation, payer companion-guide conformance, and
     downstream RCM workflows remain the customer's responsibility.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the X12 wire payload. This adapter parses
     structural fields only.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). Per-record
+    ``Option<HashMap<String, String>>`` field. Per-record
     receipt emission uses ``pattern_tag`` closed-enum variants
     (``rcm_claim`` for 837, ``rcm_remit`` for 835).
 
@@ -127,7 +127,7 @@ class X12RCMTransaction:
     transaction-routing identifiers + transaction-type-specific
     structural fields suitable for AuditProof binding.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer adjudicates claims and interprets payment / denial
     rationale.
     """
@@ -318,7 +318,7 @@ class X12FullRCMAdapter:
         claim status distribution (CLP02 codes)
       * 834: enrollment record count (INS), maintenance type distribution
 
-    Three-role discipline (ADR-017): Adapter is structural; claim
+    Three-role discipline: Adapter is structural; claim
     adjudication, payment determination, and denial-rationale
     interpretation remain the customer's responsibility.
 
@@ -680,7 +680,7 @@ class X12FullRCMAdapter:
         """Return the canonical per-record receipt pattern_tag for an
         RCM transaction set.
 
-        Per ADR-039 §"pattern_tag rule" closed enum:
+        Closed enum:
         - ``"837"`` → ``"rcm_claim"``
         - ``"835"`` → ``"rcm_remit"``
         - ``"834"`` → ``"rcm_claim"`` (enrollment treated as claim-class

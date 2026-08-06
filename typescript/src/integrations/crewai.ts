@@ -7,8 +7,8 @@
  * crew/task/agent orchestrator following CrewAI's lifecycle pattern
  * (task = unit of work for crew member, step = agent's reasoning/tool
  * loop). The callback emits the existing 4 ActivityEvent variants
- * shipped by ADR-021 — no new variants — Forever-Standard preserved
- * (ADR-006 I0).
+ * shipped by — no new variants — Forever-Standard preserved
+ *.
  *
  * Customer pattern:
  *
@@ -48,7 +48,7 @@
  *   to invoke a tool; chain-of-thought + args + observation hashed).
  * - **AgentFinish step** → `reasoning_step_completed` (final answer).
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify CrewAI correctness, crew
  * orchestration safety, or LLM-output safety — those determinations
@@ -148,7 +148,7 @@ export class NanorixCrewAICallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixCrewAICallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

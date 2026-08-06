@@ -36,10 +36,10 @@
  * | `agent-step` (end)    | `tool_call_completed` (if enabled)    |
  * | `retrieve-*`          | (none — structural noise)             |
  *
- * The 4 ActivityEvent variants shipped by ADR-021 cover the entire
- * surface — no new variants — Forever-Standard preserved (ADR-006 I0).
+ * The 4 ActivityEvent variants shipped by cover the entire
+ * surface — no new variants — Forever-Standard preserved.
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify LlamaIndex correctness,
  * retrieval relevance, or LLM-output safety — those determinations
@@ -149,7 +149,7 @@ export class NanorixLlamaIndexCallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixLlamaIndexCallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

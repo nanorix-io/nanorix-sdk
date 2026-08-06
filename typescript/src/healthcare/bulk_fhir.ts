@@ -8,7 +8,7 @@
  *  2. Status response JSON body
  *  3. NDJSON resource stream (one resource per line)
  *
- * Three-role discipline (ADR-017): structural parser; clinical-content
+ * Three-role discipline: structural parser; clinical-content
  * interpretation + FHIR IG conformance + downstream analytics
  * adjudication remain the customer's responsibility.
  *
@@ -49,7 +49,7 @@ const VALID_STATUS_STATES: ReadonlySet<BulkFhirStatusState> =
     "queued",
   ]);
 
-// FHIR R4/R5 resource type closed enum — appended-only per ADR-006 I0.
+// FHIR R4/R5 resource type closed enum — appended-only.
 // Curated for the most-common bulk-export resources through 2026.
 const VALID_FHIR_RESOURCE_TYPES: ReadonlySet<string> = new Set<string>([
   "Patient",

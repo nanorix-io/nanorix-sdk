@@ -1,18 +1,18 @@
 /**
- * ADR-040 control-map resolver (Wave B 2026-05-26) — published mapping artifact.
+ * control-map resolver (Wave B 2026-05-26) — published mapping artifact.
  *
  * Layer-2 published artifact `(jurisdiction × data_classification × pattern_tag)
  * → string[]` of canonical control IDs. Consumed by GRC adapters (Vanta /
  * Drata / Anecdotes / internal) at ingestion time given a receipt's signed
- * `pattern_tag` (ADR-039) + customer's declared `jurisdiction` + capsule's
- * declared `data_classification` (ADR-013 customer-sole-declarer).
+ * `pattern_tag` + customer's declared `jurisdiction` + capsule's
+ * declared `data_classification` (customer-sole-declarer).
  *
- * ## Three-layer separation (ADR-040 RE-SCOPED — founder direction 2026-05-12)
+ * ## Three-layer separation (RE-SCOPED — founder direction 2026-05-12)
  *
  * | Layer | Carries | Evolves at |
  * |---|---|---|
- * | Receipt (ADR-039) | `pattern_tag` (signed) | ADR-006 I0 Forever-Standard pace |
- * | Mapping artifact (this module, ADR-040) | `(j × c × p) → string[]` | Framework revision pace |
+ * | Receipt | `pattern_tag` (signed) | Forever-Standard pace |
+ * | Mapping artifact (this module) | `(j × c × p) → string[]` | Framework revision pace |
  * | Adapter | Reads receipt + applies mapping | Vendor pace |
  *
  * Stamping mapping output inside the cryptographic receipt would freeze
@@ -48,7 +48,7 @@ export const FRAMEWORK_VERSION = "2026-02" as const;
 /** JSON Schema version for the published artifact format. */
 export const SCHEMA_VERSION = "1.0" as const;
 
-/** Canonical disclaimer per CCO policy + ADR-017 three-role discipline. */
+/** Canonical disclaimer per CCO policy + three-role discipline. */
 export const DISCLAIMER =
   "Control IDs are references using canonical framework identifiers. " +
   "Whether evidence is acceptable for a control is determined by the " +
@@ -56,7 +56,7 @@ export const DISCLAIMER =
   "by Nanorix.";
 
 /**
- * Canonical mapping for framework_version 2026-02. Append-only per ADR-006 I0.
+ * Canonical mapping for framework_version 2026-02. Append-only.
  *
  * Mirrors the Rust resolver in `services/api/src/control_map.rs::resolve_controls`
  * and Python `nanorix.control_map.MAPPING_2026_02` — single source of truth.
@@ -237,7 +237,7 @@ export const MAPPING_2026_02: Readonly<Record<string, readonly string[]>> = {
 };
 
 /**
- * Registry of available framework_versions. Append-only per ADR-006 I0 —
+ * Registry of available framework_versions. Append-only —
  * old versions remain forever in future SDK releases.
  */
 const MAPPINGS_BY_VERSION: Readonly<
@@ -247,12 +247,12 @@ const MAPPINGS_BY_VERSION: Readonly<
 };
 
 /**
- * Customer-declared jurisdiction (ADR-013 customer-sole-declarer).
+ * Customer-declared jurisdiction (customer-sole-declarer).
  */
 export type Jurisdiction = "US" | "EU" | "UK" | "CA" | "AU" | "IN" | "OTHER";
 
 /**
- * Customer-declared data classification (ADR-013 customer-sole-declarer).
+ * Customer-declared data classification (customer-sole-declarer).
  */
 export type DataClassification =
   | "PHI"
@@ -262,7 +262,7 @@ export type DataClassification =
   | "General";
 
 /**
- * Receipt's signed pattern_tag (ADR-039). Closed-enum wire form (snake_case).
+ * Receipt's signed pattern_tag. Closed-enum wire form (snake_case).
  */
 export type PatternTag =
   | "pa"
@@ -304,7 +304,7 @@ export class Mapping {
   /**
    * Resolve canonical control IDs for a specific cell.
    *
-   * Per ADR-013 customer-sole-declarer: arguments are customer-declared values
+   * Customer-sole-declarer: arguments are customer-declared values
    * consumed verbatim. Nanorix does NOT infer jurisdiction or classification.
    *
    * @param jurisdiction Customer-declared jurisdiction.
@@ -362,7 +362,7 @@ export function loadMapping(frameworkVersion?: string): Mapping {
     throw new Error(
       `framework_version '${fv}' not available. ` +
         `Available versions: [${available}]. ` +
-        `Per ADR-006 I0 Forever-Standard, old versions remain available ` +
+        `Forever-Standard, old versions remain available ` +
         `forever; ensure you are using a published version.`,
     );
   }
@@ -394,7 +394,7 @@ export function resolve(
 /**
  * List all available framework_versions in this SDK release.
  *
- * Per ADR-006 I0 Forever-Standard: this list is append-only across SDK
+ * Forever-Standard: this list is append-only across SDK
  * releases — old framework_versions are NEVER removed.
  */
 export function availableFrameworkVersions(): string[] {

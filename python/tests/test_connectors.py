@@ -1,4 +1,4 @@
-"""Tests for data source/sink connectors (Batch 14, ADR-036).
+"""Tests for data source/sink connectors (Batch 14).
 
 These tests import ONLY ``nanorix.connectors._base`` (the framework- and
 cloud-SDK-free streaming core) plus a hand-rolled FAKE in-memory backend.

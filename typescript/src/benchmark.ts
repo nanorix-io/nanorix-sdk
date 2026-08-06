@@ -2,7 +2,7 @@
  * Cold-start benchmark SDK helper (Batch 1 Item 4, 2026-05-27).
  *
  * Layer-2 published artifact `(substrate × pattern × Capsulefile shape) → percentiles`.
- * Sibling to control_map.ts (ADR-040 mapping artifact). The customer
+ * Sibling to control_map.ts (mapping artifact). The customer
  * loads the latest published benchmark to inform their pilot
  * evaluation — NOT as a service-level commitment.
  *
@@ -33,7 +33,7 @@
  */
 
 /** Canonical benchmark version stamp. Mirrors the Rust harness +
- * `/v1/cold-start-benchmark` endpoint. Append-only per ADR-006 I0. */
+ * `/v1/cold-start-benchmark` endpoint. Append-only. */
 export const BENCHMARK_VERSION = "2026-05" as const;
 
 /** JSON Schema version for the published artifact format. */
@@ -179,7 +179,7 @@ export function parseArtifact(doc: RawArtifactJson): BenchmarkArtifact {
  * from the API endpoint). To fetch from a live Nanorix deployment,
  * pass fetchUrl=https://api.nanorix.io/v1/cold-start-benchmark.
  *
- * Per ADR-006 I0 Forever-Standard: old benchmark versions remain
+ * Forever-Standard: old benchmark versions remain
  * available forever. The customer can pass benchmark_version to pin
  * to a specific version.
  */

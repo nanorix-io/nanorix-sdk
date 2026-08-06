@@ -49,7 +49,7 @@ PORTABLE_RECEIPT_BUNDLE_DISCLAIMER = (
     "record's structural execution. Verifying party uses the audit_proof_anchors "
     "to verify the receipt's merkle inclusion + outer Ed25519 signature. "
     "Control framework references are NOT included in this bundle; consult "
-    "the ADR-040 mapping artifact at "
+    "the mapping artifact at "
     "schema.nanorix.com/control-map/{framework_version}.json to apply current "
     "control mappings at consumption time."
 )
@@ -73,7 +73,7 @@ class AuditProofAnchors:
 class PortableReceiptBundle:
     """Wave B Item 7 wire shape mirroring Rust ``PortableReceiptBundle``.
 
-    Forever-Standard ADR-006 I0: ``bundle_version`` is append-only; the V1.0
+    Forever-Standard: ``bundle_version`` is append-only; the V1.0
     shape remains valid forever.
     """
 

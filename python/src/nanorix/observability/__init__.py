@@ -54,7 +54,7 @@ verification result. The forbidden verdict vocabulary (``COMPLIANT`` /
 :func:`assert_structural_facts_only`, which every shell runs before emit.
 The auditor remains the certifying authority
 (``feedback_narrow_signed_claim_auditor_certifies.md``). Tags carry
-customer-facing nouns only — never internal engine names (ADR-014).
+customer-facing nouns only — never internal engine names.
 """
 
 from __future__ import annotations

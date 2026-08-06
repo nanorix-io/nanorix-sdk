@@ -56,7 +56,7 @@ asyncio.run(main())
 ```
 
 A workflow then executes the activity with a
-``NanorixCapsuleActivityInput`` (all customer-declared per ADR-013):
+``NanorixCapsuleActivityInput`` (all customer-declared):
 
 ```python
 result = await workflow.execute_activity(
@@ -140,7 +140,7 @@ class NanorixCapsuleActivityInput:
     A serializable mirror of the customer-declared fields of
     :class:`~nanorix.integrations._orchestrator_core.CapsuleJobParams`.
     Every compliance-binding field is declared by the workflow author
-    (ADR-013); the activity never infers any of them.
+    ; the activity never infers any of them.
     """
 
     capsulefile: str

@@ -45,7 +45,7 @@ is an **emerging FDA expectation tied to the draft**, not a finalized
 FDA mandate. The helper records the customer-declared disclosure
 status without asserting that disclosure is statutorily required.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This helper declares
     framework context for a capsule workload's metadata. It does NOT
     certify, attest to, or claim FDA clearance, approval, or any
@@ -581,7 +581,7 @@ class FDASaMDContext:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         customer-declared FDA SaMD framework fields. Suitable for
-        binding into the AuditProof's ``metadata_hash`` per ADR-010
+        binding into the AuditProof's ``metadata_hash``
         A4.
 
         Auditor + GRC platform + FDA-evidence consumers read this from

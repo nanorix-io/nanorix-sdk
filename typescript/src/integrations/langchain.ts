@@ -21,9 +21,9 @@
  * The callback runs INSIDE a Nanorix capsule (customer wraps the agent
  * run via `client.capsules.create()` or the future `@nanorix.workload`
  * decorator). LangChain.js's hook surface maps onto the 4 existing
- * ActivityEvent variants shipped by ADR-021 (`tool_call_attempted` /
+ * ActivityEvent variants shipped by (`tool_call_attempted` /
  * `tool_call_completed` / `tool_call_failed` /
- * `reasoning_step_completed`). No new variants — ADR-006 I0
+ * `reasoning_step_completed`). No new variants —
  * Forever-Standard discipline preserved.
  *
  * ## Three-tier integration model
@@ -58,7 +58,7 @@
  * TypeScript surface mirrors LangChain.js conventions, while preserving
  * the byte-identical ActivityEvent JSON shape on the wire.
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Structural adapter only. Does NOT certify LangChain conformance,
  * LangChain agent correctness, LLM output safety, or PHI handling —
@@ -73,8 +73,8 @@
  *
  * ## Design constraints
  *
- * - `framework` REQUIRED — no silent default (ADR-013).
- * - No PHI scanning (ADR-013 Alt B). Adapter is structural.
+ * - `framework` REQUIRED — no silent default.
+ * - No PHI scanning (Alt B). Adapter is structural.
  * - No raw payload retention. SHA-512 hex digests only.
  * - No actual LangChain.js framework imports — customer brings the
  *   framework; this module provides the callback shape.
@@ -186,7 +186,7 @@ export class NanorixLangChainCallback {
     if (!opts.framework || typeof opts.framework !== "string") {
       throw new Error(
         "NanorixLangChainCallback requires an explicit `framework` option " +
-          "(e.g., framework: 'HIPAA'). No silent default per ADR-013 " +
+          "(e.g., framework: 'HIPAA'). No silent default " +
           "customer-sole-declarer discipline.",
       );
     }

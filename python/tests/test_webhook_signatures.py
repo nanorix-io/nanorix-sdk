@@ -8,7 +8,7 @@ Pins cross-language byte-equivalence with:
 If any implementation drifts on the HMAC wire form ('{ts}.{body}' + sha256=
 prefix + lowercase hex), this test fails.
 
-ADR-006 I0 Forever-Standard: wire form is permanent.
+ Forever-Standard: wire form is permanent.
 """
 from __future__ import annotations
 

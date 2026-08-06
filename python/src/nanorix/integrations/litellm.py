@@ -44,8 +44,8 @@ This shape is empirically true for litellm 1.40+ (verified against the
 `CustomLogger` source at https://github.com/BerriAI/litellm/blob/main/
 litellm/integrations/custom_logger.py — the public hooks have been
 stable across minor versions). The 4 ActivityEvent variants shipped by
-ADR-021 cover the entire surface — no new variants — Forever-Standard
-preserved (ADR-006 I0).
+ cover the entire surface — no new variants — Forever-Standard
+preserved.
 
 ## Hook → ActivityEvent mapping
 
@@ -92,8 +92,8 @@ into the AuditProof at capsule destroy.
 
 ## Design constraints
 
-- `framework=` REQUIRED — no silent default (ADR-013 customer-sole-declarer).
-- No PHI scanning (ADR-013 Alt B). Callback is structural.
+- `framework=` REQUIRED — no silent default (customer-sole-declarer).
+- No PHI scanning (Alt B). Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - litellm dep is optional — `pip install nanorix[litellm]`.
 - Importing without `litellm` installed succeeds; constructing
@@ -222,7 +222,7 @@ class NanorixLiteLLMCallback(CustomLogger):
 
     Args:
         framework: REQUIRED. Compliance framework label (e.g. ``"HIPAA"``,
-            ``"GDPR"``). Customer-declared per ADR-013; no silent default.
+            ``"GDPR"``). Customer-declared; no silent default.
         capsulefile: REQUIRED. Capsulefile name the agent is running
             under. Used for callback logging context only.
         api_key: Optional Nanorix API key. Defaults to env
@@ -267,7 +267,7 @@ class NanorixLiteLLMCallback(CustomLogger):
             raise ValueError(
                 "NanorixLiteLLMCallback requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

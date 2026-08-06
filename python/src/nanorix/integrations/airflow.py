@@ -48,7 +48,7 @@ with DAG(
         capsulefile="cf_pa_decider",
         command="python /app/decide.py",
         # Customer declares the classification + binding metadata
-        # (ADR-013); the operator never infers them.
+        #; the operator never infers them.
         data_classification="PHI",
         metadata={"workflow": "prior-auth", "payer": "acme"},
         output_files=["decision.json"],
@@ -133,7 +133,7 @@ class NanorixCapsuleOperator(_BaseOperator):
             entrypoint.
         data_classification: Optional customer-declared classification
             (one of PHI, PII, financial, credentials, general). Never
-            inferred (ADR-013).
+            inferred.
         metadata: Optional customer-declared compliance-binding metadata.
         input_files: Optional ``filename -> bytes`` uploaded before exec.
         output_files: Optional list of output filenames downloaded BEFORE

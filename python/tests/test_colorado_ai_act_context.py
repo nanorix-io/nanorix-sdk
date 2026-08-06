@@ -557,7 +557,7 @@ def test_colorado_ai_act_metadata_json_round_trip_preserves_dict():
 
 def test_colorado_ai_act_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer framing
-    per ADR-017."""
+    ."""
     from nanorix.compliance import colorado_ai_act as mod
 
     doc = mod.__doc__ or ""

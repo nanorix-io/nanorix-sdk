@@ -1,5 +1,5 @@
 {
-  "_note": "Expected AuditProof anchor for diff-comparison. Variable fields (capsule_id, terminated_at, signatures, key_id) differ per run. Structural shape is stable per ADR-006 I0 Forever-Standard.",
+  "_note": "Expected AuditProof anchor for diff-comparison. Variable fields (capsule_id, terminated_at, signatures, key_id) differ per run. Structural shape is stable Forever-Standard.",
   "_diff_recipe": "diff <(jq -S 'del(.capsule_id, .terminated_at, .attestation, .key_id, .verification_key, .chain[].chain_hash)' audit_proof.json) <(jq -S 'del(.capsule_id, .terminated_at, .attestation, .key_id, .verification_key, .chain[].chain_hash)' expected_audit_proof.json)",
   "hash_algorithm": "sha512",
   "signature_algorithm": "Ed25519",

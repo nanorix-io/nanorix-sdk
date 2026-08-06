@@ -318,8 +318,8 @@ describe("Portable Receipt Bundle (Item 7)", () => {
     }
   });
 
-  it("disclaimer cites ADR-040 mapping artifact", () => {
-    expect(PORTABLE_RECEIPT_BUNDLE_DISCLAIMER).toContain("ADR-040");
+  it("disclaimer cites mapping artifact", () => {
+    expect(PORTABLE_RECEIPT_BUNDLE_DISCLAIMER).toContain("mapping artifact");
     expect(PORTABLE_RECEIPT_BUNDLE_DISCLAIMER).toContain("control-map");
   });
 

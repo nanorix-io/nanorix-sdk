@@ -15,7 +15,7 @@ Pattern 4 in the [9-pattern atlas](../../docs-site/docs/recipes/) — 25 compani
 - **Cohere Health / Anthem / Elevance / Evolent** — payer-side prior-auth + claims workflows
 - **Plutus Health / SmartLight Health / Apero Health** — modern payer-tech with per-record AuditProof appetite
 
-These workflows uniformly require: (a) per-claim cryptographic non-repudiation (state-DOI examination, ERISA appeals, payment-dispute resolution), (b) one-capsule-per-record economics that scale linearly with claim volume, (c) sealed isolation at single-claim grain (HIPAA scope minimization), (d) customer-controlled adjudication logic (no Nanorix-managed decision rules — per ADR-013 customer-sole-declarer).
+These workflows uniformly require: (a) per-claim cryptographic non-repudiation (state-DOI examination, ERISA appeals, payment-dispute resolution), (b) one-capsule-per-record economics that scale linearly with claim volume, (c) sealed isolation at single-claim grain (HIPAA scope minimization), (d) customer-controlled adjudication logic (no Nanorix-managed decision rules — customer-sole-declarer).
 
 ## Pipeline shape
 
@@ -49,7 +49,7 @@ Decision: paid | denied | pended | rejected
   + clearinghouse response hash bound into output
   ▼
 AuditProof: per-claim non-repudiation (signed under customer's
-  authority when BYO-HSM is enabled per ADR-031)
+  authority when BYO-HSM is enabled)
 ```
 
 ## Why one-capsule-per-record
@@ -137,7 +137,7 @@ The `regulatory_context` block enumerates provisions this AuditProof's activity 
 
 Nanorix uses `related_to` language only — never asserts compliance status. Customer's compliance officer makes the final determination.
 
-> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split per ADR-017). Customer remains responsible for their organizational GRC program. The X12 parser, clearinghouse adapter, decision tree, and CARC/RARC mappings are illustrative reference implementations — production composes customer's licensed parser + clearinghouse + benefit-summary + criteria engine + fee schedule + state-by-state regulatory overlays.
+> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split). Customer remains responsible for their organizational GRC program. The X12 parser, clearinghouse adapter, decision tree, and CARC/RARC mappings are illustrative reference implementations — production composes customer's licensed parser + clearinghouse + benefit-summary + criteria engine + fee schedule + state-by-state regulatory overlays.
 
 ## Running this bundle
 

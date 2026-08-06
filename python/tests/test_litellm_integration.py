@@ -5,13 +5,13 @@ Mirrors `test_langgraph_integration.py`. Exercises the
 
 - Synthetic litellm-shape events (no real provider calls; no network)
 - Real `litellm.integrations.custom_logger.CustomLogger` interface
-- Hook-to-ActivityEvent mapping per ADR-021 (4 variants only)
+- Hook-to-ActivityEvent mapping (4 variants only)
 - Sync + async hook paths populate the SAME activity_trail buffer
 - Function-calling response → ToolCallAttempted per tool_call entry
 - Closed-enum classification for `ToolCallFailureKind` (when applicable)
 - Canonical-JSON byte-equivalence with `_canonical_hash`
 - Property tests on call orderings (≥1k iterations)
-- ADR-006 I0 Forever-Standard preservation (no new variants)
+- Forever-Standard preservation (no new variants)
 - Vocabulary discipline (CONVENTIONS.md): AuditProof / AuditRecord
 
 When `litellm` isn't installed, the entire test module is skipped.
@@ -251,7 +251,7 @@ def test_log_success_event_records_provider_prefixed_model(tmp_path: Path):
 
 
 def test_log_success_event_step_idx_increments(tmp_path: Path):
-    """step_idx is monotonic per callback instance across calls."""
+    """Step_idx is monotonic per callback instance across calls."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     for i in range(5):
@@ -513,7 +513,7 @@ def test_multiple_tool_calls_emit_one_event_each(tmp_path: Path):
 
 
 def test_emit_tool_request_events_false_suppresses(tmp_path: Path):
-    """emit_tool_request_events=False suppresses tool_call_attempted."""
+    """Emit_tool_request_events=False suppresses tool_call_attempted."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf, emit_tool_request_events=False)
     call_id = uuid4().hex
@@ -572,7 +572,7 @@ def test_response_without_tool_calls_emits_only_reasoning_step(tmp_path: Path):
 
 
 def test_async_log_success_emits_same_shape(tmp_path: Path):
-    """async_log_success_event populates the same activity_trail buffer."""
+    """Async_log_success_event populates the same activity_trail buffer."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     call_id = uuid4().hex
@@ -1005,7 +1005,7 @@ def test_property_random_call_orderings_produce_well_formed_events(tmp_path: Pat
             assert "at" in ev
 
 
-# ── ADR-006 I0 Forever-Standard ────────────────────────────────────
+# ── Forever-Standard ────────────────────────────────────
 
 
 def test_adr_006_i0_only_four_variants_emitted(tmp_path: Path):
@@ -1231,7 +1231,7 @@ def test_emit_tool_helpers_reexported_for_downstream_use():
 
 
 def test_kwargs_as_plain_dict_works(tmp_path: Path):
-    """litellm sometimes passes kwargs as plain dict (not a Pydantic model).
+    """Litellm sometimes passes kwargs as plain dict (not a Pydantic model).
 
     The callback's _safe_attr handles both attribute and dict-key access.
     """
@@ -1312,7 +1312,7 @@ def test_log_success_event_never_raises_on_malformed_response(tmp_path: Path):
 
 
 def test_log_pre_api_call_never_raises_on_bad_kwargs(tmp_path: Path):
-    """log_pre_api_call must never crash even with garbage kwargs."""
+    """Log_pre_api_call must never crash even with garbage kwargs."""
     buf = tmp_path / "events.jsonl"
     cb = make_callback(buf)
     # None kwargs (unusual but possible in test harnesses)

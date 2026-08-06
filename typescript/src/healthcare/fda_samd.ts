@@ -8,7 +8,7 @@
  * 2025 draft guidance (89 FR 1543) for subgroup performance disclosure
  * — which is an EMERGING expectation, not a finalized mandate.
  *
- * Three-role discipline (ADR-017): records the customer-declared
+ * Three-role discipline: records the customer-declared
  * status. Does NOT certify, attest to, or claim FDA clearance,
  * approval, or any pre-market submission status. K-number / DEN-number
  * authentication, submission-pathway selection, clinical validation,

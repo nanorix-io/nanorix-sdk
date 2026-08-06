@@ -47,7 +47,7 @@ variants gained the same minus `egress_profile`).
 #### `nanorix.integrations` — 16 modules (15 below + the package `__init__`)
 
 Agent-framework, web-framework, and orchestrator wrappers. Each reuses the
-`nanorix.helpers.activity_events` 4-variant surface (ADR-006 I0). Framework
+`nanorix.helpers.activity_events` 4-variant surface. Framework
 shells are optional installs; the cores need no framework.
 
 - `integrations.langchain` — `NanorixCallback`
@@ -68,13 +68,13 @@ shells are optional installs; the cores need no framework.
 - `integrations.jupyter` — `NanorixMagics` (`%%nanorix_capsule`), `NanorixDisplay`,
   `load_ipython_extension`, HTML renderers
 - `integrations.c2pa_provenance` — `C2PAManifestBuilder`, `C2PAManifest`,
-  `C2PAVerificationResult`, `verify_c2pa_manifest`, `AssertionType` (ADR-035)
+  `C2PAVerificationResult`, `verify_c2pa_manifest`, `AssertionType`
 - `integrations._orchestrator_core` — framework-free `run_capsule_job`,
   `CapsuleJobParams`, `CapsuleJobResult`, `OrchestratorError`
 - `integrations._notebook_core` — IPython-free `run_capsule_cell`,
   `parse_magic_args`, `render_auditproof_html` / `_cell_result_html` / `_verification_html`
 
-#### `nanorix.connectors` — 4 modules (ADR-036)
+#### `nanorix.connectors` — 4 modules
 
 Customer-side streaming of bytes through volatile capsule memory. Runs in the
 customer's process with the customer's cloud credentials; Nanorix never stages
@@ -106,9 +106,9 @@ observability backend. The shaping core needs no vendor SDK.
 #### `nanorix.grc` — 5 modules
 
 File the signed AuditProof into a GRC platform as evidence, landed against the
-control IDs the ADR-040 mapping resolves. Evidence is a factual reference
+control IDs the mapping resolves. Evidence is a factual reference
 (`applies_to` / `references` / `related_to`), never a verdict — the auditor
-adjudicates (ADR-017).
+adjudicates.
 
 - `grc._core` — `receipt_to_evidence_body`, `auditproof_to_evidence_bodies`,
   `resolve_control_ids`, `assert_reference_only`, `FORBIDDEN_VOCAB`,
@@ -122,7 +122,7 @@ adjudicates (ADR-017).
 
 Structural adapters for customer-supplied healthcare payloads. Helpers emit
 AuditProof-binding metadata only; clinical interpretation stays the customer's
-(three-role discipline, ADR-017).
+(three-role discipline).
 
 - `healthcare.hl7_v2` — `HL7v2Adapter`, `HL7v2ParsedMessage`
 - `healthcare.ccda` — `CCDAReader`, `CCDADocumentReference`
@@ -167,7 +167,7 @@ framework requirement has been discharged.
 
 #### `nanorix.verifier` — 5 modules
 
-Offline AuditProof verification, ADR-039 / ADR-041 wave-N receipts and parent
+Offline AuditProof verification, wave-N receipts and parent
 proofs, and the portable bundle conventions.
 
 - `verifier._verify` — `verify`, `VerifyResult`
@@ -212,15 +212,15 @@ proofs, and the portable bundle conventions.
     on the 100-fixture corpus. Returns structured `VerificationResult` with closed-set
     `FailureReason` enum mirroring `governance/rzl/src/verify_types.rs`.
   - `VerifierPolicy` — customer-side policy for authority-pin (`required_authority_id`).
-  - `FailureReasonType` — closed-set failure reason wire discriminators (ADR-006 I0).
+  - `FailureReasonType` — closed-set failure reason wire discriminators.
 - `nanorix._jcs` — JCS RFC 8785 canonical JSON serialization in pure Python
   (~150 LOC). Cross-impl byte-equivalence with Rust `serde_jcs` and TypeScript `_jcs.ts`.
 - `nanorix.capsule_record` — `RecordContext`, `AsyncRecordContext`, `canonical_hash`,
   `sha512_hex`, `validate_pattern_tag`, `PATTERN_TAGS`, and the `MAX_*_LEN` bounds
-  (ADR-039 per-record receipts)
+  (per-record receipts)
 - `nanorix.control_map` — `load_mapping`, `resolve`, `available_framework_versions`,
   `Mapping`, `MAPPING_2026_02`, `SCHEMA_VERSION`, `FRAMEWORK_VERSION`, `DISCLAIMER`
-  (ADR-040 published mapping artifact)
+  (published mapping artifact)
 - `nanorix.decorators` — `@workload` / `WorkloadDecorator` and the
   `FRAMEWORK_*` / `ALLOWED_FRAMEWORKS` / `WRAPPER_KIND` constants
 - `nanorix.billing` — `Billing`, `AsyncBilling`, `BillingMeterUsage`, `CostForecast`,
@@ -237,11 +237,11 @@ proofs, and the portable bundle conventions.
 ### Added — surface changes to modules that existed in 0.3.0
 
 - `Client` / `AsyncClient` gained four attributes: `usage`, `billing`,
-  `audit_proofs` (ADR-014 brand alias for `cdp`; same interface).
+  `audit_proofs` (brand alias for `cdp`; same interface).
 - `Capsules` gained `batch()` (inline batch processing with RFC 6962 Merkle root)
   and `session()` (LangGraph-shape memory artifact).
 - `LiveCapsule` / `AsyncLiveCapsule` gained `record()` and `add_parent_proof()`
-  (ADR-039 + ADR-041 ergonomic surface).
+  (ergonomic surface).
 - `_exceptions` gained `UnprocessableEntityError` (422), `InputProvenanceRejectedError`,
   and `SecretsInjectionRejectedError`.
 - `_models` gained `RecordReceipt` and `ParentProofLink`; `CdpDocument` and
@@ -288,9 +288,9 @@ proofs, and the portable bundle conventions.
 | `f43ad06` | 2026-05-2x | DICOM stack — `healthcare.dicomweb`, `healthcare.dicom_sr` |
 | `478e06e` `71eb110` `9e5dc33` `6d5abac` `e9108f9` | 2026-05-27 | **Batch 2** — `healthcare.ncpdp`, `x12_eligibility`, `x12_278`, `x12_full_rcm`, `bulk_fhir` |
 | `86dba40` | 2026-05-27 | **Batch 5** — `healthcare.ihe` (IHE XDS-I.b + XDR profile mapping) |
-| `c999d41` | 2026-05-28 | **Batch 9** — `integrations.c2pa_provenance` (ADR-035) |
+| `c999d41` | 2026-05-28 | **Batch 9** — `integrations.c2pa_provenance` |
 | `4c86cb0` | 2026-05-28 | **Batch 13** — `integrations.airflow`, `integrations.temporal`, `integrations._orchestrator_core` |
-| `a6eec8d` | 2026-05-28 | **Batch 14** — `nanorix.connectors` (`_base`, `s3`, `gcs`; ADR-036) |
+| `a6eec8d` | 2026-05-28 | **Batch 14** — `nanorix.connectors` (`_base`, `s3`, `gcs`) |
 | `7d7f8c0` | 2026-05-28 | **Batch 16** — `integrations.jupyter`, `integrations._notebook_core` |
 | `3cef1ec` | 2026-05-29 | **Batch 17** — `nanorix.observability` (4 adapters), `nanorix.grc` (3 adapters) |
 | `f46d0c2` | 2026-05-29 | `cryptography` floor raised to 46.0.7 (PYSEC-2026-35/36, CVE-2026-26007) |

@@ -60,7 +60,7 @@ def main() -> int:
     study_manifest = json.loads(args.study.read_text())
     study_id = study_manifest["study_instance_uid"]
 
-    # Per ADR-013 customer-sole-declarer: PHI classification +
+    # Customer-sole-declarer: PHI classification +
     # jurisdiction are customer-declared.
     capsule = client.capsules.create(
         capsulefile=args.capsulefile_id,

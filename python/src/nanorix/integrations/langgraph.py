@@ -18,8 +18,8 @@ as an `on_chain_start` / `on_chain_end` cycle, where `serialized["name"]`
 = the node name and `tags` includes `"graph:step:N"`; `metadata` carries
 `langgraph_node`). LLM calls inside nodes route through `on_llm_*` /
 `on_chat_model_start`, and tool calls route through `on_tool_*`. The same
-4 ActivityEvent variants shipped by ADR-021 cover the surface — no new
-variants — Forever-Standard preserved (ADR-006 I0).
+4 ActivityEvent variants shipped by cover the surface — no new
+variants — Forever-Standard preserved.
 
 ## Architectural distinction from the LangChain callback
 
@@ -75,8 +75,8 @@ AuditProof at capsule destroy.
 
 ## Design constraints
 
-- `framework=` REQUIRED — no silent default (ADR-013 customer-sole-declarer).
-- No PHI scanning (ADR-013 Alt B). Callback is structural.
+- `framework=` REQUIRED — no silent default (customer-sole-declarer).
+- No PHI scanning (Alt B). Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - LangGraph dep is optional — `pip install nanorix[langgraph]`.
 - Importing without `langgraph` / `langchain_core` succeeds; constructing
@@ -208,7 +208,7 @@ class NanorixLangGraphCallback(BaseCallbackHandler):
 
     Args:
         framework: REQUIRED. Compliance framework label (e.g. ``"HIPAA"``,
-            ``"GDPR"``). Customer-declared per ADR-013; no silent default.
+            ``"GDPR"``). Customer-declared; no silent default.
         capsulefile: REQUIRED. Capsulefile name the agent is running
             under. Used for callback logging context only.
         api_key: Optional Nanorix API key. Defaults to env
@@ -257,7 +257,7 @@ class NanorixLangGraphCallback(BaseCallbackHandler):
             raise ValueError(
                 "NanorixLangGraphCallback requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

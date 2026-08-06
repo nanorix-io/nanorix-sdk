@@ -1,10 +1,10 @@
 /**
- * Wave-N (ADR-039 + ADR-041) test suite — cross-impl byte-equivalence with the
+ * Wave-N test suite — cross-impl byte-equivalence with the
  * canonical Rust verifier at `governance/rzl/src/wave_n.rs`, the Go port at
  * `tools/auditproof-verifier-go/wave_n.go`, and the Python port at
  * `sdk/python/src/nanorix/verifier/wave_n.py`.
  *
- * **Forever-Standard discipline (ADR-006 I0):** every test here pins a
+ * **Forever-Standard discipline:** every test here pins a
  * cryptographic-attestation contract. Any divergence from the Rust reference
  * vectors is a P0 finding.
  *
@@ -336,7 +336,7 @@ describe("Merkle root construction", () => {
     expect(root).toBe(want);
   });
 
-  it("N=3 uses odd-level duplication per ADR-039", async () => {
+  it("N=3 uses odd-level duplication", async () => {
     const root = await merkleRootSha512NullSeparated(["aaa", "bbb", "ccc"]);
     const lvl1Left = await merklePairHash("aaa", "bbb");
     const lvl1Right = await merklePairHash("ccc", "ccc");

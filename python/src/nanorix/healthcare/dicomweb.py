@@ -29,7 +29,7 @@ Three DICOMweb verb families covered:
 - **QIDO-RS** (Query): GET /studies?StudyDate=..., GET /series?...
   Queries DICOM metadata via DICOM-JSON. Per PS3.18 §10.6.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied DICOMweb HTTP transactions and emits
     metadata fields suitable for AuditProof binding. The adapter does
@@ -40,7 +40,7 @@ Three-role discipline (ADR-017):
     conformance, PHI classification, and downstream consumer
     responsibilities remain the customer's.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer is the sole declarer of capsule content. This adapter
     parses customer-supplied DICOMweb HTTP transactions to produce
     structural metadata only; Nanorix injects nothing into the workload
@@ -115,7 +115,7 @@ class DICOMwebTransaction:
     Does NOT include pixel data — clinical payload remains in the
     customer's capsule workspace.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets.
     """
 
@@ -193,14 +193,14 @@ class DICOMwebTransaction:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         structural fields from the DICOMweb transaction. Suitable for
-        binding into the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        binding into the AuditProof's ``metadata_hash``.
 
         The metadata captures structural identifiers only; pixel data
         and any DICOM tags beyond UIDs / modality / SOP class are NOT
         emitted. Customer application code processes pixel data and
         clinical-content tags inside the capsule workspace.
 
-        Three-role discipline (ADR-017): structural parse only;
+        Three-role discipline: structural parse only;
         Nanorix does not interpret pixel data or DICOM clinical content.
         """
         meta: Dict[str, str] = {
@@ -249,11 +249,11 @@ class DICOMwebAdapter:
     other DICOMweb extensions (UPS-RS workitem management, BulkData
     retrieval) can request adapter extension.
 
-    Three-role discipline (ADR-017): Adapter is structural; pixel-data
+    Three-role discipline: Adapter is structural; pixel-data
     interpretation, DICOM IG conformance, and PHI tag classification
     remain the customer's responsibility.
 
-    Customer-sole-declarer (ADR-013): Customer supplies the HTTP
+    Customer-sole-declarer: Customer supplies the HTTP
     response payload; adapter produces structural metadata only.
 
     Optional dependency: ``dicomweb-client>=0.59`` for full DICOMweb

@@ -227,7 +227,7 @@ def test_hitrust_metadata_json_round_trip_preserves_dict():
 
 def test_hitrust_module_docstring_contains_disclaimer_language():
     """Module docstring must include the three-role disclaimer
-    framing per ADR-017."""
+    framing."""
     from nanorix.compliance import hitrust as mod
 
     doc = mod.__doc__ or ""

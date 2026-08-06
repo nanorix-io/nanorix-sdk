@@ -1,7 +1,7 @@
 /**
  * Healthcare adapter module — three-role discipline.
  *
- * Per ADR-014 + ADR-017: each adapter structurally parses a customer-
+ * Each adapter structurally parses a customer-
  * supplied wire format (HL7 V2 / FHIR / DICOM / X12 / NCPDP / IHE /
  * C-CDA / Epic SMART) and emits structural metadata fields suitable
  * for AuditProof binding. Adapters NEVER interpret clinical content,

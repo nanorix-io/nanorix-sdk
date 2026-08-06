@@ -592,7 +592,7 @@ def test_fda_samd_oversized_indications_for_use_rejected():
 
 
 def test_fda_samd_metadata_keys_under_16_max():
-    """ADR-010 A4 wire constraint: max 16 metadata keys."""
+    """Wire constraint: max 16 metadata keys."""
     ctx = FDASaMDContext(
         device_class="II",
         submission_pathway="510k",
@@ -612,7 +612,7 @@ def test_fda_samd_metadata_keys_under_16_max():
 
 
 def test_fda_samd_metadata_serialized_size_under_4kb():
-    """ADR-010 A4 wire constraint: max 4096 bytes serialized."""
+    """Wire constraint: max 4096 bytes serialized."""
     ctx = FDASaMDContext(
         device_class="II",
         submission_pathway="510k",
@@ -803,7 +803,7 @@ def test_fda_samd_module_docstring_cites_fda_primary_sources():
 
 def test_fda_samd_module_docstring_contains_three_role_disclaimer():
     """Module docstring must include the three-role disclaimer framing
-    per ADR-017."""
+    ."""
     from nanorix.healthcare import fda_samd as mod
 
     doc = mod.__doc__ or ""

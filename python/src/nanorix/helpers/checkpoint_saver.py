@@ -28,7 +28,7 @@ When SDK 1.0 publish ships, we'll add the export. Until then, this
 module is internal-only — contract churn at the customer surface is
 deferred per `feedback_consumer_surface_after_contract.md`.
 
-## Trust-boundary discipline (ADR-013 customer-sole-declarer)
+## Trust-boundary discipline (customer-sole-declarer)
 
 - **Customer holds KMS key custody.** This adapter performs no
   encryption / decryption. Customer's LangGraph state bytes flow:
@@ -245,7 +245,7 @@ class NanorixCheckpointSaver:
     Redis). A future sub-D refinement will move chain-index persistence
     server-side via the `/v1/auditproofs?session_id=...` query.
 
-    **Forever-Standard discipline (ADR-006 I0):** the canonical-hash-
+    **Forever-Standard discipline:** the canonical-hash-
     bound surface is the closed `MemoryArtifactLoaded` /
     `MemoryArtifactPersisted` ActivityEvent variants in
     `services/api/src/cdp_document.rs`. The Python adapter is

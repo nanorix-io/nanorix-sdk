@@ -15,24 +15,24 @@ binding. The adapter does NOT interpret medical-necessity criteria,
 validate against a specific payer companion guide, or determine
 authorization-decision substantive acceptability.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied X12 278 transaction bytes and emits
     structural metadata fields. Medical-necessity adjudication, payer
     companion-guide conformance, peer-review interpretation, and
     downstream PA decisioning remain the customer's responsibility.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the X12 wire payload. This adapter parses
     structural fields only; Nanorix injects nothing beyond the
     published base-image spec.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helpers emit metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). No new
+    ``Option<HashMap<String, String>>`` field. No new
     API surface; no changes to AuditProof / Capsulefile shape. The
     per-record emission uses the existing ``pattern_tag="pa"``
-    closed-enum variant (ADR-039 §"pattern_tag rule").
+    closed-enum variant.
 
 Pure-Python implementation; no native dependencies.
 
@@ -132,7 +132,7 @@ class X12ServicesReviewTransaction:
     application code processes clinical content inside the capsule
     workspace.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets medical necessity.
     """
 
@@ -238,7 +238,7 @@ class X12ServicesReviewTransaction:
 
         Returns a dict keyed by reserved framework keys plus structural
         fields from the X12 wire payload. Suitable for binding into
-        the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        the AuditProof's ``metadata_hash``.
 
         Field selection prioritizes role-3 (auditor) routing-evidence
         needs while staying under the 16-key MAX_METADATA_KEYS limit.
@@ -311,7 +311,7 @@ class X12ServicesReviewAdapter:
     - Certification action result (HCR01 — RESPONSE only)
     - Certification number (REF — for request/response correlation)
 
-    Three-role discipline (ADR-017): Adapter is structural; medical-
+    Three-role discipline: Adapter is structural; medical-
     necessity adjudication, peer-review interpretation, and PA
     decisioning remain the customer's responsibility.
 
@@ -640,7 +640,7 @@ class X12ServicesReviewAdapter:
     def receipt_pattern_tag() -> str:
         """Return the canonical per-record receipt pattern_tag for PA.
 
-        Per ADR-039 §"pattern_tag rule" closed enum, X12 278 PA reviews
+        Closed enum, X12 278 PA reviews
         emit per-record receipts with ``pattern_tag="pa"``. This is the
         same pattern_tag used by other PA workflows (e.g., Anterior's
         decision-agent pipeline).

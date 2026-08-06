@@ -324,14 +324,14 @@ def test_hl7_derive_metadata_without_workflow_id_matches_to_metadata():
 
 
 def test_hl7_metadata_keys_under_16_max():
-    """ADR-010 A4 wire constraint: max 16 metadata keys."""
+    """Wire constraint: max 16 metadata keys."""
     adapter = HL7v2Adapter()
     meta = adapter.parse_message(ADT_A01_FIXTURE).to_metadata()
     assert len(meta) <= 16
 
 
 def test_hl7_metadata_serialized_size_under_4kb():
-    """ADR-010 A4 wire constraint: max 4096 bytes serialized."""
+    """Wire constraint: max 4096 bytes serialized."""
     import json
     adapter = HL7v2Adapter()
     meta = adapter.parse_message(ADT_A01_FIXTURE).to_metadata()
@@ -358,7 +358,7 @@ def test_hl7_source_has_no_forbidden_compliance_vocabulary():
 
 
 def test_hl7_docstring_surfaces_three_role_discipline():
-    """Class-level docstring must surface ADR-017 discipline."""
+    """Class-level docstring must surface discipline."""
     doc = HL7v2Adapter.__doc__ or ""
     assert "structural" in doc.lower()
     assert "customer" in doc.lower()

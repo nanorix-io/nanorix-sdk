@@ -332,7 +332,7 @@ def test_record_response_handles_multiple_finish_reasons(
 def test_default_redacts_sensitive_content(
     tracer, memory_exporter: InMemorySpanExporter
 ):
-    """capture_content=False (default) emits redaction placeholder."""
+    """Capture_content=False (default) emits redaction placeholder."""
     e = make_exporter(tracer)
     with e.span_for_llm_call(
         model="openai/gpt-4o",
@@ -356,7 +356,7 @@ def test_default_redacts_sensitive_content(
 def test_capture_content_true_emits_full_content(
     tracer, memory_exporter: InMemorySpanExporter
 ):
-    """capture_content=True emits actual content (customer consent)."""
+    """Capture_content=True emits actual content (customer consent)."""
     e = make_exporter(tracer, capture_content=True)
     with e.span_for_llm_call(
         model="openai/gpt-4o",
@@ -373,7 +373,7 @@ def test_capture_content_true_emits_full_content(
 def test_capture_content_true_with_none_emits_empty_string(
     tracer, memory_exporter: InMemorySpanExporter
 ):
-    """capture_content=True + content=None → empty string (attr present)."""
+    """Capture_content=True + content=None → empty string (attr present)."""
     e = make_exporter(tracer, capture_content=True)
     with e.span_for_llm_call(model="openai/gpt-4o"):
         pass
@@ -861,7 +861,7 @@ def test_tool_call_attempted_records_args_hash(
 def test_tool_call_failed_with_string_failure_kind(
     tracer, memory_exporter: InMemorySpanExporter
 ):
-    """failure_kind as plain string also handled."""
+    """Failure_kind as plain string also handled."""
     e = make_exporter(tracer)
     cb = _StubCallback()
     e.attach_to(cb)
@@ -1023,7 +1023,7 @@ def test_property_random_event_streams_produce_well_formed_spans(
         assert a.get("gen_ai.operation.name") in {"chat", "execute_tool"}
 
 
-# ── ADR-006 I0 Forever-Standard preservation ───────────────────────
+# ── Forever-Standard preservation ───────────────────────
 
 
 def test_adr_006_i0_no_new_activity_event_variants():
@@ -1114,7 +1114,7 @@ def test_correlation_tag_present_on_all_emitted_spans(
 def test_attach_to_works_with_litellm_callback_shape(
     tracer, memory_exporter: InMemorySpanExporter, tmp_path: Path
 ):
-    """attach_to() compatible with NanorixLiteLLMCallback (real shape)."""
+    """Attach_to() compatible with NanorixLiteLLMCallback (real shape)."""
     pytest.importorskip("litellm")
     from nanorix.integrations.litellm import NanorixLiteLLMCallback
 
@@ -1132,7 +1132,7 @@ def test_attach_to_works_with_litellm_callback_shape(
 def test_attach_to_works_with_langchain_callback_shape(
     tracer, memory_exporter: InMemorySpanExporter, tmp_path: Path
 ):
-    """attach_to() compatible with NanorixCallback (LangChain)."""
+    """Attach_to() compatible with NanorixCallback (LangChain)."""
     pytest.importorskip("langchain_core")
     from nanorix.integrations.langchain import NanorixCallback
 

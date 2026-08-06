@@ -107,7 +107,7 @@ env:
   ANTHROPIC_MODEL: claude-3-5-sonnet-latest
   # Customer's MCP server endpoint. Empty default forces the
   # pipeline into stub mode. Production deployments MUST set this
-  # to the customer's MCP server (mTLS-attested per ADR-016).
+  # to the customer's MCP server (mTLS-attested).
   MCP_SERVER_URI: ""
   # Loop control
   MAX_AGENT_ITERATIONS: "10"

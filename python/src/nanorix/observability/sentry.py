@@ -19,7 +19,7 @@ so no Sentry import happens in this module at all.
 Critically, ``import nanorix.observability.sentry`` and importing the core
 succeed with NO ``sentry-sdk`` installed — the guard fires only on use.
 
-## Credential discipline (ADR-013)
+## Credential discipline
 
 The customer supplies their Sentry DSN (constructor arg or ``SENTRY_DSN``
 env). It is passed once to ``sentry_sdk.init`` and is **never** retained as

@@ -1,13 +1,13 @@
 /**
- * ADR-035 Batch 9 (2026-05-28) — C2PA LLM-output provenance tests (TS port).
+ * Batch 9 (2026-05-28) — C2PA LLM-output provenance tests (TS port).
  *
  * Mirrors `sdk/python/tests/test_c2pa_provenance.py`. Validates:
  *
  * - Builder fluent API (withCapsule / withModel / withPromptIntent /
  *   withGenerationTimestamp / withOutputContent / sign)
- * - Required-field enforcement at .sign() time (ADR-013 customer-sole-declarer)
+ * - Required-field enforcement at .sign() time (customer-sole-declarer)
  * - Closed-enum AssertionType (Forever-Standard discipline)
- * - Field length caps + forbidden-token scans (ADR-014 brand discipline +
+ * - Field length caps + forbidden-token scans (brand discipline +
  *   feedback_narrow_signed_claim_auditor_certifies.md)
  * - SHA-512 of canonical-JCS claims object signed by Ed25519
  * - Independent offline verification with raw 32-byte public key
@@ -173,7 +173,7 @@ describe("Builder happy path", () => {
 
 // ── Group 2: Required-field enforcement ──
 
-describe("Required-field enforcement (ADR-013 customer-sole-declarer)", () => {
+describe("Required-field enforcement (customer-sole-declarer)", () => {
   it("sign without capsule binders rejects", async () => {
     const b = new C2PAManifestBuilder()
       .withModel({ modelId: "m" })
@@ -343,7 +343,7 @@ describe("Field-validation rejections", () => {
 
 // ── Group 4: Forbidden-token scans ──
 
-describe("Forbidden-token scans (ADR-014 + narrow-claim discipline)", () => {
+describe("Forbidden-token scans (narrow-claim discipline)", () => {
   for (const token of C2PA_FORBIDDEN_BRAND_LEAK_TOKENS) {
     it(`rejects brand-leak token "${token}" in model_id`, () => {
       expect(() =>
@@ -707,7 +707,7 @@ describe("Round-trip + str input", () => {
 
 // ── Group 12: AuditProof byte-form unchanged (narrowness invariant) ──
 
-describe("Narrowness invariant (ADR-006 I0 + receipt narrowness)", () => {
+describe("Narrowness invariant (receipt narrowness)", () => {
   it("manifest module does not import internal struct names", async () => {
     // Read the c2pa_provenance.ts source and verify no IP leakage
     const fs = await import("node:fs/promises");

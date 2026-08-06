@@ -15,7 +15,7 @@ Pattern 9 in the [9-pattern atlas](../../docs-site/docs/recipes/) — 8 companie
 - **MELLODDY** — pharma-industry federated learning consortium (drug discovery)
 - **Federated learning consortia in financial services** — under bank-secrecy laws + cross-jurisdictional constraints
 
-These workflows uniformly require: (a) data-residency commitment per participating organization (PHI / PII / proprietary data NEVER leaves the organization's perimeter), (b) cryptographic non-repudiation per round per participant (load-bearing for IRB approvals, BAA terms, multi-party trust agreements), (c) coordinator-attested global-snapshot binding (each round's training context is the coordinator's published snapshot, not a drifted local copy), (d) per-organization signing authority (no cross-organization key sharing; each organization's HSM signs their own contribution per ADR-031).
+These workflows uniformly require: (a) data-residency commitment per participating organization (PHI / PII / proprietary data NEVER leaves the organization's perimeter), (b) cryptographic non-repudiation per round per participant (load-bearing for IRB approvals, BAA terms, multi-party trust agreements), (c) coordinator-attested global-snapshot binding (each round's training context is the coordinator's published snapshot, not a drifted local copy), (d) per-organization signing authority (no cross-organization key sharing; each organization's HSM signs their own contribution).
 
 ## Pipeline shape
 
@@ -49,7 +49,7 @@ Federation coordinator                     Participating organization (one per c
         │                                    ▼
         │                                  AuditProof emitted at capsule destroy
         │                                  (signed under organization's authority
-        │                                   when BYO-HSM is enabled per ADR-031)
+        │ when BYO-HSM is enabled)
         │
         │  Coordinator aggregates N organizations' deltas per
         │  aggregation strategy (FedAvg, FedProx, SCAFFOLD, etc)
@@ -62,7 +62,7 @@ The substrate's role is per-organization-per-round attestation. The coordinator'
 
 ## Multi-party trust composition
 
-Federated learning's trust story is multi-party by construction. Per ADR-031 (BYO-HSM signing model), each participating organization's per-round AuditProof is signed under that organization's HSM-rooted authority — Nanorix sees no organization's private key. Composition shape:
+Federated learning's trust story is multi-party by construction. Under the BYO-HSM signing model, each participating organization's per-round AuditProof is signed under that organization's HSM-rooted authority — Nanorix sees no organization's private key. Composition shape:
 
 ```
 [Org A's per-round AuditProof]    Signed by Org A's HSM
@@ -159,7 +159,7 @@ The `regulatory_context` block enumerates provisions this AuditProof's activity 
 
 Nanorix uses `related_to` language only — never asserts compliance status. Customer's compliance officer makes the final determination. For federated workflows under SaMD classification (e.g., a federated-trained clinical model deployed as SaMD), customer's regulatory counsel determines FDA Class.
 
-> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split per ADR-017). Customer remains responsible for their organizational GRC program. The local training loop, coordinator client, DP integration, and federation aggregation logic are illustrative reference implementations — production composes customer's licensed federated framework + customer's model architecture + customer's privacy parameters + customer's federation operator agreement + customer's regulatory-counsel-determined privacy posture + customer's IRB / ABOM / consortium-specific approvals.
+> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split). Customer remains responsible for their organizational GRC program. The local training loop, coordinator client, DP integration, and federation aggregation logic are illustrative reference implementations — production composes customer's licensed federated framework + customer's model architecture + customer's privacy parameters + customer's federation operator agreement + customer's regulatory-counsel-determined privacy posture + customer's IRB / ABOM / consortium-specific approvals.
 
 ## Running this bundle
 
@@ -230,4 +230,4 @@ publish_round(round_id="fed_round_2026_05_q2_002", snapshot=new_snapshot,
 - **Production model architecture** — local training loop ships skeleton with PyTorch primitives; customer fills model.nn.Module + dataset loader + loss function + optimizer.
 - **Production privacy posture** — secure aggregation + homomorphic encryption are framework-level concerns; substrate composes with these via the framework's published API (out-of-scope for the substrate's enforcement).
 - **IRB / ABOM / consortium approvals** — federated workflows under research IRB or pharma ABOM oversight require customer-side approval cycles before any participant onboards.
-- **Cross-jurisdictional federation** — when participants span jurisdictions (US + EU + UK + etc), data-residency commitment per jurisdiction (per ADR-018 region binding) is the participant's compliance counsel's domain.
+- **Cross-jurisdictional federation** — when participants span jurisdictions (US + EU + UK + etc), data-residency commitment per jurisdiction (region binding) is the participant's compliance counsel's domain.

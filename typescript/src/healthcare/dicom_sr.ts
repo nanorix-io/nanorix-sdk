@@ -7,7 +7,7 @@
  * (TID 1500 / TID 4019 / etc.), creator role (HUMAN / AI), and
  * (when AI-generated) the algorithm identification.
  *
- * Three-role discipline (ADR-017): structural binding only; clinical
+ * Three-role discipline: structural binding only; clinical
  * interpretation, template conformance, FDA SaMD post-market
  * surveillance + EU MDR Annex VIII regulatory determination remain
  * the customer's responsibility.

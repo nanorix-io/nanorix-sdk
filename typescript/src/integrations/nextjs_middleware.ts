@@ -65,12 +65,12 @@
  *
  * ## Trust-boundary discipline
  *
- * - **Customer-sole-declarer (ADR-013).** `framework` is REQUIRED.
+ * - **Customer-sole-declarer.** `framework` is REQUIRED.
  * - **Narrow signed claim**. Captures structural HTTP request facts;
  *   NEVER asserts request-content conformance.
- * - **Zero-retention (ADR-006 I0).** Request/response bodies NEVER
+ * - **Zero-retention.** Request/response bodies NEVER
  *   enter the AuditProof.
- * - **ADR-014 brand.** Response header is `X-Nanorix-AuditProof-Id`.
+ * - ** brand.** Response header is `X-Nanorix-AuditProof-Id`.
  *
  * ## Optional dependency
  *
@@ -88,7 +88,7 @@ import {
 
 // ── Constants ───────────────────────────────────────────────────────
 
-/** ADR-006 reserved-slot wire form for per-HTTP-request AuditProofs. */
+/** reserved-slot wire form for per-HTTP-request AuditProofs. */
 export const CDP_KIND_REQUEST = "request";
 
 /** Reserved metadata-key value emitted via `nanorix:wrapper_kind`. */
@@ -257,7 +257,7 @@ const NOOP_LOGGER: NanorixLogger = {};
 export interface NanorixNextOptions {
   /** REQUIRED. Nanorix client instance. */
   client: NanorixClientLike;
-  /** REQUIRED. Compliance framework label (customer-declared per ADR-013). */
+  /** REQUIRED. Compliance framework label (customer-declared). */
   framework: string;
   /** REQUIRED. Capsulefile ID or local name. */
   capsulefile: string;
@@ -342,7 +342,7 @@ export function toMetadata(opts: {
  * filter is bound into a sealed Nanorix capsule lifecycle.
  *
  * @throws Error if `client`, `framework`, or `capsulefile` is missing
- *   or empty (no silent default per ADR-013 customer-sole-declarer).
+ * or empty (no silent default customer-sole-declarer).
  */
 export function withNanorix(
   handler: NextMiddlewareHandler,
@@ -606,7 +606,7 @@ function validateOpts(opts: NanorixNextOptions, caller: string): void {
   if (!opts.framework || typeof opts.framework !== "string") {
     throw new Error(
       `${caller} requires an explicit \`framework\` option (e.g., framework: 'HIPAA'). ` +
-        "No silent default per ADR-013 customer-sole-declarer discipline.",
+        "No silent default customer-sole-declarer discipline.",
     );
   }
   if (!opts.capsulefile || typeof opts.capsulefile !== "string") {

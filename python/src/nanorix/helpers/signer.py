@@ -204,7 +204,7 @@ def sign_activity_event(
         returns to the Nanorix daemon caller.
     """
     canonical_bytes = canonicalize_event(event)
-    # Per ADR-011 / cdp_document.rs convention: signature is over
+    # Per / cdp_document.rs convention: signature is over
     # SHA-512 hash of canonical JSON. The hash is what the signer
     # actually receives (so the signer doesn't need to know the JSON
     # encoding rules — it just signs bytes).

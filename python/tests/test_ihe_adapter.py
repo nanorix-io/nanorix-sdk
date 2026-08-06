@@ -439,7 +439,7 @@ def test_to_metadata_includes_reserved_framework_keys() -> None:
 
 
 def test_to_metadata_payload_sha256_is_hex_string_no_raw_bytes() -> None:
-    """payload_sha256 MUST be a hex string (no raw bytes leak)."""
+    """Payload_sha256 MUST be a hex string (no raw bytes leak)."""
     adapter = IHEAdapter()
     tx = adapter.parse_submission(
         profile="XDS-I.b",
@@ -628,7 +628,7 @@ def test_empty_document_uids_allowed_in_lenient_for_query() -> None:
 
 
 def test_missing_home_community_id_allowed_in_xds_ib() -> None:
-    """home_community_id is optional for XDS-I.b (only XDR strictly requires)."""
+    """Home_community_id is optional for XDS-I.b (only XDR strictly requires)."""
     adapter = IHEAdapter(strict=True)
     tx = adapter.parse_submission(
         profile="XDS-I.b",
@@ -671,7 +671,7 @@ def test_very_long_uid_chain_emits_count_fallback() -> None:
 
 
 def test_metadata_under_4kb_limit_for_typical_submission() -> None:
-    """to_metadata must serialize under the 4 KB wire-cap per ADR-013."""
+    """To_metadata must serialize under the 4 KB wire-cap."""
     adapter = IHEAdapter()
     tx = adapter.parse_submission(
         profile="XDS-I.b",
@@ -688,7 +688,7 @@ def test_metadata_under_4kb_limit_for_typical_submission() -> None:
 
 
 def test_metadata_key_count_under_16_limit() -> None:
-    """to_metadata must respect MAX_METADATA_KEYS = 16."""
+    """To_metadata must respect MAX_METADATA_KEYS = 16."""
     adapter = IHEAdapter()
     tx = adapter.parse_submission(
         profile="XDS-I.b",
@@ -705,7 +705,7 @@ def test_metadata_key_count_under_16_limit() -> None:
 
 
 def test_metadata_contains_required_routing_keys() -> None:
-    """to_metadata must always include transaction_id, profile,
+    """To_metadata must always include transaction_id, profile,
     repository_uri, payload_sha256, instance_count, transaction_timestamp."""
     adapter = IHEAdapter()
     tx = adapter.parse_submission(

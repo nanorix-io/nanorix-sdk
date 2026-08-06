@@ -125,16 +125,16 @@ export interface DataSummary {
 }
 
 /**
- * Per-record receipt — ADR-039 mirror of `nanorix_rzl::types::RecordReceipt`.
+ * Per-record receipt — mirror of `nanorix_rzl::types::RecordReceipt`.
  *
- * Forever-Standard (ADR-006 I0): field-additive optional fields with
+ * Forever-Standard: field-additive optional fields with
  * `[key: string]: unknown` so SDK-side parsing keeps working as the Rust
  * struct grows.
  *
- * **No `control_tags` field by design.** Per ADR-039 section "Receipt as direct
- * evidence primitive" + ADR-040 RE-SCOPED: control IDs are NEVER stamped
+ * **No `control_tags` field by design.** Section "Receipt as direct
+ * evidence primitive" + RE-SCOPED: control IDs are NEVER stamped
  * into the signed receipt. Adapters derive `(jurisdiction x classification
- * x pattern_tag) -> string[]` at ingestion time via the ADR-040
+ * x pattern_tag) -> string[]` at ingestion time via the
  * published mapping artifact (`./control_map`). Three-layer
  * separation: receipt (immutable signed primitive) / mapping (versioned
  * artifact) / adapter (vendor pace).
@@ -152,10 +152,10 @@ export interface RecordReceipt {
 }
 
 /**
- * Cross-org parent-proof link — ADR-041 mirror of
+ * Cross-org parent-proof link — mirror of
  * `nanorix_rzl::types::ParentProofLink`.
  *
- * Forever-Standard (ADR-006 I0): optional fields skip-serialize when
+ * Forever-Standard: optional fields skip-serialize when
  * undefined so cross-impl byte-equivalence is preserved.
  */
 export interface ParentProofLink {
@@ -179,18 +179,18 @@ export interface CdpDocument {
   document_hash?: string;
   destruction_trigger?: string;
   /**
-   * ADR-006 Wave 16-A reserved-slot discriminator. V1 always undefined /
+   * Wave 16-A reserved-slot discriminator. V1 always undefined /
    * absent (workload scope implicit). Wave 18-11 ungated values:
    * "workload" | "request" | "call" | "batch".
    */
   cdp_kind?: string;
   /**
-   * ADR-039 Wave-N per-record receipts + ADR-041 cross-org parent
-   * composition. Field-additive Optional per Forever-Standard (ADR-006 I0):
+   * Wave-N per-record receipts + cross-org parent
+   * composition. Field-additive Optional per Forever-Standard:
    * pre-Wave-N AuditProofs canonicalize byte-identically (both fields skip-
    * serialize when undefined). Receipts carry `pattern_tag` only — control
    * IDs are NEVER stamped into the signed primitive; adapters apply the
-   * ADR-040 mapping artifact at ingestion time.
+   * mapping artifact at ingestion time.
    */
   record_receipts?: RecordReceipt[];
   record_receipts_merkle_root?: string;
@@ -214,12 +214,12 @@ export interface VerificationCdp {
   attestation?: AttestationInfo;
   document_hash?: string;
   verify?: string;
-  /** ADR-006 Wave 16-A reserved-slot discriminator. V1 always undefined. */
+  /** Wave 16-A reserved-slot discriminator. V1 always undefined. */
   cdp_kind?: string;
   /**
-   * ADR-039 + ADR-041 mirrored on the shareable AuditProof surface. See
+   * mirrored on the shareable AuditProof surface. See
    * CdpDocument for full semantics. Field-additive Optional per Forever-
-   * Standard (ADR-006 I0): pre-Wave-N AuditProofs canonicalize byte-
+   * Standard: pre-Wave-N AuditProofs canonicalize byte-
    * identically when undefined.
    */
   record_receipts?: RecordReceipt[];

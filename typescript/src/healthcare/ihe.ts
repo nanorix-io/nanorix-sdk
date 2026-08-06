@@ -11,12 +11,12 @@
  *
  * Transactions covered: ITI-41, ITI-43, ITI-38, ITI-39, RAD-68, RAD-69.
  *
- * Three-role discipline (ADR-017): structural adapter; IHE conformance
+ * Three-role discipline: structural adapter; IHE conformance
  * certification, RAD-TF/ITI-TF Implementation Guide validation, IHE
  * Connectathon test certification, document content interpretation,
  * and PHI classification remain the customer's responsibility.
  *
- * Customer-sole-declarer (ADR-013): customer pipeline parses the SOAP
+ * Customer-sole-declarer: customer pipeline parses the SOAP
  * envelope and supplies structural identifiers (UIDs, OIDs, repository
  * URIs) directly; adapter validates structural format only.
  *
@@ -95,7 +95,7 @@ function ensureIso8601Utc(timestamp: string): string {
 /**
  * Structural anomaly during IHE profile mapping.
  *
- * Three-role discipline (ADR-017): NEVER signals IHE conformance
+ * Three-role discipline: NEVER signals IHE conformance
  * failure, IHE Connectathon test failure, or clinical document
  * validation failure — those determinations are the customer's.
  */

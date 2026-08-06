@@ -14,7 +14,7 @@ transport, so no vendor dependency is required at all. (The ``[splunk]``
 extra declares ``requests`` only for parity with the documented sample; it
 is not imported here.)
 
-## Credential discipline (ADR-013)
+## Credential discipline
 
 The customer supplies their HEC token + URL (constructor args or
 ``SPLUNK_HEC_TOKEN`` / ``SPLUNK_HEC_URL`` env). The token authenticates the

@@ -1,12 +1,12 @@
 /**
  * C2PA LLM-Output Provenance — sibling primitive next to AuditProof.
  *
- * Per ADR-035 (2026-05-28). Customers running LLM/AI inference inside
+ * Under the 2026-05-28. Customers running LLM/AI inference inside
  * Nanorix capsules emit a C2PA-conformant signed manifest binding the
  * generated output content to the capsule run that produced it. The
  * manifest references the AuditProof by three opaque identifiers
  * (capsule_id, auditproof_id, verification_key_id) without modifying
- * the AuditProof byte-form — strict ADR-006 I0 Forever-Standard
+ * the AuditProof byte-form — strict Forever-Standard
  * byte-equivalence preservation.
  *
  * ## C2PA standard
@@ -24,7 +24,7 @@
  * cryptographic guarantees. C2PA is the de-facto-standard
  * interchange format for satisfying these transparency obligations.
  *
- * ## Three-role discipline (ADR-017)
+ * ## Three-role discipline
  *
  * Nanorix signs STRUCTURAL FACTS only. Auditor certifies regulatory
  * adequacy. SDK refuses to claim "satisfies Art 50" / "passes" /
@@ -36,7 +36,7 @@
  * PERMANENT: AuditProof / RecordReceipt / ParentProofLink fields are
  * UNCHANGED by this module. The C2PA manifest is a fully external
  * sibling primitive. AuditProof byte-form is explicitly affirmed
- * unchanged under ADR-006 I0.
+ * unchanged.
  *
  * ## Usage
  *
@@ -95,7 +95,7 @@ export const C2PA_ACTION_CREATED = "c2pa.created";
 /**
  * Closed enum of supported assertion labels.
  *
- * Append-only per ADR-006 I0 Forever-Standard; new variants arrive via
+ * Append-only Forever-Standard; new variants arrive via
  * ADR amendment. C2PA standard labels + Nanorix-namespaced extensions
  * for capsule + AuditProof binding.
  */
@@ -124,7 +124,7 @@ export const MAX_TIMESTAMP_LEN = 64;
 
 /**
  * Tokens that must NEVER appear in customer-facing C2PA manifest content.
- * Per ADR-014: internal struct/engine names are confidential brand discipline.
+ * Internal struct/engine names are confidential brand discipline.
  */
 export const FORBIDDEN_BRAND_LEAK_TOKENS: readonly string[] = [
   "VerificationCdp",
@@ -170,7 +170,7 @@ function checkForbiddenTokens(value: string, fieldName: string): void {
       throw new Error(
         `Field "${fieldName}": value contains forbidden brand-leak ` +
           `token "${tok}". Internal struct/engine names must not appear ` +
-          `in customer-facing C2PA manifests (ADR-014).`,
+          `in customer-facing C2PA manifests.`,
       );
     }
   }
@@ -180,7 +180,7 @@ function checkForbiddenTokens(value: string, fieldName: string): void {
         `Field "${fieldName}": value contains forbidden regulatory ` +
           `token "${tok}". C2PA manifest assertions are STRUCTURAL ` +
           `facts only; regulatory adequacy is the auditor's ` +
-          `determination (ADR-017; ` +
+          `determination (` +
           `feedback_narrow_signed_claim_auditor_certifies.md).`,
       );
     }
@@ -275,7 +275,7 @@ export interface C2PAManifestDict {
 /**
  * Structural verification result — NEVER a regulatory verdict.
  *
- * Per ADR-035 + ADR-017 three-role split: this result is the Nanorix-side
+ * Three-role split: this result is the Nanorix-side
  * STRUCTURAL determination. Whether the structural pass satisfies any
  * regulatory regime (e.g., EU AI Act Article 50) for a specific
  * deployment is the auditor's determination — downstream of this result.
@@ -318,9 +318,9 @@ export interface WithModelOptions {
  * SHA-512 hashed; that hash is signed via Ed25519. The signature is
  * independently verifiable offline given the public key bytes.
  *
- * Per ADR-035 (2026-05-28), this manifest references the AuditProof by
+ * Under the 2026-05-28, this manifest references the AuditProof by
  * three opaque identifiers without modifying the AuditProof byte-form.
- * Strict Forever-Standard byte-equivalence preservation (ADR-006 I0).
+ * Strict Forever-Standard byte-equivalence preservation.
  */
 export class C2PAManifest {
   readonly claimGenerator: string;
@@ -382,7 +382,7 @@ export class C2PAManifest {
  * Final `.sign(signer)` validates required fields, computes the claims
  * hash, signs it, and returns an immutable C2PAManifest.
  *
- * All inference is REFUSED per ADR-013 customer-sole-declarer. The
+ * All inference is REFUSED customer-sole-declarer. The
  * builder will not infer modelId, promptIntent, generation timestamp,
  * output bytes — customer must declare each explicitly. Missing
  * required field at .sign() time -> throws.
@@ -444,7 +444,7 @@ export class C2PAManifestBuilder {
    * Customer-declared model attribution.
    *
    * modelId is opaque to Nanorix (not validated against any registry).
-   * modelWeightsHash is optional. Both per ADR-013.
+   * modelWeightsHash is optional. Both.
    */
   withModel(opts: WithModelOptions): C2PAManifestBuilder {
     const { modelId, modelWeightsHash } = opts;
@@ -554,7 +554,7 @@ export class C2PAManifestBuilder {
   /**
    * Append an arbitrary assertion (closed-enum label required).
    *
-   * Per ADR-035, assertion labels come from a closed enum (AssertionType).
+   * Assertion labels come from a closed enum (AssertionType).
    * Open `data` payload accommodates forward evolution of the C2PA standard.
    */
   withAssertion(assertion: Record<string, unknown>): C2PAManifestBuilder {
@@ -612,7 +612,7 @@ export class C2PAManifestBuilder {
         "Cannot sign manifest: missing required customer-declared " +
           "fields: " +
           missing.join(", ") +
-          ". Per ADR-013 customer-sole-declarer, all required fields " +
+          ". Customer-sole-declarer, all required fields " +
           "must be set explicitly; Nanorix refuses to infer any of them.",
       );
     }

@@ -6,7 +6,7 @@ obviously fictitious; SOP Instance UIDs are illustrative (in the OID
 "1.2.3.x" range — not real institution OIDs). NEVER real PHI per
 Wave 18-5 / Item 37 directive.
 
-Wave 18-5 / Item 37 / ADR-038 Proposed.
+Wave 18-5 / Item 37 / Proposed.
 """
 from __future__ import annotations
 

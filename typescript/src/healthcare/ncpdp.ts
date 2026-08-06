@@ -10,17 +10,17 @@
  *    eligibility (E1), info reporting (N1/N2/N3), prior auth (P1-P4),
  *    controlled substance reporting (C1/C2/C3).
  *
- * Three-role discipline (ADR-017): structural adapter. Schedule II-V
+ * Three-role discipline: structural adapter. Schedule II-V
  * classification, DEA registration verification, prescriber authority,
  * formulary determination, and downstream PBM adjudication remain the
  * customer's responsibility.
  *
- * Customer-sole-declarer (ADR-013): customer supplies the wire
+ * Customer-sole-declarer: customer supplies the wire
  * payload; adapter parses structural fields only.
  *
- * Forever-Standard discipline (ADR-006 I0): emits via the existing
+ * Forever-Standard discipline: emits via the existing
  * metadata envelope. Per-record receipt emission uses
- * `pattern_tag="ncpdp_script"` per ADR-039.
+ * `pattern_tag="ncpdp_script"`.
  */
 
 import { createHash } from "crypto";

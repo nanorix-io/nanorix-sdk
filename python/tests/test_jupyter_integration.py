@@ -127,7 +127,7 @@ def test_parse_missing_capsulefile_raises_clear_error() -> None:
     with pytest.raises(MagicArgsError) as exc:
         parse_magic_args("--data-classification PHI", "run")
     assert "--capsulefile" in str(exc.value)
-    assert "ADR-013" in str(exc.value)
+    assert "never inferred" in str(exc.value)
 
 
 def test_parse_unknown_flag_raises() -> None:
@@ -213,7 +213,7 @@ def test_run_capsule_cell_no_destroy_leaves_no_proof() -> None:
 
 
 def test_run_capsule_cell_reserved_metadata_prefix_rejected() -> None:
-    """nanorix:* metadata keys are rejected by the core (fail fast)."""
+    """Nanorix:* metadata keys are rejected by the core (fail fast)."""
     client = FakeClient()
     params = parse_magic_args(
         "--capsulefile cf_x --meta nanorix:owner=me", "run"
@@ -298,7 +298,7 @@ def test_render_auditproof_has_brand_and_no_engine_names() -> None:
     html = render_auditproof_html(_result_with_outputs({"r.json": b"{}"}))
     assert "AuditProof" in html
     assert "cap_1" in html
-    # Internal engine names must NEVER appear (ADR-014).
+    # Internal engine names must NEVER appear.
     for engine in (
         "EEE", "DIRE", "RZL", "FGX", "AIPPF", "ACE", "MCP", "FGI",
         "SIS", "ZilchNet", "SLMM", "ZPSS", "ECM", "Memproof", "AVE",

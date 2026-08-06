@@ -14,9 +14,9 @@ existing LangChain chain or agent_executor:
 The callback runs INSIDE a Nanorix capsule (customer wraps the agent
 run via `client.capsules.create()` or the future `@nanorix.workload`
 decorator from item 3 of the ship sequence). LangChain's hook surface
-maps onto the 4 existing ActivityEvent variants shipped by ADR-021
+maps onto the 4 existing ActivityEvent variants shipped by
 (`ToolCallAttempted` / `ToolCallCompleted` / `ToolCallFailed` /
-`ReasoningStepCompleted`). No new variants — ADR-006 I0
+`ReasoningStepCompleted`). No new variants —
 Forever-Standard discipline preserved.
 
 ## Three-tier integration model
@@ -55,8 +55,8 @@ events via `tool_call_id`. They write nothing to the buffer.
 
 ## Design constraints
 
-- Framework arg REQUIRED — no silent default (ADR-013 customer-sole-declarer).
-- No PHI scanning (ADR-013 Alt B). Callback is structural.
+- Framework arg REQUIRED — no silent default (customer-sole-declarer).
+- No PHI scanning (Alt B). Callback is structural.
 - No raw payload retention. SHA-512 hex digests only.
 - LangChain dep is optional — `pip install nanorix[langchain]`.
 - Importing this module without `langchain_core` installed succeeds;
@@ -174,11 +174,11 @@ class NanorixCallback(BaseCallbackHandler):
     Attaches to a LangChain chain, agent_executor, or LCEL Runnable
     via the `callbacks=[...]` config slot. Maps each invoked hook
     into the existing 4 ActivityEvent variants without adding any
-    new variant (ADR-006 I0 Forever-Standard).
+    new variant (Forever-Standard).
 
     Args:
         framework: REQUIRED. Compliance framework label (e.g. ``"HIPAA"``,
-            ``"GDPR"``, ``"SOC2"``). Customer-declared per ADR-013;
+            ``"GDPR"``, ``"SOC2"``). Customer-declared;
             no silent default. Used for per-callback logging context;
             does NOT enter the AuditProof's hash chain (the
             framework_id field on AuditProof.metadata is established
@@ -250,7 +250,7 @@ class NanorixCallback(BaseCallbackHandler):
             raise ValueError(
                 "NanorixCallback requires an explicit `framework=` argument "
                 "(e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(
@@ -497,7 +497,7 @@ class NanorixCallback(BaseCallbackHandler):
         code via raised exceptions; the chain-level retry logic in
         LangChain may invoke `on_llm_start` again with a new run_id.
         Customer's outer code translates fatal errors into the
-        capsule's `destruction_state` per ADR-019. We deliberately
+        capsule's `destruction_state`. We deliberately
         do NOT emit a `ToolCallFailed` here because LLM calls and
         tool calls are distinct concepts in the AuditProof's
         activity trail.
@@ -607,7 +607,7 @@ class NanorixCallback(BaseCallbackHandler):
         # Free-form narrative is the exception's str() representation.
         # Closed-enum kind is mapped via _classify_tool_error (returns
         # None when the exception class doesn't map; the helper writes
-        # only the free-form narrative in that case, per ADR-021's
+        # only the free-form narrative in that case, per the
         # "sometimes-populated" reserved-slot discipline).
         failure_reason = f"{type(error).__name__}: {error}"
         failure_kind = self._classify_tool_error(error)

@@ -1,5 +1,5 @@
 /**
- * ADR-039 + ADR-041 Wave B Item 3 — TypeScript SDK per-record receipt +
+ * Wave B Item 3 — TypeScript SDK per-record receipt +
  * parent-proof tests.
  *
  * Faithful TS port of `sdk/python/tests/test_capsule_record.py`.
@@ -93,7 +93,7 @@ function recordResponse(
     buffered_count: recordIndex + 1,
     disclaimer:
       "The receipt is signed evidence. Control IDs are derived at adapter " +
-      "time via the ADR-040 published mapping artifact; whether the " +
+      "time via the published mapping artifact; whether the " +
       "evidence is acceptable for a control is determined by the customer's " +
       "compliance program and the auditor's adjudication, not by Nanorix.",
   };
@@ -133,7 +133,7 @@ function makeFakePost(): {
 
 // ── 1. PatternTag closed-enum validation ──
 
-describe("PatternTag closed-enum (ADR-039 'pattern_tag rule')", () => {
+describe("PatternTag closed-enum ('pattern_tag rule')", () => {
   it("PATTERN_TAGS has exactly 15 variants", () => {
     expect(PATTERN_TAGS).toHaveLength(15);
   });
@@ -738,9 +738,9 @@ describe("AuditProof response parsing (record_receipts + parent_proof_hashes)", 
   });
 });
 
-// ── 8. Forever-Standard discipline (ADR-006 I0) ──
+// ── 8. Forever-Standard discipline ──
 
-describe("Forever-Standard (ADR-006 I0)", () => {
+describe("Forever-Standard", () => {
   it("pre-Wave-N AuditProof (undefined receipts) round-trips through JSON unchanged", () => {
     const raw: CdpDocument = {
       capsule_id: "cap_pre_wave_n",
@@ -793,7 +793,7 @@ describe("Forever-Standard (ADR-006 I0)", () => {
     expect(block.includes("control_tags")).toBe(false);
   });
 
-  it("ParentProofLink field set matches ADR-041", () => {
+  it("ParentProofLink field set matches the parent-proof link spec", () => {
     const sample: ParentProofLink = {
       parent_chain_hash: `sha512:${"d".repeat(128)}`,
       parent_key_id: "cust-auth-x",
@@ -818,7 +818,7 @@ describe("Forever-Standard (ADR-006 I0)", () => {
 
 // ── 9. Adapter-side resolver flow (three-layer demo) ──
 
-describe("Adapter-side mapping resolution (ADR-040)", () => {
+describe("Adapter-side mapping resolution", () => {
   it("end-to-end three-layer flow: receipt -> mapping.resolve -> control IDs", () => {
     // 1. Simulated AuditProof from Nanorix API.
     const rawProof: Record<string, unknown> = {

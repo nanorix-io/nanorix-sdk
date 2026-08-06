@@ -7,8 +7,7 @@ emission. The two channels coexist:
 
 - **Channel 1 (existing)**: `ActivityEvent` records → in-capsule
   `/data/activity_events.jsonl` → drained at destroy → bound into AuditProof
-  hash chain (ADR-021's 4 closed-set variants — Forever-Standard per
-  ADR-006 I0).
+  hash chain ( 4 closed-set variants — Forever-Standard).
 - **Channel 2 (this module)**: OTel `gen_ai.*` spans → customer's existing
   TracerProvider → flows into customer's existing observability stack
   (Datadog, Splunk, Honeycomb, Logfire, New Relic, etc.). NOT bound into
@@ -119,14 +118,14 @@ with exporter.span_for_llm_call(
 
 ## Critical discipline anchors
 
-- **ADR-006 I0 Forever-Standard**: 4 ActivityEvent variants ONLY. This
+- ** Forever-Standard**: 4 ActivityEvent variants ONLY. This
   module ADDS A SECOND CHANNEL — it does NOT add new variants. The OTel
   exporter consumes the existing 4-variant ActivityEvent stream
   (Mode A) or emits standalone spans without writing to the activity
   buffer (Mode B).
-- **ADR-013 customer-sole-declarer**: `framework=` REQUIRED — no silent
+- ** customer-sole-declarer**: `framework=` REQUIRED — no silent
   default.
-- **ADR-014 brand discipline**: AuditProof / Capsulefile vocabulary in
+- ** brand discipline**: AuditProof / Capsulefile vocabulary in
   all customer-facing strings.
 - **Zero-retention**: prompt/completion content emission is OPT-IN OFF
   by default. Default behavior emits `"[redacted; see AuditProof for
@@ -347,7 +346,7 @@ class NanorixOTelGenAIExporter:
             this exporter flow into whatever `TracerProvider` the
             customer configured.
         framework: REQUIRED. Compliance framework label (e.g. ``"HIPAA"``,
-            ``"GDPR"``). Customer-declared per ADR-013; no silent default.
+            ``"GDPR"``). Customer-declared; no silent default.
             Recorded as `nanorix.compliance.framework` attribute on every
             emitted span.
         capsulefile: REQUIRED. Capsulefile name the agent runs under.
@@ -398,7 +397,7 @@ class NanorixOTelGenAIExporter:
             raise ValueError(
                 "NanorixOTelGenAIExporter requires an explicit `framework=` "
                 "argument (e.g., framework='HIPAA'). No silent default per "
-                "ADR-013 customer-sole-declarer discipline."
+                " customer-sole-declarer discipline."
             )
         if not capsulefile or not isinstance(capsulefile, str):
             raise ValueError(

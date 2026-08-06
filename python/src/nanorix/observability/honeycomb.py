@@ -19,7 +19,7 @@ Critically, ``import nanorix.observability.honeycomb`` and importing the
 core succeed with NO ``opentelemetry`` installed — the guard fires only on
 use.
 
-## Credential discipline (ADR-013)
+## Credential discipline
 
 The customer supplies their Honeycomb ingest key (constructor arg or
 ``HONEYCOMB_INGEST_KEY`` env). It is passed to the OTLP exporter headers

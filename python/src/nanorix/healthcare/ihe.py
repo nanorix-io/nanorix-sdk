@@ -48,7 +48,7 @@ Transactions covered:
 - **RAD-69** (Retrieve Imaging Document Set) — imaging-document
   retrieval. Per IHE RAD-TF Vol. 2 §4.69.
 
-Three-role discipline (ADR-017):
+Three-role discipline:
     Nanorix is an evidence vendor (role 1). This adapter structurally
     parses customer-supplied IHE SOAP envelope identifiers and emits
     metadata fields suitable for AuditProof binding. The adapter does
@@ -60,15 +60,15 @@ Three-role discipline (ADR-017):
     remain the customer's. IHE Connectathon testing certifies the
     customer's gateway/repository/registry — not Nanorix.
 
-Customer-sole-declarer (ADR-013):
+Customer-sole-declarer:
     The customer supplies the parsed SOAP envelope identifiers (UIDs,
     OIDs, repository URIs). The adapter validates structural format
     only; Nanorix never infers PHI fields from XML content or asserts
     document classification.
 
-Forever-Standard discipline (ADR-006 I0):
+Forever-Standard discipline:
     Helper emits metadata via the existing
-    ``Option<HashMap<String, String>>`` field (ADR-010 A4). No new
+    ``Option<HashMap<String, String>>`` field. No new
     API surface; no changes to AuditProof / Capsulefile shape.
 
 Optional dependency: ``lxml>=4.9`` is the standard XML library for
@@ -111,7 +111,7 @@ as of 2026-05 and is what production deployments target."""
 
 # Closed enum of supported IHE profiles. Mirrors the
 # ``_VALID_VERB_FAMILIES`` pattern from :mod:`nanorix.healthcare.dicomweb`.
-# Append-only per ADR-006 I0 (closed-enum extension follows ADR amendment).
+# Append-only (closed-enum extension follows ADR amendment).
 _VALID_PROFILES: FrozenSet[str] = frozenset({"XDS-I.b", "XDR"})
 
 # Closed enum of supported IHE transaction identifiers. Each entry maps
@@ -174,7 +174,7 @@ class IHEBindingError(ValueError):
     UIDs/OIDs fail structural validation. Subclasses :class:`ValueError`
     so catch-all handlers picking up :class:`ValueError` keep working.
 
-    Three-role discipline (ADR-017): this exception flags STRUCTURAL
+    Three-role discipline: this exception flags STRUCTURAL
     anomalies. It NEVER signals IHE conformance failure, IHE
     Connectathon test failure, or clinical document validation failure
     — those determinations are the customer's responsibility.
@@ -302,7 +302,7 @@ class IHETransaction:
     and a SHA-256 hash of the structural envelope (NOT pixel data) for
     integrity anchoring.
 
-    Three-role discipline (ADR-017): Nanorix structurally parses;
+    Three-role discipline: Nanorix structurally parses;
     customer interprets and certifies. The ``payload_sha256`` field is
     the narrow signed claim per ``feedback_narrow_signed_claim_auditor_certifies.md``
     — it anchors the structural envelope bytes only and never asserts
@@ -354,7 +354,7 @@ class IHETransaction:
     that defines the structural transaction (ebRIM/ebRS metadata over
     SOAP); does NOT hash pixel data or referenced DICOM imaging content
     — those remain inside the customer's PACS/repository and outside the
-    AuditProof binding (per ADR-017 narrow-claim discipline)."""
+    AuditProof binding (narrow-claim discipline)."""
 
     instance_count: int
     """Number of document entries in the submission (or query result
@@ -389,14 +389,14 @@ class IHETransaction:
         Returns a dict keyed by the reserved keys
         ``nanorix:framework`` + ``nanorix:framework_version`` plus
         structural fields from the IHE transaction. Suitable for
-        binding into the AuditProof's ``metadata_hash`` per ADR-010 A4.
+        binding into the AuditProof's ``metadata_hash``.
 
         The metadata captures structural identifiers + envelope hash
         only; clinical document content and pixel data are NOT emitted.
         Customer application code processes those inside the capsule
         workspace.
 
-        Three-role discipline (ADR-017): structural parse only;
+        Three-role discipline: structural parse only;
         Nanorix does not interpret SOAP envelope content or certify
         IHE Connectathon conformance.
 
@@ -471,13 +471,13 @@ class IHEAdapter:
       XDS-I.b
     - RAD-69 (Retrieve Imaging Document Set) — XDS-I.b
 
-    Three-role discipline (ADR-017): Adapter is structural; IHE
+    Three-role discipline: Adapter is structural; IHE
     conformance certification, RAD-TF / ITI-TF Implementation Guide
     validation, IHE Connectathon test certification, document content
     interpretation, and PHI classification remain the customer's
     responsibility.
 
-    Customer-sole-declarer (ADR-013): Customer supplies parsed SOAP
+    Customer-sole-declarer: Customer supplies parsed SOAP
     envelope identifiers (UIDs, OIDs, repository URIs); adapter
     validates structural format only and emits structural metadata.
 
@@ -717,7 +717,7 @@ class IHEAdapter:
         # Structural UID/OID validation. Strict mode rejects malformed
         # values; non-strict mode preserves them as supplied (customer
         # is responsible for upstream correctness — adapter is structural
-        # only per ADR-017).
+        # only).
         if submission_set_uid and not _is_valid_uid(submission_set_uid):
             if self._strict:
                 raise IHEBindingError(

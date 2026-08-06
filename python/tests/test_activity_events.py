@@ -96,7 +96,7 @@ def test_emit_tool_call_attempted_with_reserved_slots(tmp_path: Path):
 
 def test_emit_tool_call_attempted_hash_zero_retention(tmp_path: Path):
     """Plaintext args MUST NOT appear in the emitted event — only the
-    SHA-512 hash. Zero-retention discipline (ADR-006 I0)."""
+    SHA-512 hash. Zero-retention discipline."""
     buf = tmp_path / "events.jsonl"
     secret = {"ssn": "123-45-6789", "patient_name": "Jane Doe"}
     event = emit_tool_call_attempted(

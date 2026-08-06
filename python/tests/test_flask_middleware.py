@@ -3,7 +3,7 @@
 Exercises ``nanorix.integrations.flask_middleware.NanorixMiddleware``
 against the same surface as the FastAPI middleware (Tier-C parity
 invariant): per-HTTP-request AuditProof emission with
-``cdp_kind: "request"`` via the ADR-006 reserved-slot.
+``cdp_kind: "request"`` via the reserved-slot.
 """
 
 from __future__ import annotations

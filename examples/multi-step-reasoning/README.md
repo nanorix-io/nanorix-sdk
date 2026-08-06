@@ -104,7 +104,7 @@ Activity-trail events for one patient summary processed through a 5-step reasoni
 5. **`ExecutionCompleted`** — exit + duration.
 6. **`FileDownloaded`** — `recommendation.json` output bytes hashed.
 
-When customer enables BYO-HSM signing (per `signing_config` block in capsulefile), each `ReasoningStepCompleted` event also produces a `per_event_attestations` entry signed by the customer's HSM — enabling step-level non-repudiation under the customer's signing authority (per ADR-031).
+When customer enables BYO-HSM signing (per `signing_config` block in capsulefile), each `ReasoningStepCompleted` event also produces a `per_event_attestations` entry signed by the customer's HSM — enabling step-level non-repudiation under the customer's signing authority.
 
 ## Compliance binding
 
@@ -129,7 +129,7 @@ The `regulatory_context` block enumerates provisions this AuditProof's activity 
 
 Nanorix uses `related_to` language only — never asserts compliance status. Customer's compliance officer makes the final determination. For SaMD classification, customer's regulatory counsel determines FDA Class (I / II / III) per the AI/ML Action Plan and applicable 510(k) / De Novo submission strategy.
 
-> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split per ADR-017). Customer remains responsible for their organizational GRC program. The reasoning loop, knowledge-base, and recommendation shapes are illustrative reference implementations — production composes customer's licensed KB, customer's regulatory-counsel-determined SaMD classification, and customer's clinical-workflow validation.
+> **Disclaimer:** Nanorix is an evidence vendor (role 1 of three-role liability split). Customer remains responsible for their organizational GRC program. The reasoning loop, knowledge-base, and recommendation shapes are illustrative reference implementations — production composes customer's licensed KB, customer's regulatory-counsel-determined SaMD classification, and customer's clinical-workflow validation.
 
 ## Running this bundle
 

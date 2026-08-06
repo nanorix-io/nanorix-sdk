@@ -15,7 +15,7 @@ By default this shell POSTs to Datadog's HTTP intake using the SDK's own
 who prefers the dogstatsd / ``datadog-api-client`` route can pass a
 pre-built submit callable.
 
-## Credential discipline (ADR-013)
+## Credential discipline
 
 The customer supplies their Datadog API key (constructor arg or
 ``DD_API_KEY`` env). It is used only to authenticate the call and is

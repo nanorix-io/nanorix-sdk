@@ -5,7 +5,7 @@
  * byte-identically: same event JSON shape, same JCS-flavor canonical-
  * JSON for hashing, same closed-enum sets, same buffer protocol.
  *
- * ADR-021 (Accepted 2026-05-06) shipped 4 ActivityEvent variants for
+ * (Accepted 2026-05-06) shipped 4 ActivityEvent variants for
  * AI-agent tooling — `ToolCallAttempted`, `ToolCallCompleted`,
  * `ToolCallFailed`, `ReasoningStepCompleted` — implemented at
  * `services/api/src/cdp_document.rs:1561-1752`. Until Cap-3, customers
@@ -14,11 +14,11 @@
  *
  * ## Trust-boundary discipline
  *
- * - **Customer-sole-declarer (ADR-013).** Helpers do NOT classify,
+ * - **Customer-sole-declarer.** Helpers do NOT classify,
  *   infer, or augment.
- * - **Zero-retention (ADR-006 I0).** All payload fields are SHA-512
+ * - **Zero-retention.** All payload fields are SHA-512
  *   hashed; plaintext NEVER enters the AuditProof.
- * - **Forever-Standard (ADR-006 I0).** Field names + JSON tag
+ * - **Forever-Standard.** Field names + JSON tag
  *   (`event`) + snake_case keys + closed-enum-tagged shapes
  *   (`{"type": "..."}`) mirror the Rust serde shape verbatim.
  *
@@ -74,7 +74,7 @@ export const DEFAULT_BUFFER_PATH = "/data/activity_events.jsonl";
 /** Closed-enum tool-call failure kinds.
  *
  *  Mirrors `ToolCallFailureKind` at
- *  `services/api/src/cdp_document.rs:97`. ADR-028 D1.
+ * `services/api/src/cdp_document.rs:97`.
  */
 export const TOOL_CALL_FAILURE_KINDS = [
   "timeout",
@@ -89,7 +89,7 @@ export type ToolCallFailureKind = (typeof TOOL_CALL_FAILURE_KINDS)[number];
 /** Closed-enum reasoning step kinds.
  *
  *  Mirrors `ReasoningStepKind` at
- *  `services/api/src/cdp_document.rs:146`. ADR-028 D1.
+ * `services/api/src/cdp_document.rs:146`.
  */
 export const REASONING_STEP_KINDS = [
   "plan",
@@ -207,7 +207,7 @@ export interface EmitReasoningStepCompletedArgs {
 
 /** Emit a `tool_call_attempted` ActivityEvent.
  *
- *  Customer-declared per ADR-021. Pairs with a subsequent
+ * Customer-declared. Pairs with a subsequent
  *  `tool_call_completed` (success) or `tool_call_failed` (failure)
  *  via `toolCallId`.
  *
@@ -265,7 +265,7 @@ export async function emitToolCallCompleted(
  *
  *  Pairs with a prior `tool_call_attempted` via `toolCallId`.
  *
- *  `failureKind` is the optional closed-enum reduction (ADR-028 D1);
+ * `failureKind` is the optional closed-enum reduction;
  *  `failureReason` is the customer's free-form narrative.
  *
  *  @throws RangeError if `durationMs` is negative.
@@ -312,7 +312,7 @@ export async function emitToolCallFailed(
  *  canonical_hash via activity_trail.
  *
  *  `prompt` and `response` are hashed (SHA-512 hex); plaintext NEVER
- *  enters AuditProof. `summary` (ADR-028 D3, if supplied) is also
+ * enters AuditProof. `summary` (if supplied) is also
  *  hashed.
  *
  *  @throws RangeError if `stepIdx` or `durationMs` is negative.

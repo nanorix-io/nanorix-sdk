@@ -18,7 +18,7 @@ export {
 export type { EventAttestation, EventSigner } from "./signer.js";
 
 // Cap-3 (Phase 1) — in-capsule ActivityEvent emission helpers. Activates
-// ADR-021 ActivityEvent variants (ToolCallAttempted/Completed/Failed +
+// ActivityEvent variants (ToolCallAttempted/Completed/Failed +
 // ReasoningStepCompleted) for customer use.
 export {
   DEFAULT_BUFFER_PATH,

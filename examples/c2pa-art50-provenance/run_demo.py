@@ -72,7 +72,7 @@ def main() -> int:
     else:
         signer = Ed25519FileKey.generate(key_path)
 
-    # Every provenance field is customer-declared (ADR-013: the SDK refuses to
+    # Every provenance field is customer-declared (the SDK refuses to
     # infer any of them). The values below are the demo's declarations.
     manifest = (
         C2PAManifestBuilder()
