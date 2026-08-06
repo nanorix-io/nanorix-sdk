@@ -248,16 +248,16 @@ class _StubVerify:
 
 def test_render_verification_pass() -> None:
     html = render_verification_html(_StubVerify(True, True, True))
-    assert "Chain integrity: PASSED" in html
-    assert "Signature: PASSED" in html
-    assert "Verification: PASSED" in html
+    assert "Chain integrity: VALID" in html
+    assert "Signature: VALID" in html
+    assert "Verification: VALID" in html
 
 
 def test_render_verification_fail_structural_language() -> None:
     html = render_verification_html(
         _StubVerify(False, False, False, failure_reason="hash mismatch at step 3", failed_step=3)
     )
-    assert "Chain integrity: FAILED" in html
+    assert "Chain integrity: INVALID" in html
     assert "hash mismatch at step 3" in html
     assert "step 3" in html
     # Structural FAILED, never a regulatory claim.
@@ -310,9 +310,8 @@ def test_render_auditproof_has_brand_and_no_engine_names() -> None:
 def test_render_auditproof_no_regulatory_claims() -> None:
     html = render_auditproof_html(_result_with_outputs({"r.json": b"{}"}))
     # Structural language only; never a regulatory-adequacy assertion.
-    assert "COMPLIANT" not in html
-    assert "SATISFIED" not in html
-    assert "MEETS" not in html
+    for forbidden in ("COMPLIANT", "SATISFIED", "PASSED", "MEETS"):
+        assert forbidden not in html
 
 
 def test_render_auditproof_carries_disclaimer() -> None:

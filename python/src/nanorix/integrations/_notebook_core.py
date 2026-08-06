@@ -45,7 +45,7 @@ The split is deliberate:
   "AuditProof". Internal subsystem names never appear in this surface.
 - **Narrow signed claim.** The HTML renders STRUCTURAL verification —
   chain integrity and signature validity. It NEVER renders a regulatory
-  adequacy claim. "Chain integrity: PASSED" is a structural label; whether
+  adequacy claim. "Chain integrity: VALID" is a structural label; whether
   any framework is satisfied is the customer's auditor's determination,
   never Nanorix's.
 - **No new signed primitive.** This consumes the AuditProof the capsule
@@ -322,14 +322,14 @@ def _esc(value: Any) -> str:
 
 
 def _badge(label: str, ok: bool) -> str:
-    """Render a structural PASS/FAIL badge.
+    """Render a structural validity badge.
 
-    ``label`` is a trusted literal supplied by this module. The PASS/FAIL
-    word is a STRUCTURAL status (chain integrity / signature validity),
-    never a regulatory-adequacy claim.
+    ``label`` is a trusted literal supplied by this module. The VALID /
+    INVALID word is a STRUCTURAL status (chain integrity / signature
+    validity), never a regulatory-adequacy claim.
     """
     color = "#1a7f37" if ok else "#cf222e"
-    word = "PASSED" if ok else "FAILED"
+    word = "VALID" if ok else "INVALID"
     return (
         f'<span style="display:inline-block;padding:1px 8px;border-radius:'
         f'12px;background:{color};color:#fff;font-size:12px;font-weight:600;">'
