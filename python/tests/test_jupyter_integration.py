@@ -270,12 +270,12 @@ def test_render_verification_none_is_neutral() -> None:
     assert "No AuditProof verification available" in html
 
 
-def test_render_verification_no_engine_names() -> None:
+def test_render_verification_no_engine_names(engine_names, engine_step_names) -> None:
     """Even a partial-fail render must not leak internal subsystem names."""
     html = render_verification_html(
         _StubVerify(False, True, False, failure_reason="signature did not verify")
     )
-    for engine in ("eee_namespace", "dire_keys", "rzl_audit", "fgx_forensic", "EEE", "DIRE", "RZL"):
+    for engine in tuple(engine_names) + tuple(engine_step_names):
         assert engine not in html
 
 
@@ -294,16 +294,14 @@ def _result_with_outputs(outputs=None, stdout="ok", capsule_id="cap_1"):
     )
 
 
-def test_render_auditproof_has_brand_and_no_engine_names() -> None:
+def test_render_auditproof_has_brand_and_no_engine_names(
+    engine_names, engine_step_names
+) -> None:
     html = render_auditproof_html(_result_with_outputs({"r.json": b"{}"}))
     assert "AuditProof" in html
     assert "cap_1" in html
     # Internal engine names must NEVER appear.
-    for engine in (
-        "EEE", "DIRE", "RZL", "FGX", "AIPPF", "ACE", "MCP", "FGI",
-        "SIS", "ZilchNet", "SLMM", "ZPSS", "ECM", "Memproof", "AVE",
-        "eee_namespace", "dire_keys", "rzl_audit",
-    ):
+    for engine in tuple(engine_names) + tuple(engine_step_names):
         assert engine not in html
 
 

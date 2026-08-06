@@ -477,13 +477,11 @@ def test_ncpdp_module_text_has_no_banned_verdict_vocabulary():
         )
 
 
-def test_ncpdp_module_avoids_engine_name_leaks():
+def test_ncpdp_module_avoids_engine_name_leaks(engine_names):
     """Internal engine names should not
     appear in customer-facing helper strings or docstrings."""
     import nanorix.healthcare.ncpdp as ncpdp_mod
     source = inspect.getsource(ncpdp_mod)
-    # Internal engine codenames per CLAUDE.md crate list.
-    engine_names = ["AIPPF", "FGI", "SIS", "MCP", "ACE", "ECM", "ZILCHNET"]
     for engine in engine_names:
         matches = re.findall(rf"\b{engine}\b", source, re.IGNORECASE)
         # MCP appears as "Model Context Protocol" in fixtures; allow MCP only

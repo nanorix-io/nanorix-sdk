@@ -306,24 +306,6 @@ def test_sentry_event_on_failure():
 
 # ── Invariant: no internal engine names in any emitted field ──────────
 
-_ENGINE_NAMES = [
-    "EEE",
-    "DIRE",
-    "RZL",
-    "FGX",
-    "AIPPF",
-    "ACE",
-    "FGI",
-    "SIS",
-    "ZilchNet",
-    "SLMM",
-    "ZPSS",
-    "ECM",
-    "Memproof",
-    "AVE",
-]
-
-
 def _flatten_strings(payload):
     out = []
     if isinstance(payload, str):
@@ -338,7 +320,7 @@ def _flatten_strings(payload):
     return out
 
 
-def test_no_internal_engine_names_in_emitted_payloads():
+def test_no_internal_engine_names_in_emitted_payloads(engine_names):
     payloads = [
         auditproof_to_datadog_event(_proof_dict(), _VerifyResultFail()),
         auditproof_to_splunk_event(_proof_dict(), _VerifyResultFail()),
@@ -352,7 +334,7 @@ def test_no_internal_engine_names_in_emitted_payloads():
             # Word-boundary check: pattern_tag values like "rcm_claim" are
             # fine; we only flag standalone engine identifiers.
             tokens = token.replace(".", " ").replace("_", " ").replace(":", " ").split()
-            for engine in _ENGINE_NAMES:
+            for engine in engine_names:
                 assert engine not in tokens, f"engine name {engine} leaked in {token!r}"
 
 

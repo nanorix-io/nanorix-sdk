@@ -521,10 +521,9 @@ def test_bulk_fhir_module_has_no_banned_verdict_vocabulary():
         )
 
 
-def test_bulk_fhir_module_avoids_engine_name_leaks():
+def test_bulk_fhir_module_avoids_engine_name_leaks(engine_names):
     import nanorix.healthcare.bulk_fhir as bf_mod
     source = inspect.getsource(bf_mod)
-    engine_names = ["AIPPF", "FGI", "SIS", "MCP", "ACE", "ECM", "ZILCHNET"]
     for engine in engine_names:
         matches = re.findall(rf"\b{engine}\b", source, re.IGNORECASE)
         assert not matches, f"possible engine name leak: {engine}"
