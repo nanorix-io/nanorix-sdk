@@ -5,8 +5,8 @@ RCM claims batch showcase — Pattern 4 × RCM cohort.
 Step 8 Merkle root binds all per-claim receipts; auditor can verify
 any single claim without seeing the others.
 
-Per `feedback_narrow_signed_claim_auditor_certifies.md`: no verdict
-language. Per `feedback_ip_protection.md`: external-brand vocabulary
+No verdict
+language. External-brand vocabulary
 only.
 """
 from __future__ import annotations

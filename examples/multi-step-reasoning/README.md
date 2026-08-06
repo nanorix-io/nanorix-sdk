@@ -2,7 +2,7 @@
 
 **Production-pattern reference** for clinical-reasoning agent workloads inside a Nanorix capsule. Demonstrates the multi-step reasoning loop pattern: longitudinal patient context (PHI) → iterative LLM reasoning steps with knowledge-base retrieval → final structured clinical recommendation. Each reasoning step is hashed into the AuditProof; auditors can reconstruct the agent's full decision path step-by-step.
 
-> **Important: this is a *pattern reference*, not a SaMD-classified clinical decision-support product.** The reasoning loop, knowledge-base retrieval, and recommendation-shape are illustrative. Production deployments substitute customer-licensed knowledge bases (UpToDate / DynaMed / BMJ Best Practice) and assess SaMD classification with regulatory counsel before any clinical use. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the clinical product is the customer's.
+> **Important: this is a *pattern reference*, not a SaMD-classified clinical decision-support product.** The reasoning loop, knowledge-base retrieval, and recommendation-shape are illustrative. Production deployments substitute customer-licensed knowledge bases (UpToDate / DynaMed / BMJ Best Practice) and assess SaMD classification with regulatory counsel before any clinical use. Nanorix is the attestation substrate; the clinical product is the customer's.
 
 ## Industry signal
 

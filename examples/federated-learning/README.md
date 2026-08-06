@@ -2,7 +2,7 @@
 
 **Production-pattern reference** for cross-organization federated learning inside Nanorix capsules. Demonstrates the per-round per-organization pattern: receive global model snapshot from coordinator → train locally on this organization's PHI-bearing data → optionally apply differential-privacy noise → emit weight delta only (raw data never leaves the capsule). Each participating organization's per-round AuditProof attests to the privacy commitment + the global-snapshot binding + the per-organization signing authority.
 
-> **Important: this is a *pattern reference*, not a production federated-learning framework.** The local training loop, coordinator client, and differential-privacy integration ship as illustrative stubs. Production deployments substitute customer-licensed federated frameworks (NVIDIA FLARE, Flower, PySyft, OpenFL, Owkin Connect, Rhino Health platform), customer's model architecture + dataset loaders, customer's privacy-preservation parameters (DP epsilon/delta tuned to threat model), and customer's regulatory-counsel-determined privacy posture. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the federated-learning product is the customer's.
+> **Important: this is a *pattern reference*, not a production federated-learning framework.** The local training loop, coordinator client, and differential-privacy integration ship as illustrative stubs. Production deployments substitute customer-licensed federated frameworks (NVIDIA FLARE, Flower, PySyft, OpenFL, Owkin Connect, Rhino Health platform), customer's model architecture + dataset loaders, customer's privacy-preservation parameters (DP epsilon/delta tuned to threat model), and customer's regulatory-counsel-determined privacy posture. Nanorix is the attestation substrate; the federated-learning product is the customer's.
 
 ## Industry signal
 
@@ -106,7 +106,7 @@ Federated learning's privacy posture is only as strong as the per-organization d
 
 With Nanorix:
 
-- The local training data lives in volatile memory only, destroyed with the capsule. Per `feedback_strategic_positioning.md` zero-retention is the substrate property.
+- The local training data lives in volatile memory only, destroyed with the capsule. Zero-retention is the substrate property.
 - Each coordinator HTTPS call (snapshot fetch, weight-delta emission) flows through sealed egress: TLS pin verification + per-request hash + duration recorded.
 - The training metrics (epochs, samples seen, final loss, DP epsilon consumed) are bound into the AuditProof.
 - The weight delta is hashed (SHA-512) before emission; the coordinator's response is hashed.

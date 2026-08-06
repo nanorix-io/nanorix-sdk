@@ -168,7 +168,7 @@ class GCSSink(Sink):
     Runs in the customer's process. Credentials are resolved by
     Application Default Credentials — never passed to or stored by
     Nanorix. The streaming core invokes this BEFORE the capsule
-    is destroyed (``feedback_no_post_destroy_cache.md``).
+    is destroyed.
 
     Args:
         bucket: The destination GCS bucket name. Customer-declared.

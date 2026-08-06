@@ -236,8 +236,7 @@ class HL7v2Adapter:
     Covered message types: ADT (A01/A02/A03/A04/A05/A06/A07/A08/A11/
     A12/A13) and ORU (R01/R03/R30/R31/R32). Unsupported message types
     raise :class:`ValueError` — customers needing other families
-    (SIU/ORM/MDM/ACK) can request adapter extension via
-    :class:`feedback_save_verbatim_strategic_inputs` discipline.
+    (SIU/ORM/MDM/ACK) can request adapter extension.
 
     Three-role discipline: Adapter is structural; clinical
     interpretation remains the customer's. The adapter neither

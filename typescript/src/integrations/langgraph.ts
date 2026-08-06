@@ -26,8 +26,7 @@
  * carries `langgraph_node`. LLM calls inside nodes route through
  * `handleLLM*` / `handleChatModelStart`, and tool calls route through
  * `handleTool*`. The same 4 ActivityEvent variants shipped by
- * cover the surface — no new variants — Forever-Standard preserved
- *.
+ * cover the surface — no new variants — Forever-Standard preserved.
  *
  * ## Architectural distinction from LangChain.js
  *

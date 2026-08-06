@@ -32,7 +32,7 @@
  *
  * ## Narrowness invariant (sibling primitive, NOT receipt enrichment)
  *
- * Per feedback_narrowness_is_the_moat_resist_receipt_enrichment.md
+ * Per
  * PERMANENT: AuditProof / RecordReceipt / ParentProofLink fields are
  * UNCHANGED by this module. The C2PA manifest is a fully external
  * sibling primitive. AuditProof byte-form is explicitly affirmed
@@ -134,7 +134,7 @@ export const FORBIDDEN_BRAND_LEAK_TOKENS: readonly string[] = [
 
 /**
  * Tokens that violate the narrow-signed-claim discipline.
- * Per feedback_narrow_signed_claim_auditor_certifies.md PERMANENT.
+ * PERMANENT.
  */
 export const FORBIDDEN_REGULATORY_TOKENS: readonly string[] = [
   "COMPLIANT",
@@ -147,7 +147,7 @@ export const FORBIDDEN_REGULATORY_TOKENS: readonly string[] = [
  * Disclaimer carried in every verification result + every manifest's
  * nanorix.ai_generated assertion data.
  *
- * Per feedback_narrow_signed_claim_auditor_certifies.md PERMANENT:
+ * PERMANENT:
  * structural attestation NEVER asserts regulatory adequacy; uses
  * `related_to` not `satisfies/meets/passes/complies`.
  */
@@ -181,7 +181,7 @@ function checkForbiddenTokens(value: string, fieldName: string): void {
           `token "${tok}". C2PA manifest assertions are STRUCTURAL ` +
           `facts only; regulatory adequacy is the auditor's ` +
           `determination (` +
-          `feedback_narrow_signed_claim_auditor_certifies.md).`,
+          `).`,
       );
     }
   }

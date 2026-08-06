@@ -7,8 +7,7 @@
  * crew/task/agent orchestrator following CrewAI's lifecycle pattern
  * (task = unit of work for crew member, step = agent's reasoning/tool
  * loop). The callback emits the existing 4 ActivityEvent variants
- * shipped by — no new variants — Forever-Standard preserved
- *.
+ * shipped by — no new variants — Forever-Standard preserved.
  *
  * Customer pattern:
  *

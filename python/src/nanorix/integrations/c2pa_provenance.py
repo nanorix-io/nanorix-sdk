@@ -43,7 +43,7 @@ conformance for any specific use case.
 
 ## Narrow signed claim discipline
 
-Per feedback_narrow_signed_claim_auditor_certifies.md PERMANENT:
+PERMANENT:
 manifest assertions are structural ("what happened"), NEVER
 regulatory ("X satisfies Y"). Forbidden tokens: COMPLIANT,
 SATISFIED, PASSED, MEETS. Required: applies_to / references /
@@ -51,7 +51,7 @@ related_to.
 
 ## Narrowness invariant (sibling primitive, NOT receipt enrichment)
 
-Per feedback_narrowness_is_the_moat_resist_receipt_enrichment.md
+Per
 PERMANENT: AuditProof / RecordReceipt / ParentProofLink fields are
 UNCHANGED by this module. The C2PA manifest is a fully external
 sibling primitive with its own lifecycle. AuditProof byte-form is
@@ -186,7 +186,7 @@ FORBIDDEN_REGULATORY_TOKENS = (
 
 # Disclaimer carried in every verification result + every manifest's
 # `nanorix.ai_generated` assertion data, per
-# feedback_narrow_signed_claim_auditor_certifies.md PERMANENT.
+# PERMANENT.
 NARROW_CLAIM_DISCLAIMER = (
     "Structural attestation only. This manifest records that the "
     "named model was used in the named capsule at the named time "
@@ -215,8 +215,7 @@ def _check_forbidden_tokens(value: str, field_name: str) -> None:
                 f"Field {field_name!r}: value contains forbidden regulatory "
                 f"token {token!r}. C2PA manifest assertions are STRUCTURAL "
                 "facts only; regulatory adequacy is the auditor's "
-                "determination ("
-                "feedback_narrow_signed_claim_auditor_certifies.md)."
+                "determination."
             )
 
 

@@ -66,7 +66,7 @@ graph traversal from `(parent_event_id, tool_name, agent_id)` triples.
 | Tier | Effort | Claim                                                       |
 |------|--------|-------------------------------------------------------------|
 | A    | 5 min  | Per-node + per-LLM-call + per-tool-call receipts (this)     |
-| B    | 30 min | Full workflow destruction proof (decorator)                 |
+| B    | 30 min | Full workflow AuditProof (decorator)                 |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)               |
 
 This callback is Tier A. The claim is partial: per-node/LLM/tool receipts

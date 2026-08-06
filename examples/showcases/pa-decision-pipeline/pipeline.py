@@ -6,14 +6,14 @@ receipt, destroys the capsule with AuditProof. Optionally files evidence
 to Vanta via the mapping artifact + the adapter at
 `docs/integrations/grc-adapters/vanta-adapter.md`.
 
-Per `feedback_narrow_signed_claim_auditor_certifies.md`: no
+No
 COMPLIANT/SATISFIED/PASSED/MEETS in this file. Use applies_to /
 references / related_to.
 
-Per `feedback_ip_protection.md`: no internal Nanorix engine names.
+No internal Nanorix engine names.
 External-brand vocabulary only (AuditProof, capsule, Capsulefile).
 
-Per `feedback_customer_cold_start_path.md`: the only prerequisite is
+The only prerequisite is
 NANORIX_API_KEY. The Capsulefile + sample input ship in-repo. Run
 end-to-end with `python pipeline.py`.
 """

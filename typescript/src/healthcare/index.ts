@@ -41,7 +41,7 @@
  * the reserved `nanorix:framework` + `nanorix:framework_version` keys
  * plus structural identifiers only. Never asserts conformance with the
  * referenced framework (per
- * feedback_narrow_signed_claim_auditor_certifies.md).
+ *).
  */
 
 export { AIFairnessContext } from "./ai_fairness.js";

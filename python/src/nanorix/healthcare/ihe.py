@@ -258,7 +258,7 @@ class IHETransactionType:
         """Whether this transaction is defined under the given profile.
 
         Naming uses ``applies_to`` per the narrow-claim discipline
-        (``feedback_narrow_signed_claim_auditor_certifies.md``). Never
+        . Never
         ``MEETS`` / ``SATISFIES`` / ``COMPLIANT``.
         """
         return profile in self.profiles
@@ -304,7 +304,7 @@ class IHETransaction:
 
     Three-role discipline: Nanorix structurally parses;
     customer interprets and certifies. The ``payload_sha256`` field is
-    the narrow signed claim per ``feedback_narrow_signed_claim_auditor_certifies.md``
+    the narrow signed claim
     — it anchors the structural envelope bytes only and never asserts
     IHE conformance, RAD-TF profile pass, or HIPAA applicability.
     """

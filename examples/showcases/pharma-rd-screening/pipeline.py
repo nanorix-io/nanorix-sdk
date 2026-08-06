@@ -5,8 +5,8 @@ Pharma R&D screening showcase — Pattern 6 R&D × Pharma R&D cohort.
 molecule's prediction is independently auditable for IP-trace +
 federated-learning attestation.
 
-Per `feedback_narrow_signed_claim_auditor_certifies.md`: no verdict
-language. Per `feedback_ip_protection.md`: external-brand vocabulary
+No verdict
+language. External-brand vocabulary
 only.
 """
 from __future__ import annotations

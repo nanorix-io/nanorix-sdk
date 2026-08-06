@@ -52,8 +52,7 @@ STRUCTURAL FACT — a count, a lifecycle outcome, a cryptographic
 verification result. The forbidden verdict vocabulary (``COMPLIANT`` /
 ``SATISFIED`` / ``PASSED`` / ``MEETS``) is rejected by
 :func:`assert_structural_facts_only`, which every shell runs before emit.
-The auditor remains the certifying authority
-(``feedback_narrow_signed_claim_auditor_certifies.md``). Tags carry
+The auditor remains the certifying authority. Tags carry
 customer-facing nouns only — never internal engine names.
 """
 

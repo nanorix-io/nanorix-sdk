@@ -7,11 +7,11 @@ NOT as a service-level commitment.
 
 ## Discipline anchors
 
-- `feedback_narrow_signed_claim_auditor_certifies.md`: measurements are
+- Measurements are
   STRUCTURAL FACTS (measured percentiles under the stated infrastructure
   revision). The SDK helper NEVER asserts "meets SLO X" — the customer
   performs their own pilot evaluation under their representative load.
-- `feedback_signed_primitive_vs_derived_value.md`: benchmark output is
+- Benchmark output is
   layer-2 published artifact; NOT bound into AuditProof.
 
 ## Usage

@@ -47,9 +47,9 @@ diff <(jq -S 'del(.terminated_at, .capsule_id)' audit_proof.json) \
 
 ## Discipline anchors
 
-- **Customer cold-start path** (per `feedback_customer_cold_start_path.md`): every showcase enumerates `NANORIX_API_KEY` as the only prerequisite. SDK install + Capsulefile yaml + sample data ship in-repo.
-- **Vocabulary** (per `feedback_narrow_signed_claim_auditor_certifies.md`): README text + script docstrings use `applies_to` / `references` / `related_to` — never `COMPLIANT` / `SATISFIED` / `PASSED` / `MEETS`.
-- **IP-protection** (per `feedback_ip_protection.md`): showcases describe what Nanorix does (capsule + AuditProof + Merkle-rooted receipts) — never internal engine names.
+- **Customer cold-start path**: every showcase enumerates `NANORIX_API_KEY` as the only prerequisite. SDK install + Capsulefile yaml + sample data ship in-repo.
+- **Vocabulary**: README text + script docstrings use `applies_to` / `references` / `related_to` — never `COMPLIANT` / `SATISFIED` / `PASSED` / `MEETS`.
+- **IP-protection**: showcases describe what Nanorix does (capsule + AuditProof + Merkle-rooted receipts) — never internal engine names.
 - **No mock PHI / real customer data**: sample inputs are synthetic and clearly labeled.
 
 ## License

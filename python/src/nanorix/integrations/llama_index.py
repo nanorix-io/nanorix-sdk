@@ -62,7 +62,7 @@ without `on_chain_start`).
 ## Three-tier integration model
 
 This callback is Tier A — per-LLM-call + per-FUNCTION_CALL +
-per-AGENT_STEP receipts. Full workflow destruction proof requires
+per-AGENT_STEP receipts. Full workflow AuditProof requires
 Tier B (`@nanorix.workload` decorator) or Tier C (framework
 middleware).
 

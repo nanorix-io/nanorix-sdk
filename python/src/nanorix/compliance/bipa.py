@@ -125,7 +125,7 @@ _VALID_CONSENT_BASES = frozenset(
     }
 )
 """§14/15(b) consent-basis taxonomy. ``written_consent_obtained`` is
-the dominant compliant basis. ``healthcare_exemption_claimed`` covers
+the basis most workloads declare. ``healthcare_exemption_claimed`` covers
 the §14/10 healthcare-context exclusion (scope is litigated; customer
 counsel determines applicability). ``no_consent_required`` covers
 workloads whose customer has determined no biometric collection is

@@ -184,7 +184,7 @@ _VALID_CONSUMER_NOTICE_TIMINGS = frozenset(
     }
 )
 """§ 6-1-1703(4) consumer-notice timing taxonomy. ``before_
-consequential_decision`` is the dominant compliant timing under
+consequential_decision`` is the timing most workloads declare under
 § 6-1-1703(4)(a). ``post_decision_adverse_explanation`` captures the
 § 6-1-1703(4)(b) adverse-decision explanation obligation, which is
 separate from the pre-decision notice. ``not_required`` is a customer-

@@ -28,7 +28,7 @@
  * > SDK package is fine. The publish event remains gated separately."
  *
  * Helpers ship in the SDK source tree but the npm publish event
- * remains gated per `feedback_consumer_surface_after_contract.md`.
+ * remains gated.
  *
  * @example
  * ```ts

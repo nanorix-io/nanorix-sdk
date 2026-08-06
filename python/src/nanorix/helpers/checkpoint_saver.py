@@ -26,7 +26,7 @@ opt in early can import directly:
 
 When SDK 1.0 publish ships, we'll add the export. Until then, this
 module is internal-only — contract churn at the customer surface is
-deferred per `feedback_consumer_surface_after_contract.md`.
+deferred.
 
 ## Trust-boundary discipline (customer-sole-declarer)
 

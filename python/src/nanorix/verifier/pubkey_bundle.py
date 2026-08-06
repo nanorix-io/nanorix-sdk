@@ -4,7 +4,7 @@ Portable Pubkey Bundle (.ppb.json) — Wave B Item 8 surface, Python port.
 Pure Python port of the reference verifier. Cross-impl
 byte-equivalence with Rust/Go/TypeScript on the canonical reference vectors.
 
-Per feedback_open_verifier_bounded_manifest.md: the bundle algorithm is open
+The bundle algorithm is open
 + portable; the trust root (publisher pubkey) is bounded out-of-band by the
 verifier.
 

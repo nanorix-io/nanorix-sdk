@@ -24,13 +24,13 @@ Forever-Standard discipline preserved.
 | Tier | Effort | Claim                                            |
 |------|--------|--------------------------------------------------|
 | A    | 5 min  | Per-call receipts (this callback)                |
-| B    | 30 min | Full workflow destruction proof (decorator)      |
+| B    | 30 min | Full workflow AuditProof (decorator)      |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)    |
 
 This callback is Tier A. The claim is partial: per-LLM-call and
 per-tool-call receipts streaming into the capsule's activity_trail
 buffer; the buffer drains into the AuditProof at capsule destroy. For
-full workflow destruction proof (entire customer function wrapped in
+full workflow AuditProof (entire customer function wrapped in
 capsule lifecycle), upgrade to Tier B (`@nanorix.workload` decorator)
 or Tier C (framework middleware). Customer-facing docs at
 `docs/integrations/langchain.md` make this distinction explicit.

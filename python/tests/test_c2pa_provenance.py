@@ -6,7 +6,7 @@ Validates:
 - Required-field enforcement at .sign() time (customer-sole-declarer)
 - Closed-enum AssertionType (Forever-Standard discipline)
 - Field length caps + forbidden-token scans (brand discipline +
-  feedback_narrow_signed_claim_auditor_certifies.md)
+  )
 - SHA-512 of canonical-JCS claims object signed by Ed25519
 - Independent offline verification with raw 32-byte public key
 - Tampering detection (signature breaks if any field modified)

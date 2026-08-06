@@ -237,7 +237,7 @@ def test_get_cost_forecast_free_tier_omits_rate() -> None:
 def test_disclaimer_carries_no_forbidden_vocabulary() -> None:
     """Pre-publish gate scan — STRUCTURAL FACTS only.
 
-    Per feedback_narrow_signed_claim_auditor_certifies.md, billing meter
+    Billing meter
     output NEVER asserts compliance satisfaction.
     """
     http = FakeHttp(make_usage_payload())

@@ -31,7 +31,7 @@
  * | Tier | Effort | Claim                                              |
  * |------|--------|----------------------------------------------------|
  * | A    | 5 min  | Per-call receipts (this callback)                  |
- * | B    | 30 min | Full workflow destruction proof (decorator)        |
+ * | B    | 30 min | Full workflow AuditProof (decorator)        |
  * | C    | 1 hr   | Per-route receipts (Express/Next.js middleware)    |
  *
  * This callback is Tier A. The claim is partial: per-LLM-call and
@@ -64,7 +64,7 @@
  * LangChain agent correctness, LLM output safety, or PHI handling —
  * those determinations remain the customer's responsibility.
  *
- * ## Narrow signed claim (feedback_narrow_signed_claim_auditor_certifies.md)
+ * ## Narrow signed claim
  *
  * Captures structural facts: event happened at time T, with
  * structural identifiers (tool_call_id, model name, duration_ms).

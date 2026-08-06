@@ -2,7 +2,7 @@
 
 **Production-pattern reference** for high-volume per-record claims processing inside Nanorix capsules. Demonstrates the one-capsule-per-record pattern: X12 EDI 837 claim → parse + validate → clearinghouse round-trip → adjudication decision (paid/denied/pended) → optional FHIR-shaped supplementary output. Each claim produces one AuditProof; the per-AuditProof economics + sealed isolation discipline are load-bearing at this volume.
 
-> **Important: this is a *pattern reference*, not a turnkey claims-adjudication engine.** The X12 parser, clearinghouse adapter, and adjudication decision tree ship as illustrative stubs. Production deployments substitute customer's pyx12 / bots-edi / Edifecs / vendor parser, customer's licensed clearinghouse (Change Healthcare / Optum / Availity / Waystar / Trizetto), and customer's full benefit-summary + criteria + fee-schedule decision engine. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the adjudication product is the customer's.
+> **Important: this is a *pattern reference*, not a turnkey claims-adjudication engine.** The X12 parser, clearinghouse adapter, and adjudication decision tree ship as illustrative stubs. Production deployments substitute customer's pyx12 / bots-edi / Edifecs / vendor parser, customer's licensed clearinghouse (Change Healthcare / Optum / Availity / Waystar / Trizetto), and customer's full benefit-summary + criteria + fee-schedule decision engine. Nanorix is the attestation substrate; the adjudication product is the customer's.
 
 ## Industry signal
 

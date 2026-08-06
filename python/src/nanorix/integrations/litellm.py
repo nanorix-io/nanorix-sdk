@@ -83,7 +83,7 @@ downstream code emits the tool's RESPONSE.
 | Tier | Effort | Claim                                                       |
 |------|--------|-------------------------------------------------------------|
 | A    | 5 min  | Per-LLM-call + per-tool-request receipts (this)             |
-| B    | 30 min | Full workflow destruction proof (decorator)                 |
+| B    | 30 min | Full workflow AuditProof (decorator)                 |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)               |
 
 This callback is Tier A. The claim is partial: per-litellm-completion

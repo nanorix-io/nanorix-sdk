@@ -148,8 +148,7 @@ export class IheTransactionType {
 
   /**
    * Whether this transaction applies to the given profile. Uses the
-   * narrow-claim verb `appliesTo` per
-   * feedback_narrow_signed_claim_auditor_certifies.md.
+   * narrow-claim verb `appliesTo` per.
    */
   appliesToProfile(profile: string): boolean {
     return (this.profiles as ReadonlyArray<string>).includes(profile);

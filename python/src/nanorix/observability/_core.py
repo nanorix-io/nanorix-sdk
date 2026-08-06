@@ -29,11 +29,11 @@ forbidden-vocabulary gate (:func:`assert_structural_facts_only`).
   ``failure_reason``. NEVER a regulatory adjudication. The forbidden
   vocabulary (``COMPLIANT`` / ``SATISFIED`` / ``PASSED`` / ``MEETS``) is
   rejected by :func:`assert_structural_facts_only`, which every shell runs
-  before it emits. (``feedback_narrow_signed_claim_auditor_certifies.md``.)
+  before it emits.
 - **No internal engine names.** Tags / attributes / field names carry
   customer-facing nouns only (``capsule_id``, ``pattern_tag``,
   ``failure_reason``, ``signing_authority_id``) — never internal subsystem
-  names (``feedback_ip_protection.md``).
+  names.
 - **No new signed primitive.** These transforms read the existing
   AuditProof + the existing offline verification result; they sign
   nothing and add no field to the signed proof.
@@ -128,9 +128,8 @@ def assert_structural_facts_only(payload: Any) -> None:
             if forbidden in upper:
                 raise ObservabilityError(
                     f"observability payload contains forbidden vocabulary "
-                    f"{forbidden!r}: {token!r}. Per "
-                    "feedback_narrow_signed_claim_auditor_certifies.md, "
-                    "observability events are STRUCTURAL FACTS only — never "
+                    f"{forbidden!r}: {token!r}. "
+                    "Observability events are STRUCTURAL FACTS only — never "
                     "a compliance verdict. The auditor adjudicates."
                 )
 

@@ -90,7 +90,7 @@ a `wrap_kickoff=True` arg.
 ## Three-tier integration model
 
 This callback is Tier A — per-task + per-step receipts. Full workflow
-destruction proof requires Tier B (`@nanorix.workload`) or Tier C
+AuditProof requires Tier B (`@nanorix.workload`) or Tier C
 (framework middleware).
 
 ## Design constraints

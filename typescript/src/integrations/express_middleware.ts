@@ -11,7 +11,7 @@
  * | Tier | Effort | Claim                                              |
  * |------|--------|----------------------------------------------------|
  * | A    | 5 min  | Per-call receipts (LangChain.js callback / proxy)  |
- * | B    | 30 min | Full workflow destruction proof (decorator)        |
+ * | B    | 30 min | Full workflow AuditProof (decorator)        |
  * | C    | 1 hr   | Per-route receipts (Express / Next.js middleware)  |
  *
  * This middleware is Tier C. The claim is per-request: every HTTP
@@ -68,7 +68,7 @@
  * - **Customer-sole-declarer.** Customer declares
  *   `framework=` and `capsulefile=` at middleware registration time.
  *   The middleware does NOT classify request payloads.
- * - **Narrow signed claim** (feedback_narrow_signed_claim_auditor_certifies.md).
+ * - **Narrow signed claim**.
  *   Captures structural HTTP request facts; NEVER asserts request-content
  *   conformance or regulatory satisfaction.
  * - **Zero-retention.** Request/response bodies NEVER enter

@@ -16,7 +16,7 @@ slot with the canonical wire string ``"request"``.
 | Tier | Effort | Claim                                            |
 |------|--------|--------------------------------------------------|
 | A    | 5 min  | Per-call receipts (LangChain callback / proxy)   |
-| B    | 30 min | Full workflow destruction proof (decorator)      |
+| B    | 30 min | Full workflow AuditProof (decorator)      |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)    |
 
 This middleware is Tier C. The claim is per-request:

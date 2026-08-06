@@ -19,7 +19,7 @@
  * responsibility.
  *
  * Narrow signed claim discipline
- * (feedback_narrow_signed_claim_auditor_certifies.md): the metadata
+ *: the metadata
  * envelope records the customer-declared evaluation context only;
  * never asserts "IS COMPLIANT" / "MEETS" / "SATISFIES" any framework.
  */

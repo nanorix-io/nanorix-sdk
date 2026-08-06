@@ -37,7 +37,7 @@ The split is deliberate:
 - **Reuse the orchestrator core.** A cell runs :func:`run_capsule_job`;
   the download-before-destroy ordering and the cleanup-on-failure
   behaviour are inherited, not re-derived. There is NO cell-side cache of
-  capsule data after destroy (``feedback_no_post_destroy_cache.md``).
+  capsule data after destroy.
 - **Customer-sole-declarer.** ``--capsulefile`` and
   ``--data-classification`` come from the magic-line args the analyst
   typed; the core never infers either.
@@ -417,7 +417,7 @@ def render_auditproof_html(
     destruction chain (8 structural steps), the exec exit code, and the
     offline verification badges. Every capsule-supplied value (capsule_id,
     output filenames, stdout/stderr, error text, metadata) is escaped before
-    embedding (``feedback_no_silly_mistakes`` + XSS discipline).
+    embedding (XSS discipline).
 
     Args:
         result: The

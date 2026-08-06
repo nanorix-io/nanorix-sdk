@@ -42,7 +42,7 @@
  * structural facts (event happened at time T, with structural
  * identifiers). NEVER asserts framework correctness, LLM-output safety,
  * hallucination-freedom, or regulatory-framework conformance (per
- * feedback_narrow_signed_claim_auditor_certifies.md).
+ *).
  */
 
 export { NanorixLangChainCallback } from "./langchain.js";

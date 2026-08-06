@@ -19,7 +19,7 @@ match the Go test constants verbatim — these three constants are the
         3b6a0c8f...129b3fbf
 
 Property-style cycle rejection runs ≥10 000 iterations via hypothesis to
-match the Rust corpus depth (see ``feedback_canonical_hash_under_fault.md``).
+match the Rust corpus depth.
 """
 
 from __future__ import annotations
@@ -468,7 +468,7 @@ def test_cycle_detection_prefix_tolerance() -> None:
 
 
 # Hypothesis-driven cycle rejection — ≥10 000 iterations per
-# feedback_canonical_hash_under_fault.md + cycle prevention spec.
+# cycle prevention spec.
 @settings(
     max_examples=10000,
     deadline=None,

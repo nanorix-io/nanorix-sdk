@@ -70,7 +70,7 @@ reply). When the tool returns, `on_tool_call_completed` emits the matching
 ## Three-tier integration model
 
 This callback is Tier A — per-message + per-tool-call receipts. Full
-workflow destruction proof requires Tier B (`@nanorix.workload`) or
+workflow AuditProof requires Tier B (`@nanorix.workload`) or
 Tier C (framework middleware).
 
 ## Design constraints

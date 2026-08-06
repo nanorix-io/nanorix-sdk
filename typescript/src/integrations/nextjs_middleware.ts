@@ -16,7 +16,7 @@
  * | Tier | Effort | Claim                                              |
  * |------|--------|----------------------------------------------------|
  * | A    | 5 min  | Per-call receipts (LangChain.js callback / proxy)  |
- * | B    | 30 min | Full workflow destruction proof (decorator)        |
+ * | B    | 30 min | Full workflow AuditProof (decorator)        |
  * | C    | 1 hr   | Per-route receipts (Express / Next.js middleware)  |
  *
  * ## Public API

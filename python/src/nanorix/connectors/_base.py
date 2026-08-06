@@ -31,7 +31,7 @@ and, for sinks, the exact reverse. There is no third location.
 - **Sink before destroy.** A sink streams the capsule's output to the
   destination BEFORE the capsule is destroyed — never after. Once the
   AuditProof says the capsule is destroyed there is, by design, no
-  capsule data left to read (``feedback_no_post_destroy_cache.md``).
+  capsule data left to read.
 - **No new signed primitive.** Connectors consume the existing
   AuditProof. The AuditProof byte-form is unchanged.
 - **No regulatory claim.** A connector moves bytes; it asserts
@@ -175,7 +175,7 @@ class Sink(Protocol):
     (:func:`stream_capsule_to_sink`) drives a sink by, for each output
     file, calling :meth:`write_object` with a bounded chunk iterator that
     pulls capsule output. The sink MUST be fully driven BEFORE the
-    capsule is destroyed (``feedback_no_post_destroy_cache.md``).
+    capsule is destroyed.
     """
 
     def write_object(
@@ -269,7 +269,7 @@ def stream_capsule_to_sink(
     """Stream each capsule OUTPUT file to ``sink`` (BEFORE destroy).
 
     This is the sink half of the trust boundary, and it enforces
-    the no-post-destroy-cache invariant (``feedback_no_post_destroy_cache``):
+    the no-post-destroy-cache invariant:
     the caller MUST invoke this BEFORE ``capsule.destroy()``. The bytes go
     sealed-capsule -> ``capsule.download()`` -> bounded chunk -> customer
     store and nowhere else.

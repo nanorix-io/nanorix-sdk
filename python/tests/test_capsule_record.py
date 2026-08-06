@@ -732,7 +732,7 @@ def test_adapter_flow_convenience_resolve_function():
 def test_capsule_record_module_no_forbidden_language():
     """Scan the source of capsule_record.py for forbidden verdict language.
 
-    Per CCO policy + feedback_narrow_signed_claim_auditor_certifies.md:
+    Per CCO policy:
     SDK code must NEVER use COMPLIANT / SATISFIED / PASSED / MEETS in
     customer-facing surfaces.
     """

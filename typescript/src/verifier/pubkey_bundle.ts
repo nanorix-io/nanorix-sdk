@@ -5,7 +5,7 @@
  * Cross-impl byte-equivalence with Rust/Go/Python on the canonical reference
  * vectors.
  *
- * Per feedback_open_verifier_bounded_manifest.md: the bundle algorithm is open
+ * The bundle algorithm is open
  * + portable; the trust root (publisher pubkey) is bounded out-of-band.
  *
  * Forever-Standard discipline: bundles are append-only — key rotation = new

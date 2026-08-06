@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""C2PA provenance demo — LLM output from a sealed capsule, destruction proof attached.
+"""C2PA provenance demo — LLM output from a sealed capsule, AuditProof attached.
 
 Offline end-to-end flow:
 
@@ -116,7 +116,7 @@ def main() -> int:
     if not all(checks.values()):
         print("\nDEMO FAILED — one or more checks did not pass.")
         return 1
-    print("\nDemo complete: output + provenance manifest + destruction proof, all offline-verifiable.")
+    print("\nDemo complete: output + provenance manifest + AuditProof, all offline-verifiable.")
     return 0
 
 

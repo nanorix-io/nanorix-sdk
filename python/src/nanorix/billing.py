@@ -7,7 +7,7 @@ Stripe metered billing carries the line items; this module exposes the
 same data via the Nanorix API for programmatic consumption (dashboards,
 cost-forecast scripts, CFO reconciliation pipelines).
 
-## Discipline (CCO policy + feedback_narrow_signed_claim_auditor_certifies.md)
+## Discipline (CCO policy)
 
 - Usage counts + cost forecasts are STRUCTURAL FACTS — not compliance
   adjudication. The auditor remains the certifying authority.
@@ -192,8 +192,7 @@ class Billing:
         Returns:
             Full breakdown by pattern_tag, shape, and capsulefile_id.
 
-        Discipline: counts are STRUCTURAL FACTS; per
-        `feedback_narrow_signed_claim_auditor_certifies.md`, never asserts
+        Discipline: counts are STRUCTURAL FACTS; never asserts
         compliance satisfaction.
         """
         params = _build_meter_params(from_date=from_date, to_date=to_date)

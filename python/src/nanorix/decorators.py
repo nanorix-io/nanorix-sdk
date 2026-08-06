@@ -3,7 +3,7 @@ Tier B integration — `@workload` decorator.
 
 Per the integration ship sequence (Wave 14, item 3 of 5): wraps a
 customer Python function in a Nanorix capsule lifecycle. One line per
-workload, full destruction proof for the workflow. Mirrors the Tier
+workload, full AuditProof for the workflow. Mirrors the Tier
 A LangChain callback (per-call receipts) by going one level wider —
 the entire function execution is bound into a single AuditProof.
 
@@ -12,7 +12,7 @@ the entire function execution is bound into a single AuditProof.
 | Tier | Effort | Claim                                            |
 |------|--------|--------------------------------------------------|
 | A    | 5 min  | Per-call receipts (LangChain callback / proxy)   |
-| B    | 30 min | Full workflow destruction proof (this decorator) |
+| B    | 30 min | Full workflow AuditProof (this decorator) |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)    |
 
 This decorator is Tier B. The claim is full: customer's whole
@@ -51,9 +51,9 @@ audit_proof = my_function.last_audit_proof
   no new capsule-create API fields. The decorator composes existing
   primitives (`client.capsules.create()`, `metadata=`,
   `client.capsules.destroy()`) verbatim.
-- **AuditProof brand discipline.** The destruction proof
-  is the AuditProof. Internal struct name `VerificationCdp` /
-  `FullCdp` is preserved in `CdpAccess`.
+- **AuditProof brand discipline.** Lifecycle evidence is surfaced
+  as the AuditProof, and `VerificationCdp` stays the type exposed
+  through `CdpAccess`.
 - **Zero-retention.** Plaintext function
   arguments / return values stay in the customer's process memory;
   only their canonical-JSON SHA-512 hashes enter the AuditProof
@@ -330,7 +330,7 @@ def _build_workload_metadata(
         for k, v in extra.items():
             if k.startswith("nanorix:"):
                 # Reject customer-supplied reserved-prefix keys per
-                # feedback_metadata_single_field.md (4 KB limit + nanorix:*
+                # (4 KB limit + nanorix:*
                 # reserved prefix are the only guardrails).
                 raise BadRequestError(
                     f"Customer-supplied metadata key {k!r} uses the reserved "

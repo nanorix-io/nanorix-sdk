@@ -4,11 +4,11 @@
  * Pure TypeScript port of the reference verifier. Cross-impl
  * byte-equivalence with Rust/Go/Python on the canonical reference vectors.
  *
- * Per feedback_narrowness_is_the_moat_resist_receipt_enrichment.md: this is
+ * This is
  * a JSON convention + JSON Schema + SDK helper — NOT a new file format with
  * MIME registration / OS-level associations.
  *
- * Per feedback_narrow_signed_claim_auditor_certifies.md: bundle disclaimer
+ * Bundle disclaimer
  * cites; never asserts compliance. Vocabulary discipline forbids
  * COMPLIANT/SATISFIED/PASSED/MEETS in the disclaimer text.
  *

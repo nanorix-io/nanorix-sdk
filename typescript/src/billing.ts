@@ -9,7 +9,7 @@
  * consumption (dashboards, cost-forecast scripts, CFO reconciliation
  * pipelines).
  *
- * ## Discipline (CCO policy + feedback_narrow_signed_claim_auditor_certifies.md)
+ * ## Discipline (CCO policy)
  *
  * Usage counts + cost forecasts are STRUCTURAL FACTS, never compliance
  * adjudication. The auditor remains the certifying authority. Forbidden
@@ -141,8 +141,7 @@ export class Billing {
    * @param opts Date range. When omitted, defaults to the customer's
    *   current billing cycle.
    *
-   * Discipline: counts are STRUCTURAL FACTS; per
-   * `feedback_narrow_signed_claim_auditor_certifies.md`, never asserts
+   * Discipline: counts are STRUCTURAL FACTS; never asserts
    * compliance satisfaction.
    */
   async getUsageMeter(opts: MeterDateRange = {}): Promise<BillingMeterUsage> {

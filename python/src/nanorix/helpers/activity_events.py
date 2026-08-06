@@ -53,7 +53,7 @@ override. Production capsule code typically uses the default path.
 > SDK package is fine. The publish event remains gated separately."
 
 The helpers ship in the SDK source tree but the publish event (PyPI /
-npm) remains gated per `feedback_consumer_surface_after_contract.md`.
+npm) remains gated.
 Customers who consume from the source tree (private install) can use
 these helpers today.
 

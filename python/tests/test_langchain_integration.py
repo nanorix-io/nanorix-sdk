@@ -712,8 +712,7 @@ def test_property_random_chain_orderings_produce_well_formed_events(tmp_path: Pa
     event has required fields, paired tool events have matching ids).
 
     Iterations: 10_000 random sequences (the / `_canonical_hash`
-    invariants must hold under fault injection per
-    `feedback_canonical_hash_under_fault.md`).
+    invariants must hold under fault injection).
     """
     rng = random.Random(0xC0DE5EED)
     iterations = 10_000

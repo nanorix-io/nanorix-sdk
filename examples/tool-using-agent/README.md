@@ -2,7 +2,7 @@
 
 **Production-pattern reference** for tool-using agent workloads inside a Nanorix capsule. Demonstrates the Anthropic tool-use loop pattern with MCP-backed tools and sealed-daemon-enforced tool whitelisting: task definition (with PHI context) → agent reasoning + tool invocation cycle → per-tool-call attestation in AuditProof → structured agent output. Each tool invocation produces a cryptographic record (tuple `(tool_name, args_hash, result_hash, outcome, duration_ms)`) bound into the AuditProof's hash chain.
 
-> **Important: this is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog and agent loop are illustrative. Production deployments substitute the customer's MCP server (mTLS-attested), customer's tool catalog (matching the MCP server's published `tools/list`), and customer's regulatory-counsel-determined SaMD classification. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the agent product is the customer's.
+> **Important: this is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog and agent loop are illustrative. Production deployments substitute the customer's MCP server (mTLS-attested), customer's tool catalog (matching the MCP server's published `tools/list`), and customer's regulatory-counsel-determined SaMD classification. Nanorix is the attestation substrate; the agent product is the customer's.
 
 ## Industry signal
 

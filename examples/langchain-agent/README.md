@@ -2,7 +2,7 @@
 
 **Tier A (proxy/library) integration reference** — demonstrates how a customer's existing LangChain agent runs inside a Nanorix capsule with one-line callback attachment that emits per-LLM-call + per-tool-call sub-receipts into the AuditProof.
 
-> **This is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog is illustrative. Production deployments substitute the customer's tools, LLM provider, and clinical-safety + regulatory-counsel sign-off. Per `feedback_substrate_reframe_pattern.md`, Nanorix is the attestation substrate; the agent product is the customer's.
+> **This is a *pattern reference*, not a turnkey clinical-workflow agent or substitute for a SaMD-classified product.** The tool catalog is illustrative. Production deployments substitute the customer's tools, LLM provider, and clinical-safety + regulatory-counsel sign-off. Nanorix is the attestation substrate; the agent product is the customer's.
 
 ## Five-minute quickstart
 
@@ -42,10 +42,10 @@ nanorix verify auditproof.json
 | Tier | Effort | Claim                                                             | This bundle |
 |------|--------|-------------------------------------------------------------------|-------------|
 | A    | 5 min  | Per-call receipts (sub-receipts per LLM call + per tool call)     | YES (Tier A reference) |
-| B    | 30 min | Full workflow destruction proof (decorator)                       | Future bundle (item 3 of ship sequence) |
+| B    | 30 min | Full workflow AuditProof (decorator)                       | Future bundle (item 3 of ship sequence) |
 | C    | 1 hr   | Per-route receipts (FastAPI/Flask middleware)                     | Future bundle (item 4) |
 
-This bundle ships Tier A only. The claim is **partial**: per-LLM-call and per-tool-call sub-receipts are bound into the AuditProof's activity_trail; full workflow destruction proof requires combining with Tier B (decorator) or Tier C (middleware), which provide capsule-lifecycle wrapping. Customer-facing docs at `docs/integrations/langchain.md` make this distinction explicit.
+This bundle ships Tier A only. The claim is **partial**: per-LLM-call and per-tool-call sub-receipts are bound into the AuditProof's activity_trail; full workflow AuditProof requires combining with Tier B (decorator) or Tier C (middleware), which provide capsule-lifecycle wrapping. Customer-facing docs at `docs/integrations/langchain.md` make this distinction explicit.
 
 ## What the AuditProof records
 
@@ -113,7 +113,7 @@ Nanorix uses `related_to` language only — never asserts compliance status. Cus
 
 ## What this bundle does NOT cover
 
-- **Full workflow destruction proof** — see Tier B (`@nanorix.workload` decorator) or Tier C (FastAPI/Flask middleware) bundles, future items in the ship sequence.
+- **Full workflow AuditProof** — see Tier B (`@nanorix.workload` decorator) or Tier C (FastAPI/Flask middleware) bundles, future items in the ship sequence.
 - **PHI scanning** — Alt B, Nanorix does NOT inspect prompts or responses for PHI patterns. Customer's prompt + tool-args + tool-results stay in the capsule's volatile memory; only SHA-512 hex digests reach the AuditProof.
 - **Production tool catalog** — the 3-tool reference catalog is illustrative.
 - **SaMD classification** — Nanorix attests to data-handling boundary; SaMD class is customer + regulatory counsel.

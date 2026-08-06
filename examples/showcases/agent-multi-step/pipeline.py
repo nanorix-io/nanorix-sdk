@@ -5,8 +5,8 @@ Demonstrates per-step receipt emission for a 5-step LangGraph agent.
 Each node emits a receipt; auditor follows the chain via the Step 8
 Merkle root.
 
-Per `feedback_narrow_signed_claim_auditor_certifies.md`: no verdict
-language. Per `feedback_ip_protection.md`: external-brand language only.
+No verdict
+language. External-brand language only.
 """
 from __future__ import annotations
 
@@ -60,8 +60,8 @@ def main() -> int:
 
     client = nanorix.Client(api_key=api_key)
 
-    # Customer-declared classification — agent vendor's responsibility
-    #. Nanorix does not introspect query content.
+    # Customer-declared classification — agent vendor's responsibility.
+    #     Nanorix does not introspect query content.
     capsule = client.capsules.create(
         capsulefile=args.capsulefile_id,
         jurisdiction="US",

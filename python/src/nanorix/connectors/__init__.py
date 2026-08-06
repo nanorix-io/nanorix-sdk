@@ -14,7 +14,7 @@ credentials (resolved by the cloud SDK's standard chain). It streams a
 bounded chunk at a time directly between the customer's storage and the
 sealed capsule over TLS. Nanorix never stages the data, never holds the
 credentials, and never sees the bytes outside the sealed capsule. A sink
-streams out BEFORE destroy — never after (``feedback_no_post_destroy_cache``).
+streams out BEFORE destroy — never after.
 Connectors consume the existing AuditProof and add NO new signed
 primitive (narrowness preserved). They move bytes; they make no
 regulatory claim.

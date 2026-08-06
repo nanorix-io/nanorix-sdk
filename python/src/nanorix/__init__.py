@@ -79,7 +79,7 @@ from nanorix.resources.usage import UsageItem
 # Batch 3 sub-item 1 (CR-002, 2026-05-27) — Billing meter readout surface.
 # Programmatic mirror of Stripe metered billing data. Per-pattern,
 # per-shape, per-capsulefile breakdowns + cost forecast. Counts are
-# STRUCTURAL FACTS per feedback_narrow_signed_claim_auditor_certifies.md.
+# STRUCTURAL FACTS.
 from nanorix.billing import (
     AsyncBilling,
     Billing,

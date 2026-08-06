@@ -158,7 +158,7 @@ class CapsuleJobParams:
         sinks: Optional list of :class:`nanorix.connectors.Sink`
             connectors. Each receives the capsule's
             ``output_files`` and streams them to the destination BEFORE
-            destroy — never after (``feedback_no_post_destroy_cache.md``).
+            destroy — never after.
             ``None`` means no sink connectors. When ``sinks`` is given,
             ``output_files`` names the capsule outputs streamed to every
             sink.
@@ -374,8 +374,8 @@ def run_capsule_job(client: Any, params: CapsuleJobParams) -> CapsuleJobResult:
             for filename in params.output_files:
                 outputs[filename] = capsule.download(filename)
 
-        # 3b. Stream capsule OUTPUT to every SINK connector BEFORE destroy
-        # (feedback_no_post_destroy_cache.md). Sinks run
+        # 3b. Stream capsule OUTPUT to every SINK connector BEFORE destroy.
+        #     Sinks run
         #     while the capsule is still alive; once destroyed there is no
         #     capsule data left to read.
         if params.sinks:
@@ -487,7 +487,7 @@ def _stream_sinks(client: Any, capsule: Any, params: CapsuleJobParams) -> None:
 
     The capsule's ``output_files`` name the outputs streamed to each sink.
     Enforced ordering: this runs while the capsule is still alive, before
-    ``destroy`` (``feedback_no_post_destroy_cache.md``).
+    ``destroy``.
     """
     from nanorix.connectors import stream_capsule_to_sink
 

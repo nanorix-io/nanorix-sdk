@@ -65,7 +65,7 @@ export type {
 // Batch 3 sub-item 1 (CR-002, 2026-05-27) — Billing meter readout surface.
 // Programmatic mirror of Stripe metered billing data. Per-pattern,
 // per-shape, per-capsulefile breakdowns + cost forecast. Counts are
-// STRUCTURAL FACTS per feedback_narrow_signed_claim_auditor_certifies.md.
+// STRUCTURAL FACTS.
 export { Billing } from "./billing.js";
 export type {
   PatternUsage,
@@ -525,8 +525,7 @@ export type {
 // Sibling primitive next to AuditProof; AuditProof byte-form UNCHANGED
 // (affirmed). EU AI Act Article 50 (effective August 2026)
 // interchange format. Customer-sole-declarer; three-role
-// discipline; narrowness invariant preserved
-// (feedback_narrowness_is_the_moat_resist_receipt_enrichment.md).
+// discipline; narrowness invariant preserved.
 export {
   C2PAManifest,
   C2PAManifestBuilder,

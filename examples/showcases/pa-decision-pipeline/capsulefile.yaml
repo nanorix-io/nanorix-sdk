@@ -3,7 +3,7 @@
 # Immutability: changes to this file produce a new
 # content_hash; rebuild + re-finalize before running.
 #
-# Per `feedback_ip_protection.md`: external-brand vocabulary only.
+# External-brand vocabulary only.
 name: pa-decision-pipeline
 runtime: python3.11
 entrypoint: "python /capsule/decide.py"

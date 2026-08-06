@@ -5,8 +5,8 @@ Mocks the DICOMweb / C-STORE ingestion path (full DICOMweb integration
 is a Wave-N extension not in V1). Demonstrates the AuditProof shape
 for an imaging-inference workload.
 
-Per `feedback_narrow_signed_claim_auditor_certifies.md`: no verdict
-vocabulary. Per `feedback_ip_protection.md`: external-brand language only.
+No verdict
+vocabulary. External-brand language only.
 """
 from __future__ import annotations
 

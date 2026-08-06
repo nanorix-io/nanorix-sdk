@@ -459,7 +459,7 @@ def test_ncpdp_derive_metadata_accepts_workflow_id():
 
 
 def test_ncpdp_module_text_has_no_banned_verdict_vocabulary():
-    """Per feedback_narrow_signed_claim_auditor_certifies.md:
+    """Per:
     COMPLIANT / SATISFIED / PASSED / MEETS are forbidden in any
     customer-facing surface (helper, doc, test assertion strings).
     Test names + comments scanned together."""
@@ -478,7 +478,7 @@ def test_ncpdp_module_text_has_no_banned_verdict_vocabulary():
 
 
 def test_ncpdp_module_avoids_engine_name_leaks():
-    """Per feedback_ip_protection.md: internal engine names should not
+    """Internal engine names should not
     appear in customer-facing helper strings or docstrings."""
     import nanorix.healthcare.ncpdp as ncpdp_mod
     source = inspect.getsource(ncpdp_mod)

@@ -1,7 +1,7 @@
 """
 Nanorix SDK — Quick Start
 
-One-shot processing: send data, run computation, get results + destruction proof.
+One-shot processing: send data, run computation, get results + AuditProof.
 The capsule is automatically destroyed after completion.
 
 Usage:
