@@ -149,7 +149,7 @@ callback).
 
 
 # Map LangChain exception class names → closed-enum ToolCallFailureKind
-# strings (mirrors `services/api/src/cdp_document.rs:97`). Customer can
+# strings (mirrors the Nanorix API service). Customer can
 # override per-tool by subclassing and overriding `_classify_tool_error`.
 _DEFAULT_FAILURE_KIND_MAP: Mapping[str, str] = {
     "TimeoutError": "timeout",

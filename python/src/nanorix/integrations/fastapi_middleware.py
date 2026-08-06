@@ -148,7 +148,7 @@ __all__ = [
 CDP_KIND_REQUEST = "request"
 """The reserved-slot wire form for per-HTTP-request AuditProofs
 (Wave 16-A `a951568`; Wave 18-11 ungating). Mirrors `CdpKind::Request`
-serde rename_all = "snake_case" at governance/rzl/src/cdp.rs."""
+serde rename_all = "snake_case" at the canonical verifier."""
 
 
 WRAPPER_KIND = "middleware"
@@ -196,7 +196,7 @@ RESPONSE_HEADER_CAPSULE_ID = "X-Nanorix-Capsule-Id"
 
 
 # Closed-enum mapping HTTP status → ToolCallFailureKind serde wire form
-# at services/api/src/cdp_document.rs::ToolCallFailureKind.
+# at the Nanorix API service.
 _STATUS_TO_FAILURE_KIND: Mapping[int, str] = {
     408: "timeout",
     401: "permission_denied",
@@ -221,7 +221,7 @@ def _canonical_sha512_hex(payload: Any) -> str:
 
     Uses ``sort_keys=True, separators=(",", ":")`` so cross-impl
     byte-equivalence holds against the Rust JCS serializer at
-    governance/rzl/src/canonical.rs.
+    the canonical verifier.
     """
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha512(canonical).hexdigest()
@@ -281,7 +281,7 @@ class NanorixMiddleware(BaseHTTPMiddleware):
             middleware does NOT wrap (e.g., ``["/health", "/metrics"]``).
             Health checks should typically NOT consume capsule quota.
         max_lifetime_seconds: Optional capsule lifetime ceiling. Default
-            300 seconds (matches the sealed-proxy ceiling at services/api).
+            300 seconds (matches the sealed-proxy ceiling at the Nanorix API service).
         egress_profile: Optional egress profile ID for outbound network
             policy (Business+ tier).
         on_audit_proof: Optional callback receiving the resulting
@@ -619,7 +619,7 @@ def _classify_exception(exc: BaseException) -> str:
     Returns one of the 6 known wire values; defaults to
     ``"upstream_failure"`` when no specific match. Mirrors the
     classification table in
-    sdk/python/src/nanorix/integrations/langchain.py.
+    the Python SDK.
     """
     cls = type(exc).__name__
     mapping = {

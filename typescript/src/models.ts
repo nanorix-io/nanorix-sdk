@@ -125,7 +125,7 @@ export interface DataSummary {
 }
 
 /**
- * Per-record receipt — mirror of `nanorix_rzl::types::RecordReceipt`.
+ * Per-record receipt — mirror of the canonical `RecordReceipt` wire type.
  *
  * Forever-Standard: field-additive optional fields with
  * `[key: string]: unknown` so SDK-side parsing keeps working as the Rust
@@ -153,7 +153,7 @@ export interface RecordReceipt {
 
 /**
  * Cross-org parent-proof link — mirror of
- * `nanorix_rzl::types::ParentProofLink`.
+ * the canonical `ParentProofLink` wire type.
  *
  * Forever-Standard: optional fields skip-serialize when
  * undefined so cross-impl byte-equivalence is preserved.

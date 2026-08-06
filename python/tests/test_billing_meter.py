@@ -1,7 +1,7 @@
 """Tests for the Billing meter readout SDK helpers.
 
 Batch 3 sub-item 1 (CR-002, 2026-05-27). Mirrors the Rust-side surface in
-`services/api/src/routes/billing_meter.rs`. These tests exercise the SDK
+the Nanorix API service. These tests exercise the SDK
 parsing layer + URL construction against a mock HTTP transport (offline;
 no live API roundtrip). Round-trip tests against the live endpoint live
 in the Rust integration suite.

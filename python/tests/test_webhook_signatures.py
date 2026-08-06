@@ -1,9 +1,9 @@
 """Wave 18-7 / CTI-T7-008 — webhook signature verification tests.
 
 Pins cross-language byte-equivalence with:
-  - Rust signer: services/api/src/routes/webhooks.rs::sign_payload
+  - Rust signer: the Nanorix API service
   - Go verifier: tools/nanorix-webhook-verify-go/verifier.go
-  - TypeScript verifier: sdk/typescript/src/resources/webhooks.ts
+  - TypeScript verifier: the TypeScript SDK
 
 If any implementation drifts on the HMAC wire form ('{ts}.{body}' + sha256=
 prefix + lowercase hex), this test fails.
@@ -35,7 +35,7 @@ FIXTURE_SIGNATURE = (
 
 
 def _sign(body: bytes, secret: str, timestamp: int) -> str:
-    """Reference signer (parity with Rust services/api signing path)."""
+    """Reference signer (parity with the Nanorix API service signing path)."""
     message = f"{timestamp}.".encode("utf-8") + body
     mac = hmac.new(secret.encode("utf-8"), message, hashlib.sha256).hexdigest()
     return f"sha256={mac}"

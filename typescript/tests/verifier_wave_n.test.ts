@@ -1,8 +1,8 @@
 /**
  * Wave-N test suite — cross-impl byte-equivalence with the
- * canonical Rust verifier at `governance/rzl/src/wave_n.rs`, the Go port at
+ * canonical Rust verifier at the canonical verifier, the Go port at
  * `tools/auditproof-verifier-go/wave_n.go`, and the Python port at
- * `sdk/python/src/nanorix/verifier/wave_n.py`.
+ * the Python SDK.
  *
  * **Forever-Standard discipline:** every test here pins a
  * cryptographic-attestation contract. Any divergence from the Rust reference

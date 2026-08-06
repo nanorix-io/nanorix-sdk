@@ -3,7 +3,7 @@ Batch result types — `BatchResult` returned by `Capsule.batch()`.
 
 Per Agent A research (2026-05-05): Anthropic Message Batches inline shape +
 caller-required `custom_id` + SQS partial-batch-failure outcomes. Mirrors
-the wire shape of `runtime/eee/src/batch.rs` BatchAccumulator + the
+the sealed runtime's batch-accumulator wire shape + the
 ActivityEvent BatchRecordProcessed/BatchCompleted variants from Batch 26
 sub-A.
 
@@ -38,7 +38,7 @@ from nanorix._models import CdpAccess
 class BatchRecord:
     """One processed record's outcome, per `BatchResult.records()`.
 
-    Mirrors `runtime/eee/src/batch.rs::BatchRecordResult` + the
+    Mirrors the sealed runtime's
     `ActivityEvent::BatchRecordProcessed` wire shape. `custom_id` is the
     customer's per-record identifier (Anthropic Batches / OpenAI Batch
     convention; mandatory). `record_input_hash` + `record_output_hash`
@@ -128,7 +128,7 @@ def _hex_to_bytes_64(prefixed_hex: str) -> bytes:
 def compute_batch_merkle_root(records: List[BatchRecord]) -> str:
     """Compute batch Merkle root from per-record (input, output) hashes.
 
-    Mirrors `runtime/eee/src/batch.rs::BatchAccumulator::finalize` exactly:
+    Mirrors the sealed runtime exactly:
     leaves are `combined_record_leaf(input_hash_bytes, output_hash_bytes)`
     in `record_idx` order; tree is RFC 6962 binary with 0x00 leaf /
     0x01 inner domain prefixes.

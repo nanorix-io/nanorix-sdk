@@ -1,6 +1,6 @@
 """Wire-constraint helpers shared by all framework context dataclasses.
 
-Mirrors ``services/api/src/validation.rs::validate_metadata`` so the
+Mirrors the Nanorix API service so the
 helper fails fast at construction rather than letting an oversized
 payload reach the API. Reproduce the exact wire constraints; do not
 loosen them client-side.
@@ -22,7 +22,7 @@ MAX_VALUE_LENGTH = 256
 MAX_TOTAL_SERIALIZED = 4096
 
 # Reserved keys the helpers emit. Server validates these against the
-# RESERVED_NANORIX_KEYS_ALLOWED whitelist in validation.rs. Adding a new
+# RESERVED_NANORIX_KEYS_ALLOWED whitelist in the reference implementation. Adding a new
 # reserved key here requires a coordinated server-side amendment.
 RESERVED_FRAMEWORK_KEY = "nanorix:framework"
 RESERVED_FRAMEWORK_VERSION_KEY = "nanorix:framework_version"
@@ -31,7 +31,7 @@ RESERVED_FRAMEWORK_VERSION_KEY = "nanorix:framework_version"
 def validate_value_length(field_name: str, value: str) -> None:
     """Raise ValueError if a metadata value exceeds the 256-char wire limit.
 
-    The wire limit is enforced server-side (validation.rs); helpers fail
+    The wire limit is enforced server-side (the reference implementation); helpers fail
     fast at construction so the error surfaces in the customer's stack
     trace rather than as an HTTP 400.
     """
@@ -60,7 +60,7 @@ def validate_no_comma_in_list(field_name: str, items: List[str]) -> None:
 def estimate_serialized_size(metadata: Dict[str, str]) -> int:
     """Estimate JSON-serialized size of a metadata dict.
 
-    Mirrors validation.rs which checks ``serde_json::to_string(metadata)``
+    Mirrors the reference implementation which checks ``serde_json::to_string(metadata)``
     against the 4096-byte limit. ``json.dumps`` produces a similar
     representation in Python (key/value sort order may differ but byte
     count is comparable).

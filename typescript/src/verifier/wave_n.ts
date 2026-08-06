@@ -1,8 +1,8 @@
 /**
  * Wave-N per-record receipt + parent-proof verification.
  *
- * Pure TypeScript port of `governance/rzl/src/wave_n.rs` plus the verifier-side
- * extension in `tools/nanorix-verify/src/lib.rs`. Cross-impl byte-equivalent
+ * Pure TypeScript port of the canonical verifier plus the verifier-side
+ * extension in the reference verifier. Cross-impl byte-equivalent
  * with Rust + Go + Python ports on the 110-fixture extended corpus.
  *
  * **Forever-Standard discipline:** every primitive here is part
@@ -29,7 +29,7 @@ import { canonicalizeBytes } from "../_jcs.js";
 
 /**
  * Genesis SHA-512 hash of the empty string. Re-exported so this module is
- * self-contained — mirrors Rust `nanorix_rzl::wave_n::GENESIS_SHA512_HEX`.
+ * self-contained — mirrors the canonical `GENESIS_SHA512_HEX` wire type.
  */
 export const GENESIS_SHA512_HEX =
   "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce" +
@@ -42,7 +42,7 @@ export const PARENT_PROOF_MAX_DEPTH = 32;
 
 /**
  * Closed-enum pattern tag wire values (mirror Rust
- * `nanorix_rzl::types::PatternTag` and `nanorix.capsule_record.PATTERN_TAGS`).
+ * the canonical `PatternTag` wire type and `nanorix.capsule_record.PATTERN_TAGS`).
  *
  * Used by downstream consumers; the verifier itself does NOT reject unknown
  * pattern_tag values (forward-compatibility).
@@ -74,7 +74,7 @@ const STEP_8_ACTION = "destroy";
 const STEP_8_METHOD = "capsule_lifecycle_verification";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Wave-N types — mirror `nanorix_rzl::types::{RecordReceipt, ParentProofLink}`
+// Wave-N types — mirror the canonical RecordReceipt, ParentProofLink wire types
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**

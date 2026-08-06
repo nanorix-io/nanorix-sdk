@@ -1,14 +1,14 @@
 /**
  * Customer-side ActivityEvent emission helpers — Cap-3 (Phase 1).
  *
- * Mirrors `sdk/python/src/nanorix/helpers/activity_events.py`
+ * Mirrors the Python SDK
  * byte-identically: same event JSON shape, same JCS-flavor canonical-
  * JSON for hashing, same closed-enum sets, same buffer protocol.
  *
  * (Accepted 2026-05-06) shipped 4 ActivityEvent variants for
  * AI-agent tooling — `ToolCallAttempted`, `ToolCallCompleted`,
  * `ToolCallFailed`, `ReasoningStepCompleted` — implemented at
- * `services/api/src/cdp_document.rs:1561-1752`. Until Cap-3, customers
+ * the Nanorix API service. Until Cap-3, customers
  * had NO SDK helper to construct + emit these events from inside
  * their capsule code. This module closes the gap.
  *
@@ -74,7 +74,7 @@ export const DEFAULT_BUFFER_PATH = "/data/activity_events.jsonl";
 /** Closed-enum tool-call failure kinds.
  *
  *  Mirrors `ToolCallFailureKind` at
- * `services/api/src/cdp_document.rs:97`.
+ * the Nanorix API service.
  */
 export const TOOL_CALL_FAILURE_KINDS = [
   "timeout",
@@ -89,7 +89,7 @@ export type ToolCallFailureKind = (typeof TOOL_CALL_FAILURE_KINDS)[number];
 /** Closed-enum reasoning step kinds.
  *
  *  Mirrors `ReasoningStepKind` at
- * `services/api/src/cdp_document.rs:146`.
+ * the Nanorix API service.
  */
 export const REASONING_STEP_KINDS = [
   "plan",

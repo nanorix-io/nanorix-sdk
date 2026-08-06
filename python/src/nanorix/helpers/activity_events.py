@@ -4,7 +4,7 @@ Customer-side ActivityEvent emission helpers — Cap-3 (Phase 1).
  (Accepted 2026-05-06) shipped 4 ActivityEvent variants for AI-
 agent tooling — `ToolCallAttempted`, `ToolCallCompleted`, `ToolCallFailed`,
 `ReasoningStepCompleted` — implemented at
-`services/api/src/cdp_document.rs:1561-1752`. The variants are bound
+the Nanorix API service. The variants are bound
 into the AuditProof's canonical_hash and surface in the activity_trail.
 
 Until Cap-3, customers had NO SDK helper to construct + emit these events
@@ -126,7 +126,7 @@ seals it, and reads `activity_events.jsonl` on capsule destroy.
 """
 
 
-# Closed-enum mirrors of `services/api/src/cdp_document.rs`.
+# Closed-enum mirrors of the Nanorix API service.
 # These match the `ToolCallFailureKind` and `ReasoningStepKind` Rust
 # enums verbatim (Accepted 2026-05-07).
 TOOL_CALL_FAILURE_KINDS = frozenset(
@@ -141,7 +141,7 @@ TOOL_CALL_FAILURE_KINDS = frozenset(
 )
 """Closed-enum tool-call failure kinds.
 
-Mirrors `ToolCallFailureKind` at `services/api/src/cdp_document.rs:97`.
+Mirrors `ToolCallFailureKind` at the Nanorix API service.
 Customer's call site supplies one of these strings as `failure_kind`.
 The free-form `failure_reason` field carries the customer's verbatim
 narrative; both fields populate when both pieces of information are
@@ -151,7 +151,7 @@ available.
 REASONING_STEP_KINDS = frozenset({"plan", "reason", "synthesize", "decide", "reserved"})
 """Closed-enum reasoning step kinds.
 
-Mirrors `ReasoningStepKind` at `services/api/src/cdp_document.rs:146`.
+Mirrors `ReasoningStepKind` at the Nanorix API service.
 Customer-declared classification of the reasoning step. Auditor tooling
 partitions the trail by step kind (e.g., "show me only the agent's
 `Decide` steps").
@@ -167,7 +167,7 @@ def _canonical_hash(payload: Any) -> str:
     Uses the same JCS-flavor (`sort_keys=True, separators=(",", ":")`)
     that `nanorix._merkle.hash_record_bytes`,
     `nanorix._session.hash_state_bytes`, and
-    `runtime/eee/src/memory_artifact.rs::hash_artifact_bytes` use, so
+    the sealed runtime use, so
     cross-impl byte-equivalence holds for the activity-trail's hash
     fields.
     """

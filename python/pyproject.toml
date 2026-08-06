@@ -232,8 +232,8 @@ packages = ["src/nanorix"]
 # than in .gitignore so the artifact is correct regardless of checkout state.
 # Hatchling force-includes the project's VCS ignore file in the sdist (an
 # `exclude` entry cannot remove it). Without an SDK-local .gitignore it copies
-# the repo-root one, which describes internal repo layout — so sdk/python/
-# keeps its own minimal .gitignore and that is the file that ships.
+# the repository root's — so this package keeps its own minimal .gitignore
+# and that is the file that ships.
 exclude = [".hypothesis", ".mypy_cache", ".pytest_cache", ".ruff_cache", "dist"]
 
 [tool.pytest.ini_options]

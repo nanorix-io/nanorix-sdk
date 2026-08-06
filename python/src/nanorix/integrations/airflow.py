@@ -73,7 +73,7 @@ Nanorix's.
 For long-running capsule jobs you can avoid pinning an Airflow worker slot
 for the whole run by pairing a deferrable operator with the async
 202-accepted capsule lifecycle (poll-until-complete / webhook completion;
-see ``services/api/tests/wave_18_4_t5_003_async_orchestrator.rs``). The
+see the Nanorix API service). The
 deferrable shell would: submit the job (202), ``self.defer(...)`` onto a
 ``TimeDeltaTrigger``/poll trigger, and on resume call the SAME core to
 download-before-destroy and return the AuditProof. The synchronous

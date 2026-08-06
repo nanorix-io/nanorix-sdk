@@ -1,7 +1,7 @@
 /**
  * Batch 9 (2026-05-28) — C2PA LLM-output provenance tests (TS port).
  *
- * Mirrors `sdk/python/tests/test_c2pa_provenance.py`. Validates:
+ * Mirrors the Python SDK. Validates:
  *
  * - Builder fluent API (withCapsule / withModel / withPromptIntent /
  *   withGenerationTimestamp / withOutputContent / sign)
@@ -711,7 +711,7 @@ describe("Narrowness invariant (receipt narrowness)", () => {
   it("manifest module does not import internal struct names", async () => {
     // Read the c2pa_provenance.ts source and verify no IP leakage
     const fs = await import("node:fs/promises");
-    const path = "/home/dr/nanorix/sdk/typescript/src/integrations/c2pa_provenance.ts";
+    const path = new URL("../src/integrations/c2pa_provenance.ts", import.meta.url).pathname;
     const src = await fs.readFile(path, "utf-8");
     // Internal struct names must NEVER appear outside the forbidden-list literal
     const offendingPattern = /\b(VerificationCdp|FullCdp|AVE)\b/g;
@@ -723,7 +723,7 @@ describe("Narrowness invariant (receipt narrowness)", () => {
 
   it("c2pa module does not import the AuditProof verifier surface", async () => {
     const fs = await import("node:fs/promises");
-    const path = "/home/dr/nanorix/sdk/typescript/src/integrations/c2pa_provenance.ts";
+    const path = new URL("../src/integrations/c2pa_provenance.ts", import.meta.url).pathname;
     const src = await fs.readFile(path, "utf-8");
     expect(src).not.toContain('from "../verifier/');
     expect(src).not.toContain('from "../models');

@@ -58,7 +58,7 @@ export const DISCLAIMER =
 /**
  * Canonical mapping for framework_version 2026-02. Append-only.
  *
- * Mirrors the Rust resolver in `services/api/src/control_map.rs::resolve_controls`
+ * Mirrors the Rust resolver in the Nanorix API service
  * and Python `nanorix.control_map.MAPPING_2026_02` — single source of truth.
  */
 export const MAPPING_2026_02: Readonly<Record<string, readonly string[]>> = {

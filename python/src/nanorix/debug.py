@@ -22,8 +22,8 @@ Design notes
 Cross-impl byte-equivalence contract
 --------------------------------------------------
 `verify_auditproof` must produce `{"valid": ..., "failure_reason": ...}` output
-byte-equivalent with the Go verifier on every fixture in:
-  tools/nanorix-verify/fixtures/corpus/
+byte-equivalent with the Go verifier on every fixture in the
+reference verifier's fixture corpus.
 
 Known V1 divergences (tracked, not P0):
   - Category 05 (region_mismatch): Go V1 does not enforce region policy — returns

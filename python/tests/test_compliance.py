@@ -52,7 +52,7 @@ def test_hipaa_empty_required_field_raises():
 
 
 def test_hipaa_oversized_value_raises_at_construction():
-    # 257-char value exceeds the 256-char wire limit per validation.rs.
+    # 257-char value exceeds the 256-char wire limit per the reference implementation.
     with pytest.raises(ValueError, match="256-char limit"):
         HipaaContext(
             covered_entity="A" * 257,

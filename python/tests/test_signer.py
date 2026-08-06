@@ -46,7 +46,7 @@ def test_canonicalize_event_no_whitespace():
 def test_canonicalize_event_pinned_cross_impl_vector():
     """Cross-impl invariant pin — this Python SDK's canonicalize_event +
     SHA-512 must produce IDENTICAL hash to the Rust server's
-    `services/api/src/per_event_signing.rs::compute_event_message_hash`
+    canonical event hash
     AND the TypeScript SDK's `canonicalizeEvent` + SHA-512.
 
     If this hash drifts, EITHER the Python SDK OR the server impl OR

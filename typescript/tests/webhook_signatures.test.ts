@@ -2,9 +2,9 @@
  * Wave 18-7 / CTI-T7-008 — webhook signature verification tests.
  *
  * Pins cross-language byte-equivalence with:
- *   - Rust signer: services/api/src/routes/webhooks.rs::sign_payload
+ * - Rust signer: the Nanorix API service
  *   - Go verifier: tools/nanorix-webhook-verify-go/verifier.go
- *   - Python verifier: sdk/python/src/nanorix/resources/webhooks.py
+ * - Python verifier: the Python SDK
  *
  * If any implementation drifts on the HMAC wire form (`{ts}.{body}` +
  * `sha256=` prefix + lowercase hex), this test fails.

@@ -80,14 +80,14 @@ __all__ = [
 ]
 
 # Customer-supplied keys with this prefix are rejected by the API
-# (validation.rs). Only Nanorix helpers may emit reserved keys. The
+# (the reference implementation). Only Nanorix helpers may emit reserved keys. The
 # orchestrator core emits NO reserved keys — it forwards the customer's
 # metadata verbatim — but it fails fast here so the rejection surfaces in
 # the DAG author's stack trace rather than as an opaque HTTP 400.
 RESERVED_METADATA_PREFIX = "nanorix:"
 
 # The accepted data_classification values, mirroring the API
-# (services/api/src/routes/capsules.rs). The customer declares one of
+# (the Nanorix API service). The customer declares one of
 # these; Nanorix records it verbatim and never overrides it.
 VALID_DATA_CLASSIFICATIONS = (
     "PHI",
@@ -226,7 +226,7 @@ class CapsuleJobParams:
 
 
 def _validate_metadata(metadata: Mapping[str, str]) -> None:
-    """Mirror ``validate_metadata`` (validation.rs) for fail-fast errors.
+    """Mirror ``validate_metadata`` (the reference implementation) for fail-fast errors.
 
     Reproduces the exact wire constraints and the reserved-prefix
     discipline. Does NOT loosen them client-side.

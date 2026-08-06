@@ -1,9 +1,8 @@
 /**
  * Tests for the Billing meter readout SDK helpers (TS).
  *
- * Batch 3 sub-item 1 (CR-002, 2026-05-27). Mirrors the Python suite at
- * `sdk/python/tests/test_billing_meter.py` + the Rust handler suite at
- * `services/api/src/routes/billing_meter.rs`. Exercises the parsing
+ * Batch 3 sub-item 1 (CR-002, 2026-05-27). Mirrors the Python suite
+ * and the service-side handler suite. Exercises the parsing
  * layer + URL construction against a mock fetch (offline; no live API
  * roundtrip).
  */

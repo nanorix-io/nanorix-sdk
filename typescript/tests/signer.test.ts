@@ -48,7 +48,7 @@ describe("canonicalizeEvent", () => {
     // Cross-impl invariant pin: this TS canonicalizeEvent + SHA-512 must
     // produce IDENTICAL hash to:
     // - Python SDK nanorix.helpers.signer.canonicalize_event + SHA-512
-    // - Rust services/api/src/per_event_signing.rs::compute_event_message_hash
+    // - the Nanorix API service
     //
     // If this hash drifts, ANY of the three implementations diverged from
     // RFC 8785 JCS — verifier replay would break cross-language. Pin all

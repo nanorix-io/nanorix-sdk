@@ -18,7 +18,7 @@ ActivityEvent set into the AuditProof.
 > LangGraph adapter (sub-D) ships as a separable engineering ticket,
 > not bundled with SDK 1.0 publish event.
 
-This file lives at `sdk/python/src/nanorix/helpers/checkpoint_saver.py`
+This module ships with the Python SDK
 but is **deliberately NOT exported from `nanorix.helpers.__init__`** —
 it ships dormant pending a deliberate publish event. Customers who
 opt in early can import directly:
@@ -42,11 +42,11 @@ deferred per `feedback_consumer_surface_after_contract.md`.
     the bytes for continuity binding but the bytes themselves flow
     through the customer's URI directly. The cryptographic chain
     binding (parent_cdp_id) lives in the AuditProof per the
-    continuity invariant in `cdp_document.rs:914-924`.
+    continuity invariant in the reference implementation.
 
 - **No new crypto primitives in this module.** Only `hashlib.sha512`
   for the wire-string convention (matches `nanorix._merkle.hash_record_bytes`
-  + `nanorix._session.hash_state_bytes` + `runtime/eee/src/memory_artifact.rs::hash_artifact_bytes`).
+  + `nanorix._session.hash_state_bytes` + the sealed runtime).
 
 ## LangGraph CheckpointSaver protocol
 
@@ -64,13 +64,13 @@ LangGraph graph remains synchronous-API-compatible.
 
 The `_continuity_hash` helper produces SHA-512 hex with `sha512:`
 prefix, matching the convention used by:
-- `runtime/eee/src/memory_artifact.rs::hash_artifact_bytes`
+- the sealed runtime
 - `nanorix._session.hash_state_bytes`
 - `nanorix._merkle.hash_record_bytes`
 
 Any change to this hash format requires coordinated update across
 all four implementations + the wire-shape tests in
-`services/api/src/tests/cdp_document_tests.rs`.
+the Nanorix API service.
 
 ## Examples
 
@@ -126,7 +126,7 @@ def hash_state_dict(state: Any) -> str:
     """Compute SHA-512 wire-format hash of a LangGraph state dict.
 
     Mirrors:
-    - `runtime/eee/src/memory_artifact.rs::hash_artifact_bytes`
+    - the sealed runtime
     - `nanorix._session.hash_state_bytes`
     - `nanorix._merkle.hash_record_bytes`
 
@@ -198,7 +198,7 @@ class CheckpointEntry:
     - `parent_cdp_id`: Previous checkpoint's `cdp_id`. None for the
       first checkpoint in a thread.
     - `artifact_input_hash` + `artifact_output_hash`: continuity
-      binding hashes per the invariant in `cdp_document.rs:914-924`.
+      binding hashes per the invariant in the reference implementation.
     """
 
     thread_id: str
@@ -248,7 +248,7 @@ class NanorixCheckpointSaver:
     **Forever-Standard discipline:** the canonical-hash-
     bound surface is the closed `MemoryArtifactLoaded` /
     `MemoryArtifactPersisted` ActivityEvent variants in
-    `services/api/src/cdp_document.rs`. The Python adapter is
+    the Nanorix API service. The Python adapter is
     customer-side glue; adding fields here does NOT need an ADR
     amendment.
     """
@@ -480,7 +480,7 @@ class NanorixCheckpointSaver:
 
         # Production path: call the SDK with parent_cdp_id linkage.
         # The SDK forwards parent_cdp_id to POST /v1/capsules per
-        # services/api/src/models/mod.rs::CreateCapsuleRequest.parent_cdp_id.
+        # the API's create-capsule request contract.
         # The capsule auto-emits MemoryArtifactLoaded at create + destroy.
         # Sub-D refinement: wire an actual exec call so the customer's
         # LangGraph node logic runs in-capsule. V1 dormant: create+destroy

@@ -4,9 +4,9 @@
  * This module exposes the customer-facing surface for emitting per-record
  * receipts and parent-proof links against a live
  * capsule. Receipts and parent links buffer server-side per Wave A
- * (`services/api/src/routes/records.rs`) and bind into the AuditProof's
+ * (the Nanorix API service) and bind into the AuditProof's
  * outer 8-step chain at capsule-destroy time via Merkle root incorporation
- * into Step 8 (`governance/rzl/src/wave_n.rs::compute_step_8_amended`).
+ * into Step 8 (the canonical verifier).
  *
  * ## Three-layer separation discipline
  *
@@ -85,9 +85,9 @@
 import { BadRequestError } from "./errors.js";
 import { canonicalizeBytes } from "./_jcs.js";
 
-// ── Closed-enum PatternTag mirror of Rust `nanorix_rzl::types::PatternTag` ──
+// ── Closed-enum PatternTag mirror of the canonical `PatternTag` wire type ──
 //
-// Section "pattern_tag rule" and `governance/rzl/src/types.rs::PatternTag`,
+// Section "pattern_tag rule" and the canonical verifier,
 // the closed enum is append-only at Forever-Standard pace. The wire form is
 // snake_case (matches the Rust serde rename_all="snake_case" output).
 //
@@ -134,7 +134,7 @@ export type PatternTag = (typeof PATTERN_TAGS)[number];
 /** Runtime set view for fast membership checks. */
 const PATTERN_TAG_SET: ReadonlySet<string> = new Set(PATTERN_TAGS);
 
-// ── Field length limits (mirror `services/api/src/routes/records.rs`) ──
+// ── Field length limits (mirror the Nanorix API service) ──
 
 export const MAX_RECORD_ID_LEN = 256;
 /** "sha512:" prefix (7 chars) + 128 hex chars + headroom for future prefixes. */
@@ -366,7 +366,7 @@ export class RecordContext {
    * Append a per-record activity event to the receipt's activity trail.
    *
    * The Rust API consumes the trail as `Vec<serde_json::Value>` per
-   * `services/api/src/routes/records.rs::CreateRecordRequest`; arbitrary
+   * the Nanorix API service; arbitrary
    * JSON structure is accepted but client-side payload limit is
    * `MAX_ACTIVITY_TRAIL_LEN` events.
    *
@@ -539,7 +539,7 @@ export interface ParentProofOptions {
 /**
  * Validate parent-proof link fields against + API length caps.
  *
- * Field constraints mirror `services/api/src/routes/records.rs::create_parent`.
+ * Field constraints mirror the Nanorix API service.
  *
  * @throws BadRequestError on any field-length violation.
  */

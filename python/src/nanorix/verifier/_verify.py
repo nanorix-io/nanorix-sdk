@@ -1,7 +1,7 @@
 """
 Core verification logic — chain recomputation + Ed25519 signature check.
 
-The chain hash formula is FROZEN (per `governance/rzl/src/cdp.rs` CDP_VERSION="1.0"):
+The chain hash formula is FROZEN (per the canonical verifier CDP_VERSION="1.0"):
 
     chain_hash = SHA-512(prev_hash \\x00 subsystem \\x00 "destroy" \\x00 method \\x00 timestamp)
 
@@ -16,7 +16,7 @@ Ed25519 signature is over step 8's chain_hash AS ASCII HEX BYTES (128 chars).
 NOT raw binary digest. This is load-bearing — getting it wrong is the most
 common verifier bug.
 
-JSON prefixes (per `cdp_document.rs:1100+`):
+JSON prefixes (per the reference implementation):
 - `chain_hash`, `evidence_hash`, `final_hash` → "sha512:{hex}" — strip before compare
 - `attestation.public_key`, `attestation.signature` → "base64:{b64}" — strip before decode
 """
@@ -34,13 +34,13 @@ from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 # Genesis hash (SHA-512 of empty input). Must match `GENESIS_HASH` in
-# governance/rzl/src/proofs/mod.rs.
+# the canonical verifier.
 GENESIS_HASH = (
     "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce"
     "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
 )
 
-# Canonical 8-step subsystem order (must match CHAIN_DEFS in cdp.rs).
+# Canonical 8-step subsystem order (must match the service's canonical chain definition).
 CANONICAL_SUBSYSTEMS = [
     "eee_namespace",
     "eee_tmpfs",
@@ -100,7 +100,7 @@ def _compute_step_hash(
     method: str,
     timestamp: str,
 ) -> str:
-    """Re-implement compute_step_hash from governance/rzl/src/proofs/mod.rs.
+    """Re-implement compute_step_hash from the canonical verifier.
 
     `action` is always "destroy" — hardcoded per CDP spec.
     """
@@ -261,7 +261,7 @@ def verify(proof: Union[Dict[str, Any], str, Path, bytes]) -> VerifyResult:
         )
 
     # CRITICAL: signature is over chain_hash AS ASCII HEX BYTES, not raw bytes.
-    # Per cdp_document.rs:1100 + cdp.rs sign_and_destroy.
+    # Per the service's sign-and-destroy path.
     message = final_chain_hash.encode("ascii")
 
     try:

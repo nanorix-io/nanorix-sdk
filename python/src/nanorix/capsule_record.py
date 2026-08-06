@@ -3,9 +3,9 @@
 This module exposes the customer-facing surface for emitting per-record
 receipts and parent-proof links against a live
 capsule. Receipts and parent links buffer server-side per Wave A
-(`services/api/src/routes/records.rs`) and bind into the AuditProof's
+(the Nanorix API service) and bind into the AuditProof's
 outer 8-step chain at capsule-destroy time via Merkle root incorporation
-into Step 8 (`governance/rzl/src/wave_n.rs::compute_step_8_amended`).
+into Step 8 (the canonical verifier).
 
 ## Three-layer separation discipline
 
@@ -93,9 +93,9 @@ __all__ = [
 ]
 
 
-# ── Closed-enum PatternTag mirror of Rust `nanorix_rzl::types::PatternTag` ──
+# ── Closed-enum PatternTag mirror of the canonical `PatternTag` wire type ──
 #
-# And `governance/rzl/src/types.rs::PatternTag`,
+# And the canonical verifier,
 # the closed enum is append-only at Forever-Standard pace. The wire form is
 # snake_case (matches the Rust serde rename_all="snake_case" output).
 #
@@ -126,7 +126,7 @@ PATTERN_TAGS: tuple[str, ...] = (
 )
 
 
-# ── Field length limits (mirror `services/api/src/routes/records.rs`) ──
+# ── Field length limits (mirror the Nanorix API service) ──
 
 MAX_RECORD_ID_LEN: int = 256
 MAX_HASH_LEN: int = 144  # "sha512:" + 128 hex
@@ -183,7 +183,7 @@ def canonical_hash(value: Any) -> str:
     Mirrors the Rust `serde_jcs::to_vec(value)` -> `SHA-512` path used by
     `compute_activity_root` and other cryptographic-boundary primitives.
     Cross-impl byte-equivalent to the Rust serializer (see
-    `sdk/python/src/nanorix/_jcs.py` for the RFC 8785 implementation).
+    the Python SDK for the RFC 8785 implementation).
 
     Args:
         value: JSON-serializable Python object (dict, list, str, int, float,
@@ -284,7 +284,7 @@ class _RecordContextBase:
         Args:
             activity_event: A JSON-serializable dict describing the event.
                 The Rust API consumes the trail as `Vec<serde_json::Value>`
-                per `services/api/src/routes/records.rs::CreateRecordRequest`;
+                per the Nanorix API service;
                 arbitrary JSON structure is accepted but client-side payload
                 limit is `MAX_ACTIVITY_TRAIL_LEN` events.
 
@@ -448,7 +448,7 @@ def validate_parent_link_fields(
     """Validate parent-proof link fields against + API length caps.
 
     Raises BadRequestError on any field-length violation. Field constraints
-    mirror `services/api/src/routes/records.rs::create_parent`.
+    mirror the Nanorix API service.
     """
     if not parent_chain_hash or not isinstance(parent_chain_hash, str):
         raise BadRequestError(

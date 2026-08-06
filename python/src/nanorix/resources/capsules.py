@@ -146,7 +146,7 @@ class LiveCapsule:
 
         Per-record receipts buffer server-side until destroy and bind into
         the AuditProof's outer 8-step chain via Merkle root incorporation
-        at Step 8 (`governance/rzl/src/wave_n.rs::compute_step_8_amended`).
+        at Step 8 (the canonical verifier).
 
         The receipt carries `pattern_tag` (signed primitive). **Control IDs
         are NEVER stamped into the signed receipt.** Adapters apply the
@@ -159,7 +159,7 @@ class LiveCapsule:
             record_id: Customer-declared opaque identifier (record-domain
                 key — PA ID, claim ID, study UID, molecule ID). Field
                 length cap: 256 chars (
-                `services/api/src/routes/records.rs`).
+                the Nanorix API service).
             pattern_tag: Optional closed-enum workflow pattern tag. Must
                 be one of the 15 canonical variants in
                 `nanorix.capsule_record.PATTERN_TAGS`
@@ -440,7 +440,7 @@ class Capsules:
         Returns:
             BatchResult with merkle_root + audit_proof + per-record
             outcomes. `merkle_root` is computed CLIENT-SIDE per the
-            same RFC 6962 formula as ``runtime/eee/src/batch.rs`` —
+            same RFC 6962 formula as the sealed runtime —
             cross-implementation byte-identical so verifiers can
             replay independently.
 

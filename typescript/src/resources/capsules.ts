@@ -160,7 +160,7 @@ export class LiveCapsule {
    *
    * Per-record receipts buffer server-side until destroy and bind into
    * the AuditProof's outer 8-step chain via Merkle root incorporation
-   * at Step 8 (`governance/rzl/src/wave_n.rs::compute_step_8_amended`).
+   * at Step 8 (the canonical verifier).
    *
    * The receipt carries `patternTag` (signed primitive). **Control IDs
    * are NEVER stamped into the signed receipt.** Adapters apply the

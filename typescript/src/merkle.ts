@@ -2,7 +2,7 @@
  * RFC 6962 binary Merkle tree — pure TypeScript via Web Crypto.
  *
  * Mirrors Python `nanorix._merkle` and Rust
- * `runtime/eee/src/daemon/streaming.rs::merkle_root_from_leaves` EXACTLY.
+ * the sealed runtime EXACTLY.
  * Used by `Capsule.batch()` to compute client-side Merkle root that
  * matches what the server-side runtime would emit.
  *

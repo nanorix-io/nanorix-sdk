@@ -210,7 +210,7 @@ proofs, and the portable bundle conventions.
   - `verify_auditproof()` — pure-Python 4-stage AuditProof verification pipeline
     byte-equivalent with the Go reference verifier (`tools/auditproof-verifier-go/`)
     on the 100-fixture corpus. Returns structured `VerificationResult` with closed-set
-    `FailureReason` enum mirroring `governance/rzl/src/verify_types.rs`.
+    `FailureReason` enum mirroring the canonical verifier.
   - `VerifierPolicy` — customer-side policy for authority-pin (`required_authority_id`).
   - `FailureReasonType` — closed-set failure reason wire discriminators.
 - `nanorix._jcs` — JCS RFC 8785 canonical JSON serialization in pure Python
@@ -261,39 +261,13 @@ proofs, and the portable bundle conventions.
 
 ### Tests
 
-- 2315 tests collected (`python -m pytest --collect-only -q` in `sdk/python/`),
+- 2315 tests collected (`python -m pytest --collect-only -q` in the Python SDK),
   up from the 45 that shipped with 0.1.0.
 - The Wave 8A batch alone added 152 tests in `tests/test_debug.py`:
   10 trace context · 9 retry-with-backoff · 4 download AuditProof ·
   16 JCS canonicalization · 20 AuditProof verification unit ·
   101 fixture corpus byte-equivalence (Go V1 parity contract) ·
   1 property-test (10k iterations, fault injection, deterministic FailureReason).
-
-### Commit provenance
-
-50 commits touch `sdk/python` between the 0.4.0 bump (`4bd2404`) and this entry
-(`git log --no-merges 4bd2404..HEAD -- sdk/python`). The named batches of the
-2026-05 gap-closing arc map onto the module list above as follows.
-
-| Commit | Date | Landed |
-|---|---|---|
-| `6f252e2` | 2026-05-03 | `metadata` kwarg + `nanorix.compliance` (HIPAA, GDPR, SOC 2) |
-| `506138a` `b395f0f` | 2026-05-05 | Pagination + `Usage` + `AuditProofs` alias; offline verifier + `python -m nanorix verify` |
-| `0ae5b49` `01cd342` `ff15447` | 2026-05-05/06 | `Capsule.batch()`, `Capsule.session()`, `Ed25519FileKey` signer helpers |
-| `bda0876` | 2026-05-06 | 422 mapping + `InputProvenanceRejected` / `SecretsInjectionRejected` |
-| `fa65d4e` | 2026-05-09 | Wave 8A — `nanorix.debug`, `nanorix._jcs`; version constant → 0.5.0 |
-| `c504cf2` … `cd31624` | 2026-05-10+ | Wave 14 — `integrations.langchain` / `langgraph` / `llama_index` / `litellm` / `otel_genai`, `@workload` |
-| `59f71d8` … `73b7a37` | 2026-05-1x | Wave 17 — the 12 further `compliance.*` framework contexts |
-| `6352eff` `87cdd07` `88ebdcd` | 2026-05-1x | `healthcare.hl7_v2` / `ccda` / `epic_smart` / `fda_samd` / `ai_fairness` |
-| `f43ad06` | 2026-05-2x | DICOM stack — `healthcare.dicomweb`, `healthcare.dicom_sr` |
-| `478e06e` `71eb110` `9e5dc33` `6d5abac` `e9108f9` | 2026-05-27 | **Batch 2** — `healthcare.ncpdp`, `x12_eligibility`, `x12_278`, `x12_full_rcm`, `bulk_fhir` |
-| `86dba40` | 2026-05-27 | **Batch 5** — `healthcare.ihe` (IHE XDS-I.b + XDR profile mapping) |
-| `c999d41` | 2026-05-28 | **Batch 9** — `integrations.c2pa_provenance` |
-| `4c86cb0` | 2026-05-28 | **Batch 13** — `integrations.airflow`, `integrations.temporal`, `integrations._orchestrator_core` |
-| `a6eec8d` | 2026-05-28 | **Batch 14** — `nanorix.connectors` (`_base`, `s3`, `gcs`) |
-| `7d7f8c0` | 2026-05-28 | **Batch 16** — `integrations.jupyter`, `integrations._notebook_core` |
-| `3cef1ec` | 2026-05-29 | **Batch 17** — `nanorix.observability` (4 adapters), `nanorix.grc` (3 adapters) |
-| `f46d0c2` | 2026-05-29 | `cryptography` floor raised to 46.0.7 (PYSEC-2026-35/36, CVE-2026-26007) |
 
 ## 0.4.0 — 2026-04-11
 

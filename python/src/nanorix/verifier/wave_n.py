@@ -1,8 +1,8 @@
 """
 Wave-N per-record receipt + parent-proof verification.
 
-Pure Python port of `governance/rzl/src/wave_n.rs` plus the verifier-side
-extension in `tools/nanorix-verify/src/lib.rs`. Cross-impl byte-equivalent
+Pure Python port of the canonical verifier plus the verifier-side
+extension in the reference verifier. Cross-impl byte-equivalent
 with Rust + Go ports on the 110-fixture extended corpus.
 
 **Forever-Standard discipline:** every primitive here is part
@@ -33,14 +33,14 @@ from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 
 # Genesis SHA-512 hash of the empty string. Re-exported here so this module is
-# self-contained — mirrors Rust `nanorix_rzl::wave_n::GENESIS_SHA512_HEX`.
+# self-contained — mirrors the canonical `GENESIS_SHA512_HEX` wire type.
 GENESIS_SHA512_HEX = (
     "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce"
     "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
 )
 
 # Pre-Wave-N legacy formula constants — must remain in lockstep with
-# `governance/rzl/src/proofs/mod.rs::compute_step_hash` Step 8 arguments.
+# the canonical verifier Step 8 arguments.
 _STEP_8_SUBSYSTEM = "capsule_destroy"
 _STEP_8_ACTION = "destroy"
 _STEP_8_METHOD = "capsule_lifecycle_verification"
@@ -49,7 +49,7 @@ _STEP_8_METHOD = "capsule_lifecycle_verification"
 PARENT_PROOF_MAX_DEPTH = 32
 
 # Closed-enum pattern tag wire values (mirror Rust
-# `nanorix_rzl::types::PatternTag` and `nanorix.capsule_record.PATTERN_TAGS`).
+# the canonical `PatternTag` wire type and `nanorix.capsule_record.PATTERN_TAGS`).
 # Used by downstream consumers; the verifier itself does NOT reject unknown
 # pattern_tag values (forward-compatibility).
 PATTERN_TAGS_WIRE = frozenset(
@@ -74,7 +74,7 @@ PATTERN_TAGS_WIRE = frozenset(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Wave-N types — mirror `nanorix_rzl::types::{RecordReceipt, ParentProofLink}`.
+# Wave-N types — mirror the canonical RecordReceipt, ParentProofLink wire types.
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -149,7 +149,7 @@ def merkle_pair_hash(left: str, right: str) -> str:
     a `sha512:` prefix; stripped before hashing.
 
     Output: lowercase 128-char hex (no prefix). Cross-impl byte-equivalent
-    with Rust `merkle_pair_hash` in `governance/rzl/src/wave_n.rs`.
+    with Rust `merkle_pair_hash` in the canonical verifier.
     """
     left_s = _strip_sha512_prefix(left)
     right_s = _strip_sha512_prefix(right)
@@ -279,7 +279,7 @@ def _jcs_canonicalize(value: Any) -> bytes:
     """Minimal RFC 8785 JSON canonicalization.
 
     Cross-impl byte-equivalent with `serde_jcs::to_vec` for the activity-event
-    canonical forms emitted by `governance/rzl/src/wave_n.rs::compute_activity_root`.
+    canonical forms emitted by the canonical verifier.
     Mirror of the Go port's `JCSCanonicalize` minus stream-decoding overhead;
     Python's `json.dumps(sort_keys=True, separators=(',',':'), ensure_ascii=False)`
     matches JCS for the value types Wave-N receipts emit (objects of scalar /

@@ -1,7 +1,7 @@
 /**
  * Portable Receipt Bundle (.prb.json) — Wave B Item 7 surface, TypeScript port.
  *
- * Pure TypeScript port of `tools/nanorix-verify/src/bundle.rs`. Cross-impl
+ * Pure TypeScript port of the reference verifier. Cross-impl
  * byte-equivalence with Rust/Go/Python on the canonical reference vectors.
  *
  * Per feedback_narrowness_is_the_moat_resist_receipt_enrichment.md: this is

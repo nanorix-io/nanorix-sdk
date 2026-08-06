@@ -2,7 +2,7 @@
 Offline AuditProof (CDP) verifier — pure Python, no network.
 
 Re-implements the canonical 8-step SHA-512 chain + Ed25519 attestation
-defined in `governance/rzl/src/cdp.rs` and `governance/rzl/src/proofs/mod.rs`.
+defined in the canonical verifier.
 Customers, auditors, and air-gapped systems can verify any AuditProof
 independently without trusting the Nanorix API.
 

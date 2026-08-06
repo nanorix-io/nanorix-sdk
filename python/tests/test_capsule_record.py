@@ -114,7 +114,7 @@ def test_pattern_tags_count_is_15():
 def test_pattern_tags_canonical_set_matches_rust_wire_form():
     """The Python tuple must match the Rust `PatternTag::as_wire` outputs.
 
-    Source of truth: `governance/rzl/src/types.rs::PatternTag::as_wire`.
+    Source of truth: the canonical verifier.
     """
     expected = {
         "pa",
@@ -171,7 +171,7 @@ def test_validate_pattern_tag_rejects_kebab_case():
 
 
 def test_record_id_length_limit():
-    """Record_id length cap: 256 chars + records.rs."""
+    """Record_id length cap: 256 chars, matching the server."""
     with pytest.raises(BadRequestError) as excinfo:
         RecordContext(
             capsule_id="cap_test001",
@@ -258,7 +258,7 @@ def test_sha512_hex_prefix_form():
 
     Length math: `"sha512:"` (7 chars) + 128 hex chars = 135 chars. The Rust
     `MAX_HASH_LEN` cap is 144 (headroom for prefix variants / future-proofing
-    per `services/api/src/routes/records.rs::MAX_HASH_LEN`).
+    per the Nanorix API service).
     """
     out = sha512_hex(b"hello")
     assert out.startswith("sha512:")

@@ -64,7 +64,7 @@ class EventAttestation:
     """Per-event customer signature row.
 
     Mirrors `EventAttestation` struct at
-    `services/api/src/cdp_document.rs:34` + the
+    the Nanorix API service, plus the
     `capsule_event_attestations` table from Migration 045. The Nanorix
     daemon POSTs these into the queue at emission time; CDP absorption
     drains them into FullCdp.per_event_attestations at destroy.
@@ -191,7 +191,7 @@ def sign_activity_event(
     Args:
         signer: EventSigner implementation (KMS-backed or Ed25519FileKey).
         event: Parsed ActivityEvent dict (has `event` discriminator +
-            variant-specific fields per cdp_document.rs).
+            variant-specific fields per the reference implementation).
         event_id: Customer-assigned event ID; matches activity_trail
             event correlation. Composite (capsule_id, event_id) is the
             queue table primary key.
@@ -204,7 +204,7 @@ def sign_activity_event(
         returns to the Nanorix daemon caller.
     """
     canonical_bytes = canonicalize_event(event)
-    # Per / cdp_document.rs convention: signature is over
+    # Per the reference implementation convention: signature is over
     # SHA-512 hash of canonical JSON. The hash is what the signer
     # actually receives (so the signer doesn't need to know the JSON
     # encoding rules — it just signs bytes).

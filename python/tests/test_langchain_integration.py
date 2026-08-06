@@ -681,7 +681,7 @@ GOLDEN_DIGEST = (
 
 def test_golden_canonical_hash_digest_constant_preserved():
     """Sanity guard: the golden digest constant in this test matches
-    the upstream `services/api/src/cdp_document.rs` constant.
+    the upstream service constant.
 
     If this fails, either the canonical-hash structure changed (which
     would be a Forever-Standard violation) or the golden constant in
@@ -698,7 +698,7 @@ def test_golden_canonical_hash_digest_constant_preserved():
         text = rust_const.read_text()
         assert GOLDEN_DIGEST in text, (
             "Golden canonical_hash digest in this test no longer appears in "
-            "services/api/src/cdp_document.rs — either the source-of-truth "
+            "the Nanorix API service — either the source-of-truth "
             "changed (Forever-Standard violation) or the test constant is stale."
         )
 
@@ -839,7 +839,7 @@ def test_module_vocabulary_uses_auditproof_terminology():
     src = Path(lc_mod.__file__).read_text()
     # Allowed bare CDP appearances are zero in this customer-facing
     # module. (Internal struct names like FullCdp/VerificationCdp are
-    # kept in code under `services/api/src/cdp_document.rs`;
+    # kept in code under the Nanorix API service;
     # they MUST NOT leak into integration modules.)
     assert "Capsule Record" not in src
     assert "template" not in src.lower() or "template" in src.lower()  # noqa: SIM222

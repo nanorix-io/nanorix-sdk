@@ -917,7 +917,7 @@ def test_golden_canonical_hash_digest_constant_preserved():
         text = rust_const.read_text()
         assert GOLDEN_DIGEST in text, (
             "Golden canonical_hash digest in this test no longer appears in "
-            "services/api/src/cdp_document.rs — either the source-of-truth "
+            "the Nanorix API service — either the source-of-truth "
             "changed (Forever-Standard violation) or the test constant is stale."
         )
 

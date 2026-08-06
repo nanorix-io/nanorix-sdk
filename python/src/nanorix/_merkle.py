@@ -1,7 +1,7 @@
 """
 RFC 6962 binary Merkle tree — pure Python implementation.
 
-Mirrors `runtime/eee/src/daemon/streaming.rs::merkle_root_from_leaves`
+Mirrors the sealed runtime
 EXACTLY. Used by `Capsule.batch()` to compute client-side Merkle root
 that matches what the server-side runtime would emit (cross-implementation
 consistency lets verifiers replay independently).
@@ -85,7 +85,7 @@ def merkle_root_from_leaves(leaves: List[bytes]) -> str:
 def combined_record_leaf(input_hash: bytes, output_hash: bytes) -> bytes:
     """Derive a Merkle leaf from a per-record (input, output) hash pair.
 
-    Mirrors `runtime/eee/src/batch.rs::combined_record_leaf`. Returns
+    Mirrors the sealed runtime. Returns
     SHA-512(input_hash || output_hash) as 64-byte digest.
 
     Args:
@@ -109,7 +109,7 @@ def combined_record_leaf(input_hash: bytes, output_hash: bytes) -> bytes:
 def hash_record_bytes(data: bytes) -> str:
     """SHA-512 helper — returns lowercase hex with `sha512:` prefix.
 
-    Mirrors `runtime/eee/src/batch.rs::hash_record_bytes` wire format
+    Mirrors the sealed runtime wire format
     (matches existing chunk_hash / body_hash / etc. convention).
     """
     return "sha512:" + hashlib.sha512(data).hexdigest()

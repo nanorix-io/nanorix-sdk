@@ -104,8 +104,8 @@ describe("Merkle (RFC 6962 binary tree)", () => {
 
   it("Merkle root pinned to known vector — 4 leaves (Python + TS + Rust must agree)", async () => {
     // Cross-impl invariant pin: identical input → identical root across
-    // Python sdk/python/tests/test_batch.py and Rust runtime
-    // runtime/eee/src/daemon/streaming.rs::merkle_root_from_leaves.
+    // Python the Python SDK and Rust runtime
+    // the sealed runtime.
     // If either implementation drifts, both this test + the Python +
     // Rust counterparts fail — protects against silent cross-impl
     // divergence that would break verifier replay.

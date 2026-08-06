@@ -68,7 +68,7 @@ class SessionResult:
 def hash_state_bytes(data: bytes) -> str:
     """Compute SHA-512 wire-format hash of state bytes.
 
-    Mirrors `runtime/eee/src/batch.rs::hash_record_bytes` convention
+    Mirrors the sealed runtime convention
     + Python `_merkle.hash_record_bytes`. Verifier reproduces from
     the customer's persisted state bytes.
     """

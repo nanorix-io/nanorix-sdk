@@ -1,7 +1,7 @@
 /**
  * Wire-constraint helpers shared by all framework context classes.
  *
- * Mirrors `services/api/src/validation.rs::validate_metadata` so the
+ * Mirrors the Nanorix API service so the
  * helper fails fast at construction rather than letting an oversized
  * payload reach the API. Reproduce the exact wire constraints; do not
  * loosen them client-side.
@@ -20,7 +20,7 @@ export const MAX_TOTAL_SERIALIZED = 4096;
 
 /**
  * Reserved keys the helpers emit. Server validates these against
- * `RESERVED_NANORIX_KEYS_ALLOWED` whitelist in validation.rs. Adding a
+ * `RESERVED_NANORIX_KEYS_ALLOWED` whitelist in the reference implementation. Adding a
  * new reserved key here requires a coordinated server-side amendment.
  */
 export const RESERVED_FRAMEWORK_KEY = "nanorix:framework";
@@ -53,7 +53,7 @@ export function validateNoCommaInList(fieldName: string, items: string[]): void 
 
 /**
  * Estimate JSON-serialized size of a metadata object. Mirrors
- * `serde_json::to_string(metadata).len()` in validation.rs which checks
+ * `serde_json::to_string(metadata).len()` in the reference implementation which checks
  * against the 4096-byte limit.
  */
 export function estimateSerializedSize(

@@ -130,7 +130,7 @@ embedding is out of scope)."""
 
 SIGNATURE_ALGORITHM = "Ed25519"
 """Closed enum; matches existing per-event signing primitive in
-nanorix.helpers.signer (sdk/python/src/nanorix/helpers/signer.py).
+nanorix.helpers.signer (the Python SDK).
 RSA-PSS-SHA256 reserved post-V1."""
 
 DIGITAL_SOURCE_TYPE_AI = "trainedAlgorithmicMedia"

@@ -3,7 +3,7 @@ Order 3 sub-D / Phase 27 / Gap 2 — LangGraph CheckpointSaver adapter tests.
 
 Covers cross-impl invariants:
 - `hash_state_dict` produces SHA-512 hex with `sha512:` prefix matching
-  `runtime/eee/src/memory_artifact.rs::hash_artifact_bytes` convention.
+  the sealed runtime convention.
 - `NanorixCheckpointSaver.put` builds a continuity chain across
   multiple checkpoints on the same thread_id.
 - Cross-thread isolation — two threads share the saver but their chains

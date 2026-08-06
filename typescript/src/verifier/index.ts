@@ -2,7 +2,7 @@
  * Offline AuditProof (CDP) verifier — pure TypeScript, no network.
  *
  * Re-implements the canonical 8-step SHA-512 chain + Ed25519 attestation
- * defined in `governance/rzl/src/cdp.rs` and `governance/rzl/src/proofs/mod.rs`.
+ * defined in the canonical verifier.
  * Customers, auditors, and air-gapped systems can verify any AuditProof
  * independently without trusting the Nanorix API.
  *
@@ -22,12 +22,12 @@
  */
 
 // Genesis hash (SHA-512 of empty input). Must match GENESIS_HASH in
-// governance/rzl/src/proofs/mod.rs.
+// the canonical verifier.
 export const GENESIS_HASH =
   "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce" +
   "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e";
 
-// Canonical 8-step subsystem order (must match CHAIN_DEFS in cdp.rs).
+// Canonical 8-step subsystem order (must match the service's canonical chain definition).
 export const CANONICAL_SUBSYSTEMS = [
   "eee_namespace",
   "eee_tmpfs",
@@ -128,7 +128,7 @@ function bytesToHex(buf: ArrayBuffer | Uint8Array): string {
 }
 
 /**
- * Re-implement compute_step_hash from governance/rzl/src/proofs/mod.rs.
+ * Re-implement compute_step_hash from the canonical verifier.
  *
  * `chain_hash = SHA-512(prev \x00 subsystem \x00 "destroy" \x00 method \x00 timestamp)`
  *
@@ -262,7 +262,7 @@ export async function verify(proof: unknown): Promise<VerifyResult> {
   }
 
   // CRITICAL: signature is over chain_hash AS ASCII HEX BYTES (not raw binary).
-  // Per cdp.rs sign_and_destroy + cdp_document.rs:1100.
+  // Per the reference implementation sign_and_destroy + the reference implementation.
   const message = new TextEncoder().encode(finalChainHash);
 
   let valid: boolean;

@@ -68,8 +68,7 @@ DISCLAIMER: str = (
 """Canonical disclaimer per CCO policy + three-role discipline."""
 
 # ─── Canonical mapping constants ──────────────────────────────────────────────
-# Per. Mirrors the Rust resolver in
-# `services/api/src/control_map.rs::resolve_controls` — single source of truth.
+# Mirrors the resolver in the Nanorix API service — single source of truth.
 # Forever-Standard: append-only; old MAPPING_<version> constants
 # remain available forever in future SDK revisions.
 # ─────────────────────────────────────────────────────────────────────────────

@@ -2,7 +2,7 @@
  * Wave B Item 3 — TypeScript SDK per-record receipt +
  * parent-proof tests.
  *
- * Faithful TS port of `sdk/python/tests/test_capsule_record.py`.
+ * Faithful TS port of the Python SDK.
  * Covers `LiveCapsule.record(...)` + `LiveCapsule.withRecord(...)` +
  * `LiveCapsule.addParentProof(...)` ergonomic surfaces. Validates:
  *
@@ -198,7 +198,7 @@ describe("PatternTag closed-enum ('pattern_tag rule')", () => {
 
 // ── 2. Field length limits ──
 
-describe("Field length limits (mirror services/api/src/routes/records.rs)", () => {
+describe("Field length limits (mirror the Nanorix API service)", () => {
   it("RecordContext rejects oversize record_id (>256 chars)", () => {
     expect(() => {
       new RecordContext(

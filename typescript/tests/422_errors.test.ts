@@ -1,7 +1,7 @@
 /**
  * P0 #4 / Pre-SDK-1.0-publish — 422 status code mapping tests (TS).
  *
- * Cross-SDK parity with sdk/python/tests/test_422_errors.py: same
+ * Cross-SDK parity with the Python SDK: same
  * wire-shape inputs MUST produce same exception types in both SDKs.
  */
 import { describe, it, expect } from "vitest";

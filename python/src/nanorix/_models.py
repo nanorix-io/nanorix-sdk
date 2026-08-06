@@ -128,7 +128,7 @@ class DataSummary(BaseModel):
 
 
 class RecordReceipt(BaseModel):
-    """Per-record receipt — mirror of `nanorix_rzl::types::RecordReceipt`.
+    """Per-record receipt — mirror of the canonical `RecordReceipt` wire type.
 
     Forever-Standard: field-additive Optional fields with
     `extra="allow"` so SDK-side parsing keeps working as the Rust struct
@@ -156,7 +156,7 @@ class RecordReceipt(BaseModel):
 
 class ParentProofLink(BaseModel):
     """Cross-org parent-proof link — mirror of
-    `nanorix_rzl::types::ParentProofLink`.
+    the canonical `ParentProofLink` wire type.
 
     Forever-Standard: optional fields skip-serialize when None
     so cross-impl byte-equivalence is preserved.
@@ -192,7 +192,7 @@ class CdpDocument(BaseModel):
     # Wave-N per-record receipts + cross-org parent
     # composition. Field-additive Optional per Forever-Standard:
     # pre-Wave-N AuditProofs canonicalize byte-identically (both fields skip-
-    # serialize when None). See `governance/rzl/src/types.rs` for the Rust
+    # serialize when None). See the canonical verifier for the Rust
     # source struct. Receipts carry `pattern_tag` only — control IDs are
     # NEVER stamped into the signed primitive; adapters apply the
     # mapping artifact at ingestion time.
