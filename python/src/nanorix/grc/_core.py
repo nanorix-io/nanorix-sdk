@@ -45,7 +45,7 @@ claim rule:
   (role 3).
 - **Control IDs are factual references, NEVER assertions of satisfaction.**
   Every evidence body carries ``"relationship": "references"`` and the
-   mapping disclaimer. The forbidden verdict vocabulary
+  mapping disclaimer. The forbidden verdict vocabulary
   (``COMPLIANT`` / ``SATISFIED`` / ``PASSED`` / ``MEETS``) is rejected by
   :func:`assert_reference_only`, which runs on every emitted body — the
   GRC platform never receives an adjudication claim from Nanorix.
