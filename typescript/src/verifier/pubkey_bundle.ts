@@ -1,5 +1,5 @@
 /**
- * Portable Pubkey Bundle (.ppb.json) — Wave B Item 8 surface, TypeScript port.
+ * Portable Pubkey Bundle (.ppb.json) — surface, TypeScript port.
  *
  * Pure TypeScript port of the reference verifier.
  * Cross-impl byte-equivalence with Rust/Go/Python on the canonical reference
@@ -38,7 +38,7 @@ export interface BundleSignature {
   signature: string;
 }
 
-/** Wave B Item 8 wire shape. */
+/** wire shape. */
 export interface PortablePubkeyBundle {
   bundle_version: string;
   bundle_type: string;

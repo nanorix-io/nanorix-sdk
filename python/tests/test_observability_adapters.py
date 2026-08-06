@@ -1,4 +1,4 @@
-"""Tests for observability adapters (Batch 17).
+"""Tests for observability adapters.
 
 These tests import ONLY the pure core
 (``nanorix.observability._core``) + the guarded shells with

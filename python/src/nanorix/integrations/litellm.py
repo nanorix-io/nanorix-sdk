@@ -1,7 +1,7 @@
 """
 LiteLLM callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 14, item 7 of second-wave): bridges
+Per the integration ship sequence (item 7 of second-wave): bridges
 litellm's `CustomLogger` callback class into Nanorix's in-capsule
 ActivityEvent emission helpers. Customer adds two lines to their existing
 litellm-routed agent:

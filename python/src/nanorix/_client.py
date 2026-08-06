@@ -60,7 +60,7 @@ class Client:
         self.audit_proofs = self.cdp  # brand alias; same interface
         self.egress_profiles = EgressProfiles(self._http)
         self.usage = Usage(self._http)
-        # Batch 3 sub-item 1 (CR-002, 2026-05-27): billing meter readout
+        # Billing meter readout
         # surface mirroring Stripe metered billing for programmatic
         # consumption. By-pattern · by-shape · cost-forecast endpoints.
         self.billing = Billing(self._http)
@@ -118,7 +118,7 @@ class AsyncClient:
         self.audit_proofs = self.cdp  # brand alias; same interface
         self.egress_profiles = AsyncEgressProfiles(self._http)
         self.usage = AsyncUsage(self._http)
-        # Batch 3 sub-item 1 (CR-002, 2026-05-27): async parity for the
+        # Async parity for the
         # billing meter readout surface.
         self.billing = AsyncBilling(self._http)
         self.webhooks = AsyncWebhooks(self._http)

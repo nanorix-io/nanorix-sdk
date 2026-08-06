@@ -1,4 +1,4 @@
-"""Tests for GRC evidence-filing adapters (Batch 17).
+"""Tests for GRC evidence-filing adapters.
 
 These tests import ONLY the pure core (``nanorix.grc._core``) +
 :mod:`nanorix.control_map` + the guarded shells with a dependency-injected

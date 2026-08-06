@@ -1,4 +1,4 @@
-"""Wave 14 / item 6b — LlamaIndex callback handler tests.
+""" / item 6b — LlamaIndex callback handler tests.
 
 Mirrors `test_langchain_integration.py`. Exercises the
 `nanorix.integrations.llama_index.NanorixLlamaIndexCallback` class

@@ -1,4 +1,4 @@
-"""Wave 14 / item 3 — `@workload` decorator tests.
+""" / item 3 — `@workload` decorator tests.
 
 Exercises ``nanorix.decorators.workload`` against:
 

@@ -3,7 +3,7 @@
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient identifiers ("pat-001"), encounter IDs ("enc-xyz"),
 Practitioner IDs ("u-456") are obviously fictitious;
-no real PHI per Wave 17 batch 6 directive.
+no real PHI directive.
 """
 from __future__ import annotations
 

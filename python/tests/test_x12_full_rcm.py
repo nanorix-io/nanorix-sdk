@@ -1,4 +1,4 @@
-"""Tests for nanorix.healthcare.X12FullRCMAdapter (Batch 2 sub-item 4).
+"""Tests for nanorix.healthcare.X12FullRCMAdapter.
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Member IDs, NPIs, payer IDs, claim numbers, and dollar amounts are

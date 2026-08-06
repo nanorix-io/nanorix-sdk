@@ -1,4 +1,4 @@
-"""Batch 9 (2026-05-28) — C2PA LLM-output provenance tests.
+"""C2PA LLM-output provenance tests.
 
 Validates:
 

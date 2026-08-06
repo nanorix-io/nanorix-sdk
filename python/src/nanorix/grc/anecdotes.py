@@ -1,4 +1,4 @@
-"""Anecdotes GRC shell — guarded evidence-filing pusher (Batch 17).
+"""Anecdotes GRC shell — guarded evidence-filing pusher.
 
 Files the signed AuditProof — per-record receipts + outer
 envelope — into Anecdotes as compliance EVIDENCE, landed against the

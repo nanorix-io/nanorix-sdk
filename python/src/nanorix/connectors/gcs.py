@@ -1,6 +1,6 @@
 """Google Cloud Storage source/sink connectors — customer-side streaming.
 
-Batch 14 (2026-05-28). ``GCSSource`` streams objects under a prefix INTO
+``GCSSource`` streams objects under a prefix INTO
 the capsule before exec; ``GCSSink`` streams capsule output to a prefix
 BEFORE destroy. Both run in the customer's process using the customer's
 credentials — resolved by google-cloud-storage's STANDARD Application

@@ -1,4 +1,4 @@
-"""Vanta GRC shell — guarded evidence-filing pusher (Batch 17).
+"""Vanta GRC shell — guarded evidence-filing pusher.
 
 Files the signed AuditProof — per-record receipts + outer
 envelope — into Vanta as compliance EVIDENCE, landed against the canonical

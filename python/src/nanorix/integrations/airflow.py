@@ -1,6 +1,6 @@
 """Apache Airflow operator — run a sealed Nanorix capsule as a DAG step.
 
-Batch 13 (2026-05-28) — gap-closing arc. Airflow is dominant in
+Gap-closing arc. Airflow is dominant in
 healthcare data-engineering, so a first-class operator lets a data
 engineer make a sealed capsule a node in their DAG instead of hand-
 wrapping the SDK in a ``PythonOperator``.

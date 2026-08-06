@@ -1,6 +1,6 @@
 """Data source/sink connectors for Nanorix capsules.
 
-Batch 14 (2026-05-28) — the #1 pipeline-frequency gap: "can I just point
+The #1 pipeline-frequency gap: "can I just point
 you at my S3 bucket?". Connectors are **customer-side SDK helpers** that
 stream bytes through volatile capsule memory:
 

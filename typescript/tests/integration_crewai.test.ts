@@ -1,5 +1,5 @@
 /**
- * CrewAI structural-callback adapter tests — Batch 7 sub-item 3.
+ * CrewAI structural-callback adapter tests.
  *
  * Validates task-shape (tool_call_attempted + completed) + step-shape
  * (reasoning_step_completed) emission, AgentAction/AgentFinish

@@ -258,12 +258,12 @@ def test_nist_ai_rmf_module_docstring_contains_disclaimer_language():
     doc = mod.__doc__ or ""
     assert "does NOT" in doc
     assert "evidence vendor" in doc or "role 1" in doc
-    # Item 82 reframe — emerging FDA expectation, NOT mandate.
+    # Reframe — emerging FDA expectation, NOT mandate.
     assert "voluntary" in doc.lower()
 
 
 def test_nist_ai_rmf_module_avoids_fda_mandate_claim():
-    """Per Item 82 industry-benchmark verification 2026-05-10:
+    """Per industry-benchmark verification 2026-05-10:
     NIST AI RMF + emerging FDA pre-market subgroup-performance
     expectation — NOT 'FDA mandate' until draft finalizes."""
     from nanorix.compliance import nist_ai_rmf as mod

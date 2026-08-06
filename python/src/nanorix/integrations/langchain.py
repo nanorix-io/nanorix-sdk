@@ -1,7 +1,7 @@
 """
 LangChain callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 14, item 1 of 5): bridges
+Per the integration ship sequence (item 1 of 5): bridges
 LangChain's existing callback system into Nanorix's in-capsule
 ActivityEvent emission helpers. Customer adds one line to their
 existing LangChain chain or agent_executor:

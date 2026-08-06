@@ -142,7 +142,7 @@ export {
   ALLOWED_FRAMEWORKS,
 } from "./langchain.js";
 
-// Batch 7 sub-item 4 (2026-05-28) — Tier C native-framework middleware.
+// Tier C native-framework middleware.
 // Express.js (Node WSGI-shape; Flask analog) + Next.js App Router
 // (Web-API shape; FastAPI analog). Each wraps an inbound HTTP request
 // in a Nanorix capsule lifecycle and emits an AuditProof with
@@ -193,7 +193,7 @@ export type {
   NextRouteHandler,
 } from "./nextjs_middleware.js";
 
-// Batch 9 (2026-05-28) — C2PA LLM-output provenance.
+// C2PA LLM-output provenance.
 // Sibling primitive next to AuditProof; AuditProof byte-form unchanged.
 // EU AI Act Article 50 (effective August 2026) interchange format.
 export {

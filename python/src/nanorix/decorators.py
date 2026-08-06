@@ -1,7 +1,7 @@
 """
 Tier B integration — `@workload` decorator.
 
-Per the integration ship sequence (Wave 14, item 3 of 5): wraps a
+Per the integration ship sequence (item 3 of 5): wraps a
 customer Python function in a Nanorix capsule lifecycle. One line per
 workload, full AuditProof for the workflow. Mirrors the Tier
 A LangChain callback (per-call receipts) by going one level wider —
@@ -97,7 +97,7 @@ Same key set, same key ordering (server canonicalizes via
 same AuditProof bytes for byte-identical Capsulefile + identical
 wrapped function.
 
-## Cap-3 / Wave 14 boss directive
+## Cap-3 / boss directive
 
 > "the decorator on real customer function shape; AuditProof
 > generated per call; Pattern coverage = ALL function-shaped

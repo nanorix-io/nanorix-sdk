@@ -1,4 +1,4 @@
-"""Cold-start benchmark SDK helper (Batch 1 Item 4, 2026-05-27).
+"""Cold-start benchmark SDK helper.
 
 Layer-2 published artifact `(substrate × pattern × Capsulefile shape) → percentiles`.
 Sibling to `nanorix.control_map` (mapping artifact). The customer

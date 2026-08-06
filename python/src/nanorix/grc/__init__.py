@@ -1,6 +1,6 @@
-"""GRC evidence-filing adapters for Nanorix AuditProofs (Batch 17).
+"""GRC evidence-filing adapters for Nanorix AuditProofs.
 
-Batch 17 (2026-05-29) — real, installable GRC adapter modules. The last
+Real, installable GRC adapter modules. The last
 mile of "the AuditProof IS the provability artifact": push the signed
 AuditProof — per-record receipts + outer envelope — into your GRC
 platform as compliance EVIDENCE, landed against the canonical control IDs

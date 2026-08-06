@@ -55,7 +55,7 @@ export type { HipaaContextOptions } from "./hipaa.js";
 export { Soc2Context } from "./soc2.js";
 export type { Soc2ContextOptions, Soc2TrustServiceCriterion } from "./soc2.js";
 
-// Batch 7 sub-item 1 (2026-05-28) — 12 additional framework helpers.
+// Sub-item 1 (2026-05-28) — 12 additional framework helpers.
 export { BipaContext } from "./bipa.js";
 export type {
   BipaContextOptions,

@@ -1,5 +1,5 @@
 /**
- * Batch 9 (2026-05-28) — C2PA LLM-output provenance tests (TS port).
+ * C2PA LLM-output provenance tests (TS port).
  *
  * Mirrors the Python SDK. Validates:
  *

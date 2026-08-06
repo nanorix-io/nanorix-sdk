@@ -23,7 +23,7 @@ Three-role discipline:
 Companion posture document: ``docs/compliance/nist-ai-rmf.md``.
 
 Composes with downstream AI-specific helpers as those are shipped — in
-particular, when Item 82 (AI fairness sub-helper) ships, it will compose
+particular, when (AI fairness sub-helper) ships, it will compose
 with this context to record subgroup-performance evaluation metadata
 under the MEASURE function.
 """
@@ -99,7 +99,7 @@ class NISTAIRMFContext:
     fairness-evaluation methodology validated by recent academic
     work (Anterior arXiv 2603.14631).
 
-    Reframing note (per Item 82 industry-benchmark verification
+    Reframing note (industry-benchmark verification
     2026-05-10): emerging FDA pre-market expectation for AI subgroup-
     performance evaluation aligns with the NIST AI RMF MEASURE
     function. This is NOT an FDA mandate at the time of this

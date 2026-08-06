@@ -153,7 +153,7 @@ export class LiveCapsule {
     return this;
   }
 
-  // ── Wave A consumers ─────────────────────────────
+  // ── consumers ─────────────────────────────
 
   /**
    * Open a per-record receipt context (section "Architecture").
@@ -287,8 +287,8 @@ export class Capsules {
     /**
      * Optional. When omitted the SDK auto-generates a UUIDv4
      * `Idempotency-Key` header so a transient network error + SDK-level
-     * retry never silently double-creates a capsule (Wave 18-7 /
-     * CTI-T7-004; Stripe-pattern 24h dedup per Migration 058). Pass an
+     * retry never silently double-creates a capsule ( /
+     * Stripe-pattern 24h dedup per Migration 058). Pass an
      * explicit value to scope idempotency under your own dedup contract
      * (e.g. one Idempotency-Key per business workflow id).
      */

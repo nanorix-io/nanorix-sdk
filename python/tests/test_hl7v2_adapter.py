@@ -2,7 +2,7 @@
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient identifiers are obviously fictitious ("Patient-001", etc.);
-no real PHI per Wave 17 batch 6 directive.
+no real PHI directive.
 """
 from __future__ import annotations
 

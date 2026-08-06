@@ -1,6 +1,6 @@
 """Jupyter cell magic — run a sealed Nanorix capsule from a notebook cell.
 
-Batch 16 (2026-05-28) — FINAL gap-closing batch. Data scientists live in
+FINAL gap-closing batch. Data scientists live in
 notebooks, so a ``%%nanorix_capsule`` cell magic lets an analyst run a
 sealed-capsule lifecycle and render the AuditProof + its verification
 inline, instead of hand-wiring the SDK in a code cell.
@@ -84,7 +84,7 @@ from nanorix.integrations._notebook_core import (
 
 # Guard the framework import. Importing this module without IPython must NOT
 # raise — the actionable error is deferred to magic registration/use. Same
-# discipline as the Airflow operator + Temporal activity (Batch 13).
+# discipline as the Airflow operator + Temporal activity.
 try:  # pragma: no cover - exercised only when IPython is installed
     from IPython.core.magic import Magics, line_magic, magics_class, cell_magic
     from IPython.display import HTML, display

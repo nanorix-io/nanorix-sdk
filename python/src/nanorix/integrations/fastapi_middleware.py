@@ -1,13 +1,13 @@
 """
 FastAPI middleware — Tier C (native framework) integration.
 
-Per the integration ship sequence (Wave 14, Item 4 of 5; Wave 18-11
+Per the integration ship sequence (
 dispatch): wraps every inbound HTTP request to a customer's FastAPI app
 in a Nanorix capsule lifecycle. Each request → one capsule → one
 AuditProof with ``cdp_kind: Some("Request")``.
 
- reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
-CTI-T14-002 + CTI-T14-004 ungating). This module is the canonical
+ reserved-slot ( landed
+Ungating). This module is the canonical
 consumer of `CdpKind::Request` — every emission here populates the
 slot with the canonical wire string ``"request"``.
 
@@ -147,7 +147,7 @@ __all__ = [
 
 CDP_KIND_REQUEST = "request"
 """The reserved-slot wire form for per-HTTP-request AuditProofs
-(Wave 16-A `a951568`; Wave 18-11 ungating). Mirrors `CdpKind::Request`
+( ungating). Mirrors `CdpKind::Request`
 serde rename_all = "snake_case" at the canonical verifier."""
 
 

@@ -1,5 +1,5 @@
 /**
- * Wave 8A — customer debugging tools tests (TypeScript).
+ * Customer debugging tools tests (TypeScript).
  *
  * Mirrors Python test_debug.py coverage:
  *   - Trace context: set/get/clear, env var, validation

@@ -1,5 +1,5 @@
 /**
- * LlamaIndex.ts integration adapter tests — Batch 7 sub-item 3.
+ * LlamaIndex.ts integration adapter tests.
  *
  * Validates event-name dispatch (`llm-start` / `llm-end` / `tool-call` /
  * `tool-result` / `agent-step`) into ActivityEvent emission.

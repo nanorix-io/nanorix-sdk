@@ -107,14 +107,14 @@ __all__ = [
     "enforce_depth_cap",
     "verify_record_receipt",
     "verify_full_audit_proof",
-    # Wave B Item 7 — Portable Receipt Bundle surface.
+    # Portable Receipt Bundle surface.
     "PORTABLE_RECEIPT_BUNDLE_DISCLAIMER",
     "AuditProofAnchors",
     "BundleError",
     "PortableReceiptBundle",
     "extract_receipt_bundle",
     "verify_receipt_bundle",
-    # Wave B Item 8 — Portable Pubkey Bundle surface.
+    # Portable Pubkey Bundle surface.
     "PORTABLE_PUBKEY_BUNDLE_DISCLAIMER",
     "BundleSignature",
     "PortablePubkeyBundle",

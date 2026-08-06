@@ -76,7 +76,7 @@ from nanorix.healthcare import (
 )
 from nanorix.resources.usage import UsageItem
 
-# Batch 3 sub-item 1 (CR-002, 2026-05-27) — Billing meter readout surface.
+# Billing meter readout surface.
 # Programmatic mirror of Stripe metered billing data. Per-pattern,
 # per-shape, per-capsulefile breakdowns + cost forecast. Counts are
 # STRUCTURAL FACTS.
@@ -90,7 +90,7 @@ from nanorix.billing import (
     ShapeUsage,
 )
 
-# control-map (Wave B 2026-05-26) — published mapping artifact
+# control-map ( 2026-05-26) — published mapping artifact
 # `(jurisdiction × data_classification × pattern_tag) → list[control_id]`.
 # Consumed by GRC adapters (Vanta / Drata / Anecdotes / internal) at
 # ingestion time given a receipt's signed `pattern_tag` +
@@ -148,17 +148,17 @@ __all__ = [
     "BatchResult",
     # Session (Order 3 / Gap 2)
     "SessionResult",
-    # Tier B `@workload` decorator (Wave 14, item 3 of 5)
+    # Tier B `@workload` decorator (item 3 of 5)
     "workload",
     "WorkloadDecorator",
-    # Healthcare data-format adapters (Wave 17 batch 6, Items 79-81)
+    # Healthcare data-format adapters (Items 79-81)
     "HL7v2Adapter",
     "HL7v2ParsedMessage",
     "CCDAReader",
     "CCDADocumentReference",
     "EpicLaunchContext",
     "EpicLaunchContextResult",
-    # control-map (Wave B 2026-05-26)
+    # control-map ( 2026-05-26)
     "CONTROL_MAP_DISCLAIMER",
     "CONTROL_MAP_FRAMEWORK_VERSION",
     "CONTROL_MAP_SCHEMA_VERSION",
@@ -174,7 +174,7 @@ __all__ = [
     "AsyncRecordContext",
     "PATTERN_TAGS",
     "validate_pattern_tag",
-    # Batch 3 sub-item 1 (CR-002, 2026-05-27) — billing meter readout
+    # Billing meter readout
     "Billing",
     "AsyncBilling",
     "BillingMeterUsage",

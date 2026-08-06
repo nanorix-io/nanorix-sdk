@@ -1,5 +1,5 @@
 /**
- * Billing meter readout helpers — Batch 3 sub-item 1 (CR-002, 2026-05-27).
+ * Billing meter readout helpers.
  *
  * Programmatic surface mirroring Stripe metered billing data via the
  * Nanorix API. Customers — particularly mid-pilot pharma + Mayo + agent
@@ -126,7 +126,7 @@ function buildParams(opts: MeterDateRange): Record<string, string> {
 /**
  * Billing meter operations.
  *
- * Wires four endpoints (Batch 3 sub-item 1):
+ * Wires four endpoints:
  * - `GET /v1/billing/meter/usage`
  * - `GET /v1/billing/meter/usage/by-shape`
  * - `GET /v1/billing/meter/usage/by-pattern`

@@ -1,6 +1,6 @@
-"""Observability adapters for Nanorix telemetry (Batch 17).
+"""Observability adapters for Nanorix telemetry.
 
-Batch 17 (2026-05-29) — real, installable observability adapter modules.
+Real, installable observability adapter modules.
 Export Nanorix telemetry to your observability backend:
 
 - **Datadog** — AuditProof events as Datadog Logs + billing-meter as custom

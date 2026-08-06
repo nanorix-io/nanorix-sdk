@@ -1,7 +1,7 @@
 """
 LangGraph callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 14, item 6a of second-wave): bridges
+Per the integration ship sequence (item 6a of second-wave): bridges
 LangGraph's callback surface into Nanorix's in-capsule ActivityEvent
 emission helpers. Customer adds one line to their existing LangGraph
 agent invocation:

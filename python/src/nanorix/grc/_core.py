@@ -1,6 +1,6 @@
-"""Framework-agnostic core for GRC evidence-filing adapters (Batch 17).
+"""Framework-agnostic core for GRC evidence-filing adapters.
 
-Batch 17 (2026-05-29) — gap-closing arc: real, installable GRC adapter
+Gap-closing arc: real, installable GRC adapter
 modules. This is the last mile of "the AuditProof IS the provability
 artifact": push the signed AuditProof — per-record receipts +
 outer envelope — into the customer's GRC platform as compliance EVIDENCE,

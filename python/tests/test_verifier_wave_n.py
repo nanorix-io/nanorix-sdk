@@ -860,7 +860,7 @@ def test_fixture_09_cyclic_parent_rejected() -> None:
 
 
 def test_fixture_10_missing_signature_parent_accepted_structurally() -> None:
-    """Missing per-link signature is Wave A out-of-scope; structural pass."""
+    """Missing per-link signature is out-of-scope; structural pass."""
     proof = _build_wave_n_proof(1, [("input-data", "banjo")])
     proof["parent_proof_hashes"][0]["parent_signature"] = ""
     result = verify_full_audit_proof(proof)

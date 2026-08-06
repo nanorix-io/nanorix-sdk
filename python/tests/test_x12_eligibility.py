@@ -1,4 +1,4 @@
-"""Tests for nanorix.healthcare.X12EligibilityAdapter (Batch 2 sub-item 2).
+"""Tests for nanorix.healthcare.X12EligibilityAdapter.
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Member IDs, NPIs, payer IDs are obviously fictitious. No real PHI even

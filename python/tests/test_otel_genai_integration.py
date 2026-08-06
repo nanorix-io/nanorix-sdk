@@ -1,4 +1,4 @@
-"""Wave 14 / item 8 — OTel GenAI semantic-conventions exporter tests.
+""" / item 8 — OTel GenAI semantic-conventions exporter tests.
 
 Mirrors `test_litellm_integration.py`. Exercises the
 `nanorix.integrations.otel_genai.NanorixOTelGenAIExporter` class against:

@@ -1,4 +1,4 @@
-"""Tests for `nanorix.benchmark` SDK helper (Batch 1 Item 4)."""
+"""Tests for the `nanorix.benchmark` SDK helper."""
 from __future__ import annotations
 
 import pytest

@@ -1,4 +1,4 @@
-"""Wave 18-11 / CTI-T14-004 — Flask middleware tests.
+"""Flask middleware tests.
 
 Exercises ``nanorix.integrations.flask_middleware.NanorixMiddleware``
 against the same surface as the FastAPI middleware (Tier-C parity

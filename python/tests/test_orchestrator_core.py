@@ -1,4 +1,4 @@
-"""Tests for the framework-agnostic orchestrator core (Batch 13).
+"""Tests for the framework-agnostic orchestrator core.
 
 These tests import ONLY ``nanorix.integrations._orchestrator_core`` plus a
 hand-rolled fake client. They do NOT import apache-airflow or temporalio —

@@ -1,7 +1,7 @@
 """
 AutoGen callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 18-12, item 6c): bridges AutoGen's
+Per the integration ship sequence (item 6c): bridges AutoGen's
 agent + tool lifecycle into Nanorix's in-capsule ActivityEvent emission
 helpers. Customer wraps their existing AutoGen agent / GroupChat with a
 small attachment helper:

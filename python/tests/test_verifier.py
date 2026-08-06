@@ -1,5 +1,5 @@
 """
-Batch 33-foundation sub-C tests — offline AuditProof verifier.
+Sub-C tests — offline AuditProof verifier.
 
 Builds synthetic-but-valid CDPs from scratch using the same chain hash
 formula the production code uses, then verifies them. Failure modes

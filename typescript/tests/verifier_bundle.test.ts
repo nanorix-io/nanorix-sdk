@@ -1,5 +1,5 @@
 /**
- * Wave B Items 7+8 — Portable Receipt Bundle + Portable Pubkey Bundle tests
+ * Items 7+8 — Portable Receipt Bundle + Portable Pubkey Bundle tests
  * (TypeScript).
  *
  * Cross-impl byte-equivalence with Rust/Go/Python on the canonical reference
@@ -211,10 +211,10 @@ async function makeWaveNProofN2(): Promise<{
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Item 7 — Portable Receipt Bundle tests
+// Portable Receipt Bundle tests
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe("Portable Receipt Bundle (Item 7)", () => {
+describe("Portable Receipt Bundle", () => {
   it("extracts receipt bundle at index 0", async () => {
     if (!(await ed25519Supported())) return;
     const { proof } = await makeWaveNProofN2();
@@ -388,7 +388,7 @@ describe("Portable Receipt Bundle (Item 7)", () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Item 8 — Portable Pubkey Bundle tests
+// Portable Pubkey Bundle tests
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function makePublisherKeyPair(): Promise<{
@@ -459,7 +459,7 @@ async function makeTestPubKeyEntry(keyId: string): Promise<PubKeyEntry> {
   };
 }
 
-describe("Portable Pubkey Bundle (Item 8)", () => {
+describe("Portable Pubkey Bundle", () => {
   it("builds a pubkey bundle", async () => {
     if (!(await ed25519Supported())) return;
     const { signerSeed, keyId } = await makePublisherKeyPair();

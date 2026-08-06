@@ -1,5 +1,5 @@
 /**
- * Express.js middleware integration tests — Batch 7 sub-item 4.
+ * Express.js middleware integration tests.
  *
  * Validates:
  *  - Constructor strict-mode (client/framework/capsulefile required)

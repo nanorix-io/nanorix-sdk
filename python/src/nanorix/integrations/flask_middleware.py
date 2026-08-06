@@ -1,7 +1,7 @@
 """
 Flask middleware — Tier C (native framework) integration.
 
-Per the integration ship sequence (Wave 14, Item 4 of 5; Wave 18-11
+Per the integration ship sequence (
 dispatch): wraps every inbound HTTP request to a customer's Flask app
 in a Nanorix capsule lifecycle. Each request → one capsule → one
 AuditProof with ``cdp_kind: Some("Request")``.
@@ -11,8 +11,8 @@ This is the WSGI sibling of ``nanorix.integrations.fastapi_middleware``
 Flask's request-context lifecycle (``before_request`` / ``after_request``
 / ``teardown_request``).
 
- reserved-slot (Wave 16-A landed `a951568`; Wave 18-11
-CTI-T14-002 + CTI-T14-004 ungating). Every AuditProof emitted by this
+ reserved-slot ( landed
+Ungating). Every AuditProof emitted by this
 module populates the slot with the canonical wire string ``"request"``.
 
 ## Public API

@@ -1,4 +1,4 @@
-"""Sentry observability shell — guarded verification-failure alerter (Batch 17).
+"""Sentry observability shell — guarded verification-failure alerter.
 
 Forwards Nanorix AuditProof verification FAILURES to Sentry as tagged
 events. Sentry is an alerting backend; only failures warrant an event —

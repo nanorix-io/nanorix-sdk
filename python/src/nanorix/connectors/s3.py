@@ -1,6 +1,6 @@
 """Amazon S3 source/sink connectors — customer-side streaming.
 
-Batch 14 (2026-05-28). ``S3Source`` streams objects under a prefix INTO
+``S3Source`` streams objects under a prefix INTO
 the capsule before exec; ``S3Sink`` streams capsule output to a prefix
 BEFORE destroy. Both run in the customer's process using the customer's
 credentials — resolved by boto3's STANDARD credential chain (environment

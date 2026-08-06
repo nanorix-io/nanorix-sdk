@@ -40,7 +40,7 @@ export class NanorixClient {
   readonly egressProfiles: EgressProfiles;
   readonly usage: Usage;
   /**
-   * Batch 3 sub-item 1 (CR-002, 2026-05-27): billing meter readout
+   * Billing meter readout
    * surface mirroring Stripe metered billing for programmatic
    * consumption. By-pattern · by-shape · cost-forecast endpoints.
    */
@@ -98,7 +98,6 @@ export class NanorixClient {
     this.auditProofs = this.cdp;
     this.egressProfiles = new EgressProfiles(this._http);
     this.usage = new Usage(this._http);
-    // Batch 3 sub-item 1 (CR-002, 2026-05-27)
     this.billing = new Billing(this._http);
     this.webhooks = new Webhooks(this._http);
   }

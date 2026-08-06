@@ -3,9 +3,9 @@
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Submission set UIDs, Document.uniqueId OIDs, StudyInstanceUID values,
 and homeCommunityId OIDs are obviously fictitious; NEVER real PHI per
-Wave 18-5 / Item 36 directive.
+Directive.
 
-Batch 5 Tier 3 — Overjet + Cleerly + PathAI cohort.
+Tier 3 — Overjet + Cleerly + PathAI cohort.
 """
 from __future__ import annotations
 

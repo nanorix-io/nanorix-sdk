@@ -1,4 +1,4 @@
-"""Datadog observability shell — guarded pusher (Batch 17).
+"""Datadog observability shell — guarded pusher.
 
 Forwards Nanorix telemetry to Datadog: AuditProof emission + verification
 outcomes as Datadog Logs events, and billing-meter usage + cost forecast

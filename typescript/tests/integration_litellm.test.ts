@@ -1,5 +1,5 @@
 /**
- * LiteLLM HTTP-API integration adapter tests — Batch 7 sub-item 3.
+ * LiteLLM HTTP-API integration adapter tests.
  *
  * Validates beforeRequest/afterSuccess/afterFailure event-flow,
  * OpenAI-shape tool_calls extraction, and function-calling event

@@ -1,5 +1,5 @@
 /**
- * Portable Receipt Bundle (.prb.json) — Wave B Item 7 surface, TypeScript port.
+ * Portable Receipt Bundle (.prb.json) — surface, TypeScript port.
  *
  * Pure TypeScript port of the reference verifier. Cross-impl
  * byte-equivalence with Rust/Go/Python on the canonical reference vectors.
@@ -48,7 +48,7 @@ export interface AuditProofAnchors {
 }
 
 /**
- * Wave B Item 7 wire shape mirroring Rust `PortableReceiptBundle`.
+ * Wire shape mirroring Rust `PortableReceiptBundle`.
  *
  * Forever-Standard: `bundle_version` is append-only; the V1.0
  * shape remains valid forever.

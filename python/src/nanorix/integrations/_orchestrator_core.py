@@ -1,6 +1,6 @@
 """Framework-agnostic core for data-pipeline orchestrator operators.
 
-Batch 13 (2026-05-28) — gap-closing arc: data-pipeline orchestrator
+Gap-closing arc: data-pipeline orchestrator
 operators. This module is the pure, framework-free engine that the
 Airflow operator (``nanorix.integrations.airflow``) and the Temporal
 activity (``nanorix.integrations.temporal``) both call. It has NO

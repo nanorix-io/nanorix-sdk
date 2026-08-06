@@ -1,5 +1,5 @@
 /**
- * LangChain.js integration adapter tests — Batch 7 sub-item 3.
+ * LangChain.js integration adapter tests.
  *
  * Validates:
  *  - Constructor strict-mode (framework/capsulefile required)

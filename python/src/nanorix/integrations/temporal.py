@@ -1,6 +1,6 @@
 """Temporal activity — run a sealed Nanorix capsule inside a workflow.
 
-Batch 13 (2026-05-28) — gap-closing arc. Temporal is rising fastest for
+Gap-closing arc. Temporal is rising fastest for
 durable RCM / prior-authorization workflows, so a first-class activity
 lets a workflow author make a sealed capsule a durable step (with
 Temporal's retry + heartbeat semantics) instead of hand-wrapping the SDK.

@@ -1,4 +1,4 @@
-"""Tests for data source/sink connectors (Batch 14).
+"""Tests for data source/sink connectors.
 
 These tests import ONLY ``nanorix.connectors._base`` (the framework- and
 cloud-SDK-free streaming core) plus a hand-rolled FAKE in-memory backend.
@@ -412,7 +412,7 @@ def test_fake_sink_satisfies_sink_protocol():
     assert isinstance(FakeSink(), Sink)
 
 
-# ── Integration with run_capsule_job (Batch 13 core) ─────────────────────
+# ── Integration with run_capsule_job ( core) ─────────────────────
 
 
 def test_run_capsule_job_streams_source_before_exec():

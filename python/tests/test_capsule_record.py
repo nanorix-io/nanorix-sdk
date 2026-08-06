@@ -1,4 +1,4 @@
-"""Wave B Item 2 — Python SDK per-record receipt + parent-proof tests.
+""" Python SDK per-record receipt + parent-proof tests.
 
 Covers `Capsule.record(...)` + `Capsule.add_parent_proof(...)` ergonomic
 surfaces. Validates:
@@ -70,7 +70,7 @@ def _record_response(
     record_id: str = "pa_123",
     capsule_id: str = "cap_test001",
 ) -> Dict[str, Any]:
-    """Synthesize the Wave A `/v1/capsules/:id/record` response."""
+    """Synthesize the `/v1/capsules/:id/record` response."""
     return {
         "capsule_id": capsule_id,
         "record_index": record_index,
@@ -90,7 +90,7 @@ def _parent_response(
     capsule_id: str = "cap_test001",
     parent_chain_hash: str = "sha512:" + "d" * 128,
 ) -> Dict[str, Any]:
-    """Synthesize the Wave A `/v1/capsules/:id/parent` response."""
+    """Synthesize the `/v1/capsules/:id/parent` response."""
     return {
         "capsule_id": capsule_id,
         "parent_chain_hash": parent_chain_hash,

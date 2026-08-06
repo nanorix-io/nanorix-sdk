@@ -1,5 +1,5 @@
 /**
- * Next.js (App Router) middleware integration tests — Batch 7 sub-item 4.
+ * Next.js (App Router) middleware integration tests.
  *
  * Validates:
  *  - withNanorix + wrapApiRoute constructor strict-mode

@@ -1,6 +1,6 @@
-"""Framework-agnostic core for observability adapters (Batch 17).
+"""Framework-agnostic core for observability adapters.
 
-Batch 17 (2026-05-29) — gap-closing arc: real, installable observability
+Gap-closing arc: real, installable observability
 adapter modules. This module is the pure, vendor-SDK-free engine that the
 Datadog / Splunk / Honeycomb / Sentry shells
 (``nanorix.observability.{datadog,splunk,honeycomb,sentry}``) all call to

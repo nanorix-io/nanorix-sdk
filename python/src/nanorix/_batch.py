@@ -4,7 +4,7 @@ Batch result types — `BatchResult` returned by `Capsule.batch()`.
 Per Agent A research (2026-05-05): Anthropic Message Batches inline shape +
 caller-required `custom_id` + SQS partial-batch-failure outcomes. Mirrors
 the sealed runtime's batch-accumulator wire shape + the
-ActivityEvent BatchRecordProcessed/BatchCompleted variants from Batch 26
+ActivityEvent BatchRecordProcessed/BatchCompleted variants
 sub-A.
 
 Customer-side processing convention (V1):

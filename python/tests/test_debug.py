@@ -1,5 +1,5 @@
 """
-Wave 8A — customer debugging tools tests.
+Customer debugging tools tests.
 
 Covers:
   - Trace context: set/get/clear, OTEL_TRACEPARENT env var, validation

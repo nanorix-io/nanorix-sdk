@@ -1,4 +1,4 @@
-"""Wave 14 / item 7 — LiteLLM callback handler tests.
+""" / item 7 — LiteLLM callback handler tests.
 
 Mirrors `test_langgraph_integration.py`. Exercises the
 `nanorix.integrations.litellm.NanorixLiteLLMCallback` class against:

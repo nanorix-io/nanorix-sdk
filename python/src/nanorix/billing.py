@@ -1,4 +1,4 @@
-"""Billing meter readout helpers — Batch 3 sub-item 1 (CR-002, 2026-05-27).
+"""Billing meter readout helpers.
 
 Programmatic surface mirroring Stripe metered billing data via the Nanorix
 API. Customers — particularly mid-pilot pharma + Mayo + agent customers —
@@ -165,7 +165,7 @@ def _parse_billing_meter_usage(payload: Dict[str, Any]) -> BillingMeterUsage:
 class Billing:
     """Synchronous billing meter operations.
 
-    Wires four endpoints (Batch 3 sub-item 1):
+    Wires four endpoints:
     - GET /v1/billing/meter/usage
     - GET /v1/billing/meter/usage/by-shape
     - GET /v1/billing/meter/usage/by-pattern

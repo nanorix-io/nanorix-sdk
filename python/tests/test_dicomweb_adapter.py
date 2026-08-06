@@ -2,9 +2,9 @@
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient identifiers are obviously fictitious; modality codes and UIDs
-are illustrative; NEVER real PHI per Wave 18-5 / Item 36 directive.
+are illustrative; NEVER real PHI directive.
 
-Wave 18-5 / Item 36 / Proposed.
+ / Proposed.
 """
 from __future__ import annotations
 

@@ -3,7 +3,7 @@
  *
  * This module exposes the customer-facing surface for emitting per-record
  * receipts and parent-proof links against a live
- * capsule. Receipts and parent links buffer server-side per Wave A
+ * capsule. Receipts and parent links buffer server-side
  * (the Nanorix API service) and bind into the AuditProof's
  * outer 8-step chain at capsule-destroy time via Merkle root incorporation
  * into Step 8 (the canonical verifier).
@@ -285,7 +285,7 @@ export interface RecordOptions {
  *    sugar that auto-commits on resolve, aborts on throw (mirrors
  *    Python's `with capsule.record(...) as r:` context manager).
  *
- * The Wave A endpoint computes the `record_chain_hash` server-side and
+ * The endpoint computes the `record_chain_hash` server-side and
  * appends the receipt to the in-memory wave-N buffer; the receipt is
  * bound into the AuditProof's outer chain via Merkle root at capsule
  * destroy time.
@@ -370,7 +370,7 @@ export class RecordContext {
    * JSON structure is accepted but client-side payload limit is
    * `MAX_ACTIVITY_TRAIL_LEN` events.
    *
-   * Per Wave 18-11 cdp_kind discipline: customer-supplied
+   * Per cdp_kind discipline: customer-supplied
    * events flow through Nanorix verbatim. The activity trail is
    * canonicalized via JCS + chained via `compute_activity_root` at
    * chain-hash computation time.

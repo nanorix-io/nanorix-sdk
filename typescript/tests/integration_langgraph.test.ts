@@ -1,5 +1,5 @@
 /**
- * LangGraph.js integration adapter tests — Batch 7 sub-item 3.
+ * LangGraph.js integration adapter tests.
  *
  * Validates node-aware dispatch: a chain tagged `graph:step:*` (or
  * with `metadata.langgraph_node`) emits tool_call_* events;

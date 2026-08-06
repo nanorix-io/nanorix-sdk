@@ -1,5 +1,5 @@
 /**
- * AutoGen structural-callback adapter tests — Batch 7 sub-item 3.
+ * AutoGen structural-callback adapter tests.
  *
  * Validates 4-method lifecycle dispatch, OpenAI tool_calls + Anthropic
  * content-block shape extraction, and parent_event_id pairing.

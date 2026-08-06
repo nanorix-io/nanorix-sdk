@@ -1,5 +1,5 @@
 """
-Portable Receipt Bundle (.prb.json) — Wave B Item 7 surface, Python port.
+Portable Receipt Bundle (.prb.json) — surface, Python port.
 
 Pure Python port of the reference verifier. Cross-impl
 byte-equivalence with Rust/Go/TypeScript on the canonical reference vectors.
@@ -71,7 +71,7 @@ class AuditProofAnchors:
 
 @dataclass
 class PortableReceiptBundle:
-    """Wave B Item 7 wire shape mirroring Rust ``PortableReceiptBundle``.
+    """ wire shape mirroring Rust ``PortableReceiptBundle``.
 
     Forever-Standard: ``bundle_version`` is append-only; the V1.0
     shape remains valid forever.

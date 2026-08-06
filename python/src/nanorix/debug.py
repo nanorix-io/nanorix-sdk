@@ -1,5 +1,5 @@
 """
-Customer debugging tools — Wave 8A.
+Customer debugging tools.
 
 Provides:
   1. Trace context propagation — W3C Trace Context headers bound to SDK calls.

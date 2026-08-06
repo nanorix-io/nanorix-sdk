@@ -1,5 +1,5 @@
 """
-Wave B Items 7+8 — Portable Receipt Bundle + Portable Pubkey Bundle tests.
+Items 7+8 — Portable Receipt Bundle + Portable Pubkey Bundle tests.
 
 Cross-impl byte-equivalence with Rust/Go/TypeScript on the canonical reference
 vectors locked in the test constants below.
@@ -188,7 +188,7 @@ def make_wave_n_proof_n2() -> Dict[str, Any]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Item 7 — Portable Receipt Bundle tests
+# Portable Receipt Bundle tests
 # ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -327,7 +327,7 @@ def test_extract_bundle_omits_framework_version_when_absent() -> None:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Item 8 — Portable Pubkey Bundle tests
+# Portable Pubkey Bundle tests
 # ─────────────────────────────────────────────────────────────────────────────
 
 

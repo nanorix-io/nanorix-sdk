@@ -67,7 +67,7 @@ interface Attestation {
 }
 
 /**
- * Wave 16-A reserved-slot scope discriminator (2026-05-10).
+ * Reserved-slot scope discriminator (2026-05-10).
  *
  * AuditProof scope. V1 always undefined / absent (workload scope is implicit).
  * Future Items 2 (sealed-proxy = "call") and 4 (sealed-middleware = "request")
@@ -83,7 +83,7 @@ interface ProofShape {
   cdp_version?: string;
   chain?: ChainStep[];
   attestation?: Attestation;
-  /** Wave 16-A reserved slot — opaque to the verifier. */
+  /** reserved slot — opaque to the verifier. */
   cdp_kind?: CdpKind;
 }
 
@@ -324,7 +324,7 @@ export type {
   VerifyRecordReceiptOptions,
 } from "./wave_n.js";
 
-// Wave B Item 7 — Portable Receipt Bundle (.prb.json) surface.
+// Portable Receipt Bundle (.prb.json) surface.
 export {
   PORTABLE_RECEIPT_BUNDLE_DISCLAIMER,
   BundleError,
@@ -333,7 +333,7 @@ export {
 } from "./bundle.js";
 export type { AuditProofAnchors, BundleErrorKind, PortableReceiptBundle } from "./bundle.js";
 
-// Wave B Item 8 — Portable Pubkey Bundle (.ppb.json) surface.
+// Portable Pubkey Bundle (.ppb.json) surface.
 export {
   PORTABLE_PUBKEY_BUNDLE_DISCLAIMER,
   PubkeyBundleError,

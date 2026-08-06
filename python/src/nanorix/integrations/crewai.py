@@ -1,7 +1,7 @@
 """
 CrewAI callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 18-12, item 6d): bridges CrewAI's
+Per the integration ship sequence (item 6d): bridges CrewAI's
 task + crew + agent-step lifecycle into Nanorix's in-capsule
 ActivityEvent emission helpers. Customer wires the callback into their
 existing CrewAI agent / task / crew via thin attachment helpers OR by

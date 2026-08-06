@@ -1,5 +1,5 @@
 /**
- * OpenTelemetry GenAI exporter tests — Batch 7 sub-item 3.
+ * OpenTelemetry GenAI exporter tests.
  *
  * Validates byte-identical `gen_ai.*` attribute key emission,
  * provider-prefix mapping, captureContent OFF-by-default redaction,

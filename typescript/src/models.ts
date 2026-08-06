@@ -179,8 +179,8 @@ export interface CdpDocument {
   document_hash?: string;
   destruction_trigger?: string;
   /**
-   * Wave 16-A reserved-slot discriminator. V1 always undefined /
-   * absent (workload scope implicit). Wave 18-11 ungated values:
+   * Reserved-slot discriminator. V1 always undefined /
+   * absent (workload scope implicit). ungated values:
    * "workload" | "request" | "call" | "batch".
    */
   cdp_kind?: string;
@@ -214,7 +214,7 @@ export interface VerificationCdp {
   attestation?: AttestationInfo;
   document_hash?: string;
   verify?: string;
-  /** Wave 16-A reserved-slot discriminator. V1 always undefined. */
+  /** reserved-slot discriminator. V1 always undefined. */
   cdp_kind?: string;
   /**
    * mirrored on the shareable AuditProof surface. See

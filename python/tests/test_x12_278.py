@@ -1,4 +1,4 @@
-"""Tests for nanorix.healthcare.X12ServicesReviewAdapter (Batch 2 sub-item 3).
+"""Tests for nanorix.healthcare.X12ServicesReviewAdapter.
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient IDs, NPIs, provider IDs, certification IDs are obviously

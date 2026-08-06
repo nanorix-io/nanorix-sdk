@@ -1,4 +1,4 @@
-"""Tests for nanorix.healthcare.BulkFhirAdapter (Batch 2 sub-item 5).
+"""Tests for nanorix.healthcare.BulkFhirAdapter.
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient IDs, MRNs, resource IDs are obviously fictitious. No real PHI

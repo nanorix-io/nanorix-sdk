@@ -1,5 +1,5 @@
 /**
- * Wave B Item 3 — TypeScript SDK per-record receipt +
+ * TypeScript SDK per-record receipt +
  * parent-proof tests.
  *
  * Faithful TS port of the Python SDK.

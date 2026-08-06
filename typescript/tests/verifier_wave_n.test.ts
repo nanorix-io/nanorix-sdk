@@ -967,7 +967,7 @@ describe("Mode A — Full Wave-N AuditProof verification", () => {
     expect(result.valid).toBe(false);
   });
 
-  it("Fixture 10: missing-signature parent verifies structurally (Wave A)", async () => {
+  it("Fixture 10: missing-signature parent verifies structurally", async () => {
     const proof = (await buildWaveNProof(1, [
       ["input-data", "banjo"],
     ])) as Record<string, unknown>;

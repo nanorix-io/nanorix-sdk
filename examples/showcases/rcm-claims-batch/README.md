@@ -16,7 +16,7 @@ The Pattern 4 primitive — per-record receipts bound into the AuditProof Step 8
 ## What this showcase demonstrates
 
 1. **Ingest** a synthetic 100-claim X12 EDI 837 batch (synthetic; no real claim data).
-2. **Create** one capsule via the bulk-create endpoint `/v1/capsules/batch` (per Wave 18-7 CTI-T7-005; hard cap 100).
+2. **Create** one capsule via the bulk-create endpoint `/v1/capsules/batch` (hard cap 100).
 3. **Emit** a per-claim receipt for each claim's input/output hashes via `POST /v1/capsules/:id/record`.
 4. **Adjudicate** each claim (rules engine + parser) inside the sealed boundary.
 5. **Destroy** the capsule + collect the AuditProof with the Merkle root binding all per-claim receipts into Step 8.

@@ -1,4 +1,4 @@
-"""Wave 18-12 / item 6c — AutoGen callback handler tests.
+""" / item 6c — AutoGen callback handler tests.
 
 Mirrors `test_langgraph_integration.py` + `test_llama_index_integration.py`.
 Exercises the `nanorix.integrations.autogen.NanorixAutoGenCallback`

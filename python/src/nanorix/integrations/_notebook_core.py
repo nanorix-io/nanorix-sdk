@@ -1,11 +1,11 @@
 """Framework-agnostic core for the Jupyter integration.
 
-Batch 16 (2026-05-28) — FINAL gap-closing batch. This module is the pure,
+FINAL gap-closing batch. This module is the pure,
 IPython-free engine behind the ``%%nanorix_capsule`` cell magic
 (:mod:`nanorix.integrations.jupyter`). It has NO dependency on ``IPython``
 and is fully unit-testable with a mocked client — exactly the discipline
-the Airflow operator / Temporal activity (Batch 13) and the data
-source/sink connectors (Batch 14) follow.
+the Airflow operator / Temporal activity and the data
+source/sink connectors follow.
 
 The split is deliberate:
 

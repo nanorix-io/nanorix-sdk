@@ -1,6 +1,6 @@
 """Framework-agnostic streaming core for data source/sink connectors.
 
-Batch 14 (2026-05-28) — gap-closing arc: data source/sink connectors,
+Gap-closing arc: data source/sink connectors,
 the #1 pipeline-frequency gap from the integration audit ("can I just
 point you at my S3 bucket?"). This module is the pure, cloud-SDK-free
 engine that ``nanorix.connectors.s3`` and ``nanorix.connectors.gcs``
@@ -212,7 +212,7 @@ def stream_source_into_capsule(
     The ``capsule`` is a live capsule handle (``LiveCapsule`` or anything
     exposing ``.upload(filename, data)`` and ``.id``). In tests it is a
     fake. The ``client`` argument is accepted for symmetry with the
-    Batch 13 orchestrator surface and is otherwise unused here.
+    Orchestrator surface and is otherwise unused here.
 
     Streaming detail: the SDK ``upload`` surface takes whole bytes for one
     capsule file, so we accumulate exactly the chunks of ONE object (never

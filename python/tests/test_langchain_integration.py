@@ -1,4 +1,4 @@
-"""Wave 14 / item 1 — LangChain callback handler tests.
+""" / item 1 — LangChain callback handler tests.
 
 Exercises the `nanorix.integrations.langchain.NanorixCallback` class
 against:

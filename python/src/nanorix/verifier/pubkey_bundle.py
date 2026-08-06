@@ -1,5 +1,5 @@
 """
-Portable Pubkey Bundle (.ppb.json) — Wave B Item 8 surface, Python port.
+Portable Pubkey Bundle (.ppb.json) — surface, Python port.
 
 Pure Python port of the reference verifier. Cross-impl
 byte-equivalence with Rust/Go/TypeScript on the canonical reference vectors.
@@ -108,7 +108,7 @@ class BundleSignature:
 
 @dataclass
 class PortablePubkeyBundle:
-    """Wave B Item 8 wire shape mirroring Rust ``PortablePubkeyBundle``."""
+    """ wire shape mirroring Rust ``PortablePubkeyBundle``."""
 
     bundle_version: str
     bundle_type: str

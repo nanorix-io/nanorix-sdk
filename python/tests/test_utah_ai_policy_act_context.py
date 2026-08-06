@@ -551,7 +551,7 @@ def test_utah_ai_policy_act_module_docstring_surfaces_disclosure_obligations():
 
 
 def test_utah_ai_policy_act_module_docstring_surfaces_ai_civil_rights_act_substitution():
-    """Wave 17 batch 5 specific: Utah AI Policy Act was shipped in
+    """ specific: Utah AI Policy Act was shipped in
     lieu of the federal AI Civil Rights Act because the federal Act
     was not enacted at the time of helper publication. The module
     docstring must surface this substitution rationale for

@@ -1,7 +1,7 @@
 """
 OpenTelemetry GenAI semantic-conventions exporter — second-channel observability.
 
-Per Wave 14 / item 8 of the second-wave integration ship sequence: emits
+Per / item 8 of the second-wave integration ship sequence: emits
 OTel-conformant GenAI spans **alongside** Nanorix's own ActivityEvent
 emission. The two channels coexist:
 

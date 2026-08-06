@@ -3,7 +3,7 @@
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient identifiers ("Patient-001"), DOB ("2000-01-01"),
 DX ("Z00.00 General Adult Examination") are obviously fictitious;
-no real PHI per Wave 17 batch 6 directive.
+no real PHI directive.
 """
 from __future__ import annotations
 

@@ -82,7 +82,7 @@ This helper was shipped in lieu of the federal AI Civil Rights Act
 helper because the AI Civil Rights Act has not been enacted at the
 time of helper publication (it was last introduced as S.5152 in the
 118th Congress and has not advanced); shipping an enacted-law helper
-is preferred over a proposed-framework helper per Wave 17 batch 5
+is preferred over a proposed-framework helper
 discipline.
 """
 from __future__ import annotations
@@ -191,7 +191,7 @@ class UtahAIPolicyActContext:
     .. note::
 
         Utah is one of the first US states with an enacted comprehensive
-        AI law and was selected for Wave 17 batch 5 over the federal
+        AI law and was selected over the federal
         AI Civil Rights Act because the federal Act has not been
         enacted as of helper publication. Shipping an enacted-law
         helper is preferred over a proposed-framework helper. The Utah

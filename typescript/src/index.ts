@@ -52,7 +52,7 @@ export {
   SecretsInjectionRejectedError,
 } from "./errors.js";
 
-// Pagination + Usage (Batch 33-foundation)
+// Pagination + Usage
 export { Page } from "./pagination.js";
 export { Usage } from "./resources/usage.js";
 export type {
@@ -62,7 +62,7 @@ export type {
   ListItemsOptions,
 } from "./resources/usage.js";
 
-// Batch 3 sub-item 1 (CR-002, 2026-05-27) — Billing meter readout surface.
+// Billing meter readout surface.
 // Programmatic mirror of Stripe metered billing data. Per-pattern,
 // per-shape, per-capsulefile breakdowns + cost forecast. Counts are
 // STRUCTURAL FACTS.
@@ -76,11 +76,11 @@ export type {
   MeterDateRange,
 } from "./billing.js";
 
-// Offline AuditProof verifier (Batch 33-foundation sub-D)
+// Offline AuditProof verifier ( sub-D)
 export { verify, GENESIS_HASH, CANONICAL_SUBSYSTEMS } from "./verifier/index.js";
 export type { VerifyResult } from "./verifier/index.js";
 
-// Wave-N verifier surface (Wave B Item 6 — 2026-05-27)
+// Wave-N verifier surface ( — 2026-05-27)
 export {
   GENESIS_SHA512_HEX as WAVE_N_GENESIS_SHA512_HEX,
   PARENT_PROOF_MAX_DEPTH,
@@ -161,7 +161,7 @@ export {
   GdprContext,
   HipaaContext,
   Soc2Context,
-  // Batch 7 sub-item 1 (2026-05-28) — 12 additional framework helpers.
+  // 12 additional framework helpers.
   BipaContext,
   CcpaContext,
   CFRPart2Context,
@@ -181,7 +181,7 @@ export type {
   HipaaContextOptions,
   Soc2ContextOptions,
   Soc2TrustServiceCriterion,
-  // Batch 7 sub-item 1 — option + enum types.
+  // Option + enum types.
   BipaContextOptions,
   BipaBiometricIdentifierType,
   BipaConsentBasis,
@@ -222,7 +222,7 @@ export type {
   UtahAiPolicyActGenerativeAiUseCase,
 } from "./compliance/index.js";
 
-// Healthcare adapters (Batch 7 sub-item 2 — 2026-05-28)
+// Healthcare adapters ( — 2026-05-28)
 // 13 healthcare modules ported from Python SDK (Tier 4 TS parity).
 // Each adapter structurally parses a customer-supplied wire format and
 // emits structural metadata for AuditProof binding; never interprets
@@ -335,9 +335,9 @@ export type {
   X12RCMTransactionSet,
 } from "./healthcare/index.js";
 
-// Native-framework middleware (Batch 7 sub-item 4 — 2026-05-28)
+// Native-framework middleware (2026-05-28)
 // Express.js + Next.js App Router middleware modules ported from Python SDK
-// (Tier 4 TS parity; closes Batch 7). Tier-C native-framework integration —
+// (Tier 4 TS parity). Tier-C native-framework integration —
 // per-request capsule lifecycle bound to AuditProof with `cdp_kind: "request"`.
 // Customer brings the framework; SDK provides structural middleware factories.
 export {
@@ -381,7 +381,7 @@ export type {
   NextRouteHandler,
 } from "./integrations/index.js";
 
-// LLM integration adapters (Batch 7 sub-item 3 — 2026-05-28)
+// LLM integration adapters ( — 2026-05-28)
 // 7 LLM integration modules ported from Python SDK (Tier 4 TS parity).
 // Each adapter is a structural callback class customers wire INTO their
 // LLM framework code; no framework imports — customer brings the
@@ -451,7 +451,7 @@ export type {
 // Constants
 export { VERSION } from "./constants.js";
 
-// Customer debugging tools (Wave 8A)
+// Customer debugging tools
 export {
   setTraceContext,
   getTraceContext,
@@ -476,10 +476,10 @@ export type {
   VerifierPolicy,
 } from "./debug.js";
 
-// JCS RFC 8785 canonicalization (Wave 8A)
+// JCS RFC 8785 canonicalization
 export { canonicalize, canonicalizeBytes } from "./_jcs.js";
 
-// control-map (Wave B 2026-05-26) — published mapping artifact
+// control-map ( 2026-05-26) — published mapping artifact
 // `(jurisdiction × data_classification × pattern_tag) → string[]` consumed
 // by GRC adapters at ingestion time. Three-layer separation: receipt
 // (immutable) / mapping (versioned) / adapter (vendor pace).
@@ -499,7 +499,7 @@ export type {
   PatternTag as ControlMapPatternTag,
 } from "./control_map.js";
 
-// Batch 1 Item 4 (2026-05-27) — cold-start benchmark SDK helper. Layer-2
+// Cold-start benchmark SDK helper. Layer-2
 // published artifact (sibling to control_map). Customer-facing
 // p50/p95/p99 measurements per (substrate × pattern × Capsulefile shape)
 // cell. STRUCTURAL FACTS only; NEVER a service-level commitment.
@@ -521,7 +521,7 @@ export type {
   BenchmarkLookup,
 } from "./benchmark.js";
 
-// Batch 9 (2026-05-28) — C2PA LLM-output provenance.
+// C2PA LLM-output provenance.
 // Sibling primitive next to AuditProof; AuditProof byte-form UNCHANGED
 // (affirmed). EU AI Act Article 50 (effective August 2026)
 // interchange format. Customer-sole-declarer; three-role
@@ -557,7 +557,7 @@ export type {
   C2PA_WithModelOptions,
 } from "./integrations/index.js";
 
-// Wave B Item 3 (2026-05-26) — per-record receipt + parent
+// Per-record receipt + parent
 // proof ergonomic surface. RecordContext + addParentProof on LiveCapsule.
 // Three-layer separation enforced: receipts carry pattern_tag (signed) but
 // NEVER control_tags; adapters apply control_map at ingestion time.

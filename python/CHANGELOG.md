@@ -4,8 +4,8 @@ All notable changes to the Nanorix Python SDK will be documented in this file.
 
 ## 0.5.0 — 2026-05-29
 
-> Version constant set to `0.5.0` on 2026-05-09 (`fa65d4e`); content continued
-> landing under that version through 2026-05-29 (`3cef1ec`). Last version on
+> Version constant set to `0.5.0` on 2026-05-09; content continued
+> landing under that version through 2026-05-29. Last version on
 > PyPI is 0.3.0, so this entry covers everything a customer upgrading from
 > `pip install nanorix` (0.3.0) receives, together with the 0.4.0 entry below.
 
@@ -199,7 +199,7 @@ proofs, and the portable bundle conventions.
 
 #### Top-level modules — 12 new
 
-- `nanorix.debug` — customer-side debugging tools (Wave 8A):
+- `nanorix.debug` — customer-side debugging tools:
   - `set_trace_context()` / `get_trace_context()` / `clear_trace_context()` — W3C Trace
     Context propagation (`traceparent` + `tracestate`) bound to all SDK calls;
     reads `OTEL_TRACEPARENT` env var when no explicit value is set.
@@ -263,7 +263,7 @@ proofs, and the portable bundle conventions.
 
 - 2315 tests collected (`python -m pytest --collect-only -q` in the Python SDK),
   up from the 45 that shipped with 0.1.0.
-- The Wave 8A batch alone added 152 tests in `tests/test_debug.py`:
+- The batch alone added 152 tests in `tests/test_debug.py`:
   10 trace context · 9 retry-with-backoff · 4 download AuditProof ·
   16 JCS canonicalization · 20 AuditProof verification unit ·
   101 fixture corpus byte-equivalence (Go V1 parity contract) ·
@@ -271,7 +271,7 @@ proofs, and the portable bundle conventions.
 
 ## 0.4.0 — 2026-04-11
 
-> Bumped in `4bd2404` but never published to PyPI — the last version on PyPI is
+> Bumped but never published to PyPI — the last version on PyPI is
 > 0.3.0. Recorded here so the 0.3.0 → 0.5.0 upgrade path is complete.
 
 ### Breaking changes

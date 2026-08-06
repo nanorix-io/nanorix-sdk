@@ -1,5 +1,5 @@
 /**
- * Wave 18-7 / CTI-T7-008 — webhook signature verification tests.
+ * Webhook signature verification tests.
  *
  * Pins cross-language byte-equivalence with:
  * - Rust signer: the Nanorix API service
@@ -34,7 +34,7 @@ function sign(body: Buffer, secret: string, timestamp: number): string {
   return `sha256=${mac.digest("hex")}`;
 }
 
-describe("Webhook signature verification (CTI-T7-008)", () => {
+describe("Webhook signature verification", () => {
   afterEach(() => {
     vi.restoreAllMocks();
   });

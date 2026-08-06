@@ -1,8 +1,8 @@
 """
-Batch 33-foundation tests — Usage resource + cursor pagination.
+Tests — Usage resource + cursor pagination.
 
 Wires `/v1/usage`, `/v1/usage/estimate`, `/v1/usage/items`,
-`/v1/usage/items.csv` (Batch 32 sub-A + sub-B endpoints) into the SDK.
+`/v1/usage/items.csv` ( + sub-B endpoints) into the SDK.
 Pins the auto-pagination semantics + CSV roundtrip + AuditProofs alias.
 """
 

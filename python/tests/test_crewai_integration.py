@@ -1,4 +1,4 @@
-"""Wave 18-12 / item 6d — CrewAI callback handler tests.
+""" / item 6d — CrewAI callback handler tests.
 
 Mirrors `test_langgraph_integration.py` + `test_llama_index_integration.py`
 + `test_autogen_integration.py`. Exercises the

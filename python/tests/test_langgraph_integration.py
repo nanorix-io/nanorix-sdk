@@ -1,4 +1,4 @@
-"""Wave 14 / item 6a — LangGraph callback handler tests.
+""" / item 6a — LangGraph callback handler tests.
 
 Mirrors `test_langchain_integration.py`. Exercises the
 `nanorix.integrations.langgraph.NanorixLangGraphCallback` class against:

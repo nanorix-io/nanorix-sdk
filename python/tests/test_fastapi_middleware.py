@@ -1,4 +1,4 @@
-"""Wave 18-11 / CTI-T14-004 — FastAPI middleware tests.
+"""FastAPI middleware tests.
 
 Exercises ``nanorix.integrations.fastapi_middleware.NanorixMiddleware``
 against:
@@ -650,7 +650,7 @@ def test_cdp_kind_request_is_in_4_value_closed_enum():
 
 def test_fastapi_middleware_test_count_meets_dispatch_minimum():
     """Combined with the Flask middleware test file, ≥40 tests cover
-    Item 4 dispatch minimum."""
+    Dispatch minimum."""
     import inspect
     import sys
 

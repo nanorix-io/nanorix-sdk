@@ -1,4 +1,4 @@
-"""Drata GRC shell — guarded evidence-filing pusher (Batch 17).
+"""Drata GRC shell — guarded evidence-filing pusher.
 
 Files the signed AuditProof — per-record receipts + outer
 envelope — into Drata as compliance EVIDENCE, landed against the canonical

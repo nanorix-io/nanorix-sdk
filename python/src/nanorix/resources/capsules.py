@@ -135,7 +135,7 @@ class LiveCapsule:
         self._capsule = Capsule.model_validate(result)
         return self
 
-    # ── Wave A consumers ───────────────────────────
+    # ── consumers ───────────────────────────
 
     def record(
         self,
@@ -298,7 +298,7 @@ class Capsules:
         ``nanorix:*`` keys are rejected by the API.
 
         ``cdp_kind`` is the reserved-slot scope discriminator
-        (Wave 16-A landed; Wave 18-11 ungated). Accepted snake_case
+        ( landed; ungated). Accepted snake_case
         values: ``"workload"`` (capsule-lifecycle default — pre-Wave-18-11
         back-compat None), ``"call"`` (sealed-proxy per-LLM-call scope),
         ``"request"`` (sealed-middleware per-HTTP-request scope),
@@ -309,8 +309,8 @@ class Capsules:
 
         ``idempotency_key`` is optional. When omitted the SDK auto-generates a
         UUIDv4 ``Idempotency-Key`` header so a transient network error +
-        SDK-level retry never silently double-creates a capsule (per Wave
-        18-7 / CTI-T7-004; Stripe-pattern 24h dedup per Migration 058).
+        SDK-level retry never silently double-creates a capsule
+        (Stripe-pattern 24h dedup per Migration 058).
         Pass an explicit value to scope idempotency under your own dedup
         contract (e.g. one Idempotency-Key per business workflow id).
         """
@@ -768,7 +768,7 @@ class AsyncLiveCapsule:
         self._capsule = Capsule.model_validate(result)
         return self
 
-    # ── Wave A consumers (async parity) ────────────
+    # ── consumers (async parity) ────────────
 
     def record(
         self,
@@ -864,7 +864,7 @@ class AsyncCapsules:
         invariants.
 
         ``idempotency_key`` matches the synchronous create() default —
-        auto-generated UUIDv4 when omitted (Wave 18-7 / CTI-T7-004).
+        auto-generated UUIDv4 when omitted.
         """
         body: Dict[str, Any] = {}
         if capsulefile is not None:

@@ -1,5 +1,5 @@
 /**
- * Tests for the TypeScript SDK cold-start benchmark helper (Batch 1 Item 4).
+ * Tests for the TypeScript SDK cold-start benchmark helper.
  *
  * Covers:
  * - Canonical constants (BENCHMARK_VERSION, SCHEMA_VERSION, DISCLAIMER)

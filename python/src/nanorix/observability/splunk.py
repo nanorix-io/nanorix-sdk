@@ -1,4 +1,4 @@
-"""Splunk observability shell — guarded HEC pusher (Batch 17).
+"""Splunk observability shell — guarded HEC pusher.
 
 Forwards Nanorix telemetry to Splunk via HEC (HTTP Event Collector):
 AuditProof emission + verification outcomes, and (optionally) a

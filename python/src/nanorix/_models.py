@@ -182,7 +182,7 @@ class CdpDocument(BaseModel):
     attestation: Optional[AttestationInfo] = None
     document_hash: Optional[str] = None
     destruction_trigger: Optional[str] = None
-    # Wave 16-A reserved slot (2026-05-10): AuditProof scope
+    # Reserved slot (2026-05-10): AuditProof scope
     # discriminator. V1 always None / absent (workload scope implicit).
     # Future Items 2 (sealed-proxy = Call) and 4 (sealed-middleware = Request)
     # populate this; Pattern 4 high-volume per-record AuditProofs use Batch.
@@ -218,7 +218,7 @@ class VerificationCdp(BaseModel):
     attestation: Optional[AttestationInfo] = None
     document_hash: Optional[str] = None
     verify: Optional[str] = None
-    # Wave 16-A reserved slot (2026-05-10): AuditProof scope
+    # Reserved slot (2026-05-10): AuditProof scope
     # discriminator mirrored on shareable surface. See CdpDocument.cdp_kind
     # for full semantic. V1 always None.
     cdp_kind: Optional[str] = None  # Literal["workload", "request", "call", "batch"]

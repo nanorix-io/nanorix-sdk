@@ -1,4 +1,4 @@
-"""Control-map resolver (Wave B 2026-05-26) — published mapping artifact.
+"""Control-map resolver ( 2026-05-26) — published mapping artifact.
 
 Layer-2 published artifact `(jurisdiction × data_classification × pattern_tag) →
 list[canonical_control_id]`. Consumed by GRC adapters (Vanta / Drata /

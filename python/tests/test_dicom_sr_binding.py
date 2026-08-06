@@ -4,9 +4,9 @@ PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Patient identifiers are obviously fictitious; algorithm names are
 obviously fictitious; SOP Instance UIDs are illustrative (in the OID
 "1.2.3.x" range — not real institution OIDs). NEVER real PHI per
-Wave 18-5 / Item 37 directive.
+Directive.
 
-Wave 18-5 / Item 37 / Proposed.
+ / Proposed.
 """
 from __future__ import annotations
 

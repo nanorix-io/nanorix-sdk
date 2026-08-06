@@ -1,4 +1,4 @@
-"""Tests for nanorix.healthcare.NCPDPAdapter (Batch 2 sub-item 1).
+"""Tests for nanorix.healthcare.NCPDPAdapter.
 
 PHI/PII discipline: all test fixtures use SYNTHETIC FAKE DATA.
 Prescription numbers, NPIs, NDCs, and patient identifiers are obviously

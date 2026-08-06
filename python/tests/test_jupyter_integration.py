@@ -1,4 +1,4 @@
-"""Tests for the Jupyter integration (Batch 16 — FINAL gap-closing batch).
+"""Tests for the Jupyter integration (FINAL gap-closing batch).
 
 These tests import ONLY the IPython-free core
 (``nanorix.integrations._notebook_core``), the IPython-free pieces of the

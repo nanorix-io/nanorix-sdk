@@ -917,7 +917,7 @@ def test_ai_fairness_composes_with_nyc_ll144_hiring_aedt():
 
 
 def test_ai_fairness_docstring_cites_anterior_arxiv_paper():
-    """Per Item 82 verification: Anterior arXiv 2603.14631 is verified
+    """Per verification: Anterior arXiv 2603.14631 is verified
     peer-reviewed prior art. The module docstring must cite the
     paper verbatim for downstream-consumer traceability."""
     from nanorix.healthcare import ai_fairness as mod
@@ -946,7 +946,7 @@ def test_ai_fairness_class_docstring_cites_anterior_methodology():
 
 
 def test_ai_fairness_source_has_no_fda_mandate_language():
-    """Per Item 82 verification: FDA AI/ML 2025 draft has NOT been
+    """Per verification: FDA AI/ML 2025 draft has NOT been
     finalized as of 2026-05-10. The helper must frame subgroup
     performance as EMERGING expectation, NOT FDA mandate. Forbidden
     phrases 'FDA mandate' / 'FDA-mandated' (case-insensitive) must

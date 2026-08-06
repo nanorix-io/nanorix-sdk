@@ -655,7 +655,7 @@ def test_fda_samd_metadata_json_round_trip_preserves_dict():
     assert round_tripped == meta
 
 
-# ── Composition with NIST AI RMF (Item 82 fairness eval) ───────
+# ── Composition with NIST AI RMF ( fairness eval) ───────
 
 
 def test_fda_samd_paired_with_nist_ai_rmf_subgroup_fairness():
@@ -762,7 +762,7 @@ def test_fda_samd_paired_with_bipa_illinois_voice_biomarker():
 
 
 def test_fda_samd_docstring_frames_subgroup_disclosure_as_emerging():
-    """Per Item 82 verification: subgroup performance is an EMERGING
+    """Per verification: subgroup performance is an EMERGING
     FDA expectation tied to the AI/ML 2025 draft guidance, NOT a
     finalized FDA mandate. The class-level docstring must surface
     this framing."""

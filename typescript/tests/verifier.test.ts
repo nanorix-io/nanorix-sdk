@@ -1,5 +1,5 @@
 /**
- * Batch 33-foundation sub-D tests — TS offline AuditProof verifier.
+ * Sub-D tests — TS offline AuditProof verifier.
  *
  * Mirrors Python sub-C test coverage: builds synthetic-but-valid CDPs
  * using the canonical chain hash formula, signs with Web Crypto Ed25519,

@@ -1,4 +1,4 @@
-"""Honeycomb observability shell — guarded OTel-span pusher (Batch 17).
+"""Honeycomb observability shell — guarded OTel-span pusher.
 
 Forwards Nanorix AuditProof emission + verification outcomes to Honeycomb
 as OpenTelemetry spans (OTLP). All shaping lives in

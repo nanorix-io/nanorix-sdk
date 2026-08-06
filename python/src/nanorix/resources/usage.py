@@ -2,8 +2,8 @@
 Usage resource — wires `/v1/usage`, `/v1/usage/estimate`, `/v1/usage/items`.
 
 `/v1/usage/items` is the Stripe-pattern cursor-paginated per-CDP listing
-shipped Batch 32 sub-A. SDK auto-pages via `SyncPage` / `AsyncPage`.
-`/v1/usage/items.csv` (Batch 32 sub-B) is exposed via `.export_csv()`
+shipped. SDK auto-pages via `SyncPage` / `AsyncPage`.
+`/v1/usage/items.csv` is exposed via `.export_csv()`
 returning the raw CSV bytes for direct save / pipeline injection.
 """
 

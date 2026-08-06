@@ -3,8 +3,8 @@
  * `/v1/usage/items`, `/v1/usage/items.csv`.
  *
  * `/v1/usage/items` is the Stripe-pattern cursor-paginated per-CDP listing
- * shipped Batch 32 sub-A. SDK auto-pages via `Page<UsageItemRaw, UsageItem>`.
- * `/v1/usage/items.csv` (Batch 32 sub-B) is exposed via `.exportCsv()`
+ * shipped. SDK auto-pages via `Page<UsageItemRaw, UsageItem>`.
+ * `/v1/usage/items.csv` is exposed via `.exportCsv()`
  * returning Buffer for direct save / pipeline injection.
  */
 import type { HttpTransport } from "../http.js";

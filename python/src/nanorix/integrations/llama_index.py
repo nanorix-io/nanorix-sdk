@@ -1,7 +1,7 @@
 """
 LlamaIndex callback handler — Tier A (proxy/library) integration.
 
-Per the integration ship sequence (Wave 14, item 6b of second-wave): bridges
+Per the integration ship sequence (item 6b of second-wave): bridges
 LlamaIndex's callback surface into Nanorix's in-capsule ActivityEvent
 emission helpers. Customer adds a few lines to their existing LlamaIndex
 runtime configuration:

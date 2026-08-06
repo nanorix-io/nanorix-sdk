@@ -31,7 +31,7 @@ customer to the relevant extras group.
 
 from __future__ import annotations
 
-# Batch 9 (2026-05-28) — C2PA LLM-output provenance.
+# C2PA LLM-output provenance.
 # Sibling primitive next to AuditProof; AuditProof byte-form unchanged.
 from nanorix.integrations.c2pa_provenance import (
     AssertionType,
@@ -46,7 +46,7 @@ from nanorix.integrations.c2pa_provenance import (
     verify_c2pa_manifest,
 )
 
-# Batch 13 (2026-05-28) — data-pipeline orchestrator operators.
+# Data-pipeline orchestrator operators.
 # The framework-agnostic core is safe to import eagerly (no framework
 # dependency). The Airflow operator + Temporal activity shells are NOT
 # imported here — they import their framework (apache-airflow /
@@ -67,7 +67,7 @@ from nanorix.integrations._orchestrator_core import (
     run_capsule_job,
 )
 
-# Batch 16 (2026-05-28) — Jupyter integration (FINAL gap-closing batch).
+# Jupyter integration (FINAL gap-closing batch).
 # The IPython-free core (_notebook_core) is safe to import eagerly: it
 # reuses run_capsule_job and the offline verifier, and has NO IPython
 # dependency. The IPython-facing shell (nanorix.integrations.jupyter) is
@@ -102,14 +102,14 @@ __all__: list[str] = [
     "C2PA_SIGNATURE_ALGORITHM",
     "C2PA_VALID_ASSERTION_TYPES",
     "verify_c2pa_manifest",
-    # Batch 13 orchestrator core (framework-agnostic).
+    # Orchestrator core (framework-agnostic).
     "CapsuleJobParams",
     "CapsuleJobResult",
     "OrchestratorError",
     "ORCHESTRATOR_NARROW_CLAIM_DISCLAIMER",
     "ORCHESTRATOR_VALID_DATA_CLASSIFICATIONS",
     "run_capsule_job",
-    # Batch 16 Jupyter integration — IPython-free helpers (the magic shell
+    # Jupyter integration — IPython-free helpers (the magic shell
     # is in nanorix.integrations.jupyter, imported lazily).
     "MagicArgsError",
     "parse_magic_args",

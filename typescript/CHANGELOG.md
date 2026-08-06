@@ -6,7 +6,7 @@ All notable changes to the Nanorix TypeScript SDK will be documented in this fil
 
 ### Added
 
-- `debug` module — customer-side debugging tools (Wave 8A):
+- `debug` module — customer-side debugging tools:
   - `setTraceContext()` / `getTraceContext()` / `clearTraceContext()` / `buildTraceHeaders()` —
     W3C Trace Context propagation (`traceparent` + `tracestate`); reads `OTEL_TRACEPARENT`
     env var when no explicit value is set.
