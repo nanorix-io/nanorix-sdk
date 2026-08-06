@@ -1,0 +1,19 @@
+# Source maps — never publish
+*.map
+*.map.js
+
+# Source
+src/
+tsup.config.ts
+tsconfig.json
+vitest.config.ts
+
+# Dev/test
+tests/
+.env*
+node_modules/
+coverage/
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,22 @@
+{
+  "_note": "Synthetic 278 PA request — NOT real PHI. Customer cohort: Anterior shape.",
+  "case_id": "CASE-2026-001",
+  "payer_id": "SYNTHETIC-PAYER-001",
+  "patient": {
+    "synthetic_id": "PATIENT-SYNTHETIC-001",
+    "demographics_redacted": true
+  },
+  "service_requested": {
+    "code": "CPT-99213",
+    "description": "Outpatient evaluation, established patient",
+    "service_date_iso": "2026-06-15"
+  },
+  "clinical_context": {
+    "diagnosis_codes": ["ICD-Z00.00"],
+    "synthetic_chart_summary": "Synthetic placeholder summary for showcase."
+  },
+  "provider": {
+    "synthetic_id": "PROVIDER-SYNTHETIC-001",
+    "specialty": "Internal Medicine"
+  }
+}

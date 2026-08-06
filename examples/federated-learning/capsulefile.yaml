@@ -1,0 +1,123 @@
+name: federated-learning
+runtime: python3.12
+entrypoint: python main.py
+
+# Federated learning fragment: receive global model weights → train
+# on local-organization data (PHI / PII never leaves capsule) →
+# return weight updates only. One capsule per training round per
+# participating organization. Each AuditProof attests:
+#   (a) local data was processed in volatile memory only
+#   (b) only weight updates (not raw data, not gradients-with-leakage)
+#       egressed to the federation coordinator
+#   (c) the global model snapshot used for this round was the
+#       coordinator-attested snapshot
+data_classification: PHI
+
+# Pinned per-host TLS certificates. Production customers replace
+# these with the federation coordinator's published trust roots.
+# tls_pinned_certs:
+#   - host: coordinator.federation.example.com
+#     sha256_fingerprint: <sha256 of coordinator cert>
+
+# Egress allowlist — single trusted federation coordinator.
+# Federated learning's privacy posture depends on this discipline:
+# the participating organization egresses ONLY to the coordinator,
+# and ONLY weight updates (no raw data, no gradients with leakage).
+#
+#   *.coordinator.federation.example.com — placeholder for the
+#                                   federation coordinator's endpoint.
+#                                   Customer substitutes their
+#                                   actual host (typically the
+#                                   federation operator's deployment:
+#                                   Owkin / Rhino Health / NVIDIA
+#                                   FLARE / customer-internal).
+egress_declaration:
+  - coordinator.federation.example.com   # customer substitutes their coordinator host
+
+# Per-Capsulefile signing config — STRONGLY RECOMMENDED for
+# federated learning. Each round's weight-update emission is
+# fire-and-buffered to the customer's signing endpoint over mTLS;
+# signatures absorbed at capsule destroy and bound into the
+# AuditProof's per_event_attestations slot. Multi-party trust
+# story: each participating organization's AuditProof carries
+# their organization's signature; the coordinator composes the
+# federation-round AuditProof from N participating organizations'
+# AuditProofs (per ADR-031 multi-party signing-authority model).
+#
+# Concrete shape (uncomment + populate for production):
+# signing_config:
+#   endpoint: https://signer.org-internal.example.com/v1/sign
+#   client_cert_secret: nanorix_signer_client_cert
+#   client_key_secret: nanorix_signer_client_key
+#   server_ca_pin: sha256:<hex>
+#   public_key_id: org-prod-2026-q2
+#   # Multi-party context: the federation coordinator MAY require
+#   # the participating organization's public_key_id be enrolled
+#   # in the federation's trust manifest. The coordinator's
+#   # acceptance of this round's contribution is conditional on
+#   # the customer's authority being a recognized federation
+#   # participant.
+#   federation_authority_context: "fed_round_2026_05_q2"
+
+packages:
+  python:
+    - httpx==0.27.2
+    - pydantic==2.9.2
+    # PyTorch slim — used for model weight tensors + local training
+    # loop. Production deployments may substitute a federation-
+    # specific framework:
+    #   - NVIDIA FLARE (nvidia-flare): production federated framework
+    #     with native PyTorch/TensorFlow integration
+    #   - Flower (flwr): research-lineage framework with broader
+    #     framework support
+    #   - PySyft / TF-Federated: research / academic-lineage
+    # The reference shape uses raw PyTorch primitives so it composes
+    # with any of the above; production customers substitute the
+    # framework's per-round API for the local training loop.
+    - torch==2.4.1
+    # Privacy-preserving primitives for production deployments
+    # (commented; uncomment per workflow):
+    # - opacus==1.5.2          # differential privacy (Meta)
+    # - tenseal==0.3.14        # homomorphic encryption operations
+    # - syft==0.9.2            # PySyft full-stack federation
+
+files:
+  - main.py
+
+# Federated training rounds typically run 30-60min per round per
+# participating organization (cohort-dependent). 90min cap absorbs
+# load + transmission jitter. For longer training rounds, customer
+# composes the memory artifact pattern across multiple rounds (see
+# long-running-agent bundle for the parent_cdp_id chain shape).
+default_ttl: 5400
+# Memory footprint scales with model size + local training batch.
+# 4096MB accommodates most small-medium model architectures
+# (BERT-base scale, EfficientNet, U-Net for medical imaging).
+# For larger models, customer uses the GPU-backed Nanorix runtime
+# tier (when available) or composes federation across smaller
+# slices.
+memory_mb: 4096
+
+env:
+  # Federation coordinator endpoint. Empty default forces the
+  # pipeline into stub mode. Production deployments MUST set this
+  # to the federation coordinator's published endpoint.
+  COORDINATOR_URL: ""
+  # Federation round identifier — coordinator-assigned per round.
+  # Each round's AuditProof's metadata.federation_round_id field
+  # binds this round to the federation's round manifest.
+  FEDERATION_ROUND_ID: ""
+  # Local training discipline
+  LOCAL_EPOCHS: "1"
+  LOCAL_BATCH_SIZE: "32"
+  LOCAL_LEARNING_RATE: "0.001"
+  # Privacy-preservation toggle. When set "true", the local
+  # training loop applies differential-privacy noise to the
+  # weight delta before egressing to the coordinator. Production
+  # deployments MUST author DP parameters (epsilon / delta / clip
+  # threshold) per their threat model — see opacus integration
+  # in main.py for the integration shape.
+  ENABLE_DIFFERENTIAL_PRIVACY: "false"
+  DP_EPSILON: "8.0"
+  DP_DELTA: "1e-5"
+  DP_MAX_GRAD_NORM: "1.0"

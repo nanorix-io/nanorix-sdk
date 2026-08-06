@@ -1,0 +1,56 @@
+{
+  "name": "@nanorix/sdk",
+  "version": "0.5.0",
+  "description": "Nanorix TypeScript SDK \u2014 sealed processing with AuditProofs",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "nanorix",
+    "security",
+    "compliance",
+    "hipaa",
+    "gdpr",
+    "cdp",
+    "data-destruction"
+  ],
+  "author": "Nanorix Inc. <support@nanorix.io>",
+  "license": "Apache-2.0",
+  "homepage": "https://nanorix.io",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run check-artifact",
+    "check-artifact": "bash -c \"npm pack --dry-run 2>&1 | grep -E '\\.map|\\.(env|pem|key)' && echo 'FATAL: dangerous files in artifact' && exit 1 || echo 'Artifact check passed'\""
+  },
+  "devDependencies": {
+    "tsup": "^8.0",
+    "typescript": "^5.3",
+    "vitest": "^1.0",
+    "@types/node": "^20"
+  },
+  "bugs": {
+    "url": "https://nanorix.io/#contact"
+  }
+}

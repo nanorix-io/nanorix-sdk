@@ -1,0 +1,37 @@
+# PA decision pipeline Capsulefile.
+#
+# Per ADR-013 immutability: changes to this file produce a new
+# content_hash; rebuild + re-finalize before running.
+#
+# Per `feedback_ip_protection.md`: external-brand vocabulary only.
+name: pa-decision-pipeline
+runtime: python3.11
+entrypoint: "python /capsule/decide.py"
+description: "Pattern 1 (LLM advisory) — PA decision pipeline for Anterior cohort"
+
+# Per-capsule resource ceiling sized for LLM advisory workload
+# (criteria-binding + reasoning steps).
+capsule_memory_mb: 2048
+max_duration_seconds: 1800
+heartbeat_interval_seconds: 60
+
+# Environment variables. Secret material (OpenAI API key, payer DSN)
+# should reference Nanorix secrets (POST /v1/secrets) rather than be
+# inline. The values below are non-secret operational tunables.
+env_vars:
+  LOG_LEVEL: info
+  CRITERIA_SOURCE: interqual
+  PATTERN_TAG: pa_decision
+
+# Egress profile: customer's named profile must include the LLM
+# provider + the criteria source URLs. Reference via the
+# nanorix_egress_profile Terraform resource.
+egress_profile: pa-decision-allowlist
+
+# Files inside the capsule. Customer copies these in via
+# `nanorix build` from a local source directory.
+files:
+  - source: ./decide.py
+    target: /capsule/decide.py
+  - source: ./criteria_loader.py
+    target: /capsule/criteria_loader.py

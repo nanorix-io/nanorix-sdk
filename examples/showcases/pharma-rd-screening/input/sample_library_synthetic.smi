@@ -1,0 +1,9 @@
+# Synthetic SMILES library — NOT real proprietary structures.
+# Real customers (Recursion / Insitro / Atomwise) provide their own
+# library files (e.g. 1M+ molecules) via internal pipelines.
+CCO	synthetic-mol-001
+CCN	synthetic-mol-002
+CCC	synthetic-mol-003
+c1ccccc1	synthetic-mol-004
+c1ccncc1	synthetic-mol-005
+# (truncated for showcase; real run uses 1000+ molecules)

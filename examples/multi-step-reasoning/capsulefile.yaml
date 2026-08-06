@@ -1,0 +1,89 @@
+name: multi-step-reasoning
+runtime: python3.12
+entrypoint: python main.py
+
+# Multi-step clinical-reasoning agent. Operates on PHI: the input
+# is a longitudinal patient summary (visit notes, problem list,
+# medication list, recent labs); the agent iteratively reasons over
+# the history to answer a clinical question (differential, ddx
+# narrowing, follow-up recommendation, drug-interaction check).
+data_classification: PHI
+
+# Pinned per-host TLS certificates. Production customers replace
+# these with the LLM provider's published trust roots and the
+# customer's licensed clinical knowledge base trust roots.
+# tls_pinned_certs:
+#   - host: api.anthropic.com
+#     sha256_fingerprint: <sha256 of provider's cert>
+
+# Egress allowlist:
+#   api.anthropic.com               — LLM reasoning steps
+#   api.openai.com                  — alternate LLM provider
+#   *.uptodate.example.com          — placeholder for the customer's
+#                                       licensed UpToDate (Wolters Kluwer)
+#                                       deployment URL. Customer
+#                                       substitutes their actual host.
+#   *.pubmed.example.com            — placeholder for the customer's
+#                                       licensed PubMed / Embase / Ovid
+#                                       deployment, or the public NIH
+#                                       NLM E-utilities (eutils.ncbi.nlm.nih.gov).
+#   *.knowledge-base.example.com    — placeholder for the customer's
+#                                       internal clinical-decision-support
+#                                       knowledge base (DynaMed, BMJ Best
+#                                       Practice, customer-curated rules).
+egress_declaration:
+  - api.anthropic.com
+  - api.openai.com
+  - uptodate.example.com         # customer substitutes their licensed deployment
+  - pubmed.example.com           # customer substitutes their licensed deployment
+  - knowledge-base.example.com   # customer substitutes their internal KB
+
+# Per-Capsulefile signing config — optional BYO-HSM customer
+# attestation. When configured, each ReasoningStepCompleted event
+# is fire-and-buffered to the customer's signing endpoint over mTLS;
+# signatures absorbed at capsule destroy and bound into the
+# AuditProof's per_event_attestations reserved slot. Customer holds
+# the private key in their KMS (AWS KMS / GCP Cloud KMS / Azure Key
+# Vault / HashiCorp Vault); Nanorix never sees plaintext key
+# material.
+#
+# Concrete shape (uncomment + populate for production):
+# signing_config:
+#   endpoint: https://signer.customer-internal.example.com/v1/sign
+#   client_cert_secret: nanorix_signer_client_cert
+#   client_key_secret: nanorix_signer_client_key
+#   server_ca_pin: sha256:<hex>
+#   public_key_id: customer-prod-2026-q2
+
+packages:
+  python:
+    - anthropic==0.39.0
+    - openai==1.51.2
+    - httpx==0.27.2
+    - pydantic==2.9.2
+
+files:
+  - main.py
+
+# V1 capsule TTL ceiling = 3600s (60min). Multi-step reasoning loops
+# iterate over many LLM calls + knowledge-base lookups; for
+# longer-running reasoning (e.g. M&M conferences, complex case
+# reviews), use the memory artifact pattern + parent_cdp_id chain
+# (see long-running-agent bundle).
+default_ttl: 3600
+# Bumped to 2048MB. Reasoning loops accumulate the full reasoning
+# trace + intermediate findings + retrieved KB excerpts in memory.
+memory_mb: 2048
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  OPENAI_MODEL: gpt-4o-2024-08-06
+  # Reasoning loop control — customer tunes per their workflow.
+  MAX_REASONING_STEPS: "8"
+  REASONING_CONFIDENCE_THRESHOLD: "0.85"
+  # Knowledge-base endpoint. Empty default forces the pipeline into
+  # stub mode. Production deployments MUST set this to the customer's
+  # licensed KB deployment.
+  KNOWLEDGE_BASE_URL: ""
+  # Clinical question template — customer-defined per workflow shape.
+  REASONING_TEMPLATE: "differential_diagnosis"

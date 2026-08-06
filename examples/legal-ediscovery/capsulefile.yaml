@@ -1,0 +1,47 @@
+name: legal-ediscovery
+runtime: python3.12
+entrypoint: python main.py
+
+# Document review batch — TAR 2.0 / CAL loop on attorney-client
+# privileged material. Operates on the highest-stakes
+# confidentiality scenario in computing. data_classification stays
+# "general" (legal documents aren't PHI/PII per the closed enum
+# in the regulatory_context module) but the matter_id is a
+# separately declared field in metadata that consumes the open
+# metadata slot.
+data_classification: general
+
+# CAL loop is in-capsule (sklearn TF-IDF + LogisticRegression).
+# No LLM provider needed for the placeholder classifier path.
+# Production deployments that substitute fine-tuned transformer
+# (legal-BERT) would add api.anthropic.com / api.openai.com (for
+# embedding generation) or HuggingFace Inference Endpoints to the
+# allowlist.
+egress_declaration: []
+
+packages:
+  python:
+    - pydantic==2.9.2
+    # CAL placeholder classifier. Production substitutes
+    # transformers + torch for fine-tuned legal-BERT or similar.
+    - scikit-learn==1.5.2
+    - numpy==2.1.3
+    - scipy==1.14.1
+
+files:
+  - main.py
+
+# Long-running batch + multi-iteration CAL loop. Each iteration
+# is one capsule; chain via parent_cdp_id for cross-iteration
+# state continuity (memory artifact pattern).
+default_ttl: 3600
+memory_mb: 4096
+
+env:
+  # Fraction of corpus per iteration that lands in the uncertainty
+  # band for human review. Production: 0.02 - 0.10 depending on
+  # corpus size + reviewer capacity.
+  UNCERTAINTY_BAND_PCT: "0.05"
+  # CAL stops when coverage recall estimate reaches this. Customer
+  # tunes per matter (FRCP 26(g) defensibility, FRE 502 risk).
+  COVERAGE_THRESHOLD_RECALL: "0.80"

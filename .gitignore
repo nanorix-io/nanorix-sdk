@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+*.tsbuildinfo
+
+# Go
+vendor/
+
+# Example run output — regenerated, never committed
+**/out/
+**/.adversarial_scratch/
+
+# Key material must never land here
+*.pem
+*.key
+*.p12
+.env
+.env.*

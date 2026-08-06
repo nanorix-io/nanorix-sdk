@@ -1,0 +1,320 @@
+[project]
+name = "nanorix"
+version = "0.5.0"
+description = "Python client for the Nanorix API — sealed processing with a verifiable AuditProof for every capsule"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
+authors = [{name = "Nanorix Inc.", email = "support@nanorix.io"}]
+keywords = ["nanorix", "security", "compliance", "hipaa", "gdpr", "cryptographic-proof", "data-destruction"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "httpx>=0.25.0,<1.0.0",
+    "pydantic>=2.0.0,<3.0.0",
+    "cryptography>=48.0.1,<49.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "respx>=0.21",
+    # tests/test_verifier_wave_n.py imports hypothesis at module scope, so its
+    # absence aborts collection of the whole suite rather than skipping one file.
+    "hypothesis>=6.0",
+    # Upper-bounded: ruff and mypy both change their DEFAULT rule set across
+    # minor releases, so an unbounded pin makes the release gate report a
+    # different result on every machine. See `[tool.ruff.lint] select`.
+    "ruff>=0.16,<0.17",
+    "mypy>=1.18,<2.0",
+]
+# Integration extras — Tier A (proxy/library) integrations. Each
+# integration MUST reuse the existing `nanorix.helpers.activity_events`
+# 4-variant surface (ADR-006 I0 Forever-Standard) and SHOULD declare its
+# optional dependency here so customers can install with
+# `pip install nanorix[<name>]`.
+langchain = [
+    "langchain-core>=0.3,<2.0",
+]
+langgraph = [
+    "langgraph>=0.2,<2.0",
+]
+llama-index = [
+    "llama-index-core>=0.11,<1.0",
+]
+litellm = [
+    "litellm>=1.40,<2.0",
+]
+otel-genai = [
+    "opentelemetry-api>=1.20",
+    "opentelemetry-sdk>=1.20",
+]
+# AutoGen (Microsoft's multi-agent framework) — Wave 18-12 / Item 6c.
+# Accepts the modern autogen-agentchat>=0.4 surface; the legacy
+# pyautogen>=0.2 / autogen>=0.2 surface is ALSO supported (the
+# callback module introspects at import time and adapts).
+autogen = [
+    "autogen-agentchat>=0.4",
+]
+# CrewAI (multi-agent orchestration) — Wave 18-12 / Item 6d.
+crewai = [
+    "crewai>=0.30",
+]
+# FastAPI (ASGI) middleware — Wave 18-11 / CTI-T14-004 Item 4.
+# Tier C: per-HTTP-request AuditProof emission with cdp_kind=Request
+# (ADR-006 reserved-slot landed Wave 16-A).
+fastapi = [
+    "fastapi>=0.100",
+    "starlette>=0.36",
+]
+# Flask (WSGI) middleware — Wave 18-11 / CTI-T14-004 Item 4.
+# Tier C: per-HTTP-request AuditProof emission with cdp_kind=Request.
+flask = [
+    "flask>=2.0",
+]
+# Healthcare data-format adapters — Wave 17 batch 6 cohort-gating helpers.
+# Customer-supplied healthcare-domain payloads (HL7 V2, C-CDA XML, Epic
+# SMART token responses) are parsed structurally; helpers emit
+# AuditProof-binding metadata only. Three-role discipline (ADR-017):
+# helpers are structural; clinical interpretation remains the customer's.
+hl7-v2 = [
+    "hl7apy>=1.3",
+]
+ccda = [
+    "lxml>=4.9",
+]
+epic-smart = [
+    "python-jose[cryptography]>=3.3",
+]
+# DICOMweb (WADO-RS / STOW-RS / QIDO-RS) — Wave 18-5 / Item 36. Gates
+# Overjet-shape (FDA-cleared dental imaging AI, CBCT 3D imaging).
+# Optional dep; structural parser in helper module functions without
+# external dependency.
+dicomweb = [
+    "dicomweb-client>=0.59",
+]
+# DICOM SR (Structured Reporting) AuditProof binding — Wave 18-5 / Item
+# 37. Optional dep; bind_from_bytes() handles PS3.10 file format with
+# minimal structural parse independent of pydicom; bind() accepts
+# pre-parsed structural identifiers directly.
+dicom-sr = [
+    "pydicom>=2.4",
+]
+# Data-pipeline orchestrator operators — Batch 13 (2026-05-28). The
+# Airflow operator (nanorix.integrations.airflow.NanorixCapsuleOperator)
+# and the Temporal activity (nanorix.integrations.temporal) both delegate
+# to the framework-agnostic core (run_capsule_job) which needs NO
+# framework. Install the framework extra only for the shell you wire:
+airflow = [
+    "apache-airflow>=2.7",
+]
+temporal = [
+    "temporalio>=1.5",
+]
+# Jupyter cell magic — Batch 16 (2026-05-28), FINAL gap-closing batch. The
+# %%nanorix_capsule magic + AuditProof HTML rendering live in
+# nanorix.integrations.jupyter, which needs IPython at runtime. The
+# IPython-free core (nanorix.integrations._notebook_core) reuses the
+# orchestrator core (run_capsule_job) + the offline verifier and needs NO
+# framework; install this extra only to use the notebook magic:
+jupyter = [
+    "ipython>=8.0",
+]
+# Data source/sink connectors — Batch 14 (2026-05-28), ADR-036. Connectors
+# are CUSTOMER-SIDE SDK helpers that stream bytes through volatile capsule
+# memory (source in before exec; sink out before destroy). They run in the
+# customer's process with the customer's cloud credentials, resolved by the
+# cloud SDK's standard chain — Nanorix never stages the data and never takes
+# custody of credentials. The streaming core (nanorix.connectors._base) needs
+# NO cloud SDK and is tested against a FAKE backend; install the extra only
+# for the object store you wire:
+s3 = [
+    "boto3>=1.34",
+]
+gcs = [
+    "google-cloud-storage>=2.14",
+]
+# Observability adapters — Batch 17 (2026-05-29). Export Nanorix telemetry
+# (AuditProof events + verification outcomes + billing-meter) to your
+# observability backend. The pure shaping core (nanorix.observability._core)
+# needs NO vendor SDK and is tested against plain dicts. Datadog + Splunk
+# POST via the SDK's own httpx transport and need no vendor SDK at all; the
+# extras below are declared for parity with the documented samples + the
+# optional dogstatsd / requests routes. Honeycomb (OTel) + Sentry guard
+# their vendor import and raise only on use. Install the extra only for the
+# backend you wire:
+datadog = [
+    "datadog>=0.50",
+    "datadog-api-client>=2.20",
+]
+splunk = [
+    "requests>=2.31",
+]
+honeycomb = [
+    "opentelemetry-api>=1.27",
+    "opentelemetry-sdk>=1.27",
+    "opentelemetry-exporter-otlp-proto-http>=1.27",
+]
+sentry = [
+    "sentry-sdk>=2.0",
+]
+# Grouped convenience extra — all observability backends at once.
+observability = [
+    "datadog>=0.50",
+    "datadog-api-client>=2.20",
+    "requests>=2.31",
+    "opentelemetry-api>=1.27",
+    "opentelemetry-sdk>=1.27",
+    "opentelemetry-exporter-otlp-proto-http>=1.27",
+    "sentry-sdk>=2.0",
+]
+# GRC evidence-filing adapters — Batch 17 (2026-05-29). Push the signed
+# AuditProof (per-record receipts + outer envelope) into your GRC platform
+# as compliance evidence, landed against the canonical control IDs the
+# ADR-040 mapping resolves at adapter time. The pure mapping + evidence-
+# shaping core (nanorix.grc._core) needs NO vendor SDK and is tested against
+# plain dicts. All shells POST via the SDK's own httpx transport, so no GRC
+# vendor SDK is required at all; the extras below are declared for parity
+# with the documented samples. Narrow-claim discipline: evidence is a
+# factual reference (applies_to / references / related_to), never a verdict
+# — the auditor adjudicates (ADR-017). Install the extra only for the
+# platform you wire:
+vanta = [
+    "vanta-api>=0.1",
+]
+drata = [
+    "requests>=2.31",
+]
+anecdotes = [
+    "requests>=2.31",
+]
+# Grouped convenience extra — all GRC platforms at once.
+grc = [
+    "vanta-api>=0.1",
+    "requests>=2.31",
+]
+
+[project.urls]
+# Documentation pointed at docs.nanorix.io, which has no DNS record — so every engineer
+# who ran `pip install nanorix` and clicked Documentation reached a dead domain. Point at
+# a page that resolves; restore the docs URL in the same commit that gives it a host.
+# Repository pointed at the marketing site; the source is not public, so the field is
+# omitted rather than made to lie.
+Homepage = "https://nanorix.io"
+Documentation = "https://nanorix.io/verify/"
+Issues = "https://nanorix.io/#contact"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nanorix"]
+
+[tool.hatch.build.targets.sdist]
+# Hatchling's sdist defaults to everything VCS does not ignore, and the repo
+# .gitignore covers .pytest_cache/.ruff_cache but not .hypothesis — which put
+# 370 property-test database files inside the 0.5.0 sdist. Stated here rather
+# than in .gitignore so the artifact is correct regardless of checkout state.
+# Hatchling force-includes the project's VCS ignore file in the sdist (an
+# `exclude` entry cannot remove it). Without an SDK-local .gitignore it copies
+# the repo-root one, which describes internal repo layout — so sdk/python/
+# keeps its own minimal .gitignore and that is the file that ships.
+exclude = [".hypothesis", ".mypy_cache", ".pytest_cache", ".ruff_cache", "dist"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+# Pinned explicitly rather than inherited. Ruff's implicit default rule set
+# widened in 0.16 (adds I, UP, B, S, PERF, ...), which turns an unpinned
+# `ruff check` into a moving target: the same tree reports 54 findings under
+# the historical default and 2397 under 0.16's. The release gate has to mean
+# one thing, so the contract is stated here.
+select = ["E4", "E7", "E9", "F"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+# Every `nanorix.integrations.*`, `nanorix.observability.*`, `nanorix.grc.*`,
+# `nanorix.connectors.*` and healthcare adapter guards its framework import and
+# degrades to a stub when the extra is absent. Whether a given `# type: ignore`
+# is "used" therefore depends on which extras happen to be installed, so this
+# check reports differently on every machine and cannot gate a release.
+warn_unused_ignores = false
+
+# Optional integration dependencies. These are declared in
+# [project.optional-dependencies] and are absent from a default
+# `pip install nanorix`, so a missing stub is expected, not a defect.
+#
+# `follow_imports = "skip"` is load-bearing, not cosmetic. When an extra IS
+# installed, mypy otherwise descends into that package's own source and checks
+# it against the `python_version` pinned above — so `opentelemetry-sdk`'s `match`
+# statements and `numpy` 2.x's PEP 695 `type` statements each fail as a 3.9
+# syntax error inside a vendored file we do not own, and the run aborts before
+# reaching any nanorix code. The result the release gate reports would then
+# depend on which extras the machine happens to have installed. Same contract as
+# the `warn_unused_ignores` note above: the gate has to mean one thing everywhere.
+[[tool.mypy.overrides]]
+module = [
+    "airflow.*",
+    "autogen.*",
+    "autogen_agentchat.*",
+    "boto3.*",
+    "crewai.*",
+    "datadog.*",
+    "flask.*",
+    "google.cloud.*",
+    "IPython.*",
+    "langchain_core.*",
+    "langgraph.*",
+    "litellm.*",
+    "llama_index.*",
+    "opentelemetry.*",
+    "pyautogen.*",
+    "sentry_sdk.*",
+    "starlette.*",
+    "numpy.*",
+    "temporalio.*",
+]
+ignore_missing_imports = true
+follow_imports = "skip"
+follow_imports_for_stubs = true
+
+# The integration shells subclass and decorate framework types (Airflow's
+# BaseOperator, Starlette's BaseHTTPMiddleware, IPython's Magics, Temporal's
+# @activity.defn). Those bases are Any by the policy above, so strict mode's
+# subclassing/decorator bans would fire on every one of them. The
+# framework-agnostic cores these shells delegate to stay fully strict.
+# python_version is pinned to the 3.9 floor above, which also governs how mypy
+# parses the third-party sources it follows. anyio (reached via httpx) ships
+# match statements, so following it is a hard syntax error on a 3.13 install
+# while passing on 3.9, where the resolved anyio is older. Skipping the follow
+# keeps our own source checked against 3.9 on every interpreter.
+[[tool.mypy.overrides]]
+module = ["anyio.*"]
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = ["nanorix.integrations.*"]
+disallow_subclassing_any = false
+disallow_untyped_decorators = false

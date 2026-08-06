@@ -1,0 +1,6 @@
+{
+  "_note": "Synthetic agent input — NOT real PHI.",
+  "query": "Synthetic test query for showcase",
+  "user_synthetic_id": "USER-SYNTHETIC-001",
+  "session_id": "SESSION-SYNTHETIC-001"
+}

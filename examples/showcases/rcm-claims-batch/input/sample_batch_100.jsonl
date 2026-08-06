@@ -1,0 +1,4 @@
+{"claim_id": "CLAIM-001", "billing_provider_npi": "SYNTHETIC-NPI-001", "service_lines": [{"cpt_code": "99213", "charge_amount": 150.00}], "patient_synthetic_id": "PATIENT-SYNTHETIC-001"}
+{"claim_id": "CLAIM-002", "billing_provider_npi": "SYNTHETIC-NPI-001", "service_lines": [{"cpt_code": "99214", "charge_amount": 200.00}], "patient_synthetic_id": "PATIENT-SYNTHETIC-002"}
+{"claim_id": "CLAIM-003", "billing_provider_npi": "SYNTHETIC-NPI-002", "service_lines": [{"cpt_code": "99213", "charge_amount": 150.00}], "patient_synthetic_id": "PATIENT-SYNTHETIC-003"}
+{"_note": "100-claim batch truncated for showcase brevity. Customer's real batch fills in CLAIM-004 through CLAIM-100. All synthetic — no real claim data."}

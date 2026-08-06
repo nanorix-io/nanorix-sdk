@@ -1,0 +1,20 @@
+{
+  "_note": "Expected AuditProof anchor.",
+  "hash_algorithm": "sha512",
+  "signature_algorithm": "Ed25519",
+  "capsule_context": {
+    "jurisdiction": "US",
+    "data_classification": "PHI",
+    "metadata": {
+      "pattern": "multi_step_agent",
+      "agent_framework": "langgraph"
+    }
+  },
+  "record_receipts": [
+    {"pattern_tag": "kb_retrieval"},
+    {"pattern_tag": "reasoning"},
+    {"pattern_tag": "tool_use"},
+    {"pattern_tag": "reflection"},
+    {"pattern_tag": "output"}
+  ]
+}

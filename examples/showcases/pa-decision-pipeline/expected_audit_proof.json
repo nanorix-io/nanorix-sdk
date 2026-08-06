@@ -1,0 +1,30 @@
+{
+  "_note": "Expected AuditProof anchor for diff-comparison. Variable fields (capsule_id, terminated_at, signatures, key_id) differ per run. Structural shape is stable per ADR-006 I0 Forever-Standard.",
+  "_diff_recipe": "diff <(jq -S 'del(.capsule_id, .terminated_at, .attestation, .key_id, .verification_key, .chain[].chain_hash)' audit_proof.json) <(jq -S 'del(.capsule_id, .terminated_at, .attestation, .key_id, .verification_key, .chain[].chain_hash)' expected_audit_proof.json)",
+  "hash_algorithm": "sha512",
+  "signature_algorithm": "Ed25519",
+  "framework_version": "2026-02",
+  "capsule_context": {
+    "jurisdiction": "US",
+    "data_classification": "PHI",
+    "metadata": {
+      "pattern": "pa_decision"
+    }
+  },
+  "chain": [
+    {"step": 1, "subsystem": "eee_namespace", "method": "procfs_verification"},
+    {"step": 2, "subsystem": "eee_tmpfs", "method": "mountinfo_verification"},
+    {"step": 3, "subsystem": "eee_memory", "method": "dod_5220_multipass_wipe"},
+    {"step": 4, "subsystem": "dire_keys", "method": "ed25519_key_destruction"},
+    {"step": 5, "subsystem": "dire_identity", "method": "credential_incineration"},
+    {"step": 6, "subsystem": "fgx_forensic", "method": "merkle_tree_verification"},
+    {"step": 7, "subsystem": "rzl_audit", "method": "hash_chain_validation"},
+    {"step": 8, "subsystem": "capsule_destroy", "method": "capsule_lifecycle_verification"}
+  ],
+  "record_receipts": [
+    {
+      "pattern_tag": "pa_decision",
+      "record_index": 0
+    }
+  ]
+}

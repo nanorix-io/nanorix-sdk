@@ -1,0 +1,52 @@
+name: long-running-agent
+runtime: python3.12
+entrypoint: python main.py
+
+# Multi-step agent that researches a topic, synthesizes findings,
+# checkpoints state to a memory artifact, and resumes in a follow-on
+# capsule. Composes the memory artifact pattern + long-running TTL
+# discipline + MCP-aware egress.
+data_classification: general
+
+egress_declaration:
+  - api.anthropic.com
+  - mcp.example.com  # customer's MCP server hosting tools
+
+# MCP tool whitelist. Only these tool names will pass the
+# sealed egress layer's enforcement; calls to any other tool
+# name fail with mcp_tool_not_allowed and the activity_trail
+# records the policy denial. allowed_tools is whitelist;
+# prohibited_tools is blocklist (whitelist takes precedence).
+mcp_policy:
+  allowed_tools:
+    - search_documents
+    - fetch_url
+    - synthesize_findings
+  prohibited_tools:
+    - delete_record
+    - admin_console_access
+
+packages:
+  python:
+    - anthropic==0.39.0
+    - pydantic==2.9.2
+
+files:
+  - main.py
+
+# V1 capsule TTL ceiling = 3600s (60min). For longer total
+# runtime, use memory artifact checkpoint-restore via multiple
+# sequential capsules.
+default_ttl: 3600
+memory_mb: 2048
+
+# Heartbeat enables in-capsule progress reporting + graceful
+# finalization on TTL expiry. The TimeoutFinalization
+# ActivityEvent records that finalization-by-TTL occurred so
+# verifier can distinguish from crash-by-OOM.
+# heartbeat_interval_seconds: 30
+# graceful_finalize_seconds: 60
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  MCP_SERVER_URI: https://mcp.example.com/v1

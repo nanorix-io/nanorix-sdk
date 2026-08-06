@@ -1,0 +1,24 @@
+# RCM claims batch adjudication Capsulefile.
+name: rcm-claims-batch
+runtime: python3.11
+entrypoint: "python /capsule/adjudicate.py"
+description: "Pattern 4 (high-volume per-record) — RCM claims batch adjudication"
+
+# Resource ceiling sized for 100-claim batch.
+capsule_memory_mb: 2048
+max_duration_seconds: 600
+heartbeat_interval_seconds: 30
+
+env_vars:
+  LOG_LEVEL: info
+  PATTERN_TAG: rcm_claim
+  BATCH_INPUT_PATH: /capsule/input/batch.jsonl
+
+# Egress profile: clearinghouse + rules-engine dependencies.
+egress_profile: rcm-allowlist
+
+files:
+  - source: ./adjudicate.py
+    target: /capsule/adjudicate.py
+  - source: ./rules_engine.py
+    target: /capsule/rules_engine.py

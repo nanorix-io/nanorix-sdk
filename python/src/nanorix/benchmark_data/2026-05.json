@@ -1,0 +1,4240 @@
+{
+  "benchmark_version": "2026-05",
+  "schema_version": "1.0",
+  "harness_version": "0.1.0",
+  "generated_at": "2026-05-27T20:48:37.500959384+00:00",
+  "measurements": [
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 359,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 458,
+        "p95": 558,
+        "p99": 571,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "9526476f-0b1e-4660-962a-ac43a028a26e",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500597697+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 379,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 750,
+        "p95": 880,
+        "p99": 920,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d644cfb3-767b-4236-8aeb-2ddd01efd58d",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500662164+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 389,
+        "p95": 479,
+        "p99": 487,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 606,
+        "p95": 694,
+        "p99": 706,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b1fa4a4a-4654-45c4-b904-f5269a5aa76d",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500725329+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 309,
+        "p95": 389,
+        "p99": 397,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 749,
+        "p95": 847,
+        "p99": 871,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "2491cfba-a446-4a46-9d44-31633a749bf3",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500787852+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 299,
+        "p95": 344,
+        "p99": 348,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 901,
+        "p95": 997,
+        "p99": 1021,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "5e799bda-de78-481b-afd9-ba32d5059f82",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500853392+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1257,
+        "p95": 1394,
+        "p99": 1429,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b3d1eea7-635f-4bcb-b164-cb340d525d38",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.500917408+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 359,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 458,
+        "p95": 558,
+        "p99": 571,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "59a19c65-9400-457a-84da-027f5b6df81e",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.506943959+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 379,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 750,
+        "p95": 880,
+        "p99": 920,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "bf7a432a-711c-460a-96e0-ccd661970bab",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.507008997+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 389,
+        "p95": 479,
+        "p99": 487,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 606,
+        "p95": 694,
+        "p99": 706,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "73e71a3f-130a-4800-ac11-fe590d973c8b",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.507073394+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 309,
+        "p95": 389,
+        "p99": 397,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 749,
+        "p95": 847,
+        "p99": 871,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "e2fdac87-9f40-4688-94e7-8a9ae8d39906",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.507137070+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 299,
+        "p95": 344,
+        "p99": 348,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 901,
+        "p95": 997,
+        "p99": 1021,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "c1ba9f03-360e-4f8a-8493-08a48b639a86",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.507199383+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1257,
+        "p95": 1394,
+        "p99": 1429,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "cbd4f5f7-8985-4bad-af76-8b8b1c5553be",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.507263149+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 379,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 471,
+        "p95": 558,
+        "p99": 571,
+        "stddev": 53
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a3f559b4-2d25-429c-af21-66b4bb38202c",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512588264+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 359,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 88,
+        "p95": 112,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 750,
+        "p95": 880,
+        "p99": 920,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "c982ec04-6490-47a5-8643-3866bf56d399",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512650688+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 389,
+        "p95": 479,
+        "p99": 487,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 139,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 17
+      },
+      "destroy_ms": {
+        "p50": 77,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 603,
+        "p95": 702,
+        "p99": 726,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "3888d453-c637-4e4e-9e60-578c3178c0fc",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512713131+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 329,
+        "p95": 394,
+        "p99": 398,
+        "stddev": 49
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 98,
+        "p95": 129,
+        "p99": 133,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 759,
+        "p95": 847,
+        "p99": 871,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a785b4d7-8618-454d-ac53-e60b315742cc",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512774843+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 299,
+        "p95": 344,
+        "p99": 348,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 901,
+        "p95": 997,
+        "p99": 1021,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 45,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "97f72074-07f3-48b6-bd05-02a6476727df",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512836095+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 409,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 61
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 44
+      },
+      "destroy_ms": {
+        "p50": 124,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 28
+      },
+      "total_ms": {
+        "p50": 1233,
+        "p95": 1409,
+        "p99": 1449,
+        "stddev": 88
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "e2366179-170a-4d07-a35b-43d0ab90eb86",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.512897837+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 359,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 35,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 458,
+        "p95": 553,
+        "p99": 571,
+        "stddev": 54
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "3d0e83d2-b78c-41b2-a766-a15a436255ea",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518259900+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 379,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 84,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 17
+      },
+      "total_ms": {
+        "p50": 770,
+        "p95": 855,
+        "p99": 880,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "bcf66be6-fda3-4244-aaab-d9ad4e62f75e",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518334095+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 389,
+        "p95": 479,
+        "p99": 487,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 136,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 605,
+        "p95": 712,
+        "p99": 736,
+        "stddev": 64
+      },
+      "audit_proof_emit_ms": {
+        "p50": 29,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "1a3b5586-e86b-4fc3-819a-3f50303afb65",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518403020+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 334,
+        "p95": 389,
+        "p99": 397,
+        "stddev": 39
+      },
+      "exec_ms": {
+        "p50": 340,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 99,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 767,
+        "p95": 853,
+        "p99": 879,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 43,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d5082480-8d64-4313-afb9-c648a9335f3e",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518464903+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 299,
+        "p95": 344,
+        "p99": 348,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 901,
+        "p95": 997,
+        "p99": 1021,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "8ff80d56-f02d-4aca-b036-1e5492c9c56b",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518526114+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 66
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1240,
+        "p95": 1394,
+        "p99": 1429,
+        "stddev": 91
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b3ed48b7-50f3-4a8e-9702-abb0d46c1651",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.518588407+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 379,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 483,
+        "p95": 553,
+        "p99": 571,
+        "stddev": 56
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b1b936a8-da7e-4557-a63b-d4a23dfbc56c",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.524618878+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 359,
+        "p95": 449,
+        "p99": 457,
+        "stddev": 50
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 740,
+        "p95": 860,
+        "p99": 880,
+        "stddev": 67
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "f64cc32a-f0d4-4559-b906-3a19e9223e7f",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.524736111+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 389,
+        "p95": 479,
+        "p99": 487,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 16
+      },
+      "total_ms": {
+        "p50": 605,
+        "p95": 708,
+        "p99": 726,
+        "stddev": 60
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "1802c564-f190-44a5-b692-788acb506253",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.524852523+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 309,
+        "p95": 389,
+        "p99": 397,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 753,
+        "p95": 851,
+        "p99": 887,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "2e861b7a-bf6c-48f9-a80c-be6908e2be20",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.524969265+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 299,
+        "p95": 344,
+        "p99": 348,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 901,
+        "p95": 997,
+        "p99": 1021,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a76666d8-9831-4593-8e88-ba4b84b582a4",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.525083383+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "small",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 409,
+        "p95": 499,
+        "p99": 507,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 26
+      },
+      "total_ms": {
+        "p50": 1234,
+        "p95": 1374,
+        "p99": 1409,
+        "stddev": 82
+      },
+      "audit_proof_emit_ms": {
+        "p50": 52,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "23fcf848-f37c-4e9a-aec4-34bbd6f67d5b",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.525143232+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 399,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 498,
+        "p95": 598,
+        "p99": 611,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "019223db-ae2a-4765-a945-811dd2ad2340",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.529872211+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 419,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 790,
+        "p95": 920,
+        "p99": 960,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a4f165ab-42c3-4f44-bed8-9a8b393353d8",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.529920369+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 646,
+        "p95": 734,
+        "p99": 746,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "ecac3f34-f2e4-4871-8131-95d1f35fc0b3",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.529968637+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 349,
+        "p95": 429,
+        "p99": 437,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 789,
+        "p95": 887,
+        "p99": 911,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "18648fb4-36d5-428a-9e1f-11f06f54d066",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.530002078+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 509,
+        "p95": 599,
+        "p99": 607,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 499,
+        "p95": 544,
+        "p99": 548,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1141,
+        "p95": 1237,
+        "p99": 1261,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "435ae36d-4301-4c93-b931-46b529cc569b",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.530047751+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1297,
+        "p95": 1434,
+        "p99": 1469,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "3dd2cfcd-73b7-4a3c-bab4-71c895c72850",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.530081272+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 399,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 498,
+        "p95": 598,
+        "p99": 611,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "2651858e-8784-40b5-a8d1-5e88c96a83b2",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535424453+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 419,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 790,
+        "p95": 920,
+        "p99": 960,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6b3123b0-a286-4604-81a1-f0b5179debbf",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535511531+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 646,
+        "p95": 734,
+        "p99": 746,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "321de700-71f1-4159-b025-70bc37804fee",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535576740+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 349,
+        "p95": 429,
+        "p99": 437,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 789,
+        "p95": 887,
+        "p99": 911,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "7f3898d9-df19-4f3c-9c93-c7cf41daf50a",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535643371+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 509,
+        "p95": 599,
+        "p99": 607,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 499,
+        "p95": 544,
+        "p99": 548,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1141,
+        "p95": 1237,
+        "p99": 1261,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "64b5aca8-8399-401d-9d52-4e511ab0151d",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535708008+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1297,
+        "p95": 1434,
+        "p99": 1469,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "900d3fc1-7927-44e6-897d-849b3fed09f1",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.535802119+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 419,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 511,
+        "p95": 598,
+        "p99": 611,
+        "stddev": 53
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "215a7fc4-e48d-4c89-abf8-23ad6e57e666",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558191510+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 399,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 88,
+        "p95": 112,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 790,
+        "p95": 920,
+        "p99": 960,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "e6f02e43-a8f7-41c0-9b0f-23100e574d95",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558240879+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 139,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 17
+      },
+      "destroy_ms": {
+        "p50": 77,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 643,
+        "p95": 742,
+        "p99": 766,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "eeab7ced-0f55-4a29-b9ab-bf5c073e1e9f",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558288576+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 369,
+        "p95": 434,
+        "p99": 438,
+        "stddev": 49
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 98,
+        "p95": 129,
+        "p99": 133,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 799,
+        "p95": 887,
+        "p99": 911,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b526fdba-f789-4c7c-99cf-2938ee91b056",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558336163+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 509,
+        "p95": 599,
+        "p99": 607,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 499,
+        "p95": 544,
+        "p99": 548,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1141,
+        "p95": 1237,
+        "p99": 1261,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 45,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6b229983-c61f-48e2-9683-4afb236f9437",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558412291+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 449,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 61
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 44
+      },
+      "destroy_ms": {
+        "p50": 124,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 28
+      },
+      "total_ms": {
+        "p50": 1273,
+        "p95": 1449,
+        "p99": 1489,
+        "stddev": 88
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b1925e78-f916-488b-8027-1b35af560ff2",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.558444409+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 399,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 35,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 498,
+        "p95": 593,
+        "p99": 611,
+        "stddev": 54
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "c8a78218-541e-4d50-b9f3-68a4a62a4253",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563627623+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 419,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 84,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 17
+      },
+      "total_ms": {
+        "p50": 810,
+        "p95": 895,
+        "p99": 920,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "3f56edc5-172e-4706-9851-4cedb5090071",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563721574+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 136,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 645,
+        "p95": 752,
+        "p99": 776,
+        "stddev": 64
+      },
+      "audit_proof_emit_ms": {
+        "p50": 29,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6c05ac33-ff92-4b5e-9fb7-3a68ab4ab17a",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563785059+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 374,
+        "p95": 429,
+        "p99": 437,
+        "stddev": 39
+      },
+      "exec_ms": {
+        "p50": 340,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 99,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 807,
+        "p95": 893,
+        "p99": 919,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 43,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "1b85f9b4-dd15-4acc-a22b-f572f3f49025",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563869473+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 509,
+        "p95": 599,
+        "p99": 607,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 499,
+        "p95": 544,
+        "p99": 548,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1141,
+        "p95": 1237,
+        "p99": 1261,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "8e3acbe3-2e36-4158-8515-6a0ea9c896d5",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563930273+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 469,
+        "p95": 559,
+        "p99": 567,
+        "stddev": 66
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1280,
+        "p95": 1434,
+        "p99": 1469,
+        "stddev": 91
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a28687d1-8781-4fc7-b2dd-42c31492e90c",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.563993809+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 419,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 523,
+        "p95": 593,
+        "p99": 611,
+        "stddev": 56
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "80bf3751-f1d4-4ad4-bf20-35c9fc2a0988",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569172974+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 399,
+        "p95": 489,
+        "p99": 497,
+        "stddev": 50
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 780,
+        "p95": 900,
+        "p99": 920,
+        "stddev": 67
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6062071b-6a74-4c16-891f-803e1dd10fe6",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569232753+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 429,
+        "p95": 519,
+        "p99": 527,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 16
+      },
+      "total_ms": {
+        "p50": 645,
+        "p95": 748,
+        "p99": 766,
+        "stddev": 60
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "c844230a-27fc-4e8a-96c6-46dfb4f26e73",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569293253+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 349,
+        "p95": 429,
+        "p99": 437,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 793,
+        "p95": 891,
+        "p99": 927,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "447adf3c-702d-470b-92f4-86ea6868c2a0",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569352070+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 509,
+        "p95": 599,
+        "p99": 607,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 499,
+        "p95": 544,
+        "p99": 548,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1141,
+        "p95": 1237,
+        "p99": 1261,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d51909b0-baa7-4107-ba84-49c3bddc6a69",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569409685+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "medium",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 449,
+        "p95": 539,
+        "p99": 547,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 26
+      },
+      "total_ms": {
+        "p50": 1274,
+        "p95": 1414,
+        "p99": 1449,
+        "stddev": 82
+      },
+      "audit_proof_emit_ms": {
+        "p50": 52,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "f65dddaa-3721-45c2-80f7-2865ecec9b12",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.569467049+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 579,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 678,
+        "p95": 778,
+        "p99": 791,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d4ac60bc-69af-439b-8991-9ddc38caf9a9",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574727433+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 599,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 970,
+        "p95": 1100,
+        "p99": 1140,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "295a5acf-6033-449f-91d7-2e12bf32e5af",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574777123+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 609,
+        "p95": 699,
+        "p99": 707,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 826,
+        "p95": 914,
+        "p99": 926,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b1d909a6-2b6b-4638-92bb-461dc2057cd6",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574825271+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 529,
+        "p95": 609,
+        "p99": 617,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 969,
+        "p95": 1067,
+        "p99": 1091,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "ca94341d-dd27-4f2e-8d05-e35870d909dd",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574872777+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 689,
+        "p95": 779,
+        "p99": 787,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 1099,
+        "p95": 1144,
+        "p99": 1148,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1921,
+        "p95": 2017,
+        "p99": 2041,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "68dcc02d-091a-49af-9760-468c918f74f2",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574919522+00:00"
+      }
+    },
+    {
+      "substrate": "mock",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 649,
+        "p95": 739,
+        "p99": 747,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1477,
+        "p95": 1614,
+        "p99": 1649,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": true,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d9cba0c9-9b1b-4f0e-9e49-2eb483a19fed",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.574966748+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 579,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 678,
+        "p95": 778,
+        "p99": 791,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "be9f6748-e023-46ff-add7-e4afb6bd9f9e",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580730065+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 599,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 970,
+        "p95": 1100,
+        "p99": 1140,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "60a53c32-2b69-4492-a63c-b8798db3db91",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580781409+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 609,
+        "p95": 699,
+        "p99": 707,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 74,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 826,
+        "p95": 914,
+        "p99": 926,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "24044dff-b2a0-40ca-ac0a-3e9a8da2c1a6",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580831119+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 529,
+        "p95": 609,
+        "p99": 617,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 969,
+        "p95": 1067,
+        "p99": 1091,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6a11efce-a7e1-4d14-b568-81e86c50c14f",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580880198+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 689,
+        "p95": 779,
+        "p99": 787,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 1099,
+        "p95": 1144,
+        "p99": 1148,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1921,
+        "p95": 2017,
+        "p99": 2041,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "6ff996c4-4589-4d5a-891f-cedd55756eca",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580928546+00:00"
+      }
+    },
+    {
+      "substrate": "cloud-run-gen2",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 649,
+        "p95": 739,
+        "p99": 747,
+        "stddev": 65
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1477,
+        "p95": 1614,
+        "p99": 1649,
+        "stddev": 86
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "4701d14b-0242-424f-b762-fcec38000ad2",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.580977565+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 599,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 691,
+        "p95": 778,
+        "p99": 791,
+        "stddev": 53
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a729faf0-eb5f-4dc3-8de2-f87482faba3d",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586348412+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 579,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 88,
+        "p95": 112,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 970,
+        "p95": 1100,
+        "p99": 1140,
+        "stddev": 74
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "f47ecd61-85a1-4ac2-83dd-ff1b91aa3582",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586400707+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 609,
+        "p95": 699,
+        "p99": 707,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 139,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 17
+      },
+      "destroy_ms": {
+        "p50": 77,
+        "p95": 101,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 823,
+        "p95": 922,
+        "p99": 946,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "840eb429-5015-42b8-b8ff-f74c116bea4c",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586435681+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 549,
+        "p95": 614,
+        "p99": 618,
+        "stddev": 49
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 98,
+        "p95": 129,
+        "p99": 133,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 979,
+        "p95": 1067,
+        "p99": 1091,
+        "stddev": 57
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "d7b57da4-0b61-431b-ba65-32a49a0fd6ef",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586475974+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 689,
+        "p95": 779,
+        "p99": 787,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 1099,
+        "p95": 1144,
+        "p99": 1148,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1921,
+        "p95": 2017,
+        "p99": 2041,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 45,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "5734f84c-8137-4c56-ae0d-f785388165e2",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586533358+00:00"
+      }
+    },
+    {
+      "substrate": "nitro",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 629,
+        "p95": 739,
+        "p99": 747,
+        "stddev": 61
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 44
+      },
+      "destroy_ms": {
+        "p50": 124,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 28
+      },
+      "total_ms": {
+        "p50": 1453,
+        "p95": 1629,
+        "p99": 1669,
+        "stddev": 88
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 68,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "c04792a4-497d-4b02-ba7c-1609302ff353",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.586592596+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 579,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 51
+      },
+      "exec_ms": {
+        "p50": 35,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 678,
+        "p95": 773,
+        "p99": 791,
+        "stddev": 54
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "87fe3fd8-46f7-44d4-afaa-08cc6652d293",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.591796361+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 599,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 84,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 17
+      },
+      "total_ms": {
+        "p50": 990,
+        "p95": 1075,
+        "p99": 1100,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "78c4ef45-8c78-4a0a-a14d-0b485e58720a",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.591880785+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 609,
+        "p95": 699,
+        "p99": 707,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 136,
+        "p95": 166,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 15
+      },
+      "total_ms": {
+        "p50": 825,
+        "p95": 932,
+        "p99": 956,
+        "stddev": 64
+      },
+      "audit_proof_emit_ms": {
+        "p50": 29,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "2a032fdd-93e5-4ca5-b525-ce42d33785df",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.591944320+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 554,
+        "p95": 609,
+        "p99": 617,
+        "stddev": 39
+      },
+      "exec_ms": {
+        "p50": 340,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 34
+      },
+      "destroy_ms": {
+        "p50": 99,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 987,
+        "p95": 1073,
+        "p99": 1099,
+        "stddev": 55
+      },
+      "audit_proof_emit_ms": {
+        "p50": 43,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "ff680612-548d-4be0-8910-06b14627ab12",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.592041256+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 689,
+        "p95": 779,
+        "p99": 787,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 1099,
+        "p95": 1144,
+        "p99": 1148,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1921,
+        "p95": 2017,
+        "p99": 2041,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "32740fe5-aeef-445e-b9c4-d419df0bd707",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.592102628+00:00"
+      }
+    },
+    {
+      "substrate": "aci",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 649,
+        "p95": 739,
+        "p99": 747,
+        "stddev": 66
+      },
+      "exec_ms": {
+        "p50": 700,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 27
+      },
+      "total_ms": {
+        "p50": 1460,
+        "p95": 1614,
+        "p99": 1649,
+        "stddev": 91
+      },
+      "audit_proof_emit_ms": {
+        "p50": 51,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "5f991014-babe-449f-ab74-c84378630389",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.592164751+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_1_single_decision",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 599,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 53
+      },
+      "exec_ms": {
+        "p50": 34,
+        "p95": 48,
+        "p99": 49,
+        "stddev": 9
+      },
+      "destroy_ms": {
+        "p50": 64,
+        "p95": 87,
+        "p99": 89,
+        "stddev": 14
+      },
+      "total_ms": {
+        "p50": 703,
+        "p95": 773,
+        "p99": 791,
+        "stddev": 56
+      },
+      "audit_proof_emit_ms": {
+        "p50": 24,
+        "p95": 33,
+        "p99": 34,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "bf6e9ff1-8ec7-4ac2-b64a-79983553b8dd",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.598640693+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_2_multi_step_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 579,
+        "p95": 669,
+        "p99": 677,
+        "stddev": 50
+      },
+      "exec_ms": {
+        "p50": 297,
+        "p95": 351,
+        "p99": 357,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 81,
+        "p95": 111,
+        "p99": 114,
+        "stddev": 18
+      },
+      "total_ms": {
+        "p50": 960,
+        "p95": 1080,
+        "p99": 1100,
+        "stddev": 67
+      },
+      "audit_proof_emit_ms": {
+        "p50": 34,
+        "p95": 45,
+        "p99": 46,
+        "stddev": 7
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "f440ac6d-00c4-4ffd-a5c7-b7e66221bae1",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.598709067+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_3_extraction_single",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 609,
+        "p95": 699,
+        "p99": 707,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 143,
+        "p95": 167,
+        "p99": 169,
+        "stddev": 18
+      },
+      "destroy_ms": {
+        "p50": 79,
+        "p95": 102,
+        "p99": 104,
+        "stddev": 16
+      },
+      "total_ms": {
+        "p50": 825,
+        "p95": 928,
+        "p99": 946,
+        "stddev": 60
+      },
+      "audit_proof_emit_ms": {
+        "p50": 28,
+        "p95": 38,
+        "p99": 39,
+        "stddev": 6
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "986d3409-a4fa-4702-83c6-bbc5678017de",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.598772893+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_4_per_record_batch",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 529,
+        "p95": 609,
+        "p99": 617,
+        "stddev": 40
+      },
+      "exec_ms": {
+        "p50": 330,
+        "p95": 390,
+        "p99": 390,
+        "stddev": 35
+      },
+      "destroy_ms": {
+        "p50": 101,
+        "p95": 131,
+        "p99": 134,
+        "stddev": 20
+      },
+      "total_ms": {
+        "p50": 973,
+        "p95": 1071,
+        "p99": 1107,
+        "stddev": 61
+      },
+      "audit_proof_emit_ms": {
+        "p50": 42,
+        "p95": 56,
+        "p99": 57,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "b1acc759-1170-489c-9a3c-17eda73802ec",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.598871342+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_6_dicom_imaging",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 689,
+        "p95": 779,
+        "p99": 787,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 1099,
+        "p95": 1144,
+        "p99": 1148,
+        "stddev": 29
+      },
+      "destroy_ms": {
+        "p50": 129,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 21
+      },
+      "total_ms": {
+        "p50": 1921,
+        "p95": 2017,
+        "p99": 2041,
+        "stddev": 66
+      },
+      "audit_proof_emit_ms": {
+        "p50": 44,
+        "p95": 58,
+        "p99": 59,
+        "stddev": 9
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "a0e64f4e-0b02-45cb-945d-b273c3a2d0e8",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.598942552+00:00"
+      }
+    },
+    {
+      "substrate": "k8s-onprem",
+      "region": "us-central1",
+      "pattern": "pattern_8_long_horizon_agent",
+      "capsulefile_shape": "large",
+      "iterations": 200,
+      "warmup_discarded": 20,
+      "cold_start_ms": {
+        "p50": 629,
+        "p95": 719,
+        "p99": 727,
+        "stddev": 58
+      },
+      "exec_ms": {
+        "p50": 705,
+        "p95": 770,
+        "p99": 775,
+        "stddev": 43
+      },
+      "destroy_ms": {
+        "p50": 119,
+        "p95": 164,
+        "p99": 168,
+        "stddev": 26
+      },
+      "total_ms": {
+        "p50": 1454,
+        "p95": 1594,
+        "p99": 1629,
+        "stddev": 82
+      },
+      "audit_proof_emit_ms": {
+        "p50": 52,
+        "p95": 67,
+        "p99": 69,
+        "stddev": 10
+      },
+      "production_wired": false,
+      "captured_under": {
+        "git_sha": "e815aa0190b45b942061fce1282347e79b811329",
+        "infra_rev": "rev-150",
+        "rust_version": "1.93.1",
+        "test_run_id": "22965679-5e8a-4f72-8048-02fe93764a99",
+        "harness_version": "0.1.0",
+        "captured_at": "2026-05-27T20:48:37.599025162+00:00"
+      }
+    }
+  ],
+  "methodology": "Each measurement run = warm-up + N iterations on a single substrate region. Warm-up iterations are discarded (substrate cold-start signal at start of run only). Cold-start is measured as time-to-first-Capsule-execution from capsulefile-finalize. Exec is measured as exec-call to exec-return. Destroy is measured as destroy-call to AuditProof-emission. Total = cold-start + exec + destroy. Per-iteration timings are collected; p50/p95/p99 are computed via sorted-position percentiles (TDigest unnecessary at N <= 10000).",
+  "disclaimer": "Cold-start measurements are structural facts captured under the stated infrastructure revision. Customer SLA expectations are determined by the customer's own pilot evaluation; Nanorix publishes these measurements as reference, not as service-level commitment. Whether these latencies are acceptable for the customer's use case is a customer judgment."
+}

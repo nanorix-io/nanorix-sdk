@@ -1,0 +1,22 @@
+name: pharma-rd-screening
+runtime: python3.11
+entrypoint: "python /capsule/screen.py"
+description: "Pattern 6 R&D — ADMET screening for pharma R&D cohort"
+
+# Higher memory for ML inference on 1000-molecule batches.
+capsule_memory_mb: 8192
+max_duration_seconds: 3600
+heartbeat_interval_seconds: 60
+
+env_vars:
+  LOG_LEVEL: info
+  PATTERN_TAG: molecule_admet_screening
+  MODEL_PATH: /capsule/models/admet_predictor.bin
+
+egress_profile: pharma-rd-allowlist
+
+files:
+  - source: ./screen.py
+    target: /capsule/screen.py
+  - source: ./models/admet_predictor.bin
+    target: /capsule/models/admet_predictor.bin

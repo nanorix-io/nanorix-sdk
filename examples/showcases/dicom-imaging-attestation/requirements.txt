@@ -1,0 +1,4 @@
+nanorix>=0.2.0
+# pydicom is a tracked Wave-N dependency for real DICOM handling. The
+# V1 showcase mocks the study payload with JSON; production deployment
+# composes a DICOMweb proxy.

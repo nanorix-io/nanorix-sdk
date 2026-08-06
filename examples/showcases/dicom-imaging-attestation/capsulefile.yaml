@@ -1,0 +1,24 @@
+# DICOM imaging attestation Capsulefile.
+name: dicom-imaging-attestation
+runtime: python3.11
+entrypoint: "python /capsule/infer.py"
+description: "Pattern 6 (imaging AI) — DICOM-attestation chain-of-custody"
+
+# Higher memory ceiling for vision-model inference.
+capsule_memory_mb: 4096
+max_duration_seconds: 1800
+heartbeat_interval_seconds: 30
+
+env_vars:
+  LOG_LEVEL: info
+  PATTERN_TAG: imaging_inference
+  MODEL_PATH: /capsule/models/vision_model.bin
+
+# Egress profile: model storage + (optional) PACS callback endpoint.
+egress_profile: imaging-allowlist
+
+files:
+  - source: ./infer.py
+    target: /capsule/infer.py
+  - source: ./models/vision_model.bin
+    target: /capsule/models/vision_model.bin

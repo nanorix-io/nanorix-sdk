@@ -1,0 +1,60 @@
+name: med-ai-extraction
+runtime: python3.12
+entrypoint: python main.py
+
+# Customer-declared regulated data class. Verifier will see
+# capsule_context.data_classification = "PHI" in the AuditProof.
+# Nanorix does NOT verify this declaration — customer is the
+# authoritative source.
+data_classification: PHI
+
+# Pinned per-host TLS certificates. Production customers replace
+# these with their own pin maps from the LLM provider's published
+# trust roots.
+# tls_pinned_certs:
+#   - host: api.anthropic.com
+#     sha256_fingerprint: <sha256 of provider's cert>
+
+# Per-Capsulefile egress declaration — defense-in-depth allowlist.
+# Sealed daemon enforces this PLUS the runtime profile.
+#
+# documentai.googleapis.com is included for the cloud Document AI
+# fallback path (production substitution for Tesseract). Customers
+# who use AWS Textract / Azure Form Recognizer instead substitute
+# textract.<region>.amazonaws.com or
+# <resource>.cognitiveservices.azure.com.
+egress_declaration:
+  - api.anthropic.com
+  - api.openai.com
+  - documentai.googleapis.com  # cloud Document AI fallback (optional)
+
+packages:
+  python:
+    - anthropic==0.39.0
+    - pypdf==5.0.1
+    - pydantic==2.9.2
+    # OCR fallback layer. pytesseract requires the tesseract-ocr binary
+    # in the base image (pre-installed in nanorix-python-clinical base
+    # image; for stock python3.12 base, customer must add an
+    # apt-step before this Capsulefile builds).
+    - pytesseract==0.3.13
+    - Pillow==10.4.0
+    # pdf2image rasterizes PDF pages for OCR / vision-LLM fallback.
+    # Requires poppler-utils in the base image.
+    - pdf2image==1.17.0
+
+files:
+  - main.py
+
+# Bumped from 1024 to 2048MB — vision-LLM rasterization of multi-page
+# PDFs holds page images in memory. Tesseract on a 50-page scan
+# typically peaks ~1.5GB.
+default_ttl: 1800
+memory_mb: 2048
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  VISION_MODEL: claude-3-5-sonnet-latest
+  # Routing thresholds — customer tunes per their corpus.
+  PYPDF_MIN_CHARS_PER_PAGE: "200"
+  OCR_MIN_CONFIDENCE: "0.70"

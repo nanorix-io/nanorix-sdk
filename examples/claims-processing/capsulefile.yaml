@@ -1,0 +1,112 @@
+name: claims-processing
+runtime: python3.12
+entrypoint: python main.py
+
+# Insurance prior-auth review (CMS-0057-F era, effective Jan 2026):
+# X12 278/275 EDI in → InterQual/MCG criteria binding → LLM
+# clinical-policy reasoning → FHIR R4 Prior Authorization response
+# (PAS profile) → appeal-loop case-state for customer's
+# case-management system. Operates on PHI + PII (member ID, NPI,
+# diagnosis + procedure codes, attached clinical documentation).
+data_classification: PHI
+
+# Egress allowlist:
+#   api.anthropic.com               — LLM clinical-policy reasoning
+#   api.openai.com                  — alternate LLM provider
+#   *.criteria-engine.example.com   — placeholder for the customer's
+#                                       licensed InterQual (Change
+#                                       Healthcare / Optum) or MCG
+#                                       (Hearst Health) deployment.
+#                                       Customer substitutes their
+#                                       actual host (typically
+#                                       payer-internal).
+#   *.fhir-pas.example.com          — placeholder for the customer's
+#                                       FHIR PAS endpoint (Epic
+#                                       Hyperdrive PAS / Cerner
+#                                       Millennium PAS / Availity PAS
+#                                       Gateway / Smile CDR / custom).
+#   *.case-management.example.com   — placeholder for the customer's
+#                                       case-management system
+#                                       (Salesforce Health Cloud,
+#                                       Pega, custom).
+egress_declaration:
+  - api.anthropic.com
+  - api.openai.com
+  - criteria-engine.example.com    # customer substitutes their licensed deployment
+  - fhir-pas.example.com           # customer substitutes their FHIR PAS endpoint
+  - case-management.example.com    # customer substitutes their case-management system
+
+# Per-Capsulefile signing config — per-event customer attestation.
+# Each ActivityEvent (X12 parse, criteria-engine call, LLM call,
+# FHIR response emission) is fire-and-buffered to the customer's
+# signing endpoint over mTLS; signatures absorbed at capsule destroy
+# and bound into the AuditProof's per_event_attestations reserved
+# slot. Customer holds the private key in their KMS (AWS KMS / GCP
+# Cloud KMS / Azure Key Vault / HashiCorp Vault); Nanorix never sees
+# plaintext key material.
+#
+# Concrete shape (uncomment + populate for production):
+# signing_config:
+#   endpoint: https://signer.payer-internal.example.com/v1/sign
+#   client_cert_secret: nanorix_signer_client_cert       # mTLS client cert (sealed secret)
+#   client_key_secret: nanorix_signer_client_key         # mTLS client key (sealed secret)
+#   server_ca_pin: sha256:<hex>                          # pin payer-internal CA root
+#   public_key_id: payer-prod-2026-q1                    # KMS key version id
+#   key_rotation_note: |
+#     Rotate `public_key_id` on each KMS key version bump. AuditProof's
+#     per_event_attestations carry the public_key_id used for each event,
+#     so verifiers can reconstruct which KMS key version signed what
+#     even after rotation.
+
+packages:
+  python:
+    - anthropic==0.39.0
+    - httpx==0.27.2
+    - pydantic==2.9.2
+    # X12 EDI parser. Production deployments substitute pyx12 /
+    # bots-edi / Edifecs / vendor SDK from their clearinghouse.
+    # The parser library is wired but the bundle's stub does
+    # minimal segment walking when pyx12 is not invoked.
+    # - pyx12==2.3.3
+    # FHIR R4 mapping helpers. Production deployments often go through
+    # HAPI FHIR (Java) or Smile CDR; for Python deployments fhir.resources
+    # provides Pydantic-shaped FHIR R4 resource classes:
+    # - fhir.resources==7.1.0
+    # InterQual / MCG criteria-engine SDK. These are per-seat-licensed
+    # proprietary clients; not redistributable. Customer wires their
+    # licensed package via their internal pip index.
+
+files:
+  - main.py
+
+# Prior-auth determination batch — one capsule per X12 278 transaction
+# (or batch via requests.jsonl). Long enough for criteria-engine
+# round-trips + LLM reasoning + FHIR mapping; well under the V1
+# 60-min ceiling.
+default_ttl: 1800
+# Bumped to 2048MB. FHIR mapping + per-line criteria evaluation +
+# LLM reasoning hold the request bundle + criteria results + decisions
+# in memory; per-transaction working set is small but batch mode
+# (requests.jsonl) can accumulate.
+memory_mb: 2048
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  # Criteria engine selection. Production deployments set this to
+  # the engine they license: "interqual" (Change Healthcare / Optum)
+  # or "mcg" (Hearst Health). Custom criteria libraries use "custom".
+  CRITERIA_ENGINE: interqual
+  # Customer's licensed criteria-engine deployment endpoint. Empty
+  # default forces the pipeline into stub mode. Production deployments
+  # MUST set this to the customer's payer-internal deployment.
+  CRITERIA_ENGINE_BASE: ""
+  # Customer's FHIR PAS server endpoint. The pipeline emits FHIR
+  # bundles to /data/output; the customer's downstream emitter posts
+  # to this endpoint per CMS-0057-F PAS API. Empty default skips
+  # the post (output remains in /data/output for offline ingestion).
+  PAYER_FHIR_PAS_BASE: ""
+  # Customer's case-management vocabulary — pipe-separated list of
+  # state-machine states. Customer's case-management system declares
+  # this; the pipeline emits the current case_state into the FHIR
+  # bundle's case_state_attestation field.
+  CASE_STATE_VOCABULARY: "intake|criteria_review|peer_to_peer|external_review|final"

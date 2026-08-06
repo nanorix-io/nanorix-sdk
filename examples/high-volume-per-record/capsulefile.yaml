@@ -1,0 +1,87 @@
+name: high-volume-per-record
+runtime: python3.12
+entrypoint: python main.py
+
+# High-volume per-record claims processing. One capsule per
+# X12 EDI 837 claim (or 270/271 eligibility transaction); operates
+# on PHI + PII (member identifiers, NPI, diagnosis + procedure codes,
+# attached clinical documentation references).
+data_classification: PHI
+
+# Pinned per-host TLS certificates. Production customers replace
+# these with their licensed clearinghouse trust roots.
+# tls_pinned_certs:
+#   - host: clearinghouse.example.com
+#     sha256_fingerprint: <sha256 of clearinghouse cert>
+
+# Egress allowlist — single trusted clearinghouse endpoint.
+# High-volume per-record pattern minimizes egress surface: each
+# capsule talks to ONE clearinghouse for the trip-end. No LLM
+# egress in the reference shape (claims processing is rule-driven).
+#
+#   *.clearinghouse.example.com — placeholder for the customer's
+#                                   licensed clearinghouse (Change
+#                                   Healthcare / Optum, Availity,
+#                                   Waystar, Trizetto, customer-
+#                                   internal clearing).
+egress_declaration:
+  - clearinghouse.example.com   # customer substitutes their clearinghouse host
+
+# Per-Capsulefile signing config — RECOMMENDED for high-volume
+# per-record workloads. Each ClaimAdjudicated event is fire-and-
+# buffered to the customer's signing endpoint over mTLS; signatures
+# absorbed at capsule destroy and bound into AuditProof's
+# per_event_attestations slot. Per-claim non-repudiation under the
+# customer's signing authority — load-bearing for payer audit
+# trail + state-DOI examination + dispute resolution.
+#
+# Concrete shape (uncomment + populate for production):
+# signing_config:
+#   endpoint: https://signer.payer-internal.example.com/v1/sign
+#   client_cert_secret: nanorix_signer_client_cert
+#   client_key_secret: nanorix_signer_client_key
+#   server_ca_pin: sha256:<hex>
+#   public_key_id: payer-prod-2026-q2
+
+packages:
+  python:
+    - httpx==0.27.2
+    - pydantic==2.9.2
+    # X12 EDI parser. Production deployments substitute pyx12 /
+    # bots-edi / Edifecs / vendor SDK from their clearinghouse.
+    # The parser library is wired but the bundle's stub does
+    # minimal segment walking when pyx12 is not invoked.
+    # - pyx12==2.3.3
+    # FHIR mapping helpers (when downstream consumer is FHIR):
+    # - fhir.resources==7.1.0
+
+files:
+  - main.py
+
+# Short capsule lifetime — high-throughput economics depend on it.
+# Each claim adjudication runs in 30-90 seconds typical; 5min cap
+# absorbs network jitter + clearinghouse round-trip + retries.
+# Customer tunes per their workflow — bulk batch mode (multiple
+# claims via requests.jsonl) extends to 30min cap.
+default_ttl: 300
+# Modest memory footprint — single-claim per-record processing
+# holds claim envelope + clearinghouse response + decision in
+# memory; per-claim working set ~30-50MB.
+memory_mb: 512
+
+env:
+  # Clearinghouse endpoint. Empty default forces the pipeline into
+  # stub mode. Production deployments MUST set this to the
+  # customer's licensed clearinghouse deployment.
+  CLEARINGHOUSE_URL: ""
+  # Transaction type — the workflow shape varies subtly per X12 type.
+  # 837P (professional claim), 837I (institutional claim),
+  # 270 (eligibility inquiry), 271 (eligibility response).
+  X12_TRANSACTION_TYPE: "837P"
+  # Decision-engine tuning — customer-specific.
+  CLAIM_TIMEOUT_SECONDS: "60"
+  ENABLE_AUTO_ADJUDICATION: "true"
+  # Tier-naming-split discipline (per CONVENTIONS.md):
+  # this is the pricing-economics field; the high-volume tier
+  # is "Team" externally / Business internally. Per-AuditProof
+  # economics matter at this volume — see README.md.

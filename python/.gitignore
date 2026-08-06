@@ -1,0 +1,11 @@
+# Build + tool caches for the Python SDK. This file is also what hatchling
+# copies into the sdist (it force-includes the project's VCS ignore file),
+# so it must describe only the SDK directory — nothing else.
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/

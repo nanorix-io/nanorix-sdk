@@ -1,0 +1,21 @@
+name: agent-multi-step
+runtime: python3.11
+entrypoint: "python /capsule/agent.py"
+description: "Pattern 2/8 (multi-step agent) — LangGraph 5-node agent"
+
+capsule_memory_mb: 4096
+max_duration_seconds: 3600
+heartbeat_interval_seconds: 60
+
+env_vars:
+  LOG_LEVEL: info
+  PATTERN_TAG: multi_step_agent
+  LANGGRAPH_NODES: "kb_retrieval,reasoning,tool_use,reflection,output"
+
+egress_profile: healthcare-ai-allowlist
+
+files:
+  - source: ./agent.py
+    target: /capsule/agent.py
+  - source: ./graph.py
+    target: /capsule/graph.py

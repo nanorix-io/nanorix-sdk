@@ -1,0 +1,45 @@
+name: langchain-agent
+runtime: python3.12
+entrypoint: python main.py
+
+# LangChain agent reference workload demonstrating Tier A
+# (proxy/library) integration: customer's existing LangChain
+# agent_executor + a one-line `callbacks=[NanorixCallback(...)]`
+# attachment yields per-LLM-call + per-tool-call AuditProof
+# sub-receipts. Each tool call's args and result are hashed
+# (SHA-512); plaintext PHI / PII NEVER enters the AuditProof.
+data_classification: PHI
+
+# Egress allowlist:
+#   api.anthropic.com    — LLM agent reasoning
+#   api.openai.com       — alternative LLM provider (uncomment below)
+#   *.ehr.example.com    — placeholder for customer's EHR integration;
+#                            customer substitutes their actual hosts.
+egress_declaration:
+  - api.anthropic.com
+  # - api.openai.com
+  # - ehr.example.com
+
+# LangChain ≥ 0.3 + langchain-core ≥ 0.3 + a chat-model provider
+# (langchain-anthropic shown; customer can use any LangChain-supported
+# provider). The Nanorix SDK [langchain] extra brings langchain-core.
+packages:
+  python:
+    - langchain-core>=0.3,<2.0
+    - langchain-anthropic>=0.3
+    - langgraph>=0.2
+
+files:
+  - main.py
+
+# Loop control:
+default_ttl: 1800
+memory_mb: 2048
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  # Customer-declared compliance framework (per ADR-013). The
+  # NanorixCallback receives this via NANORIX_FRAMEWORK; canonical
+  # labels: HIPAA / GDPR / SOC2 / PCI_DSS / HITRUST / EU_AI_ACT.
+  NANORIX_FRAMEWORK: HIPAA
+  NANORIX_CAPSULEFILE: langchain-agent

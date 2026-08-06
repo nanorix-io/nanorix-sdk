@@ -1,0 +1,11 @@
+{
+  "_note": "Synthetic DICOM study manifest — NOT real imaging data.",
+  "study_instance_uid": "1.2.3.4.5.SYNTHETIC.001",
+  "patient_synthetic_id": "PATIENT-SYNTHETIC-001",
+  "modality": "CT",
+  "study_date_iso": "2026-06-15",
+  "series_count_synthetic": 1,
+  "instance_count_synthetic": 50,
+  "anatomical_region": "chest",
+  "synthetic_payload_b64": "PLACEHOLDER_BASE64_SYNTHETIC_BYTES"
+}

@@ -1,0 +1,15 @@
+{
+  "_note": "Expected AuditProof anchor.",
+  "hash_algorithm": "sha512",
+  "signature_algorithm": "Ed25519",
+  "capsule_context": {
+    "jurisdiction": "US",
+    "data_classification": "general",
+    "metadata": {
+      "pattern": "molecule_admet_screening"
+    }
+  },
+  "record_receipts": [
+    {"pattern_tag": "molecule_admet_screening", "_note": "N receipts in real run; Merkle root binds all into Step 8"}
+  ]
+}

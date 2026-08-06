@@ -1,0 +1,70 @@
+name: voice-behavioral
+runtime: python3.12
+entrypoint: python main.py
+
+# Voice transcription + behavioral risk scoring. Audio recordings
+# of clinical encounters / coaching sessions / customer support
+# carry PHI + sensitive personal disclosures.
+data_classification: PHI
+
+# Egress allowlist:
+#   api.anthropic.com         — behavioral assessment LLM
+#   api.openai.com            — Whisper ASR
+#   *.escalation-webhook.com  — placeholder for the customer's
+#                                 on-call clinician escalation
+#                                 endpoint (PagerDuty / Twilio /
+#                                 EHR inbox). Customer substitutes
+#                                 their actual webhook host.
+egress_declaration:
+  - api.anthropic.com
+  - api.openai.com
+  - escalation-webhook.example.com  # customer substitutes their host
+
+packages:
+  python:
+    - openai==1.51.2
+    - anthropic==0.39.0
+    - pydantic==2.9.2
+    - httpx==0.27.2
+    # Diarization stack. pyannote.audio v3.1 pipeline requires:
+    #   - HuggingFace auth token (HUGGINGFACE_TOKEN env var)
+    #   - GPU runtime (CPU works but is unbounded — production
+    #     deployments use the GPU-backed Nanorix runtime tier or
+    #     pre-diarize before upload)
+    #   - PyTorch (~800MB install footprint)
+    # Customers who pre-diarize externally can drop these from the
+    # capsulefile to keep the cold-start small.
+    - pyannote.audio==3.3.2
+    - torch==2.4.1
+    - torchaudio==2.4.1
+    # Optional WhisperX combines Whisper + pyannote into one pipeline
+    # with word-level timestamps. Bring it in if the workflow needs
+    # word-level diarized transcripts:
+    # - whisperx==3.1.5
+
+files:
+  - main.py
+
+# Voice sessions can run long (45-90min therapy / coaching) so
+# we use the memory artifact pattern for >60min compositions
+# (see long-running-agent bundle). Single-session cap is the
+# V1 60-minute capsule ceiling.
+default_ttl: 3600
+# Bumped to 4096MB. pyannote diarization holds the full audio
+# tensor + speaker embedding model in memory; a 60-minute encounter
+# at 16kHz mono takes ~115MB raw + ~2GB pipeline overhead.
+memory_mb: 4096
+
+env:
+  ANTHROPIC_MODEL: claude-3-5-sonnet-latest
+  WHISPER_MODEL: whisper-1
+  # Real-time escalation webhook — customer-configured. Absent
+  # this var, the pipeline records a synthetic envelope rather
+  # than firing. Production deployments MUST set this.
+  ESCALATION_WEBHOOK_URL: ""
+  # Diarization tuning
+  DIARIZATION_MIN_SEGMENT_S: "0.5"
+  # HuggingFace auth for pyannote — set as a sealed secret per
+  # customer. Empty default forces the pipeline into stub mode
+  # (single-segment fallback).
+  HUGGINGFACE_TOKEN: ""

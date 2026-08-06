@@ -1,0 +1,25 @@
+{
+  "_note": "Expected AuditProof anchor.",
+  "hash_algorithm": "sha512",
+  "signature_algorithm": "Ed25519",
+  "capsule_context": {
+    "jurisdiction": "US",
+    "data_classification": "PHI",
+    "metadata": {
+      "pattern": "imaging_inference"
+    }
+  },
+  "chain": [
+    {"step": 1, "subsystem": "eee_namespace"},
+    {"step": 2, "subsystem": "eee_tmpfs"},
+    {"step": 3, "subsystem": "eee_memory"},
+    {"step": 4, "subsystem": "dire_keys"},
+    {"step": 5, "subsystem": "dire_identity"},
+    {"step": 6, "subsystem": "fgx_forensic"},
+    {"step": 7, "subsystem": "rzl_audit"},
+    {"step": 8, "subsystem": "capsule_destroy"}
+  ],
+  "record_receipts": [
+    {"pattern_tag": "imaging_inference"}
+  ]
+}
