@@ -894,32 +894,6 @@ def test_canonical_hash_jcs_byte_equivalent_with_helpers():
     assert _canonical_hash(payload) == expected
 
 
-GOLDEN_DIGEST = (
-    "402f533e81d78a05f386bee62a919436b8eacdea2c49397d54547bbd19dabce4"
-    "7bc95143635ee6d487e35eee037fec31ebd1f8f88b2f3f36ae2908324c74aabe"
-)
-
-
-def test_golden_canonical_hash_digest_constant_preserved():
-    """Sanity guard: the golden digest constant matches Rust source-of-truth.
-
-    Same guard as test_langchain_integration.py + test_langgraph_integration.py.
-    Forever-Standard violation if the Rust constant drifts.
-    """
-    rust_const = (
-        Path(__file__).resolve().parents[3]
-        / "services"
-        / "api"
-        / "src"
-        / "cdp_document.rs"
-    )
-    if rust_const.exists():
-        text = rust_const.read_text()
-        assert GOLDEN_DIGEST in text, (
-            "Golden canonical_hash digest in this test no longer appears in "
-            "the Nanorix API service — either the source-of-truth "
-            "changed (Forever-Standard violation) or the test constant is stale."
-        )
 
 
 # ── property test on call orderings ─────────────────────────────────
