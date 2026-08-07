@@ -111,5 +111,5 @@ client = nanorix.Client(
 ## Documentation
 
 - [Verify an AuditProof](https://nanorix.io/verify/)
-- [Dashboard](https://app.nanorix.io)
+- [Console](https://app.nanorix.io)
 - [Verify a CDP](https://nanorix.io/verify)
