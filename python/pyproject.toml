@@ -209,14 +209,10 @@ grc = [
 ]
 
 [project.urls]
-# Documentation pointed at docs.nanorix.io, which has no DNS record — so every engineer
-# who ran `pip install nanorix` and clicked Documentation reached a dead domain. Point at
-# a page that resolves; restore the docs URL in the same commit that gives it a host.
-# Repository pointed at the marketing site; the source is not public, so the field is
-# omitted rather than made to lie.
 Homepage = "https://nanorix.io"
-Documentation = "https://nanorix.io/verify/"
-Issues = "https://nanorix.io/#contact"
+Documentation = "https://docs.nanorix.io"
+Repository = "https://github.com/nanorix-io/nanorix-sdk"
+Issues = "https://github.com/nanorix-io/nanorix-sdk/issues"
 
 [build-system]
 requires = ["hatchling"]

@@ -51,6 +51,11 @@
     "@types/node": "^20"
   },
   "bugs": {
-    "url": "https://nanorix.io/#contact"
+    "url": "https://github.com/nanorix-io/nanorix-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanorix-io/nanorix-sdk.git",
+    "directory": "typescript"
   }
 }
