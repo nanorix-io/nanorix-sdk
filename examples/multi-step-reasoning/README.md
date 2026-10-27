@@ -87,7 +87,7 @@ The reasoning trace records confidence per step, so auditors can see whether the
 PHI in the patient summary triggers HIPAA's "minimum necessary" + business-associate clauses. Calling an LLM iteratively over PHI without sealed isolation makes the calling host (your AI service, your CDS gateway, your dev laptop) part of HIPAA scope. With Nanorix:
 
 - The patient summary lives in volatile memory only, destroyed with the capsule.
-- Each LLM reasoning step's HTTPS call to `api.anthropic.com` flows through the sealed egress layer: TLS pin verification + per-request hash + duration recorded.
+- Each LLM reasoning step's HTTPS call to `api.anthropic.com` flows through the sealed egress layer: TLS validated against system trust roots + per-request hash + duration recorded.
 - Each knowledge-base retrieval to the customer's licensed deployment is similarly attested.
 - The reasoning trace (each step's observation + confidence + KB-result hash) is hashed into the AuditProof.
 - The structured recommendation output is hashed into the activity trail.

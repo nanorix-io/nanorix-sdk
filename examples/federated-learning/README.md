@@ -107,7 +107,7 @@ Federated learning's privacy posture is only as strong as the per-organization d
 With Nanorix:
 
 - The local training data lives in volatile memory only, destroyed with the capsule. Zero-retention is the substrate property.
-- Each coordinator HTTPS call (snapshot fetch, weight-delta emission) flows through sealed egress: TLS pin verification + per-request hash + duration recorded.
+- Each coordinator HTTPS call (snapshot fetch, weight-delta emission) flows through sealed egress: TLS validated against system trust roots + per-request hash + duration recorded.
 - The training metrics (epochs, samples seen, final loss, DP epsilon consumed) are bound into the AuditProof.
 - The weight delta is hashed (SHA-512) before emission; the coordinator's response is hashed.
 - AuditProof is signed Ed25519; when BYO-HSM is enabled, signed under the participating organization's HSM authority.

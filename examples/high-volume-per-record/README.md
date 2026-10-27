@@ -95,7 +95,7 @@ The bundle's pattern composes naturally with the CMS-0057-F Prior Authorization 
 Claims processing operates on PHI under HIPAA + state-specific privacy laws. Without sealed isolation, the calling host (your adjudication engine, your batch-job runner, your provider portal backend) becomes part of HIPAA scope and inherits cross-claim data-leakage risk. With Nanorix:
 
 - The claim envelope (with member ID, NPI, dx codes, charge amounts) lives in volatile memory only, destroyed with the capsule.
-- The clearinghouse HTTPS call flows through sealed egress: TLS pin verification + per-request hash + duration recorded.
+- The clearinghouse HTTPS call flows through sealed egress: TLS validated against system trust roots + per-request hash + duration recorded.
 - The clearinghouse response (eligibility, preauth status, adjudication outcome) is hashed into AuditProof — not retained.
 - The adjudication decision (paid amount, denied reason, pended-with-reason) is bound into the AuditProof; signed under customer's authority when BYO-HSM is enabled.
 - AuditProof is signed Ed25519; customer's verifier reconstructs each claim's processing path from envelope to decision.

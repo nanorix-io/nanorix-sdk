@@ -288,7 +288,7 @@ The `regulatory_context` block on the AuditProof emits `related_to` mappings to 
 Prior-authorization data carries PHI (member health information), PII (member ID, NPI), and the full clinical picture (diagnosis codes + procedure codes + attached clinical documentation). Multiple sealed HTTPS calls per transaction: criteria engine, LLM provider, FHIR PAS server, case-management system. Each carries claim data into a third-party service. With Nanorix:
 
 - The X12 transaction + parsed request live in volatile memory only — destroyed with the capsule.
-- All four egress calls are sealed-daemon-routed: TLS pin verification + body hash + response hash + duration recorded.
+- All four egress calls are sealed-daemon-routed: TLS validated against system trust roots + body hash + response hash + duration recorded.
 - The criteria evaluation + LLM decision are bound into the activity_trail.
 - The FHIR PAS bundle output is hashed; downstream emission to the customer's PAS server is one additional `SealedHttpRequest` (when configured).
 - Per-event customer KMS attestation provides two-party evidence that the run happened with these inputs.

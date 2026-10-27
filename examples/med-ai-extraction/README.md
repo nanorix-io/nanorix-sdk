@@ -127,7 +127,7 @@ Code-systems align with the canonical FHIR R4 URIs: LOINC for observations, ICD-
 PDFs of medical records contain PHI under HIPAA. Calling an LLM with PHI in the prompt triggers HIPAA's "minimum necessary" + business-associate clauses. Without sealed isolation, the calling host (your AI service, your dev laptop, your CI runner) becomes part of the HIPAA scope. With Nanorix:
 
 - The PDF lives in volatile memory only, destroyed with the capsule.
-- The HTTPS call to `api.anthropic.com` (and to `documentai.googleapis.com` for the cloud OCR substitution path) flows through the sealed egress layer: TLS pin verification + per-request hash + duration recorded in the AuditProof.
+- The HTTPS call to `api.anthropic.com` (and to `documentai.googleapis.com` for the cloud OCR substitution path) flows through the sealed egress layer: TLS validated against system trust roots + per-request hash + duration recorded in the AuditProof.
 - The structured output is hashed into the activity trail (not the raw PHI text).
 - The PHI-redaction event count is hashed into the activity trail; the redacted strings are not recorded in AuditProof.
 - The AuditProof is signed Ed25519 and emits as evidence the capsule destroyed all PHI it touched.
@@ -143,7 +143,7 @@ Activity-trail events for one PDF processed through the full fallback chain:
 5. **`ExecutionCompleted`** — exit + duration.
 6. **`FileDownloaded`** — `extraction.json` output.
 
-The customer's verifier replay confirms that the PDF bytes the customer logged match `body_hash` of the OCR/vision call (when those layers triggered), the LLM's response matches `response_body_hash`, and TLS validation passed against the pinned cert.
+The customer's verifier replay confirms that the PDF bytes the customer logged match `body_hash` of the OCR/vision call (when those layers triggered), and the LLM's response matches `response_body_hash`.
 
 ## Compliance binding
 
