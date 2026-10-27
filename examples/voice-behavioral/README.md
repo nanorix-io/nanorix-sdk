@@ -95,7 +95,7 @@ Audio recordings contain spoken PHI in clinical contexts, plus the highest-stake
 
 With Nanorix:
 - The audio file lives in volatile memory only.
-- All three calls are sealed-daemon-routed: TLS pin verification + body hash + response hash + duration recorded.
+- All three calls are sealed-daemon-routed: TLS validated against system trust roots + body hash + response hash + duration recorded.
 - The transcript text is held in capsule memory; AuditProof binds the SHA-512 hash but not the plaintext.
 - The behavioral assessment is structured and bound into the activity_trail.
 - The escalation event (when fired) is one `SealedHttpRequest` in AuditProof, providing audit-trail evidence that safety-trigger response actually happened.
